@@ -1,0 +1,19 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background: #ebebeb;
+}
+.flexRow{
+    display: flex;
+}
+.sb{
+    justify-content: space-between;
+}
+ 
+*{
+    -ms-overflow-style: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }

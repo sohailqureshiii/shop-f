@@ -1,0 +1,120 @@
+
+.a-ws div.a-column, div.a-column {
+    margin-right: 2%;
+    float: left;
+    min-height: 1px;
+    overflow: visible;
+}
+.a-row .a-span12, .a-span12, .a-ws .a-row .a-ws-span12, .a-ws .a-ws-span12 {
+    width: 100%;
+    margin-right: 0;
+}
+.a-row .a-span12, .a-ws .a-row .a-ws-span12 {
+    width: 99.948%;
+}
+.apb-browse-col-pad-left {
+    padding-left: 125px;
+}
+.apb-browse-two-col-center-margin-right {
+    margin-right: 0!important;
+}
+.a-float-right, .aok-float-right {
+    float: right!important;
+}
+
+.a-ws .a-ws-span12, div.a-column.a-span-last {
+    margin-right: 0;
+    float: right;
+}
+.a-ws div.a-column, div.a-column {
+    margin-right: 2%;
+    float: left;
+    min-height: 1px;
+    overflow: visible;
+}
+.a-row .a-span12, .a-span12, .a-ws .a-row .a-ws-span12, .a-ws .a-ws-span12 {
+    width: 100%;
+    margin-right: 0;
+}
+.a-column.a-span-last {
+    margin-right: 0;
+    float: right;
+}
+.a-row .a-span12, .a-ws .a-row .a-ws-span12 {
+    width: 99.948%;
+}
+.apb-browse-col-pad-right {
+    padding-right: 6px;
+}
+.apb-browse-left-nav {
+    border-right: 2px solid #ddd;
+    word-break: break-word;
+    width: 200px!important;
+    margin-left: -200px;
+}
+
+.a-row {
+    width: 100%;
+    margin-top: -175px;
+}
+
+.a-section:last-child {
+    margin-bottom: 0;
+}
+.a-section {
+    margin-bottom: 22px;
+}
+.a-spacing-none, .a-ws .a-ws-spacing-none {
+    margin-bottom: 0!important;
+}
+
+.apb-browse-two-col-center-pad {
+    padding-left: 150px;
+}
+
+.a-row {
+    width: 100%;
+}
+
+
+.a-container {
+    min-width: 998px;
+    padding: 14px 18px 18px;
+    margin: 0 auto;
+}
+
+/* ///////////// */
+
+
+.orderItemContainer{
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+}
+.orderImgContainer{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    text-align: center;
+}
+.orderImg{
+    max-width: 80px;
+    max-height: 80px;
+}
+.orderRow{
+    display: flex;
+    flex: 1;
+}
+.orderName{
+    width: 300px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    font-size: 12px;
+}
+.orderPrice{
+    box-sizing: border-box;
+    padding: 0 40px;
+    display: flex;
+    align-items: flex-start;
+    font-size: 14px;
+  }

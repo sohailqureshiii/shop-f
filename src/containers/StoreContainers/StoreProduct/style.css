@@ -1,0 +1,47 @@
+.pb0 {
+    padding-bottom: 0;
+}
+.p32 {
+    padding: 32px;
+    padding-top: 65px;
+}
+
+.search-bar {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+.d-flex{
+    display: -webkit-flex!important;
+    display: flex!important;
+}
+
+.button-group.btn-primary, .button-group.btn-primary-0, .button-group.btn-primary-4, .button-group.btn-primary-8 {
+    background: grey;
+    color: #fff;
+}
+.button-group {
+    display: -webkit-flex!important;
+    display: flex!important;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.graphics-header, .section-text-5 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+
+.button-group .btn-text:first-child {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.button-group .btn-text {
+    border-radius: 4px;
+    padding: 8px 12px;
+}

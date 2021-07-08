@@ -1,0 +1,287 @@
+/* ////// POP UP MODAL CSS */
+
+
+.CardLayout-Toaster-Container {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+  }
+  
+  @media screen and (min-width: 1024px){.CardLayout {
+    padding: 40px 56px;
+  }}
+  
+  @media screen and (min-width: 510px){
+    .CardLayout {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      min-height: 630px;
+      padding: 24px 56px 40px;
+  }
+  }
+  
+  
+  .CardLayout {
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid hsl(216deg 1% 6%);
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 30px 30px 40px 40px;
+    position: relative;
+  }
+  
+  .spectrum--lightest .spectrum-Heading1 {
+    color: #323232;
+  }
+  .CardLayout__header h1 {
+    margin: 0;
+  }
+  .spectrum-Heading1 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .spectrum-Heading1 {
+    font-style: normal;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+  
+  .EmailPage__instructions {
+    color: #505050;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 27px;
+    margin: 8px 0 0;
+  }
+  
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+  
+  .spectrum--lightest .spectrum-Link {
+    color: #1473e6;
+  }
+  .spectrum-Link {
+    background-color: rgba(0,0,0,0);
+    -webkit-text-decoration-skip: objects;
+    text-decoration: none;
+    -webkit-transition: color .13s ease-in-out;
+    -o-transition: color .13s ease-in-out;
+    transition: color .13s ease-in-out;
+    outline: 0;
+    color: #1473e6;
+    padding-left: 5px;
+  
+  }
+  
+  .EmailPage .CardLayout__content {
+    margin-top: 32px;
+  }
+  .CardLayout__content {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+  }
+  
+  form {
+    display: block;
+    margin-top: 0em;
+  }
+  
+  .form-group:first-child {
+    margin-top: 0;
+  }
+  .EmailPage__email-field.form-group {
+    margin: 15px 0 21px;
+  }
+  .form-group {
+    margin: 15px 0;
+    min-height: 69px;
+    position: relative;
+  } 
+  
+  .form-group .spectrum-FieldLabel {
+    padding-bottom: 5px;
+    padding-top: 15px;
+  }
+  .spectrum--lightest .spectrum-FieldLabel {
+    color: #747474;
+  }
+  .spectrum-FieldLabel {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 4px 0 5px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.3;
+    /* vertical-align: top;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    font-smoothing: subpixel-antialiased; */
+  }
+  
+  label {
+    cursor: default;
+  }
+  
+  .form-group .spectrum-Textfield {
+    height: 45px;
+    width: 390px;
+    padding-bottom: 0;
+    padding-top: 0;
+    font-size: 14px;
+  }
+  .spectrum .spectrum-Textfield {
+    font-size: 16px;
+    line-height: 1.15;
+  }
+  .spectrum .spectrum-Textfield {
+    width: 100%;
+  }
+  .spectrum--lightest .spectrum-Textfield--quiet {
+    background-color: rgba(0,0,0,0);
+    border-color: #eaeaea;
+  }
+  .spectrum--lightest .spectrum-Textfield {
+    background-color: #fff;
+    border-color: #eaeaea;
+    color: #505050;
+  }
+  .spectrum-Textfield {
+    -webkit-transition: border-color .13s ease-in-out,-webkit-box-shadow .13s ease-in-out;
+    transition: border-color .13s ease-in-out,-webkit-box-shadow .13s ease-in-out;
+    -o-transition: border-color .13s ease-in-out,box-shadow .13s ease-in-out;
+    transition: border-color .13s ease-in-out,box-shadow .13s ease-in-out;
+    transition: border-color .13s ease-in-out,box-shadow .13s ease-in-out,-webkit-box-shadow .13s ease-in-out;
+  }
+  .spectrum-Textfield--quiet {
+    border-radius: 0;
+    border-width: 0 0 1px;
+    padding-left: 0;
+    padding-right: 0;
+    resize: none;
+    overflow-y: hidden;
+  }
+  .spectrum-Textfield {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 5px 11px 7px;
+    text-indent: 0;
+    min-width: 48px;
+    height: 32px;
+    width: 192px;
+    vertical-align: top;
+    margin: 0;
+    overflow: visible;
+    font-family: adobe-clean,Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Ubuntu,Trebuchet MS,Lucida Grande,sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+  }
+  .spectrum-Textfield {
+    padding: 3px 12px 5px;
+    font-family: adobe-clean,Helvetica,Arial,sans-serif;
+  }
+  
+  .EmailPage__submit {
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  
+  .ta-left {
+    text-align: left;
+  }
+  
+  
+  .ta-right {
+    padding-left: 175px;
+  }
+  
+  .spectrum-Button:last-child {
+    margin-right: 0;
+    background-color: #1473e6;
+    border-color: #1473e6;
+    color: #fff;
+    border-radius: 35px;
+    height: 45px;
+    width: 100px;
+    justify-content: center;
+  }
+  .spectrum--lightest .spectrum-Button--cta {
+    background-color: #1473e6;
+    border-color: #1473e6;
+    color: #fff;
+  }
+  
+  .SpinnerButton {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
+  
+  .SpinnerButton--right .spectrum-Button-label {
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+    -moz-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+  }
+  .SpinnerButton .spectrum-Button-label {
+    width: auto;
+  }
+  .spectrum-Button-label {
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    -webkit-align-self: center;
+    align-self: center;
+    -ms-grid-column-align: center;
+    justify-self: center;
+    text-align: center;
+    width: 100%;
+  }
