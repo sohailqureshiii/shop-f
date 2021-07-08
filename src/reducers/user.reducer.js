@@ -1,40 +1,40 @@
-import { authConstants } from "../actions/constants";
+import { followContants } from "../actions/constants";
 
 
 const initState = {
-    error: "",
-    message: "",
+    address: [],
+    orders: [],
+    following:[],
+    followingStores:[],
+    followingProducts:[],
+    orderDetails: {},
+    error: null,
     loading: false,
-    authenticate: false,
-    errorTF:false
+    orderFetching: false,
+    placedOrderId: null,
 }
 
 export default (state = initState, action) => {
-    switch (action.type) {
-        case authConstants.SIGNUP_REQUEST:
+    
+    switch (action.type){
+        case followContants.GET_ALL_FOLLOWING_SUCCESS:
             state = {
                 ...state,
-                loading: true,
-                errorTF:false
+                following:action.payload.following
             }
-            break;
-        case authConstants.SIGNUP_SUCCESS:
+          break;
+          case followContants.GET_ALL_FOLLOWING_STORE_SUCCESS:
             state = {
                 ...state,
-                loading: false,
-                message: action.payload.message,
-                authenticate: true,
-                errorTF:false,
+                followingStores:action.payload.followingStore
             }
-            break;
-        case authConstants.SIGNUP_FAILURE:
+          break;
+          case followContants.GET_ALL_FOLLOWING_PRODUCTS_SUCCESS:
             state = {
                 ...state,
-                loading: false,
-                error: action.payload.error,
-                errorTF:true
+                followingProducts:action.payload.followingProduct
             }
-            break;
+          break;
     }
     return state;
 }

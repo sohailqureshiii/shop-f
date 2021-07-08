@@ -17,7 +17,7 @@ const productRoutes = require('./routes/product.route')
 // const oderRoutes = require('./routes/order');
 // const wishListRoutes = require('./routes/wishlist');
 const userinitialdata = require('./routes/userinitialdata');
-// const followRoutes = require('./routes/follow');
+const followRoutes = require('./routes/follow.route');
 // const UsereditProfile = require('./routes/auth');
 
 // environment variable 
@@ -48,7 +48,7 @@ app.use('/api',productRoutes)
 // app.use('/api', oderRoutes);
 // app.use('/api', wishListRoutes);
 app.use('/api',userinitialdata);
-// app.use('/api',followRoutes);
+app.use('/api',followRoutes);
 // app.use('/api',UsereditProfile)
 
 app.listen(process.env.PORT,()=>{

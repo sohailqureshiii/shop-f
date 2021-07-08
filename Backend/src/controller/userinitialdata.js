@@ -5,33 +5,6 @@ const StoreLocation = require('../models/location')
 const User = require('../models/auth');
 
 
-
-function createCategories(categories, parentId = null) {
-
-    const categoryList = [];
-    let category;
-    if (parentId == null) {
-        category = categories.filter(cat => cat.parentId == undefined);
-    } else {
-        category = categories.filter(cat => cat.parentId == parentId);
-
-    }
-    for (let cate of category) {
-        categoryList.push({
-            _id: cate.id,
-            name: cate.name,
-            slug: cate.slug,
-            parentId: cate.parentId,
-            categoryIcon:cate.categoryIcon,
-            // type: cate.type,
-            children: createCategories(categories, cate._id)
-        });
-    }
-
-    return categoryList;
-};
-
-
 exports.userData = async (req, res) => {
     
     const categories = await Category.find({}).sort('-createdAt').exec();
@@ -59,9 +32,22 @@ exports.userinitialdata = async(req,res) =>{
     const user = await User.findOne({_id:req.user._id})
                 .select('-password')
                 .exec();
+    const { following } = user;
+    const followingProduct = await Product.find({storeId:{$in:following}})
+    .populate({path: 'productCategory', select: '_id name'})
+    .populate({path: 'productParentCategory', select: '_id name'})
+    .populate({path:'storeId', select: '_id storeName '})
+    .populate({path: 'storeLocation', select: '_id name'})
+    .exec();
+    const followingStore = await Store.find({_id:{$in:following}})
+    .select('storeName')
+    .exec();
     // const store = await Store.findOne({createdBy: req.user._id}).exec();
     res.status(200).json({
-        user
+        user,
+        following,
+        followingProduct,
+        followingStore
     })
 }
 
