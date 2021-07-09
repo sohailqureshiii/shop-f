@@ -11,17 +11,24 @@ const OrderDeatilsP = (props) => {
     return (
         <>
          <NavBar />
-         <div className="a-container"  style={{paddingTop:'100px'}}>
-         <div style={{border:'1px solid rgb(212, 212, 212',maxWidth:'250px',maxHeight:'100%'}}>
-         <div className='a-section a-spacing-none apb-browse-refinements' style={{padding:'5px'}}>
-                    <div style={{padding:'10px', border:'1px solid #d4d4d4',borderRadius:'5px', paddingTop:'5px', marginTop:'15px',backgroundColor: '#f9f9f9'}}>Orders</div>
-                    <div style={{padding:'10px', border:'1px solid #d4d4d4',borderRadius:'5px', paddingTop:'5px', marginTop:'15px',backgroundColor: '#f9f9f9'}}>Orders History</div>
-                    <div style={{padding:'10px', border:'1px solid #d4d4d4',borderRadius:'5px', paddingTop:'5px', marginTop:'15px',backgroundColor: '#f9f9f9'}}>Orders Pending</div>
-                </div>
-          </div>
-         <div className='a-row apb-browse-two-col-center-pad'>
-        <div className="a-column a-span12 aok-float-right apb-browse-col-pad-left apb-browse-two-col-center-margin-right">
-        <div style={{ maxWidth: "1160px", margin: "5px auto" }}>
+         <div className='vcjsduedn' style={{paddingTop:'100px'}}>
+         <div style={{display:'flex'}}>
+         <div className='lanchkdrj'>
+           <div className='ponscbswjn'>
+           <div>
+             <h4 className='kdhbsdb'>Order Details</h4>
+             <div className='lkxxhjkskn'>All</div>
+             <div className='lkxxhjkskn'>Pending</div>
+             <div className='lkxxhjkskn'>Order History</div>
+             <div className='lkxxhjkskn'>Cancel Order</div>
+             <div className='lknidkdghb'>New Oders</div>
+           </div>
+           <div>
+           </div>
+           </div>
+         </div>
+            <div className="a-column a-span12 aok-float-right apb-browse-col-pad-left apb-browse-two-col-center-margin-right  mnhghssjsk">
+        <div style={{ maxWidth: "1160px", margin: "5px auto"}}>
       
           
             <Card style={{ display: "block", margin: "5px 0" }}>
@@ -48,17 +55,7 @@ const OrderDeatilsP = (props) => {
       </div>
       
         </div>
-        {/* <div className='a-column a-span12 apb-browse-left-nav apb-browse-col-pad-right a-span-last'>
-            <div className="a-row">
-                <div className='a-section a-spacing-none apb-browse-refinements' style={{padding:'5px'}}>
-                    <div style={{padding:'10px', border:'1px solid #d4d4d4',borderRadius:'5px', paddingTop:'5px', marginTop:'15px',backgroundColor: '#f9f9f9'}}>Orders</div>
-                    <div style={{padding:'10px', border:'1px solid #d4d4d4',borderRadius:'5px', paddingTop:'5px', marginTop:'15px',backgroundColor: '#f9f9f9'}}>Orders History</div>
-                    <div style={{padding:'10px', border:'1px solid #d4d4d4',borderRadius:'5px', paddingTop:'5px', marginTop:'15px',backgroundColor: '#f9f9f9'}}>Orders Pending</div>
-                </div>
-            </div>
-        </div> */}
-        </div>
-       
+         </div>
          </div>
          <Footer/>
         </>
