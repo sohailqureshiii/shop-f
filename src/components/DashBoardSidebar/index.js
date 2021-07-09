@@ -19,7 +19,7 @@ const DashBoard = (props) => {
                 <li>
                   <NavLink exact activeClassName="active" to="/storeDashboard">
                   <img src={Homeicon} className="dashicon-icon" />
-                    <span class="las la-igloo"></span> <span>Home</span>
+                    <span class="las la-igloo"></span> <span>Dashboard</span>
                   </NavLink>
                 </li>
                 <li>
@@ -49,7 +49,7 @@ const DashBoard = (props) => {
               </ul>
             </div>
           </div>
-          <div style={{paddingLeft:'200px'}}>
+          <div style={{paddingLeft:'342px'}}>
           {props.children}
           </div>
         </div>

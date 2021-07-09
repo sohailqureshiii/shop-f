@@ -64,9 +64,11 @@ color: white;
     color: black;
     padding-bottom: 20px;
     display: flex;
+    padding-top: 13px;
 }
 
 .lkjhasdrfr{
     padding-top: 60px;
     padding-left: 30px;
+    padding-right: 30px;
 }
