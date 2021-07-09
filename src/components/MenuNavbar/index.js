@@ -6,7 +6,7 @@ const MenuNavBar = (props) => {
   const locationList = useSelector((state) => state.location.locations);
 
   const inputSearch = useRef("");
-  const inputLocation = useRef("");
+  const inputLocation = useRef(""); 
   const inputCategory = useRef("");
 
   const getSearchTerm = () => {

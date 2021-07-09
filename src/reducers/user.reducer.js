@@ -1,40 +1,77 @@
-import { authConstants } from "../actions/constants";
+import { cartConstants, followContants } from "../actions/constants";
 
 
 const initState = {
-    error: "",
-    message: "",
+    address: [],
+    orders: [],
+    following:[],
+    followingStores:[],
+    followingProducts:[],
+    orderDetails: {},
+    error: null,
     loading: false,
-    authenticate: false,
-    errorTF:false
+    orderFetching: false,
+    placedOrderId: null,
+    cartItems: {
+        // 123: {
+        //     _id: 123,
+        //     name: 'Samsung mobile',
+        //     img: 'some.jpg',
+        //     price: 200,
+        //     qty: 1,
+        // }
+    },
+    updatingCart: false,
+    error: null
 }
 
 export default (state = initState, action) => {
-    switch (action.type) {
-        case authConstants.SIGNUP_REQUEST:
+    
+    switch (action.type){
+        case followContants.GET_ALL_FOLLOWING_SUCCESS:
             state = {
                 ...state,
-                loading: true,
-                errorTF:false
+                following:action.payload.following
             }
-            break;
-        case authConstants.SIGNUP_SUCCESS:
+          break;
+          case followContants.GET_ALL_FOLLOWING_STORE_SUCCESS:
             state = {
                 ...state,
-                loading: false,
-                message: action.payload.message,
-                authenticate: true,
-                errorTF:false,
+                followingStores:action.payload.followingStore
             }
-            break;
-        case authConstants.SIGNUP_FAILURE:
+          break;
+          case followContants.GET_ALL_FOLLOWING_PRODUCTS_SUCCESS:
             state = {
                 ...state,
-                loading: false,
-                error: action.payload.error,
-                errorTF:true
+                followingProducts:action.payload.followingProduct
             }
-            break;
+          break;
+      
+            case cartConstants.ADD_TO_CART_REQUEST:
+                state = {
+                    ...state,
+                    updatingCart: true
+                }
+                break;
+            case cartConstants.ADD_TO_CART_SUCCESS:
+                state = {
+                    ...state,
+                    cartItems: action.payload.cartItems,
+                    updatingCart: false
+                }
+                break;
+            case cartConstants.ADD_TO_CART_FAILURE:
+                state = {
+                    ...state,
+                    updatingCart: false,
+                    error: action.payload.error
+                }
+                break;
+            case cartConstants.RESET_CART:
+                state = {
+                    ...initState
+                }
+                break;
     }
     return state;
 }

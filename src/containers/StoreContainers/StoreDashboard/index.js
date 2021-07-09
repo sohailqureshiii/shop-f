@@ -4,8 +4,12 @@ import DashBoard from "../../../components/DashBoardSidebar";
 import SeachCompo from "../../../components/SearchComponent";
 // import OrderTableCompo from "../../../components/Tablecomponent/Order table component";
 import "./style.css";
+import { useSelector } from "react-redux";
 
 const StoreDasboard = () => {
+
+  const storeProducts = useSelector((state)=>state.userStore.storeProduct)
+  const storeOrders = useSelector((state)=>state.userStore.storeOrder)
   return (
     <>
     <Navbar/>
@@ -23,7 +27,7 @@ const StoreDasboard = () => {
                 <h1 className="mkoqszert">Products</h1>
               </div>
               <div className="nnsxnslxkax">
-                <h1 className="mkoqszerdefeft">909</h1>
+                <h1 className="mkoqszerdefeft">{storeProducts.length}</h1>
               </div>
             </div>
             <div className="bvncmdkdj">
@@ -31,7 +35,7 @@ const StoreDasboard = () => {
                 <h1 className="mkoqszert">Orders</h1>
               </div>
               <div className="nnsxnslxkax">
-                <h1 className="mkoqszerdefeft">60</h1>
+                <h1 className="mkoqszerdefeft">{storeOrders.length}</h1>
               </div>
             </div>
             <div className="bvncmdkdj">

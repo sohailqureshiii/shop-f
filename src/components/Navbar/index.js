@@ -52,7 +52,7 @@ const Navigationbar = (props) => {
                 alt="Shopisthan Logo"
                 
               />
-              {/* <span style={{ fontSize: 15 }}> {auth.user.name}</span> */}
+              <span style={{ fontSize: 15 }}> {auth.user ? auth.user.name :"Hello User"}</span>
           </div>
           </Link>
         }

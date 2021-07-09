@@ -99,3 +99,23 @@ exports.createProduct = async (req, res) => {
 //     }
 //   });
 // };
+
+
+exports.editProduct = async(req,res)=>{
+  const {
+    productName,productPrice,productQuantity,productDescription,_id
+   } = req.body;  
+
+   const updatedProduct = await Product.findOneAndUpdate({_id:_id},{$set:{productName,productPrice,productQuantity,productDescription}},
+      {new:true,useFindAndModify: false},
+      (err,updatedProductInfo)=>{
+          if(err) {
+               return res.status(400).json({err});
+          }
+          if(updatedProductInfo){
+              return res.status(201).json({updatedProductInfo});
+          }
+
+      })
+  
+}

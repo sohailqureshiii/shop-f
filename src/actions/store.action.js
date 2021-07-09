@@ -1,5 +1,5 @@
 import axiosIntance from "../helpers/axios";
-import { storeContants } from "./constants";
+import { storeContants, userInitialdata } from "./constants";
 
 // export const addStoreAction = (store) =>{
  
@@ -33,11 +33,15 @@ import { storeContants } from "./constants";
         axiosIntance
           .post("/store/create", {...store})
           .then(res => {
-            const {store,data} =  res.data;
+            const {Store,user} =  res.data;
             dispatch({
                     type: storeContants.ADD_NEW_STORE_SUCCESS,
-                     payload: { stores:store,data }
+                     payload: { stores:Store }
                    });
+           dispatch({
+             type:userInitialdata.GET_USER_DETAILS_SUCCESS,
+             payload:{user}
+           }) 
           }).catch(error =>{    
             dispatch({
               type: storeContants.ADD_NEW_STORE_FAILURE,

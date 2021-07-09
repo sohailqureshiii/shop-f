@@ -20,7 +20,7 @@ exports.signup = (req, res) => {
                 name,
             } = req.body;
             const _user = new User({
-              loginId,
+                loginId,
                 password,
                 name,
                 role: 'user',
@@ -32,7 +32,7 @@ exports.signup = (req, res) => {
             _user.save((error, data) => {
                 if (error) {
                     return res.status(401).json({
-                        "error hai":error
+                        "error":error
                     })
                 }
                 if (data) {

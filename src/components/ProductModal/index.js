@@ -6,9 +6,21 @@ import { WhatsappIcon } from "react-share";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import Signin from "../../containers/Signin";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  followStoreAction,
+  unfollowStoreAction,
+} from "../../actions/user.action";
 
 const ProductModal = (props) => {
-  const { show, handleclose, productDetails} = props;
+  const { show, handleclose, productDetails } = props;
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
   if (!productDetails) {
     return null;
   }
@@ -19,21 +31,66 @@ const ProductModal = (props) => {
     });
   };
 
-  const renderButton = (storeId) => {
-    return (
-      <button
-        style={{ marginLeft: "263px", fontSize:'16px',height:'28px' , marginTop:'16px'}}
-        className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-      >
-        <span> Follow Store</span>
-      </button>
-    );
+  const followStore = (storeId) => {
+    const store = {
+      followId: storeId,
+    };
+    dispatch(followStoreAction(store));
+    handleclose(false);
   };
 
-  // const { productDetails, show, handleclose } = props;
-  // if (!productDetails) {
-  //   return null;
-  // }
+  const UnFollowStore = (storeId) => {
+    const store = {
+      unfollowId: storeId,
+    };
+    dispatch(unfollowStoreAction(store));
+    handleclose(false);
+  };
+
+  const renderButton = (storeId) => {
+    if (!auth.authenticate) {
+      return (
+        <button
+          style={{ marginLeft: "250px" }}
+          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+          onClick={() => {
+            setShowLoginModal(true);
+            handleclose(false);
+          }}
+        >
+          Follow Store
+        </button>
+      );
+    }
+    if (auth.authenticate && !user.following.includes(storeId)) {
+      return (
+        <button
+          style={{ marginLeft: "250px" }}
+          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+          onClick={() => {
+            followStore(storeId);
+          }}
+        >
+          Follow Store
+        </button>
+      );
+    }
+
+    if (auth.authenticate && user.following.includes(storeId)) {
+      return (
+        <button
+          style={{ marginLeft: "250px" }}
+          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+          onClick={() => {
+            UnFollowStore(storeId);
+          }}
+        >
+          Following
+        </button>
+      );
+    }
+  };
+
   return (
     <>
       <Modal visible={show} onClose={handleclose} size="lg">
@@ -59,9 +116,9 @@ const ProductModal = (props) => {
                     className="Storename"
                     style={{ maxWidth: "521px", top: "-1px" }}
                   >
-                    <p style={{display:'flex'}}>
+                    <p style={{ display: "flex" }}>
                       {productDetails.storeId.storeName}
-                      {renderButton()}
+                      {renderButton(productDetails.storeId._id)}
                     </p>
                     <p
                       style={{
@@ -77,16 +134,16 @@ const ProductModal = (props) => {
                   </div>
                 </div>
                 <h1 className="productTitle" style={{ maxWidth: "509px" }}>
-                 {productDetails.productName}
+                  {productDetails.productName}
                 </h1>
-                <div className="flexRow priceContainer price">Price :
-                  <span 
+                <div className="flexRow priceContainer price">
+                  Price :
+                  <span
                   // classNa me="price"
                   >
                     <BiRupee />
                     {productDetails.productPrice}
                   </span>
-
                   {/* <span>i</span> */}
                 </div>
                 <div>
@@ -108,38 +165,64 @@ const ProductModal = (props) => {
                         color: "#212121",
                       }}
                     >
-                     {productDetails.productDescription}
+                      {productDetails.productDescription}
                     </span>
                   </p>
                   <div className="share-btn-container">
-                  <div
-                id="addButtons"
-                style={{ float: "left", width: "100%", marginLeft: "0px" }}
-              >
-                <div className="addToBagBtn  fixedCartBtnWrapper">
-                  <div className="addButtons col-xs-12 pull-left">
-                    <button
-                      id="testWishButton"
-                      className="addtocart pull-left "
-                      onClick={diffToast}
+                    <div
+                      id="addButtons"
+                      style={{
+                        float: "left",
+                        width: "100%",
+                        marginLeft: "0px",
+                      }}
                     >
-                      <span>ADD TO Cart</span>
-                    </button>
-                    <button id="addToCart" className="wishlists pull-left ">
-                      <span>SHARE</span>
-                    </button>
+                      <div className="addToBagBtn  fixedCartBtnWrapper">
+                        <div className="addButtons col-xs-12 pull-left">
+                          <button
+                            id="testWishButton"
+                            className="addtocart pull-left "
+                            onClick={() => {
+                              const storeId = productDetails.storeId._id;
+                              const { _id, productName, productPrice } =
+                                productDetails;
+                              const img = productDetails.productPictures[0].img;
+                              dispatch(
+                                addToCart({
+                                  _id,
+                                  productName,
+                                  productPrice,
+                                  storeId,
+                                  img,
+                                })
+                              );
+                              handleclose(false);
+                            }}
+                          >
+                            <span>ADD TO Cart</span>
+                          </button>
+                          <button
+                            id="addToCart"
+                            className="wishlists pull-left "
+                          >
+                            <span>SHARE</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-                  </div>
-                </div>
-              </div>
-              
             </div>
           </div>
         </div>
         <ToastContainer />
       </Modal>
+      <Signin
+        Modal
+        show={showLoginModal}
+        handleclose={() => setShowLoginModal(false)}
+      />
     </>
   );
 };

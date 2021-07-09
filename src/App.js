@@ -30,6 +30,9 @@ import {
   userStoreDataAction,
 
 } from "./actions/initialData.action";
+import { PrivateRoute } from "./components/HOC/PrivateRoute";
+import { updateCart } from "./actions/user.action";
+import StoreEditProduct from "./containers/StoreContainers/EditProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,18 +50,19 @@ function App() {
   }, [auth.authenticate]);
 
   useEffect(() => {
-    // if (auth.authenticate) {
+    if (auth.authenticate) {
       dispatch(userInitialdataAction());
-    // }
+      dispatch(updateCart())
+    }
     // if(auth.authenticate && auth.user.store === "Yes"){
     //   console.log("yes");
     // }
   }, [auth.authenticate]);
 
   useEffect(() => {
-    // if (auth.authenticate && auth.user.store === "Yes") {
+    if (auth.authenticate) {
       dispatch(userStoreDataAction())
-    // }
+    }
   }, [auth.authenticate]);
 
   return (
@@ -78,17 +82,18 @@ function App() {
           <Route path="/cart" exact component={CartPage} />
           <Route path="/editprofile" exact component={EditProfile} />
           <Route path="/storeForm" exact component={StoreForm} />
-          <Route path="/storeDashboard" exact component={StoreDasboard} />
-          <Route path="/storeProduct" exact component={StoreProduct} />
-          <Route path="/storeOrder" exact component={StoreOrder} />
+          <PrivateRoute path="/storeDashboard" exact component={StoreDasboard} />
+          <PrivateRoute path="/storeProduct" exact component={StoreProduct} />
+          <PrivateRoute path="/storeOrder" exact component={StoreOrder} />
+          <PrivateRoute path="/editProduct" exact component={StoreEditProduct} />
           <Route
             path="/:productSlug/:productId/p"
             component={ProductDetailsPage}
           />
           {/* <Route path="/checkout" exact component={CheckoutPage} /> */}
-          <Route path="/storeCoustomer" exact component={StoreCoustomers} />
-          <Route path="/storeProfile" exact component={StoreProfile} />
-          <Route path="/Addproduct" exact component={StoreAddProduct} />
+          <PrivateRoute path="/storeCoustomer" exact component={StoreCoustomers} />
+          <PrivateRoute path="/storeProfile" exact component={StoreProfile} />
+          <PrivateRoute path="/Addproduct" exact component={StoreAddProduct} />
         </Switch>
       </Router>
     </div>

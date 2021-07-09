@@ -34,18 +34,24 @@ exports.createStore = async (req, res) => {
     });
 
    
-    await store.save((error, store) => {
+    await store.save((error, Store) => {
       if (error) return res.status(400).json({ error });
-      if (store) {
+      if (Store) {
  
       User.findByIdAndUpdate({_id:req.user._id},{$set:{store:"Yes",storeId:store._id}},
        {new:true,useFindAndModify: false},
+
        (err,data)=>{
         if(err) {
                      return res.status(400).json({err});
                 }
                 if(data){
-                    return res.status(201).json({data,store});
+                  const { _id,name, role,following,loginId,store,storeId } = data;
+                    return res.status(201).json({Store,
+                    user:{
+                      _id,name, role,following,loginId,store,storeId
+                    }
+                    });
                 }
        }
        )

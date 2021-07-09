@@ -5,8 +5,11 @@ import { WhatsappIcon,FacebookIcon } from "react-share";
 import {IoMdCreate} from 'react-icons/io'
 import DashBoard from '../../../components/DashBoardSidebar'
 import  Navbar  from "../../../components/Navbar";
+import { useSelector } from 'react-redux';
 
 const StoreProfile = () => {
+ const storeDetails = useSelector((state)=>state.userStore)
+
     return (
        <>
        <Navbar/>
@@ -21,7 +24,7 @@ const StoreProfile = () => {
         <div className="StoreCard__column">
             <div className="StoreCard__column1">
                 <div>
-                <div className="Shop__name">store.shopName
+                <div className="Shop__name"> {storeDetails.userStore.storeName}
 
                <div className="Store_Edit" style={{marginLeft:"250px"}}>
                <IoMdCreate 
@@ -31,26 +34,26 @@ const StoreProfile = () => {
               </div>
                 </div>
                
-                <i className="Shop__type" >store.shopEmail</i>
-                <i className="Shop__type" style={{marginLeft:"20px"}}>store.shopPhoneNo</i>
+                <i className="Shop__type" >{storeDetails.userStore.storeLocation}</i>
+                <i className="Shop__type" style={{marginLeft:"20px"}}>{storeDetails.userStore.storePhoneNo}</i>
 
                 </div>
               
             </div>
             <div className="StoreCard__column1">
-                <div className="Shop__numberVar">product.products.length</div>
+                <div className="Shop__numberVar">{storeDetails.storeProduct.length}</div>
                 <div className="Shop__heading">products</div>
-                <div className="Shop__numberVar">99</div>
+                <div className="Shop__numberVar">{storeDetails.userStore.followers.length}</div>
                 <div className="Shop__heading">followers</div>
             </div>
-            <div className="StoreCard__column1"><div className="Shop__type">Shop Des...</div></div>
+            <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeDescription}</div></div>
             <div className="StoreCard__column1"><div className="Shop__location">
               store.shopAddress
      
               </div>
               </div>
-              <div className="StoreCard__column1"><div className="Shop__type">store.shopType</div></div>
-              <div className="StoreCard__column1"><div className="Shop__type">store.shopCategory.name</div></div>
+              <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeType}</div></div>
+              <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeCategory}</div></div>
               <div className="Store_Share">
                 <WhatsappShareButton
                 // title={store.shopName}

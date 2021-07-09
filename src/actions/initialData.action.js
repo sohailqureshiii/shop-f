@@ -1,6 +1,7 @@
 import axiosIntance from "../helpers/axios";
 import {
   categoryContants,
+  followContants,
   locationContants,
   productContants,
   storeContants,
@@ -12,7 +13,7 @@ export const getUserDataAction = () => {
   return async (dispatch) => {
     const res = await axiosIntance.get(`/userData`);
     if (res.status === 200) {
-      const { categories, locations,products,stores} = res.data;
+      const { categories, locations, products, stores } = res.data;
       dispatch({
         type: categoryContants.GET_ALL_CATEGORIES_SUCCESS,
         payload: { categories },
@@ -23,12 +24,12 @@ export const getUserDataAction = () => {
       });
       dispatch({
         type: productContants.GET_ALL_PRODUCTS_SUCCESS,
-        payload:{products}
-      })
+        payload: { products },
+      });
       dispatch({
         type: storeContants.GET_ALL_STORE_SUCCESS,
-        payload:{stores}
-      })
+        payload: { stores },
+      });
     } else {
       dispatch({
         type: categoryContants.GET_ALL_CATEGORIES_FAILURE,
@@ -42,10 +43,22 @@ export const userInitialdataAction = () => {
   return async (dispatch) => {
     const res = await axiosIntance.get(`/userInitialdata`);
     if (res.status === 200) {
-      const { user,store } = res.data;
+      const { user, following, followingProduct, followingStore } = res.data;
       dispatch({
         type: userInitialdata.GET_USER_DETAILS_SUCCESS,
-        payload: { user: user }
+        payload: { user: user },
+      });
+      dispatch({
+        type: followContants.GET_ALL_FOLLOWING_SUCCESS,
+        payload: { following },
+      });
+      dispatch({
+        type: followContants.GET_ALL_FOLLOWING_PRODUCTS_SUCCESS,
+        payload: { followingProduct },
+      });
+      dispatch({
+        type: followContants.GET_ALL_FOLLOWING_STORE_SUCCESS,
+        payload: { followingStore },
       });
     } else {
       console.log("Error");
@@ -53,18 +66,17 @@ export const userInitialdataAction = () => {
   };
 };
 
-
-export const userStoreDataAction = () =>{
+export const userStoreDataAction = () => {
   return async (dispatch) => {
     const res = await axiosIntance.get(`/userStoreData`);
     if (res.status === 200) {
-      const {store,product } = res.data;
+      const { store, product } = res.data;
       dispatch({
         type: userStoreData.GET_USER_STORE_DETAILS_SUCCESS,
-        payload: { store,product }
+        payload: { store, product },
       });
     } else {
       console.log("Error");
     }
   };
-}
+};

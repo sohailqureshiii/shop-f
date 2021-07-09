@@ -1,13 +1,98 @@
+import { Link } from "@material-ui/core";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import ProductModal from "../../../components/StoreProductdeatils";
 
 const ProductTableCompo = (props) => {
   const [show, setShow] = useState(false);
+  const { searchKeyword } = props;
+
+  const storeProducts = useSelector((state) => state.userStore.storeProduct);
+  // const [searchKeyword , setsearchKeyword] = useState("");
 
   const handleShow = () => {
     setShow(true);
   };
 
+  const renderProducts = () => {
+    if (searchKeyword === "" || searchKeyword === null) {
+      return storeProducts.map((product, index) => (
+        <tr className="mnbnmnb" onClick={() => handleShow()}>
+          <td className="jfkvvjvsv" data-label="S.No">
+            {index}
+          </td>
+          <td className="jfkvvjvsv" data-label="Product Id">
+            {product._id}
+          </td>
+          <td className="jfkvvjvsv" data-label="Product Name">
+            {product.productName}
+          </td>
+          <td className="jfkvvjvsv" data-label="Quantity">
+            {product.productQuantity}
+          </td>
+          <td className="jfkvvjvsv" data-label="Amount">
+            {product.productPrice}
+          </td>
+          <td className="jfkvvjvsv" data-label="Items">
+            {product.productCategory}
+          </td>
+          <td className="jfkvvjvsv" data-label="Stock">
+            Available
+          </td>
+        </tr>
+      ));
+    }
+
+    if (searchKeyword !== "") {
+      return storeProducts
+        .filter(
+          (product) =>
+            product.productName
+              .toLowerCase()
+              .split(" ")
+              .join("")
+              .includes(searchKeyword.toLowerCase().split(" ").join("")) ||
+            product.productCategory
+              .toLowerCase()
+              .split(" ")
+              .join("")
+              .includes(searchKeyword.toLowerCase().split(" ").join(""))
+        )
+        .map((product, index) => (
+          <tr className="mnbnmnb" onClick={() => handleShow()}>
+            <td className="jfkvvjvsv" data-label="S.No">
+              {index}
+            </td>
+            <td className="jfkvvjvsv" data-label="Product Id">
+              {product._id}
+            </td>
+            <td className="jfkvvjvsv" data-label="Product Name">
+              {product.productName}
+            </td>
+            <td className="jfkvvjvsv" data-label="Quantity">
+              {product.productQuantity}
+            </td>
+            <td className="jfkvvjvsv" data-label="Amount">
+              {product.productPrice}
+            </td>
+            <td className="jfkvvjvsv" data-label="Items">
+              {product.productCategory}
+            </td>
+            <td className="jfkvvjvsv" data-label="Stock">
+              Available 
+            </td>
+            <td className="jfkvvjvsv" data-label="Stock"
+            //  onClick={()=>
+            //   <Link to ="/editProduct" />
+            //  }
+            >
+              edit
+            </td>
+           
+          </tr>
+        ));
+    }
+  };
   return (
     <>
       <table className="table-new-table">
@@ -17,126 +102,11 @@ const ProductTableCompo = (props) => {
           <th className="jfkvvjvsv kjilljjhn">Product Name</th>
           <th className="jfkvvjvsv kjilljjhn">Quantity</th>
           <th className="jfkvvjvsv kjilljjhn">Amount</th>
-          <th className="jfkvvjvsv kjilljjhn">Items</th>
+          <th className="jfkvvjvsv kjilljjhn">Category</th>
           <th className="jfkvvjvsv kjilljjhn">Stock</th>
+          <th className="jfkvvjvsv kjilljjhn">Edit/Delete</th>
         </thead>
-        <tbody className="lgadkyhdtq">
-          <tr className="mnbnmnb" onClick={() => handleShow()}>
-            <td className="jfkvvjvsv" data-label="S.No">
-              2
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Id">
-              A1-OKM-098756
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Name">
-              Apple Mac Book
-            </td>
-            <td className="jfkvvjvsv" data-label="Quantity">
-              345
-            </td>
-            <td className="jfkvvjvsv" data-label="Amount">
-              $200
-            </td>
-            <td className="jfkvvjvsv" data-label="Items">
-              678 items
-            </td>
-            <td className="jfkvvjvsv" data-label="Stock">
-              Available
-            </td>
-          </tr>
-          <tr className="mnbnmnb" onClick={() => handleShow()}>
-            <td className="jfkvvjvsv" data-label="S.No">
-              3
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Id">
-              A1-OKM-09834523
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Name">
-              Samsung M10 New Phone
-            </td>
-            <td className="jfkvvjvsv" data-label="Quantity">
-              345
-            </td>
-            <td className="jfkvvjvsv" data-label="Amount">
-              $80
-            </td>
-            <td className="jfkvvjvsv" data-label="Items">
-              678 items
-            </td>
-            <td className="jfkvvjvsv" data-label="Stock">
-              Available
-            </td>
-          </tr>
-          <tr className="mnbnmnb" onClick={() => handleShow()}>
-            <td className="jfkvvjvsv" data-label="S.No">
-              4
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Id">
-              A1-OKM-0989807
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Name">
-              Realmi New Brand Mobile
-            </td>
-            <td className="jfkvvjvsv" data-label="Quantity">
-              345
-            </td>
-            <td className="jfkvvjvsv" data-label="Amount">
-              $20
-            </td>
-            <td className="jfkvvjvsv" data-label="Items">
-              678 items
-            </td>
-            <td className="jfkvvjvsv" data-label="Stock">
-              Available
-            </td>
-          </tr>
-          <tr className="mnbnmnb" onClick={() => handleShow()}>
-            <td className="jfkvvjvsv" data-label="S.No">
-              5
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Id">
-              A1-OKM-098345
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Name">
-              2020 Apple MacBook Air - Gold
-            </td>
-            <td className="jfkvvjvsv" data-label="Quantity">
-              345
-            </td>
-            <td className="jfkvvjvsv" data-label="Amount">
-              $2100
-            </td>
-            <td className="jfkvvjvsv" data-label="Items">
-              678 items
-            </td>
-            <td className="jfkvvjvsv" data-label="Stock">
-              Available
-            </td>
-          </tr>
-          <tr className="mnbnmnb" onClick={() => handleShow()}>
-            <td className="jfkvvjvsv" data-label="S.No">
-              6
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Id">
-              A1-OKM-0987656
-            </td>
-            <td className="jfkvvjvsv" data-label="Product Name">
-              1 Plus Airpods - Black
-            </td>
-            <td className="jfkvvjvsv" data-label="Quantity">
-              345
-            </td>
-            <td className="jfkvvjvsv" data-label="Amount">
-              $2100
-            </td>
-            <td className="jfkvvjvsv" data-label="Items">
-              678 items
-            </td>
-            <td className="jfkvvjvsv" data-label="Stock">
-              Available
-            </td>
-          </tr>
-        </tbody>
+        <tbody className="lgadkyhdtq">{renderProducts()}</tbody>
       </table>
 
       <ProductModal
