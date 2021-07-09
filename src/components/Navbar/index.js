@@ -10,6 +10,8 @@ import Wishlisticon from "../../img/heart.png";
 import { useDispatch, useSelector } from "react-redux";
 import Signin from "../../containers/Signin"
 import Signup from "../../containers/SignUp"
+import { signoutAction } from "../../actions/auth.action";
+
 
 /**
  * @author
@@ -19,6 +21,7 @@ import Signup from "../../containers/SignUp"
 const Navigationbar = (props) => {
   const [isMobile, setIsMobile] = useState(false);
   const auth = useSelector((state) => state.auth);
+  const store = useSelector((state) => state.userStore.userStore);
   const [showLoginModal,setShowLoginModal] = useState(false);
   const [showSigupModal,setShowSigupModal] = useState(false);
   
@@ -28,14 +31,17 @@ const Navigationbar = (props) => {
 
 
   const logout = () => {
-    // dispatch(signout());
+    dispatch(signoutAction());
   }
 
   
 
   const renderLoggedInMenu = () => {
-    return (
-      <DropdownMenu
+
+if(store)
+{
+  return(
+    <DropdownMenu
         menu={
           <Link to="/myprofile">
           <div
@@ -56,7 +62,50 @@ const Navigationbar = (props) => {
           </div>
           </Link>
         }
-        menus={[
+
+
+       menus={[
+          { label: "Edit Profile", to: "/editprofile", icon: null },
+          {
+            label: "Orders",
+            to: "/Orderpage",
+            icon: null,
+          },
+          // { label: "Create Store", to: "/storeForm", icon: null,  },
+          { label: "Logout", to: "", icon: null,onClick: logout  },
+          { label: "Store Dashboard", to: "/storeDashboard", icon: null,  },
+        ]}
+       
+      
+      />
+  )
+}
+else{
+  return(
+    <DropdownMenu
+        menu={
+          <Link to="/myprofile">
+          <div
+            style={{ marginLeft: 10 }}
+          >
+              <img
+                src={Profilepiclogo}
+                style={{
+                  height: 22,
+                  width: 22,
+                  marginBottom: "3px",
+                  marginRight: "4px",
+                }}
+                alt="Shopisthan Logo"
+                
+              />
+              <span style={{ fontSize: 15 }}> {auth.user ? auth.user.name :"Hello User"}</span>
+          </div>
+          </Link>
+        }
+
+
+       menus={[
           { label: "Edit Profile", to: "/editprofile", icon: null },
           {
             label: "Orders",
@@ -64,11 +113,54 @@ const Navigationbar = (props) => {
             icon: null,
           },
           { label: "Create Store", to: "/storeForm", icon: null,  },
-          { label: "Logout", to: "", icon: null,onClick: logout  },
-          { label: "Store Dashboard", to: "/storeDashboard", icon: null,  },
+          { label: "Logout", to: "", icon: null,onClick: logout  }
+
         ]}
+       
+      
       />
-    );
+  )
+}
+
+    // return (
+    //   <DropdownMenu
+    //     menu={
+    //       <Link to="/myprofile">
+    //       <div
+    //         style={{ marginLeft: 10 }}
+    //       >
+    //           <img
+    //             src={Profilepiclogo}
+    //             style={{
+    //               height: 22,
+    //               width: 22,
+    //               marginBottom: "3px",
+    //               marginRight: "4px",
+    //             }}
+    //             alt="Shopisthan Logo"
+                
+    //           />
+    //           <span style={{ fontSize: 15 }}> {auth.user ? auth.user.name :"Hello User"}</span>
+    //       </div>
+    //       </Link>
+    //     }
+
+
+    //    menus={[
+    //       { label: "Edit Profile", to: "/editprofile", icon: null },
+    //       {
+    //         label: "Orders",
+    //         to: "/Orderpage",
+    //         icon: null,
+    //       },
+    //       { label: "Create Store", to: "/storeForm", icon: null,  },
+    //       { label: "Logout", to: "", icon: null,onClick: logout  },
+    //       { label: "Store Dashboard", to: "/storeDashboard", icon: null,  },
+    //     ]}
+       
+      
+    //   />
+    // );
   };
   const renderNonLoggedInMenu = () => {
     return (
