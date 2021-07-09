@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navigationbar from "../../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addStoreAction } from "../../actions/store.action";
 
@@ -8,6 +8,7 @@ const StoreForm = () => {
   const auth = useSelector((state) => state.auth);
   const categoriesList = useSelector((state) => state.category.categories);
   const locationList = useSelector((state) => state.location.locations);
+  const store = useSelector((state) => state.userStore.userStore);
   const dispatch = useDispatch();
   const [storeName, setStoreName] = useState("");
   const [storeType, setStoreType] = useState("");
@@ -34,6 +35,10 @@ const StoreForm = () => {
     dispatch(addStoreAction(store));
     console.log(store);
   };
+
+  if(store){
+    return(<Redirect  to="/storeDashboard"/>)
+  }
 
   return (
     <>

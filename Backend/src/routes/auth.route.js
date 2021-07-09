@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/signin',validateSigninRequest,isRequestVaildated,signin);
 router.post('/signup',validateSignupRequest,isRequestVaildated,signup);
 // router.post('/googlelogin',googlelogin)
-// router.post('/signout',signout);
+router.post('/signout',signout);
 router.post('/google-login',googleController);
 // router.post('/user/editprofile',requireSignin,userMiddleware,edituserProfile);
 

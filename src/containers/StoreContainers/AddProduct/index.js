@@ -8,20 +8,37 @@ import { createProductAction } from "../../../actions/product.action";
 const StoreAddProduct = () => {
   const dispatch = useDispatch();
   const categoriesList = useSelector((state) => state.category.categories);
-  const storeCategory = useSelector((state)=>state.userStore.userStore.storeCategory)
+  const storeCategory = useSelector(
+    (state) => state.userStore.userStore.storeCategory
+  );
   const [productCategory, setProductCategory] = useState("");
   const [productName, setProductName] = useState("");
   const [productQuantity, setProductQuantity] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPictures, setProductPictures] = useState([]);
-
-const productParentCategory = "60e40a6be72ecb8b30fced70"
-const storeLocation = "60e40a9ee72ecb8b30fced78"
+  const [productDiscountedPrice, setProductDiscountedPrice] = useState("");
+  const [productDiscountedPercentage, setProductDiscountedPercentage] = useState("")
+  const [productDiscount,setProductDiscount] = useState("No")
+   
 
   const createProduct = (e) => {
     e.preventDefault();
 
+    if (productDiscountedPrice >= productPrice) {
+      return alert("Enter vaild Discounted Price");
+    }
+    if (productDiscountedPrice === null) {
+      setProductDiscountedPrice(0);
+      // setProductDiscountedPercentage(0);
+    }
+
+    if (productDiscountedPrice > 0) {
+      setProductDiscountedPercentage(
+        ((productPrice - productDiscountedPrice) / productPrice) * 100
+      );
+      // setProductDiscount("Yes")
+    }
     // const product = {
     //   productName,
     //   productCategory,
@@ -31,17 +48,19 @@ const storeLocation = "60e40a9ee72ecb8b30fced78"
     //   productPictures
 
     // }
-    
+
+    console.log(productPrice,productDiscountedPrice,productDiscountedPercentage,productDiscount);
+
     const form = new FormData();
     form.append("productName", productName);
     form.append("productCategory", productCategory);
     form.append("productQuantity", productQuantity);
     form.append("productPrice", productPrice);
     form.append("productDescription", productDescription);
+    form.append("productDiscountedPrice", productDiscountedPrice);
+    form.append("productDiscountedPercentage",productDiscountedPercentage);
     // form.append("productParentCategory",productParentCategory);
     // form.append("storeLocation",storeLocation);
-
-    
 
     // const form = new FormData();
     // form.append("productName", productName);
@@ -58,30 +77,22 @@ const storeLocation = "60e40a9ee72ecb8b30fced78"
     // from.set('productPrice', from.get('productPrice'));
     // from.set('productDescription', from.get('productDescription'));
 
-
     // console.log(form);
 
-
     for (let pic of productPictures) {
-      form.append('productPictures', pic);
-  }
+      form.append("productPictures", pic);
+    }
 
     // const product = JSON.stringify(Object.fromEntries(from));
     // console.log(product);
 
-    dispatch(createProductAction(form));
+    // dispatch(createProductAction(form));
     // console.log(product);
-
   };
 
-
   const handleProductPictures = (e) => {
-
-    setProductPictures([
-        ...productPictures,
-        e.target.files[0]
-    ]);
-}
+    setProductPictures([...productPictures, e.target.files[0]]);
+  };
 
   return (
     <>
@@ -166,13 +177,21 @@ const storeLocation = "60e40a9ee72ecb8b30fced78"
                           className="spectrum-FieldLabel"
                           style={{ fontSize: "14px" }}
                         >
-                          Discounted productPrice *
+                          Discounted productPrice *{" "}
+                          {productDiscountedPrice > 0
+                            ? ((productPrice - productDiscountedPrice) /
+                                productPrice) *
+                                100 +
+                              "%"
+                            : null}
                         </label>
                         <input
                           className="spectrum-Textfield spectrum-Textfield--quiet"
                           placeholder="Enter Discounted productPrice"
-                          // value={productName}
-                          // onChange={(e) => setProductName(e.target.value)}
+                          value={productDiscountedPrice}
+                          onChange={(e) =>
+                            setProductDiscountedPrice(e.target.value)
+                          }
                         ></input>
                       </div>
                       <div>
@@ -246,15 +265,20 @@ const storeLocation = "60e40a9ee72ecb8b30fced78"
                                       <div className="Polaris-Stack__Item_yiyol">
                                         <div className="Polaris-DropZone-FileUpload__Button_r99lw">
                                           Add files
-                                          <input type="file" name="productPicture" onChange={handleProductPictures} />
+                                          <input
+                                            type="file"
+                                            name="productPicture"
+                                            onChange={handleProductPictures}
+                                          />
                                           {/* value={productName}
                           onChange={(e) => setProductName(e.target.value)} */}
                                         </div>
                                       </div>
-                                      {
-                    productPictures.length > 0 ?
-                        productPictures.map((pic, index) => <div key={index}>{pic.name}</div>) : null
-                }
+                                      {productPictures.length > 0
+                                        ? productPictures.map((pic, index) => (
+                                            <div key={index}>{pic.name}</div>
+                                          ))
+                                        : null}
                                     </div>
                                   </div>
                                 </div>

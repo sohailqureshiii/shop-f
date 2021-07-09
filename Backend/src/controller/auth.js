@@ -38,6 +38,7 @@ exports.signup = (req, res) => {
                 if (data) {
 
                   const token = jwt.sign({ _id: data._id,role:data.role}, process.env.JWT_SECRET);
+                  res.cookie('token', token);
                                               // const { _id,name,email } = data;
                                               res.status(200).json({
                                                   token,
@@ -150,12 +151,12 @@ exports.signin = (req, res) => {
 //     // })
 // }
 
-// exports.signout = (req, res) => {
-//     res.clearCookie('token');
-//     res.status(200).json({
-//         message: 'SignOut Successfully...!'
-//     })
-// }
+exports.signout = (req, res) => {
+    res.clearCookie('token');
+    res.status(200).json({
+        message: 'SignOut Successfully...!'
+    })
+}
 
 
 // exports.edituserProfile = async(req,res)=>{
@@ -200,6 +201,7 @@ exports.googleController = (req, res) => {
             //   expiresIn: '7d'
             // });
             const token = jwt.sign({ _id: user._id,role:user.role}, process.env.JWT_SECRET);
+            res.cookie('token', token);
             const { _id, loginId, name, role } = user;
             return res.json({
               token,
@@ -219,6 +221,7 @@ exports.googleController = (req, res) => {
                 { _id: data._id,role:data.role },
                 process.env.JWT_SECRET
               );
+              res.cookie('token', token);
               const { _id, loginId, name, role } = data;
               return res.json({
                 token,

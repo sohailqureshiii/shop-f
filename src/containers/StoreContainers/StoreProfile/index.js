@@ -34,7 +34,7 @@ const StoreProfile = () => {
               </div>
                 </div>
                
-                <i className="Shop__type" >{storeDetails.userStore.storeLocation}</i>
+                <i className="Shop__type" >{storeDetails.userStore.storeLocation.name}</i>
                 <i className="Shop__type" style={{marginLeft:"20px"}}>{storeDetails.userStore.storePhoneNo}</i>
 
                 </div>
@@ -48,12 +48,12 @@ const StoreProfile = () => {
             </div>
             <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeDescription}</div></div>
             <div className="StoreCard__column1"><div className="Shop__location">
-              store.shopAddress
+             {storeDetails.userStore.storeAddress}
      
               </div>
               </div>
               <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeType}</div></div>
-              <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeCategory}</div></div>
+              <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeCategory.name}</div></div>
               <div className="Store_Share">
                 <WhatsappShareButton
                 // title={store.shopName}

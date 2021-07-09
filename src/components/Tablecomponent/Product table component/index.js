@@ -34,7 +34,7 @@ const ProductTableCompo = (props) => {
             {product.productPrice}
           </td>
           <td className="jfkvvjvsv" data-label="Items">
-            {product.productCategory}
+            {product.productCategory.name}
           </td>
           <td className="jfkvvjvsv" data-label="Stock">
             Available
