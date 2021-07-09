@@ -25,10 +25,10 @@ const StoreAddProduct = () => {
   const createProduct = (e) => {
     e.preventDefault();
 
-    if (productDiscountedPrice >= productPrice) {
+    if (productDiscountedPrice > productPrice) {
       return alert("Enter vaild Discounted Price");
     }
-    if (productDiscountedPrice === null) {
+    if (productDiscountedPrice === null || productDiscountedPrice === "" ) {
       setProductDiscountedPrice(0);
       // setProductDiscountedPercentage(0);
     }
@@ -38,6 +38,9 @@ const StoreAddProduct = () => {
         ((productPrice - productDiscountedPrice) / productPrice) * 100
       );
       // setProductDiscount("Yes")
+    }
+    if(productDiscountedPrice > 0){
+      setProductDiscount("Yes")
     }
     // const product = {
     //   productName,
