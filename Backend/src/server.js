@@ -12,7 +12,7 @@ const cors = require('cors');
 const userRoutes = require('./routes/auth.route');
 const storeRoutes = require('./routes/store');
 const productRoutes = require('./routes/product.route')
-// const cartRoutes = require('./routes/cart');
+const cartRoutes = require('./routes/cart.route');
 // const addressRoutes = require('./routes/address');
 // const oderRoutes = require('./routes/order');
 // const wishListRoutes = require('./routes/wishlist');
@@ -43,7 +43,7 @@ app.use(express.json());
 app.use('/api',userRoutes);
 app.use('/api',storeRoutes);
 app.use('/api',productRoutes)
-// app.use('/api', cartRoutes);
+app.use('/api', cartRoutes);
 // app.use('/api', addressRoutes);
 // app.use('/api', oderRoutes);
 // app.use('/api', wishListRoutes);

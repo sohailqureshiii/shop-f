@@ -8,7 +8,8 @@ import  Navbar  from "../../../components/Navbar";
 import { useSelector } from 'react-redux';
 
 const StoreProfile = () => {
- const storeDetails = useSelector((state)=>state.userStore.userStore)
+ const storeDetails = useSelector((state)=>state.userStore)
+
     return (
        <>
        <Navbar/>
@@ -23,7 +24,7 @@ const StoreProfile = () => {
         <div className="StoreCard__column">
             <div className="StoreCard__column1">
                 <div>
-                <div className="Shop__name"> {storeDetails.storeName}
+                <div className="Shop__name"> {storeDetails.userStore.storeName}
 
                <div className="Store_Edit" style={{marginLeft:"250px"}}>
                <IoMdCreate 
@@ -33,26 +34,26 @@ const StoreProfile = () => {
               </div>
                 </div>
                
-                <i className="Shop__type" >{storeDetails.storeLocation}</i>
-                <i className="Shop__type" style={{marginLeft:"20px"}}>{storeDetails.storePhoneNo}</i>
+                <i className="Shop__type" >{storeDetails.userStore.storeLocation}</i>
+                <i className="Shop__type" style={{marginLeft:"20px"}}>{storeDetails.userStore.storePhoneNo}</i>
 
                 </div>
               
             </div>
             <div className="StoreCard__column1">
-                <div className="Shop__numberVar">product.products.length</div>
+                <div className="Shop__numberVar">{storeDetails.storeProduct.length}</div>
                 <div className="Shop__heading">products</div>
-                <div className="Shop__numberVar">{storeDetails.followers.length}</div>
+                <div className="Shop__numberVar">{storeDetails.userStore.followers.length}</div>
                 <div className="Shop__heading">followers</div>
             </div>
-            <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.storeDescription}</div></div>
+            <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeDescription}</div></div>
             <div className="StoreCard__column1"><div className="Shop__location">
               store.shopAddress
      
               </div>
               </div>
-              <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.storeType}</div></div>
-              <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.storeCategory}</div></div>
+              <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeType}</div></div>
+              <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeCategory}</div></div>
               <div className="Store_Share">
                 <WhatsappShareButton
                 // title={store.shopName}

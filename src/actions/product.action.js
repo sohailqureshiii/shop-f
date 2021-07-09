@@ -1,5 +1,6 @@
 import axiosIntance from "../helpers/axios";
 import { productContants } from "./constants";
+import { userStoreDataAction } from "./initialData.action";
 
 
 
@@ -13,6 +14,7 @@ import { productContants } from "./constants";
                     type: productContants.ADD_NEW_PRODUCT_SUCCESS,
                      payload: {product }
                    });
+            dispatch(userStoreDataAction())
           }).catch(error =>{    
             console.log(error);
             dispatch({

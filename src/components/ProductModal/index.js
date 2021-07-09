@@ -8,11 +8,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import Signin from "../../containers/Signin";
 import { useDispatch, useSelector } from "react-redux";
-import { followStoreAction, unfollowStoreAction } from "../../actions/user.action";
+import {
+  addToCart,
+  followStoreAction,
+  unfollowStoreAction,
+} from "../../actions/user.action";
 
 const ProductModal = (props) => {
   const { show, handleclose, productDetails } = props;
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -178,7 +182,22 @@ const ProductModal = (props) => {
                           <button
                             id="testWishButton"
                             className="addtocart pull-left "
-                            onClick={diffToast}
+                            onClick={() => {
+                              const storeId = productDetails.storeId._id;
+                              const { _id, productName, productPrice } =
+                                productDetails;
+                              const img = productDetails.productPictures[0].img;
+                              dispatch(
+                                addToCart({
+                                  _id,
+                                  productName,
+                                  productPrice,
+                                  storeId,
+                                  img,
+                                })
+                              );
+                              handleclose(false);
+                            }}
                           >
                             <span>ADD TO Cart</span>
                           </button>

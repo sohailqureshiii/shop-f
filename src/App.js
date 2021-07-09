@@ -31,6 +31,8 @@ import {
 
 } from "./actions/initialData.action";
 import { PrivateRoute } from "./components/HOC/PrivateRoute";
+import { updateCart } from "./actions/user.action";
+import StoreEditProduct from "./containers/StoreContainers/EditProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +52,7 @@ function App() {
   useEffect(() => {
     if (auth.authenticate) {
       dispatch(userInitialdataAction());
+      dispatch(updateCart())
     }
     // if(auth.authenticate && auth.user.store === "Yes"){
     //   console.log("yes");
@@ -57,9 +60,9 @@ function App() {
   }, [auth.authenticate]);
 
   useEffect(() => {
-    // if (auth.authenticate && auth.user.store === "Yes") {
+    if (auth.authenticate) {
       dispatch(userStoreDataAction())
-    // }
+    }
   }, [auth.authenticate]);
 
   return (
@@ -82,6 +85,7 @@ function App() {
           <PrivateRoute path="/storeDashboard" exact component={StoreDasboard} />
           <PrivateRoute path="/storeProduct" exact component={StoreProduct} />
           <PrivateRoute path="/storeOrder" exact component={StoreOrder} />
+          <PrivateRoute path="/editProduct" exact component={StoreEditProduct} />
           <Route
             path="/:productSlug/:productId/p"
             component={ProductDetailsPage}

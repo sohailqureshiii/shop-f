@@ -78,11 +78,11 @@ exports.getCartItems = (req, res) => {
           cart.cartItems.forEach((item, index) => {
             cartItems[item.product._id.toString()] = {
               _id: item.product._id.toString(),
-              name: item.product.name,
+              name: item.product.productName,
               img: item.product.productPictures[0].img,
-              price: item.product.price,
+              price: item.product.productPrice,
               qty: item.quantity,
-              storeId:item.product.createdBy
+              storeId:item.product.storeId
             };
           });
           res.status(200).json({ cartItems });
