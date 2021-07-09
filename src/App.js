@@ -12,6 +12,7 @@ import Favorite from "./containers/Fav";
 import Planselection from "./containers/StorePlanselection";
 import MyProfile from "./containers/MyProfile";
 import CartPage from "./containers/CartPage";
+import newCart from "./containers/New Cart Page/cartindex";
 import EditProfile from "./components/EditProfile";
 import StoreForm from "./containers/StoreForm";
 import StoreProduct from "./containers/StoreContainers/StoreProduct";
@@ -79,7 +80,7 @@ function App() {
           <Route path="/favorite" exact component={Favorite} />
           <Route path="/plansection" exact component={Planselection} />
           <Route path="/myprofile" exact component={MyProfile} />
-          <Route path="/cart" exact component={CartPage} />
+          <Route path="/cart" exact component={newCart} />
           <Route path="/editprofile" exact component={EditProfile} />
           <Route path="/storeForm" exact component={StoreForm} />
           <PrivateRoute path="/storeDashboard" exact component={StoreDasboard} />

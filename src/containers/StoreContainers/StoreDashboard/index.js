@@ -40,18 +40,10 @@ const StoreDasboard = () => {
             </div>
             <div className="bvncmdkdj">
               <div className="njhgyflvdiw">
-                <h1 className="mkoqszert">Products</h1>
+                <h1 className="mkoqszert">Customer</h1>
               </div>
               <div className="nnsxnslxkax">
                 <h1 className="mkoqszerdefeft">960</h1>
-              </div>
-            </div>
-            <div className="bvncmdkdj">
-              <div className="njhgyflvdiw">
-                <h1 className="mkoqszert">Products</h1>
-              </div>
-              <div className="nnsxnslxkax">
-                <h1 className="mkoqszerdefeft">965</h1>
               </div>
             </div>
           </div>

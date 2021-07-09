@@ -1,6 +1,6 @@
 .mklydfbsn{
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 17rem));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 20rem));
     width: auto;
     display: grid;
     padding: 0;
