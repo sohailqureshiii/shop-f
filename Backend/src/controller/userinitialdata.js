@@ -3,6 +3,7 @@ const Product = require("../models/product.model");
 const Store = require("../models/store");
 const StoreLocation = require("../models/location");
 const User = require("../models/auth");
+const Order = require("../models/order");
 
 exports.userData = async (req, res) => {
   const categories = await Category.find({}).sort("-createdAt").exec();
@@ -11,12 +12,14 @@ exports.userData = async (req, res) => {
   const stores = await Store.find({})
     .populate({ path: "storeCategory", select: "_id name" })
     .populate({ path: "storeLocation", select: "_id name" })
+    .sort("-createdAt")
     .exec();
   const products = await Product.find({})
     .populate({ path: "productCategory", select: "_id name" })
     .populate({ path: "productParentCategory", select: "_id name" })
     .populate({ path: "storeId", select: "_id storeName " })
     .populate({ path: "storeLocation", select: "_id name" })
+    .sort("-createdAt")
     .exec();
   res.status(200).json({
     stores,
@@ -36,9 +39,11 @@ exports.userinitialdata = async (req, res) => {
     .populate({ path: "productParentCategory", select: "_id name" })
     .populate({ path: "storeId", select: "_id storeName " })
     .populate({ path: "storeLocation", select: "_id name" })
+    .sort("-createdAt")
     .exec();
   const followingStore = await Store.find({ _id: { $in: following } })
     .select("storeName")
+    .sort("-createdAt")
     .exec();
   // const store = await Store.findOne({createdBy: req.user._id}).exec();
   res.status(200).json({
@@ -53,15 +58,29 @@ exports.userStoreData = async (req, res) => {
   const store = await Store.findOne({ createdBy: req.user._id })
     .populate({ path: "storeCategory", select: "_id name" })
     .populate({ path: "storeLocation", select: "_id name" })
+    .populate({path:"followers",select:"name"})
     .exec();
   const product = await Product.find({ createdBy: req.user._id })
     .populate({ path: "productCategory", select: "_id name" })
     .populate({ path: "productParentCategory", select: "_id name" })
     .populate({ path: "storeLocation", select: "_id name" })
+    .sort("-createdAt")
+    .exec();
+
+  const orders = await Order.find({
+    items: {
+      $elemMatch: {
+        storeId: store._id,
+      },
+    },
+  })
+    .populate("items.productId", "productName")
+    .populate({ path: "user", select: "name" })
     .exec();
   res.status(200).json({
     store,
     product,
+    orders,
   });
 };
 

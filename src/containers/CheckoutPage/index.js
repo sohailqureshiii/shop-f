@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addOrder, getAddress } from "../../actions/user.action";
-import { getCartItems } from "../../actions/cart.action";
+import { addOrder, getAddress, getCartItems } from "../../actions/user.action";
+// import { getCartItems } from "../../actions/cart.action";
 import {
   Anchor,
   MaterialButton,
@@ -108,7 +108,7 @@ const CheckoutPage = (props) => {
   const [orderConfirmation, setOrderConfirmation] = useState(false);
   const [paymentOption, setPaymentOption] = useState(false);
   const [confirmOrder, setConfirmOrder] = useState(false);
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const onAddressSubmit = (addr) => {
@@ -154,6 +154,7 @@ const CheckoutPage = (props) => {
       },
       0
     );
+    
     const items = Object.keys(cart.cartItems).map((key) => ({
       productId: key,
       payablePrice: cart.cartItems[key].price,

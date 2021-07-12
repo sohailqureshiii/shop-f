@@ -8,6 +8,8 @@ import { Breed } from "../../components/MaterialUI";
 import { generatePublicUrl } from "../../urlConfig";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
+import { getOrders } from "../../actions/user.action";
+import { useDispatch, useSelector } from "react-redux";
 
 /**
  * @author
@@ -16,7 +18,12 @@ import Footer from "../../components/Footerr/Footer";
 
 const OrderPage = (props) => {
 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
+  useEffect(() => {
+    dispatch(getOrders());
+  }, []);
   return (
     <>
     <NavBar/>
@@ -31,27 +38,31 @@ const OrderPage = (props) => {
         />
      
 
+     {user.orders.map((order) => {
+          return order.items.map((item) => (
             <Card style={{ display: "block", margin: "5px 0" }}>
               <Link
-                // to={`/order_details/${order._id}`}
+                to={`/order_details/${order._id}`}
                 className="orderItemContainer"
               >
                 <div className="orderImgContainer">
                   <img
                     className="orderImg"
-                    // src={generatePublicUrl(item.productId.productPictures[0].img)}
+                    src={generatePublicUrl(item.productId.productPictures[0].img)}
                   />
                 </div>
                 <div className="orderRow">
-                  <div className="orderName"></div>
+                  <div className="orderName">{item.productId.productName}</div>
                   <div className="orderPrice">
                     <BiRupee />
-                    1,00,000
+                    {item.payablePrice}
                   </div>
-                  <div>Pending</div>
+                  <div>{order.paymentStatus}</div>
                 </div>
               </Link>
             </Card>
+          ));
+        })}
         
       </div>
       <Footer/>

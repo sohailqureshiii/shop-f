@@ -17,7 +17,7 @@ const ProductTableCompo = (props) => {
   const renderProducts = () => {
     if (searchKeyword === "" || searchKeyword === null) {
       return storeProducts.map((product, index) => (
-        <tr className="mnbnmnb" onClick={() => handleShow()}>
+        <tr className="mnbnmnb" onClick={() => handleShow()} key={product._id}>
           <td className="jfkvvjvsv" data-label="S.No">
             {index}
           </td>

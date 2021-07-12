@@ -1,7 +1,8 @@
 import axiosIntance from "../helpers/axios";
-import { cartConstants, followContants } from "./constants";
+import { cartConstants, followContants, userContants } from "./constants";
 import { userData } from "./user.action";
 import store from "../store";
+import { userInitialdataAction } from "./initialData.action";
 
 export const followStoreAction = (from) => {
   return async (dispatch) => {
@@ -13,8 +14,7 @@ export const followStoreAction = (from) => {
         type: followContants.ADD_NEW_FOLLOWING_SUCCESS,
         payload: { following: following },
       });
-      // dispatch(userData());
-      
+      dispatch(userInitialdataAction());
     }
   };
 };
@@ -23,7 +23,7 @@ export const unfollowStoreAction = (from) => {
   return async (dispatch) => {
     const res = await axiosIntance.put(`/unfollow`, { ...from });
     if (res.status === 201) {
-      // dispatch(userData());
+      dispatch(userInitialdataAction());
     }
   };
 };
@@ -163,3 +163,145 @@ export const updateCart = () => {
 };
 
 export { getCartItems };
+
+
+
+export const getAddress = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axiosIntance.post(`/user/getaddress`);
+      dispatch({ type: userContants.GET_USER_ADDRESS_REQUEST });
+      if (res.status === 200) {
+        const {
+          userAddress: { address },
+        } = res.data;
+        dispatch({
+          type: userContants.GET_USER_ADDRESS_SUCCESS,
+          payload: { address },
+        });
+      } else {
+        const { error } = res.data;
+        dispatch({
+          type: userContants.GET_USER_ADDRESS_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const addAddress = (payload) => {
+  return async (dispatch) => {
+    try {
+      const res = await axiosIntance.post(`/user/address/create`, { payload });
+      dispatch({ type: userContants.ADD_USER_ADDRESS_REQUEST });
+      if (res.status === 201) {
+        // console.log(res);
+        const {
+          address: { address },
+        } = res.data;
+        dispatch({
+          type: userContants.ADD_USER_ADDRESS_SUCCESS,
+          payload: { address },
+        });
+      } else {
+        const { error } = res.data;
+        dispatch({
+          type: userContants.ADD_USER_ADDRESS_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+
+export const addOrder = (payload) => {
+  return async (dispatch) => {
+    try {
+      const res = await axiosIntance.post(`/addOrder`, payload);
+      dispatch({ type: userContants.ADD_USER_ORDER_REQUEST });
+      if (res.status === 201) {
+        console.log(res);
+        const { order } = res.data;
+        dispatch({
+          type: cartConstants.RESET_CART,
+        });
+        dispatch({
+          type: userContants.ADD_USER_ORDER_SUCCESS,
+          payload: { order },
+        });
+        // const {
+        //   address: { address },
+        // } = res.data;
+        // dispatch({
+        //   type: userConstants.ADD_USER_ADDRESS_SUCCESS,
+        //   payload: { address },
+        // });
+      } else {
+        const { error } = res.data;
+        dispatch({
+          type: userContants.ADD_USER_ORDER_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getOrders = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axiosIntance.get(`/getOrders`);
+      dispatch({ type: userContants.GET_USER_ORDER_REQUEST });
+      if (res.status === 200) {
+        console.log(res);
+        const { orders } = res.data;
+        dispatch({
+          type: userContants.GET_USER_ORDER_SUCCESS,
+          payload: { orders },
+        });
+      } else {
+        const { error } = res.data;
+        dispatch({
+          type: userContants.GET_USER_ORDER_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// single order with complete info and delivery location
+export const getOrder = (payload) => {
+  return async (dispatch) => {
+    try {
+      const res = await axiosIntance.post(`/getOrder`, payload);
+      dispatch({ type: userContants.GET_USER_ORDER_DETAILS_REQUEST });
+      if (res.status === 200) {
+        console.log(res);
+        const { order } = res.data;
+        dispatch({
+          type: userContants.GET_USER_ORDER_DETAILS_SUCCESS,
+          payload: { order },
+        });
+      } else {
+        const { error } = res.data;
+        dispatch({
+          type: userContants.GET_USER_ORDER_DETAILS_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
