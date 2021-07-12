@@ -54,7 +54,7 @@ const Product = (props) => {
                   <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
                     <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
                       <Link
-                        // to={`/${product.createdBy._id}/store`}
+                        to={`/${product.storeId._id}/store`}
                         className="Owners-owner-2lB e2e-Owner-user-link"
                       >
                        {product.storeId.storeName}

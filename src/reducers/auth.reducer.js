@@ -1,4 +1,8 @@
-import { authConstants, storeContants, userInitialdata } from "../actions/constants";
+import {
+  authConstants,
+  storeContants,
+  userInitialdata,
+} from "../actions/constants";
 
 const initState = {
   token: null,
@@ -14,17 +18,6 @@ const initState = {
   error: "",
   message: "",
   errorTF: false,
-  // userStore: {
-  //   _id: "",
-  //   userName: "",
-  //   storeName: "",
-  //   storeType: "",
-  //   storeCategory: "",
-  //   storeLocation: "",
-  //   storePhoneNo: "",
-  //   storeAddress: "",
-  //   storePinCode: "",
-  // },
 };
 
 const auth = (state = initState, action) => {
@@ -75,16 +68,18 @@ const auth = (state = initState, action) => {
         errorTF: false,
         error: "",
       };
-      case userInitialdata.GET_USER_DETAILS_SUCCESS:
-        state = {
-          ...state,
-          user: action.payload.user,
-          // userStore: action.payload.stores,
-          authenticate: true,
-          authenticating: false,
-          errorTF: false,
-          error: "",
-        };
+      break;
+    case userInitialdata.GET_USER_DETAILS_SUCCESS:
+      state = {
+        ...state,
+        user: action.payload.user,
+        // userStore: action.payload.stores,
+        authenticate: true,
+        authenticating: false,
+        errorTF: false,
+        error: "",
+      };
+      break;
     default:
       return state;
   }

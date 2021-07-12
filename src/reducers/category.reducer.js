@@ -8,7 +8,7 @@ const initState = {
 
 
 
-export default (state = initState, action) => {
+const category =  (state = initState, action) => {
     switch (action.type) {
         case categoryContants.GET_ALL_CATEGORIES_SUCCESS:
             state = {
@@ -22,3 +22,5 @@ export default (state = initState, action) => {
 
     return state;
 }
+
+export default category

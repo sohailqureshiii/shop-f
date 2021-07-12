@@ -85,3 +85,41 @@ exports.createStore = async (req, res) => {
   //       }
 
   //   })
+
+
+  
+
+exports.editStore = async(req,res)=>{
+
+
+
+  const {
+    storeName,storePhoneNo,storeAddress,storeDescription
+   } = req.body;  
+
+
+
+
+
+   const updatedStoreProfile = await Store.findOneAndUpdate({ createdBy: req.user._id},{$set:{storeName,storePhoneNo,storeAddress,storeDescription}},
+      {new:true,useFindAndModify: false},
+      (err,updatedStoreInfo)=>{
+          if(err) {
+               return res.status(400).json({err});
+          }
+          if(updatedStoreInfo){
+              const store = Store.findOne({createdBy: req.user._id})
+              .populate({ path: "storeCategory", select: "_id name" })
+              .populate({ path: "storeLocation", select: "_id name" })
+              .populate({path:"followers",select:"name"})
+              .exec((err,storeInfo)=>{
+                  if(err)    return res.status(400).json({err});
+                  if(storeInfo){
+                      return res.status(201).json({storeInfo});
+                  }
+              });
+          }
+
+      })
+  
+}
