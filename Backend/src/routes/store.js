@@ -7,4 +7,5 @@ const {createStore} = require('../controller/store')
 
 router.post('/store/create',requireSignin,userMiddleware,createStore);
 
+
 module.exports = router;
