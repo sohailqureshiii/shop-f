@@ -24,7 +24,8 @@ export default (state = initState, action) => {
         state = {
           ...state,
           userStore: action.payload.store,
-          storeProduct: action.payload.product
+          storeProduct: action.payload.product,
+          storeOrder:action.payload.orders
 
         };
         break;

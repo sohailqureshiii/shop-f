@@ -1,6 +1,8 @@
 const Order = require("../models/order");
 const Cart = require("../models/cart");
 const Address = require("../models/address");
+const Store = require("../models/store")
+
 
 exports.addOrder = (req, res) => {
   Cart.deleteOne({ user: req.user._id }).exec((error, result) => {
@@ -30,6 +32,7 @@ exports.addOrder = (req, res) => {
       order.save((error, order) => {
         if (error) return res.status(400).json({ error });
         if (order) {
+          console.log(order.items.storeId);
           res.status(201).json({ order });
         }
       });
@@ -40,7 +43,7 @@ exports.addOrder = (req, res) => {
 exports.getOrders = (req, res) => {
   Order.find({ user: req.user._id })
     .select("_id paymentStatus paymentType orderStatus items")
-    .populate("items.productId", "_id name productPictures")
+    .populate("items.productId", "_id productName productPictures")
     .exec((error, orders) => {
       if (error) return res.status(400).json({ error });
       if (orders) {
@@ -70,3 +73,23 @@ exports.getOrder = (req, res) => {
       }
     });
 };
+
+// exports.storeOrders = async (req, res) => {
+//   const storeId = await Store.findOne({createdBy: req.user._id})
+//   const orders = await Order.find({
+//     items: {
+//       $elemMatch: {
+//         storeId: storeId._id
+//       },
+//     },
+//   })
+//     .populate("items.productId", "productName")
+//     .exec((error, orders) => {
+//       if (error) return res.status(400).json({ error });
+//       if (orders) {
+//         res.status(200).json({
+//           orders
+//         });
+//       }
+//     });
+// };

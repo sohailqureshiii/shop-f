@@ -33,10 +33,12 @@ import {
 import { PrivateRoute } from "./components/HOC/PrivateRoute";
 import { updateCart } from "./actions/user.action";
 import StoreEditProduct from "./containers/StoreContainers/EditProduct";
+import CheckoutPage from "./containers/CheckoutPage";
 
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const store = useSelector((state) => state.userStore.userStore);
 
   useEffect(() => {
     if (!auth.authenticate) {
@@ -60,10 +62,10 @@ function App() {
   }, [auth.authenticate]);
 
   useEffect(() => {
-    if (auth.authenticate) {
+    if (auth.authenticate && store) {
       dispatch(userStoreDataAction())
     }
-  }, [auth.authenticate]);
+  }, [store && auth.authenticate]);
 
   return (
     <div className="App">
@@ -82,6 +84,8 @@ function App() {
           <Route path="/cart" exact component={CartPage} />
           <Route path="/editprofile" exact component={EditProfile} />
           <Route path="/storeForm" exact component={StoreForm} />
+          <Route path="/checkout" exact component={CheckoutPage} />
+          <Route path="/order_details/:orderId" component={OrderDeatilsP} />
           <PrivateRoute path="/storeDashboard" exact component={StoreDasboard} />
           <PrivateRoute path="/storeProduct" exact component={StoreProduct} />
           <PrivateRoute path="/storeOrder" exact component={StoreOrder} />

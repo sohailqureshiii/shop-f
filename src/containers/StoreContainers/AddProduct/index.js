@@ -18,41 +18,29 @@ const StoreAddProduct = () => {
   const [productDescription, setProductDescription] = useState("");
   const [productPictures, setProductPictures] = useState([]);
   const [productDiscountedPrice, setProductDiscountedPrice] = useState("");
-  const [productDiscountedPercentage, setProductDiscountedPercentage] = useState("")
+  const [productDiscountedPercentage, setProductDiscountedPercentage] = useState(0)
   const [productDiscount,setProductDiscount] = useState("No")
    
 
   const createProduct = (e) => {
     e.preventDefault();
 
-    if (productDiscountedPrice > productPrice) {
+    if (productDiscountedPrice >= productPrice) {
       return alert("Enter vaild Discounted Price");
     }
     if (productDiscountedPrice === null || productDiscountedPrice === "" ) {
-      setProductDiscountedPrice(0);
-      // setProductDiscountedPercentage(0);
+      setProductDiscountedPrice(0) && setProductDiscountedPercentage(0);
     }
 
-    if (productDiscountedPrice > 0) {
+    if (productDiscountedPrice) {
       setProductDiscountedPercentage(
         ((productPrice - productDiscountedPrice) / productPrice) * 100
       );
-      // setProductDiscount("Yes")
     }
-    if(productDiscountedPrice > 0){
-      setProductDiscount("Yes")
-    }
-    // const product = {
-    //   productName,
-    //   productCategory,
-    //   productQuantity,
-    //   productPrice,
-    //   productDescription,
-    //   productPictures
 
-    // }
-
+   
     console.log(productPrice,productDiscountedPrice,productDiscountedPercentage,productDiscount);
+    console.log(productDiscountedPercentage);
 
     const form = new FormData();
     form.append("productName", productName);
@@ -60,42 +48,23 @@ const StoreAddProduct = () => {
     form.append("productQuantity", productQuantity);
     form.append("productPrice", productPrice);
     form.append("productDescription", productDescription);
-    form.append("productDiscountedPrice", productDiscountedPrice);
-    form.append("productDiscountedPercentage",productDiscountedPercentage);
-    // form.append("productParentCategory",productParentCategory);
-    // form.append("storeLocation",storeLocation);
-
-    // const form = new FormData();
-    // form.append("productName", productName);
-    // form.append("productCategory", productCategory);
-    // form.append("productQuantity", productQuantity);
-    // form.append("productPrice", productPrice);
-    // form.append("productDescription", productDescription);
-
-    // const from = new FormData(event.target);
-    // // data.set('username', data.get('username').toUpperCase());
-    // from.set('productName', from.get('productName'));
-    // from.set('productCategory', from.get('productCategory'));
-    // from.set('productQuantity', from.get('productQuantity'));
-    // from.set('productPrice', from.get('productPrice'));
-    // from.set('productDescription', from.get('productDescription'));
-
-    // console.log(form);
-
+    // form.append("productDiscountedPrice", productDiscountedPrice);
+    // form.append("productDiscountedPercentage",productDiscountedPercentage);
+  
     for (let pic of productPictures) {
       form.append("productPictures", pic);
     }
 
-    // const product = JSON.stringify(Object.fromEntries(from));
-    // console.log(product);
 
-    // dispatch(createProductAction(form));
-    // console.log(product);
+    dispatch(createProductAction(form));
+
   };
 
   const handleProductPictures = (e) => {
     setProductPictures([...productPictures, e.target.files[0]]);
   };
+
+
 
   return (
     <>
@@ -147,9 +116,11 @@ const StoreAddProduct = () => {
                             Product Category
                           </option>
 
-                          {categoriesList
+                          {
+                            
+                            categoriesList
                             .filter(
-                              (category) => category.parentId === storeCategory
+                              (category) => category.parentId === storeCategory._id
                             )
                             .map((filterCategory) => (
                               <option
@@ -181,12 +152,6 @@ const StoreAddProduct = () => {
                           style={{ fontSize: "14px" }}
                         >
                           Discounted productPrice *{" "}
-                          {productDiscountedPrice > 0
-                            ? ((productPrice - productDiscountedPrice) /
-                                productPrice) *
-                                100 +
-                              "%"
-                            : null}
                         </label>
                         <input
                           className="spectrum-Textfield spectrum-Textfield--quiet"
@@ -240,7 +205,7 @@ const StoreAddProduct = () => {
                               <div className="Polaris-Label_2vd36">
                                 <label
                                   id="PolarisDropZone5Label"
-                                  for="PolarisDropZone5"
+                                  htmlFor="PolarisDropZone5"
                                   class="Polaris-Label__Text_yj3uv"
                                 >
                                   Upload Product Images
