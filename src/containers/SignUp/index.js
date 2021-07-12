@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpAction } from "../../actions/auth.action";
-import { Modal } from "../../components/MaterialUI";
+import { Button, MaterialInput, Modal } from "../../components/MaterialUI";
 import { googleLoginAction, loginAction } from "../../actions/auth.action";
 import { GoogleLogin }  from "react-google-login";
 import Signin from "../Signin";
@@ -51,9 +51,9 @@ const Signup = (props) => {
   };
   
   
-  if (auth.authenticate) {
-    return props.Modal ? null : <Redirect to={`/storeForm`} />;
-  }
+  // if (auth.authenticate) {
+  //   return props.Modal ? null : <Redirect to={`/storeForm`} />;
+  // }
 
   const viewChanges = () =>{
     handleclose(false)
@@ -93,44 +93,30 @@ const Signup = (props) => {
         <section className="CardLayout__content">
           <form>
             <section className="EmailPage__email-field form-group">
-              <div>
-                <label className="spectrum-FieldLabel">
-                  Email Address / Mobile Number
-                </label>
-                <input
-                  className="spectrum-Textfield spectrum-Textfield--quiet"
+              <MaterialInput
+                  label="Email Address / Mobile Number"
                   value={loginId}
                   onChange={(e) => setLoginId(e.target.value)}
-                ></input>
-              </div>
-              <div>
-                <label className="spectrum-FieldLabel">User Name</label>
-                <input
-                  className="spectrum-Textfield spectrum-Textfield--quiet"
-                  className="spectrum-Textfield spectrum-Textfield--quiet"
+                />
+              <MaterialInput
+                  label="User Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                ></input>
-              </div>
-              <div>
-                <label className="spectrum-FieldLabel">Password</label>
-                <input
-                  type="password"
-                  className="spectrum-Textfield spectrum-Textfield--quiet"
+                />
+              <MaterialInput
+                  label="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                ></input>
-              </div>
+                />
             </section>
             <section className="EmailPage__submit mod-submit">
               <div className="ta-left"></div>
               <div className="ta-right">
-                <button
-                  className="spectrum-Button spectrum-Button--cta SpinnerButton SpinnerButton--right"
+                <Button
+                title='SignUp'
                   onClick={userSignup}
                 >
-                  <span className="spectrum-Button-label">Submit</span>
-                </button>
+                </Button>
               </div>
             </section>
           </form>

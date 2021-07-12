@@ -4,7 +4,7 @@ import { addOrder, getAddress, getCartItems } from "../../actions/user.action";
 // import { getCartItems } from "../../actions/cart.action";
 import {
   Anchor,
-  MaterialButton,
+  Button,
   MaterialInput,
 } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
@@ -74,7 +74,7 @@ const Address = ({
               {adr.address} <br /> {`${adr.state} - ${adr.pinCode}`}
             </div>
             {adr.selected && (
-              <MaterialButton
+              <Button
                 title="DELIVERY HERE"
                 onClick={() => confirmDeliveryAddress(adr)}
                 style={{
@@ -295,7 +295,7 @@ const CheckoutPage = (props) => {
                   Order confirmation email will be sent to{" "}
                   <strong>{auth.user.email}</strong>
                 </p>
-                <MaterialButton
+                <Button
                   title="CONTINUE"
                   onClick={userOrderConfirmation}
                   style={{
@@ -323,7 +323,7 @@ const CheckoutPage = (props) => {
                     <input type="radio" name="paymentOption" value="cod" />
                     <div>Cash on delivery</div>
                   </div>
-                  <MaterialButton
+                  <Button
                     title="CONFIRM ORDER"
                     onClick={onConfirmOrder}
                     style={{

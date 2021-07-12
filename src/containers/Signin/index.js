@@ -4,7 +4,7 @@ import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { googleLoginAction, loginAction } from "../../actions/auth.action";
 import GoogleLogin from "react-google-login";
-import { Modal } from "../../components/MaterialUI";
+import { MaterialInput, Modal } from "../../components/MaterialUI";
 import Signup from "../SignUp";
 
 const Signin = (props) => {
@@ -22,9 +22,9 @@ const Signin = (props) => {
     }
   });
 
-  if (auth.authenticate) {
-    return props.Modal ? null : <Redirect to={`/storeForm`} />;
-  }
+  // if (auth.authenticate) {
+  //   return props.Modal ? null : <Redirect to={`/storeForm`} />;
+  // }
 
   const login = (e) => {
     e.preventDefault();
@@ -50,10 +50,10 @@ const Signin = (props) => {
     setErr("Google login failed. Try again");
   };
 
-  const viewChanges = () =>{
-    handleclose(false)
-    setShowSigupModal(true)
-  }
+  const viewChanges = () => {
+    handleclose(false);
+    setShowSigupModal(true);
+  };
 
   const renderLoginForm = () => {
     return (
@@ -63,14 +63,9 @@ const Signin = (props) => {
             <h1 className="spectrum-Heading1">Sign In</h1>
             <p className="EmailPage__instructions">
               New User ?
-              {props.Modal ?  
-               <button
-                  onClick={viewChanges}
-                >
-                  Creat an Account
-                </button>
-            
-               : (
+              {props.Modal ? (
+                <button onClick={viewChanges}>Creat an Account</button>
+              ) : (
                 <Link
                   className="spectrum-Link EmailPage__create-account-link"
                   to="/Signup"
@@ -83,25 +78,17 @@ const Signin = (props) => {
           <section className="CardLayout__content">
             <form>
               <section className="EmailPage__email-field form-group">
-                <div>
-                  <label className="spectrum-FieldLabel">
-                    Email Address / Mobile Number
-                  </label>
-                  <input
-                    className="spectrum-Textfield spectrum-Textfield--quiet"
-                    value={loginId}
-                    onChange={(e) => setLoginId(e.target.value)}
-                  ></input>
-                </div>
-                <div>
-                  <label className="spectrum-FieldLabel">Password</label>
-                  <input
-                    type="password"
-                    className="spectrum-Textfield spectrum-Textfield--quiet"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  ></input>
-                </div>
+                <MaterialInput
+                  label=" Email Address / Mobile Number"
+                  value={loginId}
+                  onChange={(e) => setLoginId(e.target.value)}
+                />
+                <MaterialInput
+                  label=" Password "
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  
+                />
               </section>
               <section className="EmailPage__submit mod-submit">
                 <div className="ta-left"></div>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IoIosArrowForward, IoIosStar, IoMdCart } from "react-icons/io";
 import { BiRupee } from "react-icons/bi";
 // import { AiFillThunderbolt } from "react-icons/ai";
-import { MaterialButton } from "../../components/MaterialUI";
+import { Button } from "../../components/MaterialUI";
 
 import "./style.css";
 import { generatePublicUrl } from "../../urlConfig";
@@ -11,147 +11,112 @@ import { WhatsappShareButton } from "react-share";
 import { WhatsappIcon } from "react-share";
 import NavBar from "../../components/Navbar";
 
-
 /**
  * @author
  * @function ProductDetailsPage
  */
 
 const ProductDetailsPage = (props) => {
- 
-
-  // if (Object.keys(product.productDetails).length === 0) {
-  //   return null;
-  // }
-
   return (
     <>
-    <NavBar/>
-      <div className="productDescriptionContainer">
-        <div className="flexRow">
-          <div className="verticalImageStack">
-           
-              <div className="thumbnail">
-                <img
-                 
-                 
-         
-                />
-              </div>
-
-          </div>
-          <div className="productDescContainer">
-            <div className="productDescImgContainer">
-              <img
-              />
-            </div>
-
-            {/* action buttons */}
-            <div className="flexRow">
-              <MaterialButton
-                title="ADD TO CART"
-                bgColor="#ff9f00"
-                textColor="#ffffff"
-                style={{
-                  marginRight: "5px",
-                }}
-                icon={<IoMdCart />}
-              />
-         
-            </div>
+      <NavBar />
+      <div className="productDescriptionContainer" style={{paddingTop:'90px',justifyContent:'center'}}>
+        <div className="productDescContainer">
+          <div className="productDescImgContainer">
+            <img src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg" />
           </div>
         </div>
-        <div>
-          {/* home > category > subCategory > productName */}
-          <div className="breed">
-            <ul>
-              <li>
-                <a href="#">Home</a>
-                <IoIosArrowForward />
-              </li>
-              <li>
-                <a href="#">Mobiles</a>
-                <IoIosArrowForward />
-              </li>
-              <li>
-                <a href="#">Samsung</a>
-                <IoIosArrowForward />
-              </li>
-              <li>
-                <a href="#"></a>
-              </li>
-            </ul>
-          </div>
-          {/* product description */}
-          <div className="productDetails">
-            <p className="productTitle"></p>
-            <div>
-              <span className="ratingCount">
-                4.3 <IoIosStar />
-              </span>
-              <span className="ratingNumbersReviews">
-                72,234 Ratings & 8,140 Reviews
-              </span>
-            </div>
-            <div className="extraOffer">
-              Extra <BiRupee />
-              4500 off{" "}
-            </div>
-            <div className="flexRow priceContainer">
-              <span className="price">
-                <BiRupee />
-                
-              </span>
-              <span className="discount" style={{ margin: "0 10px" }}>
-                22% off
-              </span>
-              {/* <span>i</span> */}
-            </div>
-            <div>
-              <p
-                style={{
-                  color: "#212121",
-                  fontSize: "14px",
-                  fontWeight: "600",
-                }}
-              >
-                Available Offers
-              </p>
-              <p style={{ display: "flex" }}>
-                <span
-                  style={{
-                    width: "100px",
-                    fontSize: "12px",
-                    color: "#878787",
-                    fontWeight: "600",
-                    marginRight: "20px",
-                  }}
+        {/* home > category > subCategory > productName */}
+        <div className=" detailsWrapper">
+          <div className="prodDesc clearfix">
+            <div className="productDetails" style={{ maxWidth: "525px" }}>
+              <div>
+                <div
+                  className="Storename"
+                  style={{ maxWidth: "521px", top: "-1px" }}
                 >
-                  Description
-                </span>
+                  <p style={{ display: "flex" }}>
+                   One Plus store
+                    {/* {renderButton(productDetails.storeId._id)} */}
+                  </p>
+                  <p
+                    style={{
+                      width: "130px",
+                      fontSize: "12px",
+                      color: "#878787",
+                      fontWeight: "600",
+                      marginRight: "20px",
+                    }}
+                  >
+                    Viman Nagr
+                  </p>
+                </div>
+              </div>
+              <h1 className="productTitle" style={{ maxWidth: "509px" }}>
+              OnePlus Nord CE 5G
+              </h1>
+              <div className="flexRow priceContainer price">
+                Price : 
                 <span
-                  style={{
-                    fontSize: "12px",
-                    color: "#212121",
-                  }}
+                // classNa me="price"
                 >
-                  
+                  <BiRupee />
+                  24,999.00
                 </span>
-              </p>
-              <div className="share-btn-container">
-               <WhatsappShareButton
-               title=''
-               separator=" "
-               >
-                 <WhatsappIcon logoFillColor="green" round={true}>
-                 </WhatsappIcon>
-               </WhatsappShareButton>
+                {/* <span>i</span> */}
+              </div>
+              <div>
+                <p style={{ display: "flex", maxWidth: "500px" }}>
+                  <span
+                    style={{
+                      width: "100px",
+                      fontSize: "12px",
+                      color: "#878787",
+                      fontWeight: "600",
+                      marginRight: "20px",
+                    }}
+                  >
+                    Description
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      color: "#212121",
+                    }}
+                  >
+                    64MP+8MP+2MP triple rear camera with 1080p video at 30/60
+                    fps, 4k 30 fps | 16MP front camera with 1080p video at 30/60
+                    fps. 6.43-inch, 90Hz fluid AMOLED display with 2400 x 1080
+                    pixels resolution | 410ppi Memory, Storage & SIM: 8GB RAM |
+                    128GB internal memory on UFS 2.1 storage system. Dual SIM
+                    (nano + nano)  Alexa Hands-Free capable: Download the
+                    Alexa app to use Alexa hands-free. Play music, make calls,
+                    hear news, open apps, navigate and more, all using just your
+                    voice, while on-the-go.
+                  </span>
+                </p>
+                <div className="share-btn-container">
+                  <div
+                    id="addButtons"
+                    style={{
+                      float: "left",
+                      width: "100%",
+                      marginLeft: "85px",
+                      display:'flex',
+                      gap:'20px',
+                      marginTop:'10px'
+                    }}
+                  >
+                    <Button title="Add to cart"></Button>
+                    <Button title="Share"></Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-</>
+    </>
   );
 };
 
