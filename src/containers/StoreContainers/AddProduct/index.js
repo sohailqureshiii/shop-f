@@ -137,11 +137,11 @@ const StoreAddProduct = () => {
                           className="spectrum-FieldLabel"
                           style={{ fontSize: "14px" }}
                         >
-                          productPrice *
+                          Product Price *
                         </label>
                         <input
                           className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter productPrice"
+                          placeholder="Enter Product Price"
                           value={productPrice}
                           onChange={(e) => setProductPrice(e.target.value)}
                         ></input>
@@ -155,7 +155,7 @@ const StoreAddProduct = () => {
                         </label>
                         <input
                           className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter Discounted productPrice"
+                          placeholder="Enter Discount Price"
                           value={productDiscountedPrice}
                           onChange={(e) =>
                             setProductDiscountedPrice(e.target.value)
@@ -167,11 +167,11 @@ const StoreAddProduct = () => {
                           className="spectrum-FieldLabel"
                           style={{ fontSize: "14px" }}
                         >
-                          productQuantity *
+                          Quantity *
                         </label>
                         <input
                           className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter productQuantity"
+                          placeholder="Enter Quantity"
                           value={productQuantity}
                           onChange={(e) => setProductQuantity(e.target.value)}
                         ></input>
@@ -181,11 +181,11 @@ const StoreAddProduct = () => {
                           className="spectrum-FieldLabel"
                           style={{ fontSize: "14px" }}
                         >
-                          productDescription *
+                         Description *
                         </label>
                         <input
                           className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter productDescription"
+                          placeholder="Enter Description"
                           value={productDescription}
                           onChange={(e) =>
                             setProductDescription(e.target.value)
@@ -233,7 +233,9 @@ const StoreAddProduct = () => {
                                       <div className="Polaris-Stack__Item_yiyol">
                                         <div className="Polaris-DropZone-FileUpload__Button_r99lw">
                                           Add files
-                                          <input
+                                          <input 
+                                          style={{border:'none'}}
+                                          className="Polaris-DropZone-FileUpload__Button_r99lw"
                                             type="file"
                                             name="productPicture"
                                             onChange={handleProductPictures}
@@ -263,11 +265,21 @@ const StoreAddProduct = () => {
                         paddingBottom: "15px",
                       }}
                     >
-                      <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
-                        <button className="btn-text" onClick={createProduct}>
+                      {/* <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
+                        <button className="btn-text" >
                           Add Product
                         </button>
-                      </div>
+                      </div> */}
+                      <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
+                  <div
+                    className="d-flex"
+                    style={{ justifyContent: "flex-end" }}
+                  >
+                    <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
+                      <div className="btn-text" onClick={createProduct}>Add Product</div>
+                    </div>
+                  </div>
+              </div>
                     </div>
                   </div>
                 </form>
