@@ -67,20 +67,25 @@ exports.userStoreData = async (req, res) => {
     .sort("-createdAt")
     .exec();
 
-  const orders = await Order.find({
-    items: {
-      $elemMatch: {
-        storeId: store._id,
-      },
-    },
-  })
-    .populate("items.productId", "productName")
-    .populate({ path: "user", select: "name" })
-    .exec();
+    // let orders = []
+
+    // if( store._id !== null){
+    //    orders = await Order.find({
+    //     items: {
+    //       $elemMatch: {
+    //         storeId: store._id,
+    //       },
+    //     },
+    //   })
+    //     .populate("items.productId", "productName")
+    //     .populate({ path: "user", select: "name" })
+    //     .exec();
+    // }
+
   res.status(200).json({
     store,
     product,
-    orders,
+    // orders,
   });
 };
 
