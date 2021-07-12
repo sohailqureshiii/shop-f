@@ -14,6 +14,7 @@ export const followStoreAction = (from) => {
         payload: { following: following },
       });
       // dispatch(userData());
+      
     }
   };
 };
