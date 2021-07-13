@@ -26,88 +26,59 @@ const Modal = (props) => {
 };
 
 const MaterialInput = (props) => {
-  const [focus, setFocus] = useState(props.value === "" ? false : true);
-  const [touch, setTouch] = useState(false);
-
   return (
-    <div className="materialInput">
-      <label
-        className={`label ${focus ? "focus" : ""}`}
-        style={{
-          top: 0,
-          lineHeight: "none",
-        }}
-      >
-        {props.label && `Enter ${props.label}`}
-      </label>
-      <div
-        style={{
-          display: "flex",
-        }}
-      >
-        <input
-          className="input"
-          type={props.type}
-          value={props.value}
-          onChange={props.onChange}
-          onFocus={(e) => {
-            setFocus(true);
-            setTouch(true);
-          }}
-          onBlur={(e) => {
-            if (e.target.value === "") {
-              setFocus(false);
-            } else {
-              setTouch(false);
-            }
-          }}
-        />
-        {props.rightElement ? props.rightElement : null}
-      </div>
-      {touch && (
-        <div
-          style={{
-            fontSize: "10px",
-            color: "red",
-            fontWeight: 500,
-          }}
-        >{`${props.label} is Required`}</div>
-      )}
+    <div>
+      <label className="spectrum-FieldLabel">{props.label}</label>
+      <input
+        className="spectrum-Textfield spectrum-Textfield--quiet"
+        type={props.type}
+        value={props.value}
+        onChange={props.onChange}
+      ></input>
     </div>
   );
 };
 
-const MaterialButton = (props) => {
+const Button = (props) => {
   const onClick = () => {
     props.onClick && props.onClick();
   };
   return (
-    // <div
-    //   style={{
-    //     width: "100%",
-    //     ...props.style,
-    //   }}
-    // >
-    //   <button
-    //     className="materialButton"
-    //     style={{
-    //       backgroundColor: props.bgColor,
-    //       color: props.textColor,
-    //       fontSize: props.fontSize,
-    //     }}
-    //     onClick={onClick}
-    //   >
-    //     {props.icon && props.icon}
-    //     {props.title && props.title}
-    //   </button>
-    // </div>
-    <div
-      className="d-flex"
-      style={{  ...props.style,}}
-    >
+    <div className="d-flex">
       <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
-        <div className="btn-text"   onClick={onClick}>{props.title && props.title}</div>
+        <div className="btn-text" onClick={onClick}>
+          {props.title}
+        </div>
       </div>
+    </div>
+  );
+};
+
+const FollowingBtn = (props) => {
+  const onClick = () => {
+    props.onClick && props.onClick();
+  };
+  return (
+    <div className="FollowButton-root-VgV ProfileCard-interactionButton-1gk ProfileCard-followButton-1N4 ProfileCard-follow-39e">
+      <button
+        type="button"
+        className="Btn-button-BGn Btn-primary-1H3 Btn-mediumLarge-1uo ProfileCard-buttonWrapper-2kh"
+      >
+        <div className="Btn-labelWrapper-1jS ProfileCard-buttonLabel-2_O">
+          <div className="Btn-icon-flr Btn-leading-29d">
+            <svg
+              viewBox="0 0 18 18"
+              xmlns="http://www.w3.org/2000/svg"
+              className="FollowButton-followMark-6kv"
+            >
+              <path d="M9,1a8,8,0,1,0,8,8A8,8,0,0,0,9,1Zm5,8.5a.5.5,0,0,1-.5.5H10v3.5a.5.5,0,0,1-.5.5h-1a.5.5,0,0,1-.5-.5V10H4.5A.5.5,0,0,1,4,9.5v-1A.5.5,0,0,1,4.5,8H8V4.5A.5.5,0,0,1,8.5,4h1a.5.5,0,0,1,.5.5V8h3.5a.5.5,0,0,1,.5.5Z"></path>
+            </svg>
+          </div>
+          <div className="Btn-label-1Zf e2e-Btn-label" onClick={onClick}>
+            {props.title}
+          </div>
+        </div>
+      </button>
     </div>
   );
 };
@@ -170,4 +141,24 @@ const Breed = (props) => {
   );
 };
 
-export { Modal, MaterialInput, MaterialButton, DropdownMenu, Anchor, Breed };
+// const ProImg = (props) => {
+//   return (
+//     <div className="flexRow">
+//       <div className="productDescContainer">
+//         <div className="productDescImgContainer">
+//         <img>{props.sr}</img>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+export {
+  Modal,
+  MaterialInput,
+  Button,
+  FollowingBtn,
+  DropdownMenu,
+  Anchor,
+  Breed
+};

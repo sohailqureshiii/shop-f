@@ -8,6 +8,7 @@ import { useSelector,useDispatch } from "react-redux";
 import Signin from "../Signin";
 import { followStoreAction, unfollowStoreAction } from "../../actions/user.action";
 import Signup from "../SignUp";
+import StoreProduct from "../../components/StoreProduct";
 
 const StoreProfile = (props) => {
   const storeId = props.match.params.storeId;
@@ -85,7 +86,7 @@ const StoreProfile = (props) => {
               else if (product.storeId._id !== storeId) return null;
             })
             .map((product, index) => 
-              <Product product={product} />
+              <StoreProduct product={product} />
             )}
         </div>
       </div>

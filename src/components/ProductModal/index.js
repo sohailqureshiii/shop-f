@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { Modal } from "../../components/MaterialUI";
+import { Button, Modal } from "../../components/MaterialUI";
 import { BiRupee } from "react-icons/bi";
-import { WhatsappShareButton } from "react-share";
-import { WhatsappIcon } from "react-share";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
 import Signin from "../../containers/Signin";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -95,22 +92,15 @@ const ProductModal = (props) => {
     <>
       <Modal visible={show} onClose={handleclose} size="lg">
         <div className="productDescriptionContainer">
-          <div className="flexRow">
-            <div className="productDescContainer">
-              <div className="productDescImgContainer">
-                <img
-                  src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg"
-                  alt="new"
-                />
-              </div>
-
-              {/* action buttons */}
+          <div className="productDescContainer">
+            <div className="productDescImgContainer">
+              <img src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg" />
             </div>
           </div>
           {/* home > category > subCategory > productName */}
           <div className=" detailsWrapper">
             <div className="prodDesc clearfix">
-              <div className="productDetails" style={{ width: "600px" }}>
+              <div className="productDetails" style={{ maxWidth: "525px" }}>
                 <div>
                   <div
                     className="Storename"
@@ -118,7 +108,7 @@ const ProductModal = (props) => {
                   >
                     <p style={{ display: "flex" }}>
                       {productDetails.storeId.storeName}
-                      {renderButton(productDetails.storeId._id)}
+                      {/* {renderButton(productDetails.storeId._id)} */}
                     </p>
                     <p
                       style={{
@@ -129,12 +119,12 @@ const ProductModal = (props) => {
                         marginRight: "20px",
                       }}
                     >
-                      {productDetails.storeLocation.name}
+                      Viman Nagr
                     </p>
                   </div>
                 </div>
                 <h1 className="productTitle" style={{ maxWidth: "509px" }}>
-                  {productDetails.productName}
+                  OnePlus Nord CE 5G
                 </h1>
                 <div className="flexRow priceContainer price">
                   Price :
@@ -159,14 +149,22 @@ const ProductModal = (props) => {
                     >
                       Description
                     </span>
-                    <span
+                    <p
                       style={{
                         fontSize: "12px",
                         color: "#212121",
                       }}
                     >
-                      {productDetails.productDescription}
-                    </span>
+                      64MP+8MP+2MP triple rear camera with 1080p video at 30/60
+                      fps, 4k 30 fps | 16MP front camera with 1080p video at
+                      30/60 fps. 6.43-inch, 90Hz fluid AMOLED display with 2400
+                      x 1080 pixels resolution | 410ppi Memory, Storage & SIM:
+                      8GB RAM | 128GB internal memory on UFS 2.1 storage system.
+                      Dual SIM (nano + nano) Alexa Hands-Free capable: Download
+                      the Alexa app to use Alexa hands-free. Play music, make
+                      calls, hear news, open apps, navigate and more, all using
+                      just your voice, while on-the-go.
+                    </p>
                   </p>
                   <div className="share-btn-container">
                     <div
@@ -174,41 +172,14 @@ const ProductModal = (props) => {
                       style={{
                         float: "left",
                         width: "100%",
-                        marginLeft: "0px",
+                        marginLeft: "85px",
+                        display: "flex",
+                        gap: "20px",
+                        marginTop: "10px",
                       }}
                     >
-                      <div className="addToBagBtn  fixedCartBtnWrapper">
-                        <div className="addButtons col-xs-12 pull-left">
-                          <button
-                            id="testWishButton"
-                            className="addtocart pull-left "
-                            onClick={() => {
-                              const storeId = productDetails.storeId._id;
-                              const { _id, productName, productPrice } =
-                                productDetails;
-                              const img = productDetails.productPictures[0].img;
-                              dispatch(
-                                addToCart({
-                                  _id,
-                                  productName,
-                                  productPrice,
-                                  storeId,
-                                  img,
-                                })
-                              );
-                              handleclose(false);
-                            }}
-                          >
-                            <span>ADD TO Cart</span>
-                          </button>
-                          <button
-                            id="addToCart"
-                            className="wishlists pull-left "
-                          >
-                            <span>SHARE</span>
-                          </button>
-                        </div>
-                      </div>
+                      <Button title="Add to cart"></Button>
+                      <Button title="Share"></Button>
                     </div>
                   </div>
                 </div>
@@ -216,6 +187,7 @@ const ProductModal = (props) => {
             </div>
           </div>
         </div>
+
         <ToastContainer />
       </Modal>
       <Signin
