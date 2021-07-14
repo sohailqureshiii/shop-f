@@ -14,6 +14,7 @@ import {
 import { useHistory } from "react-router-dom";
 import { shareApi } from "../../urlConfig";
 import "./style.css";
+import { WhatsappShareButton } from "react-share";
 
 const ProductModal = (props) => {
   const { show, handleclose, productDetails } = props;
@@ -51,18 +52,18 @@ const ProductModal = (props) => {
   const renderButton = (storeId) => {
     if (!auth.authenticate) {
       return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-          onClick={() =>
-            history.push({
-              pathname: "/Signin",
-              state: { storeId: storeId, Follow: true },
-            })
-          }
-        >
-          Follow Store
-        </button>
+        // <button
+        //   style={{ marginLeft: "250px" }}
+        //   className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+        //   onClick={() =>
+        //     history.push({
+        //       pathname: "/Signin",
+        //       state: { storeId: storeId, Follow: true },
+        //     })
+        //   }
+        // >
+        //   Follow Store
+        // </button>
         <Button
           title="Follow Store"
           backgroundColor
@@ -74,7 +75,10 @@ const ProductModal = (props) => {
           width="23%"
           height="32px"
           onClick={() => {
-            setShowLoginModal(true);
+            history.push({
+              pathname: "/Signin",
+              state: { storeId: storeId, Follow: true },
+            });
           }}
           fontSize="15px"
           marginTop="10px"
@@ -220,52 +224,6 @@ const ProductModal = (props) => {
                         marginTop: "10px",
                       }}
                     >
-                      <div className="addToBagBtn  fixedCartBtnWrapper">
-                        <div className="addButtons col-xs-12 pull-left">
-                          {auth.authenticate &&
-                          auth.user.storeId ===
-                            productDetails.storeId._id ? null : (
-                            <button
-                              id="testWishButton"
-                              className="addtocart pull-left "
-                              onClick={() => {
-                                const storeId = productDetails.storeId._id;
-                                const { _id, productName, productPrice } =
-                                  productDetails;
-                                const img =
-                                  productDetails.productPictures[0].img;
-                                dispatch(
-                                  addToCart({
-                                    _id,
-                                    productName,
-                                    productPrice,
-                                    storeId,
-                                    img,
-                                  })
-                                );
-                                handleclose(false);
-                              }}
-                            >
-                              <span>ADD TO Cart</span>
-                            </button>
-                          )}
-
-                          <button
-                            id="addToCart"
-                            className="wishlists pull-left "
-                          >
-                            <span>
-                              <WhatsappShareButton
-                                title={productDetails.productName}
-                                separator=" "
-                                url={`${shareApi}/product/${productDetails._id}`}
-                              >
-                                SHARE
-                              </WhatsappShareButton>
-                            </span>
-                          </button>
-                        </div>
-                      </div>
                       <Button
                         title="Add to cart"
                         backgroundColor
@@ -276,9 +234,30 @@ const ProductModal = (props) => {
                         padding="5px 10px"
                         width="200px"
                         height="50px"
-                        onClick={addToCart}
+                        onClick={() => {
+                          const storeId = productDetails.storeId._id;
+                          const { _id, productName, productPrice } =
+                            productDetails;
+                          const img = productDetails.productPictures[0].img;
+                          dispatch(
+                            addToCart({
+                              _id,
+                              productName,
+                              productPrice,
+                              storeId,
+                              img,
+                            })
+                          );
+                          handleclose(false);
+                        }}
                       ></Button>
-                      <Button
+                     
+                       <WhatsappShareButton
+                          title={productDetails.productName}
+                          separator=" "
+                          url={`${shareApi}/product/${productDetails._id}`}
+                        >
+                           <Button
                         title="Share"
                         backgroundColor
                         radius="8px"
@@ -289,6 +268,9 @@ const ProductModal = (props) => {
                         width="200px"
                         height="50px"
                       ></Button>
+                        </WhatsappShareButton>
+                     
+               
                     </div>
                   </div>
                 </div>
@@ -304,3 +286,61 @@ const ProductModal = (props) => {
 };
 
 export default ProductModal;
+
+// <div
+//                       id="addButtons"
+//                       style={{
+//                         float: "left",
+//                         width: "100%",
+//                         marginLeft: "85px",
+//                         display: "flex",
+//                         gap: "20px",
+//                         marginTop: "10px",
+//                       }}
+//                     >
+//                       <div className="addToBagBtn  fixedCartBtnWrapper">
+//                         <div className="addButtons col-xs-12 pull-left">
+//                           {auth.authenticate &&
+//                           auth.user.storeId ===
+//                             productDetails.storeId._id ? null : (
+//                             <button
+//                               id="testWishButton"
+//                               className="addtocart pull-left "
+//                               onClick={() => {
+//                                 const storeId = productDetails.storeId._id;
+//                                 const { _id, productName, productPrice } =
+//                                   productDetails;
+//                                 const img =
+//                                   productDetails.productPictures[0].img;
+//                                 dispatch(
+//                                   addToCart({
+//                                     _id,
+//                                     productName,
+//                                     productPrice,
+//                                     storeId,
+//                                     img,
+//                                   })
+//                                 );
+//                                 handleclose(false);
+//                               }}
+//                             >
+//                               <span>ADD TO Cart</span>
+//                             </button>
+//                           )}
+
+//                           <button
+//                             id="addToCart"
+//                             className="wishlists pull-left "
+//                           >
+//                             <span>
+//                               {/* <WhatsappShareButton
+//                                 title={productDetails.productName}
+//                                 separator=" "
+//                                 url={`${shareApi}/product/${productDetails._id}`}
+//                               >
+//                                 SHARE
+//                               </WhatsappShareButton> */}
+//                             </span>
+//                           </button>
+//                         </div>
+//                       </div>

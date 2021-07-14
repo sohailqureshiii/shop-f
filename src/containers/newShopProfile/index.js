@@ -23,7 +23,7 @@ const StoreProfile = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const dispatch = useDispatch();
+
 
   const followStore = (storeId) => {
     const store = {
@@ -43,17 +43,17 @@ const StoreProfile = (props) => {
     if (!auth.authenticate) {
       return (
 
-        <div
-          className="Btn-label-1Zf e2e-Btn-label"
-          onClick={() =>
-            history.push({
-              pathname: "/Signin",
-              state: { storeId: storeId, Follow: true },
-            })
-          }
-        >
-          Follow Store
-        </div>
+        // <div
+        //   className="Btn-label-1Zf e2e-Btn-label"
+        //   onClick={() =>
+        //     history.push({
+        //       pathname: "/Signin",
+        //       state: { storeId: storeId, Follow: true },
+        //     })
+        //   }
+        // >
+        //   Follow Store
+        // </div>
         <Button
         title=" Follow Store"
         backgroundColor
@@ -65,7 +65,7 @@ const StoreProfile = (props) => {
         width="100%"
         height="50px"
         onClick={() => {
-            setShowLoginModal(true);
+            // setShowLoginModal(true);
            
           }}
           font='18px'
@@ -74,14 +74,14 @@ const StoreProfile = (props) => {
     }
     if (auth.authenticate && !user.following.includes(storeId)) {
       return (
-        <div
-          className="Btn-label-1Zf e2e-Btn-label"
-          onClick={() => {
-            followStore(storeId);
-          }}
-        >
-          Follow Store
-        </div>
+        // <div
+        //   className="Btn-label-1Zf e2e-Btn-label"
+        //   onClick={() => {
+        //     followStore(storeId);
+        //   }}
+        // >
+        //   Follow Store
+        // </div>
         <Button
         title=" Follow Store"
         backgroundColor
@@ -102,10 +102,10 @@ const StoreProfile = (props) => {
 
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
-        <div
-          className="Btn-label-1Zf e2e-Btn-label"
-          onClick={() => {
-            UnFollowStore(storeId);
+        // <div
+        //   className="Btn-label-1Zf e2e-Btn-label"
+        //   onClick={() => {
+        //     UnFollowStore(storeId);
         <Button
         title="Following"
         backgroundColor
@@ -135,7 +135,6 @@ const StoreProfile = (props) => {
               else if (product.storeId._id !== storeId) return null;
             })
             .map((product, index) => (
-              <Product product={product} />
               <StoreProduct product={product} />
             ))}
         </div>
@@ -270,38 +269,7 @@ const StoreProfile = (props) => {
                         <div className="ProfileCard-userInteractions-1W1 ProfileCard-buttons-ZNH ProfileCard-userFollowActions-3eh ProfileCard-mediumLargeBtn-fW8 ProfileCard-noDesktopNotification-2ya">
                           {/* !----- */}
                           <div className="FollowButton-root-VgV ProfileCard-interactionButton-1gk ProfileCard-followButton-1N4 ProfileCard-follow-39e">
-                            {/* <button
-                              type="button"
-                              className="Btn-button-BGn Btn-primary-1H3 Btn-mediumLarge-1uo ProfileCard-buttonWrapper-2kh"
-                            >
-                              <div className="Btn-labelWrapper-1jS ProfileCard-buttonLabel-2_O">
-                                <div className="Btn-icon-flr Btn-leading-29d">
-                                  <svg
-                                    viewBox="0 0 18 18"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="FollowButton-followMark-6kv"
-                                  >
-                                    <path d="M9,1a8,8,0,1,0,8,8A8,8,0,0,0,9,1Zm5,8.5a.5.5,0,0,1-.5.5H10v3.5a.5.5,0,0,1-.5.5h-1a.5.5,0,0,1-.5-.5V10H4.5A.5.5,0,0,1,4,9.5v-1A.5.5,0,0,1,4.5,8H8V4.5A.5.5,0,0,1,8.5,4h1a.5.5,0,0,1,.5.5V8h3.5a.5.5,0,0,1,.5.5Z"></path>
-                                  </svg>
-                                </div>
-                                {renderButton(store._id)}
-
-                                {/* <div className="Btn-label-1Zf e2e-Btn-label"
-                              //  onClick = 
-                              //       {
-                              //         ()=> follow(store._id)
-                              //       }
-                               
-                              >
-                                Follow
-                              </div> */}
-                                {/* !--- */}
-                              </div>
-                            </button>
-
-                                
-                              </div>
-                            </button> */}{renderButton(store._id)}
+                           {renderButton(store._id)}
                           </div>
                         </div>
                         {/* !------ */}
@@ -402,3 +370,37 @@ const StoreProfile = (props) => {
 };
 
 export default StoreProfile;
+
+
+//  {/* <button
+//                               type="button"
+//                               className="Btn-button-BGn Btn-primary-1H3 Btn-mediumLarge-1uo ProfileCard-buttonWrapper-2kh"
+//                             >
+//                               <div className="Btn-labelWrapper-1jS ProfileCard-buttonLabel-2_O">
+//                                 <div className="Btn-icon-flr Btn-leading-29d">
+//                                   <svg
+//                                     viewBox="0 0 18 18"
+//                                     xmlns="http://www.w3.org/2000/svg"
+//                                     className="FollowButton-followMark-6kv"
+//                                   >
+//                                     <path d="M9,1a8,8,0,1,0,8,8A8,8,0,0,0,9,1Zm5,8.5a.5.5,0,0,1-.5.5H10v3.5a.5.5,0,0,1-.5.5h-1a.5.5,0,0,1-.5-.5V10H4.5A.5.5,0,0,1,4,9.5v-1A.5.5,0,0,1,4.5,8H8V4.5A.5.5,0,0,1,8.5,4h1a.5.5,0,0,1,.5.5V8h3.5a.5.5,0,0,1,.5.5Z"></path>
+//                                   </svg>
+//                                 </div>
+//                                 {renderButton(store._id)}
+
+//                                 {/* <div className="Btn-label-1Zf e2e-Btn-label"
+//                               //  onClick = 
+//                               //       {
+//                               //         ()=> follow(store._id)
+//                               //       }
+                               
+//                               >
+//                                 Follow
+//                               </div> */}
+//                                 {/* !--- */}
+//                                 </div>
+//                                 </button>
+    
+                                    
+//                                   </div>
+//                                 </button> */}
