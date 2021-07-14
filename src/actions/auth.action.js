@@ -108,9 +108,9 @@ export const signoutAction = () => {
     dispatch({ type: authConstants.LOGOUT_REQUEST });
     // localStorage.removeItem('user');
     // localStorage.removeItem('token');
-    localStorage.clear();
-    dispatch({ type: authConstants.LOGOUT_SUCCESS });
-    dispatch({ type: cartConstants.RESET_CART });
+    // localStorage.clear();
+    // dispatch({ type: authConstants.LOGOUT_SUCCESS });
+    // dispatch({ type: cartConstants.RESET_CART });
     const res = await axiosIntance.post(`/signout`);
     if(res.status === 200){
       localStorage.clear();

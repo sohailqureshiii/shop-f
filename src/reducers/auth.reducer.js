@@ -26,6 +26,7 @@ const auth = (state = initState, action) => {
       state = {
         ...state,
         authenticating: true,
+        errorTF: false,
       };
 
       break;

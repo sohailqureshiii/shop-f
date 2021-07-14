@@ -1,4 +1,4 @@
-import {storeContants, userStoreData } from "../actions/constants";
+import {authConstants, storeContants, userStoreData } from "../actions/constants";
 
 
 const initState = {
@@ -29,6 +29,19 @@ export default (state = initState, action) => {
 
         };
         break;
+
+        case authConstants.LOGOUT_REQUEST:
+          state = {
+            ...state,
+            loading: true,
+          };
+          break;
+        case authConstants.LOGOUT_SUCCESS:
+          state = {
+            ...initState,
+          };
+          break;
+
     }
     return state;
 }

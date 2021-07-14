@@ -26,7 +26,6 @@ const Favorite = (props) => {
   const [productDetails, setProductDetails] = useState("");
 
   const handleShow = (product) => {
-    console.log(product);
     setProductDetails(product);
     setShow(true);
   };

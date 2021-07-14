@@ -11,13 +11,14 @@ import { followStoreAction, unfollowStoreAction } from "../../../actions/user.ac
  **/
 const CartItem = (props) => {
   const [qty, setQty] = useState(props.cartItem.qty);
-
+  // const [qty, setQty] = useState(props.cartItem.productQu);
   console.log("props",props);
-  const { _id, name, price, img,storeId } = props.cartItem;
+  // const { _id, name, price, img,storeId } = props.cartItem;
+  const { _id, productName, productPrice, img,storeId } = props.cartItem;
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+
 
   const onQuantityIncrement = () => {
     setQty(qty + 1);
@@ -52,8 +53,7 @@ const CartItem = (props) => {
           style={{ marginLeft: "250px" }}
           className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
           onClick={() => {
-            setShowLoginModal(true);
-  
+            
           }}
         >
           Follow Store
@@ -99,12 +99,12 @@ const CartItem = (props) => {
                 <div className="cartProdText">
                   <span>
                     <span className="cartProductName" aria-current="false">
-                      {name}
+                      {productName}
                     </span>
                   </span>
                   <div className="productPriceDetails clearfix">
                     <span className="cartProductPrice">
-                      <b>₹ </b>: {price}
+                      <b>₹ </b>: {productPrice}
                     </span>
                   </div>
                   <div className="cart-prod-info-msg">You saved $700!</div>
@@ -154,11 +154,6 @@ const CartItem = (props) => {
           </div>
         </div>
       </div>
-      <Signin
-        Modal
-        show={showLoginModal}
-        handleclose={() => setShowLoginModal(false)}
-      />
     </div>
   );
 };

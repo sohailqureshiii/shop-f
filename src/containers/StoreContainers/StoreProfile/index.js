@@ -6,6 +6,7 @@ import {IoMdCreate} from 'react-icons/io'
 import DashBoard from '../../../components/DashBoardSidebar'
 import  Navbar  from "../../../components/Navbar";
 import { useSelector } from 'react-redux';
+import { shareApi } from '../../../urlConfig';
 
 const StoreProfile = () => {
  const storeDetails = useSelector((state)=>state.userStore)
@@ -56,16 +57,16 @@ const StoreProfile = () => {
               <div className="StoreCard__column1"><div className="Shop__type">{storeDetails.userStore.storeCategory.name}</div></div>
               <div className="Store_Share">
                 <WhatsappShareButton
-                // title={store.shopName}
+                title={storeDetails.userStore.storeName}
                 separator=" "
-                url="https://www.npmjs.com/package/react-share">
+                url={`${shareApi}/store/${storeDetails.userStore._id}`}>
                   <WhatsappIcon logoFillColor="green" round={true} size={50}>
                   </WhatsappIcon>
                 </WhatsappShareButton>
                 <FacebookShareButton
                 style={{marginLeft:"12px"}}
-                // title={store.shopName}
-                // quote={`Follow My Shop at Shopisthan ${store.shopName}`}
+                title={storeDetails.userStore.storeName}
+                quote={`Follow My Shop at Shopisthan ${storeDetails.userStore.storeName}`}
                 hashtag="#myShopAtShopisthan #dsfwe"
                 url="https://www.npmjs.com/package/react-share">
                   <FacebookIcon logoFillColor="green" round={true} size={50}>

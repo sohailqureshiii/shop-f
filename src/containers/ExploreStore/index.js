@@ -12,6 +12,8 @@ import MenuNavbar from "../../components/MenuNavbar";
  **/
 
 const ExploreStore = (props) => {
+
+ 
   const storeLists = useSelector((state)=>state.stores.stores)
   const [searchTerm , setSearchTerm] = useState(""); 
   const [categoryTerm , setCategoryTerm] = useState(""); 

@@ -67,7 +67,7 @@ exports.userStoreData = async (req, res) => {
     .sort("-createdAt")
     .exec();
 
-  const orders = await Order.find({
+  const orders =  Order.find({
     items: {
       $elemMatch: {
         storeId: store._id,

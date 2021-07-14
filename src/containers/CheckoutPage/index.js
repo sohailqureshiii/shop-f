@@ -118,7 +118,7 @@ const CheckoutPage = (props) => {
   };
 
   const selectAddress = (addr) => {
-    //console.log(addr);
+
     const updatedAddress = address.map((adr) =>
       adr._id === addr._id
         ? { ...adr, selected: true }
@@ -149,8 +149,8 @@ const CheckoutPage = (props) => {
   const onConfirmOrder = () => {
     const totalAmount = Object.keys(cart.cartItems).reduce(
       (totalPrice, key) => {
-        const { price, qty } = cart.cartItems[key];
-        return totalPrice + price * qty;
+        const { productPrice, qty } = cart.cartItems[key];
+        return totalPrice + productPrice * qty;
       },
       0
     );
@@ -169,7 +169,7 @@ const CheckoutPage = (props) => {
       paymentType: "cod",
     };
 
-    console.log(payload);
+
     dispatch(addOrder(payload));
     setConfirmOrder(true);
   };
@@ -343,8 +343,8 @@ const CheckoutPage = (props) => {
             return qty + cart.cartItems[key].qty;
           }, 0)}
           totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-            const { price, qty } = cart.cartItems[key];
-            return totalPrice + price * qty;
+            const { productPrice, qty } = cart.cartItems[key];
+            return totalPrice + productPrice * qty;
           }, 0)}
         />
       </div>

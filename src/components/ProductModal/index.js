@@ -5,7 +5,7 @@ import { WhatsappShareButton } from "react-share";
 import { WhatsappIcon } from "react-share";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Signin from "../../containers/Signin";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,13 +13,15 @@ import {
   followStoreAction,
   unfollowStoreAction,
 } from "../../actions/user.action";
+import { useHistory } from "react-router-dom";
+import { shareApi } from "../../urlConfig";
 
 const ProductModal = (props) => {
   const { show, handleclose, productDetails } = props;
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  let history = useHistory();
 
   if (!productDetails) {
     return null;
@@ -53,10 +55,12 @@ const ProductModal = (props) => {
         <button
           style={{ marginLeft: "250px" }}
           className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-          onClick={() => {
-            setShowLoginModal(true);
-            handleclose(false);
-          }}
+          onClick={() =>
+            history.push({
+              pathname: "/Signin",
+              state: { storeId: storeId, Follow: true },
+            })
+          }
         >
           Follow Store
         </button>
@@ -93,7 +97,12 @@ const ProductModal = (props) => {
 
   return (
     <>
-      <Modal visible={show} onClose={handleclose} size="lg">
+      <Modal
+        visible={show}
+        onClose={handleclose}
+        size="lg"
+        key={productDetails._id}
+      >
         <div className="productDescriptionContainer">
           <div className="flexRow">
             <div className="productDescContainer">
@@ -179,33 +188,47 @@ const ProductModal = (props) => {
                     >
                       <div className="addToBagBtn  fixedCartBtnWrapper">
                         <div className="addButtons col-xs-12 pull-left">
-                          <button
-                            id="testWishButton"
-                            className="addtocart pull-left "
-                            onClick={() => {
-                              const storeId = productDetails.storeId._id;
-                              const { _id, productName, productPrice } =
-                                productDetails;
-                              const img = productDetails.productPictures[0].img;
-                              dispatch(
-                                addToCart({
-                                  _id,
-                                  productName,
-                                  productPrice,
-                                  storeId,
-                                  img,
-                                })
-                              );
-                              handleclose(false);
-                            }}
-                          >
-                            <span>ADD TO Cart</span>
-                          </button>
+                          {auth.authenticate &&
+                          auth.user.storeId ===
+                            productDetails.storeId._id ? null : (
+                            <button
+                              id="testWishButton"
+                              className="addtocart pull-left "
+                              onClick={() => {
+                                const storeId = productDetails.storeId._id;
+                                const { _id, productName, productPrice } =
+                                  productDetails;
+                                const img =
+                                  productDetails.productPictures[0].img;
+                                dispatch(
+                                  addToCart({
+                                    _id,
+                                    productName,
+                                    productPrice,
+                                    storeId,
+                                    img,
+                                  })
+                                );
+                                handleclose(false);
+                              }}
+                            >
+                              <span>ADD TO Cart</span>
+                            </button>
+                          )}
+
                           <button
                             id="addToCart"
                             className="wishlists pull-left "
                           >
-                            <span>SHARE</span>
+                            <span>
+                              <WhatsappShareButton
+                                title={productDetails.productName}
+                                separator=" "
+                                url={`${shareApi}/product/${productDetails._id}`}
+                              >
+                                SHARE
+                              </WhatsappShareButton>
+                            </span>
                           </button>
                         </div>
                       </div>
@@ -218,11 +241,6 @@ const ProductModal = (props) => {
         </div>
         <ToastContainer />
       </Modal>
-      <Signin
-        Modal
-        show={showLoginModal}
-        handleclose={() => setShowLoginModal(false)}
-      />
     </>
   );
 };
