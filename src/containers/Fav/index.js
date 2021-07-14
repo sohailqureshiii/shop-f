@@ -85,7 +85,7 @@ const Favorite = (props) => {
             ? followingStoreProductLists.map((product, index) => (
                 <div
                   style={{ border: "1px solid #d4d4d4", borderRadius: "6px" }}
-                  onClick={()=>handleShow(product)}
+                 
                 >
                   <div>
                     <div className="Galleries-gridCover-j9D">
@@ -127,11 +127,11 @@ const Favorite = (props) => {
                                 </span>
                               </div>
                             </span>
-                            <div className="Stats-stats-1iI">
+                            <div className="Stats-stats-1iI" >
                               <div className="Product__priceFlex">
                                 <button
-                                  className="Owners-owner-2lB e2e-Owner-user-link"
-                                  style={{ marginBottom: "20px" }}
+                                  className="abcjnalnajcsn"
+                                  style={{ marginTop: "0px" }}
                                   onClick={()=>handleShow(product)}
                                 >
                                   View Details

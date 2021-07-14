@@ -4,7 +4,7 @@ import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { googleLoginAction, loginAction } from "../../actions/auth.action";
 import GoogleLogin from "react-google-login";
-import { MaterialInput, Modal } from "../../components/MaterialUI";
+import { Button, MaterialInput, Modal } from "../../components/MaterialUI";
 import Signup from "../SignUp";
 
 const Signin = (props) => {
@@ -58,7 +58,7 @@ const Signin = (props) => {
   const renderLoginForm = () => {
     return (
       <div className="CardLayout-Toaster-Container">
-        <section className="CardLayout">
+        <section  className="CardLayout">
           <header className="CardLayout__header">
             <h1 className="spectrum-Heading1">Sign In</h1>
             <p className="EmailPage__instructions">
@@ -92,13 +92,21 @@ const Signin = (props) => {
               </section>
               <section className="EmailPage__submit mod-submit">
                 <div className="ta-left"></div>
-
-                <button
-                  className="spectrum-Button spectrum-Button--cta SpinnerButton SpinnerButton--right"
-                  onClick={login}
-                >
-                  <span className="spectrum-Button-label">Submit</span>
-                </button>
+                <Button
+                        title="Login"
+                        backgroundColor
+                        radius="5px"
+                        border="1px solid #d4d4d4"
+                        border-radius="3px"
+                        color="#000"
+                        padding="5px 10px"
+                        width="100%"
+                        height="50px"
+                        onClick={login}
+                        justifyContent='center'
+                        marginBottom='15px'
+                        fontSize='20px'
+                      ></Button>
               </section>
             </form>
           </section>

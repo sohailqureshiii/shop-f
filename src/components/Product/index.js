@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ProductModal from "../ProductModal";
+import Whislisticon from "../../img/like.png";
 
 const Product = (props) => {
   const { product } = props;
   const [show, setShow] = useState(false);
-  const [productDetails,setProductDetails] = useState("");
-
+  const [productDetails, setProductDetails] = useState("");
 
   const handleShow = () => {
     setShow(true);
@@ -15,24 +15,46 @@ const Product = (props) => {
 
   return (
     <>
-      <div style={{ border: " 1px solid #d4d4d4", borderRadius: "5px" }} key={product._id}>
-        <div 
-        onClick={() => handleShow()}
-        >
+      <div
+        style={{ border: " 1px solid #d4d4d4", borderRadius: "5px" }}
+        key={product._id}
+      >
+        <div>
           <div className="Galleries-gridCover-j9D">
             <div className="ProjectCoverNeue-root-166 ProjectCoverNeue-statsVisible-19j ProjectCover-cover-3zh">
-              <div className="Cover-cover-2mr ProjectCoverNeue-cover-3Ni e2e-ProjectCoverNeue js-project-cover e2e-ProjectCoverNeue-cover ProjectCoverNeue-coverWithFlags-1Aq ProjectCoverNeue-statsVisible-19j ProjectCoverNeue-loaded-26R">
+              <div
+                className="Cover-cover-2mr ProjectCoverNeue-cover-3Ni e2e-ProjectCoverNeue js-project-cover e2e-ProjectCoverNeue-cover ProjectCoverNeue-coverWithFlags-1Aq ProjectCoverNeue-statsVisible-19j ProjectCoverNeue-loaded-26R"
+              >
                 <div className="Cover-wrapper-300 ProjectCoverNeue-wrapper-27j e2e-ProjectCoverNeue-wrapper">
-                  <div className="Cover-content-2R2">
-                    <div className="DominantColor-dominantColor-2PM"></div>
-                    <img
+                  <div className="Cover-content-2R2" >
+                    <img onClick={() => handleShow()}
                       sizes="404px"
                       style={{ padding: "10px" }}
                       src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg"
                       alt="new"
                       loading="lazy"
                       class="ProjectCoverNeue-image-1MZ js-cover-image"
-                    ></img>
+                    />{" "}
+                    <div
+                      className="productStatusBox"
+                      style={{
+                        alignItems: "end",
+                        marginLeft: "296px",
+                        marginTop: "8px",
+                        top: "0",
+                        background: "white",
+                        borderRadius:'50%'
+                      }}
+                    >
+                      <span className="wishProduct">
+                        <div style={{ zIndex: "100" }} >
+                          <img
+                            src={Whislisticon}
+                            style={{ width: "25px", height: "25px", marginTop:'6px',marginLeft:'7px' }}
+                          />
+                        </div>
+                      </span>
+                    </div>
                     <div className="ProjectCoverNeue-controlsAndPrivacyContainer-20r"></div>
                   </div>
                 </div>
@@ -43,8 +65,11 @@ const Product = (props) => {
                   <span className="ProjectCoverNeue-ownersContainer-3Go">
                     <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
                       <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
-                        <div className="Owners-owner-2lB e2e-Owner-user-link">
-                           {product.productName}
+                        <div
+                          className="Owners-owner-2lB e2e-Owner-user-link"
+                          style={{ display: "flex" }}
+                        >
+                          {product.productName}
                         </div>
                       </span>
                     </div>
@@ -55,9 +80,9 @@ const Product = (props) => {
                     <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
                       <Link
                         to={`/${product.storeId._id}/store`}
-                        className="Owners-owner-2lB e2e-Owner-user-link"
+                        className="osdksodmdu"
                       >
-                       {product.storeId.storeName}
+                        {product.storeId.storeName}
                       </Link>
                     </span>
                   </div>

@@ -7,6 +7,50 @@ import "./style.css";
  * @function
  **/
 
+const Button = (props) => {
+  const {
+    border,
+    color,
+    backgroundColor,
+    children,
+    height,
+    onClick,
+    radius,
+    width,
+    padding,
+    title,
+    font,
+    justifyContent,
+    marginBottom,
+    marginTop,
+    marginLeft,
+    fontSize,
+  } = props;
+
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        backgroundColor: "white",
+        border: "1px solid #d9d9d9",
+        borderRadius: radius,
+        height,
+        width,
+        color,
+        padding,
+        font,
+        justifyContent,
+        marginBottom,
+        marginTop,
+        marginLeft,
+        fontSize,
+      }}
+    >
+      {title}
+    </button>
+  );
+};
+
 const Modal = (props) => {
   if (!props.visible) {
     return null;
@@ -39,20 +83,18 @@ const MaterialInput = (props) => {
   );
 };
 
-const Button = (props) => {
-  const onClick = () => {
-    props.onClick && props.onClick();
-  };
-  return (
-    <div className="d-flex">
-      <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
-        <div className="btn-text" onClick={onClick}>
-          {props.title}
-        </div>
-      </div>
-    </div>
-  );
-};
+// const Button = (props) => {
+//   const onClick = () => {
+//     props.onClick && props.onClick();
+//   };
+//   return (
+//       <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
+//         <div className="btn-text" onClick={onClick}>
+//           {props.title}
+//         </div>
+//       </div>
+//   );
+// };
 
 const FollowingBtn = (props) => {
   const onClick = () => {
@@ -160,5 +202,5 @@ export {
   FollowingBtn,
   DropdownMenu,
   Anchor,
-  Breed
+  Breed,
 };

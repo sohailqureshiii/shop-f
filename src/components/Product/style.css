@@ -16,6 +16,29 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.productStatusBox{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.productCardBox .productCardImg .productStatusBox .wishProduct {
+    background-color: hsla(0,0%,100%,.7);
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    text-align: center;
+    display: block;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+    position: unset;
+    margin-right: 10px;
+}
+
 .productWrapper .detailsWrapper {
     background-color: #f9f9f9;
     border: 1px solid #d4d4d4;

@@ -512,7 +512,7 @@ flex-wrap: wrap;
 -webkit-box-pack: justify;
 justify-content: space-between;
 max-height: 35px;
-padding-top: 10px;
+padding-top: 2px;
 }
 
 .ProjectCoverNeue-statsVisible-19j .ProjectCoverNeue-visibleStatsAndOwners-2Av .ProjectCoverNeue-ownersContainer-3Go {
@@ -551,7 +551,7 @@ width: 20px;
 .Owners-root-3c9.Owners-dark-1Vh .Owners-owner-2lB {
 color: #191919;
 padding: 5px;
-font-family: "Amazon Ember",Arial,sans-serif;
+font-family: "-webkit-pictograph";
 }
 
 .Owners-ownerImageEl-3cu {
@@ -653,52 +653,11 @@ li {
   margin: 10px 5px;
 }
 
-.galleries-page a,
-.galleries-page [tabindex],
-.galleries-page .rf-button,
-.live-page a,
-.live-page [tabindex],
-.live-page .rf-button,
-.jobs-page a,
-.jobs-page [tabindex],
-.jobs-page .rf-button,
-.inbox-content-container a,
-.inbox-content-container [tabindex],
-.inbox-content-container .rf-button,
-.search-projects-sort-by-filter a,
-.search-projects-sort-by-filter [tabindex],
-.search-projects-sort-by-filter .rf-button,
-.search-users-sort-by-filter a,
-.search-users-sort-by-filter [tabindex],
-.search-users-sort-by-filter .rf-button,
-.search-moodboards-sort-by-filter a,
-.search-moodboards-sort-by-filter [tabindex],
-.search-moodboards-sort-by-filter .rf-button,
-.rf-primary-nav a,
-.rf-primary-nav [tabindex],
-.rf-primary-nav .rf-button,
-.rf-secondary-nav a,
-.rf-secondary-nav [tabindex],
-.rf-secondary-nav .rf-button,
-.rf-content--projects a,
-.rf-content--projects [tabindex],
-.rf-content--projects .rf-button,
-.rf-footer a,
-.rf-footer [tabindex],
-.rf-footer .rf-button,
-.activity-page-container a,
-.activity-page-container [tabindex],
-.activity-page-container .rf-button,
-.featured-page-container a,
-.featured-page-container [tabindex],
-.featured-page-container .rf-button,
-.collection-page-container a,
-.collection-page-container [tabindex],
-.collection-page-container .rf-button,
-.adobe-user-onboarding a,
-.adobe-user-onboarding [tabindex],
-.adobe-user-onboarding .rf-button {
-  position: relative;
+.osdksodmdu{
+  color: #191919;
+padding: 5px;
+font-family: "-webkit-pictograph";
+font-size:'10px'
 }
 
 @media (min-width: 1440px) {
