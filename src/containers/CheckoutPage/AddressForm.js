@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../actions/user.action";
-import { MaterialButton, MaterialInput } from "../../components/MaterialUI";
+import { Button,
+   MaterialInput } 
+   from "../../components/MaterialUI";
 
 /**
  * @author
@@ -197,7 +199,7 @@ const AddressForm = (props) => {
           </div>
         </div>
         <div className="flexRow">
-          <MaterialButton
+          <Button
             title="SAVE AND DELIVER HERE"
             onClick={onAddressSubmit}
             style={{

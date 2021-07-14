@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpAction } from "../../actions/auth.action";
+import { Button, MaterialInput, Modal } from "../../components/MaterialUI";
 import { googleLoginAction, loginAction } from "../../actions/auth.action";
 import { GoogleLogin } from "react-google-login";
 
@@ -66,6 +67,11 @@ const Signup = (props) => {
         />
       );
     }
+  
+  
+  // if (auth.authenticate) {
+  //   return props.Modal ? null : <Redirect to={`/storeForm`} />;
+  // }
 
     if (props.location && props.location.state === undefined) {
       return <Redirect to="/" />;
@@ -171,6 +177,75 @@ const Signup = (props) => {
             </form>
           </section>
           <GoogleLogin
+      <section className="CardLayout">
+        <header className="CardLayout__header">
+          <h1 className="spectrum-Heading1">Sign Up</h1>
+          <p className="EmailPage__instructions">
+            Already Account ?
+            {
+              props.Modal ? 
+              <button
+                  onClick={viewChanges}
+                    // setShowLoginModal(true)
+                    // handleclose(false)
+                  
+                >
+                 Login
+                </button>
+               : 
+              
+              <Link
+              className="spectrum-Link EmailPage__create-account-link"
+              to="/Signin"
+            >
+              Login
+            </Link>
+            }
+           
+          </p>
+        </header>
+        <section className="CardLayout__content">
+          <form>
+            <section className="EmailPage__email-field form-group">
+              <MaterialInput
+                  label="Email Address / Mobile Number"
+                  value={loginId}
+                  onChange={(e) => setLoginId(e.target.value)}
+                />
+              <MaterialInput
+                  label="User Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              <MaterialInput
+                  label="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+            </section>
+            <section className="EmailPage__submit mod-submit">
+              
+              <Button
+                        title="Signup"
+                        backgroundColor
+                        radius="5px"
+                        border="1px solid #828282"
+                        border-radius="3px"
+                        color="#000"
+                        padding="5px 10px"
+                        width="100%"
+                        height="50px"
+                        onClick={userSignup}
+                        
+                        marginBottom='10px'
+                        fontSize='20px'
+                      ></Button>
+              
+            </section>
+          </form>
+     
+        </section>
+        <GoogleLogin
             clientId="578690882773-rkanjv60fh7ip7gus67q1s0kshnfu14b.apps.googleusercontent.com"
             buttonText="Login with Google"
             onSuccess={responseSuccessGoogle}

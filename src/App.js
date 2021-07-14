@@ -102,6 +102,7 @@ function App() {
           <PrivateRoute path="/storeCoustomer" exact component={StoreCoustomers} />
           <PrivateRoute path="/storeProfile" exact component={StoreProfile} />
           <PrivateRoute path="/Addproduct" exact component={StoreAddProduct} />
+          <Route path="/products/details" component={ProductDetailsPage} />
         </Switch>
       </Router>
     </div>

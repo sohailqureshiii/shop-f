@@ -3,7 +3,7 @@ import Card from "../../components/UI/Card";
 import CartItem from "./CartItem";
 import PriceDetails from "../../components/PriceDetails";
 import "./style.css";
-import { MaterialButton } from "../../components/MaterialUI";
+// import { MaterialButton } from "../../components/MaterialUI";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
 import { useDispatch, useSelector } from "react-redux";
@@ -185,6 +185,9 @@ const CartPage = (props) => {
                 title="PLACE ORDER"
                 onClick={() => props.history.push(`/checkout`)}
               />
+              {/* <Button title="PLACE ORDER" 
+                 onClick={() => props.history.push(`/checkout`)}
+              /> */}
             </div>
           </div>
         </Card>

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Modal } from "../../components/MaterialUI";
+import { Button, Modal } from "../../components/MaterialUI";
 import { BiRupee } from "react-icons/bi";
-import { WhatsappShareButton } from "react-share";
-import { WhatsappIcon } from "react-share";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, Redirect } from "react-router-dom";
@@ -15,6 +13,7 @@ import {
 } from "../../actions/user.action";
 import { useHistory } from "react-router-dom";
 import { shareApi } from "../../urlConfig";
+import "./style.css";
 
 const ProductModal = (props) => {
   const { show, handleclose, productDetails } = props;
@@ -64,33 +63,63 @@ const ProductModal = (props) => {
         >
           Follow Store
         </button>
+        <Button
+          title="Follow Store"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="23%"
+          height="32px"
+          onClick={() => {
+            setShowLoginModal(true);
+          }}
+          fontSize="15px"
+          marginTop="10px"
+        ></Button>
       );
     }
     if (auth.authenticate && !user.following.includes(storeId)) {
       return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+        <Button
+          title="Follow Store"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="23%"
+          height="32px"
           onClick={() => {
             followStore(storeId);
           }}
-        >
-          Follow Store
-        </button>
+          fontSize="15px"
+          marginTop="10px"
+        ></Button>
       );
     }
 
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+        <Button
+          title="Following"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="23%"
+          height="32px"
           onClick={() => {
             UnFollowStore(storeId);
           }}
-        >
-          Following
-        </button>
+          fontSize="15px"
+          marginTop="10px"
+        ></Button>
       );
     }
   };
@@ -104,31 +133,27 @@ const ProductModal = (props) => {
         key={productDetails._id}
       >
         <div className="productDescriptionContainer">
-          <div className="flexRow">
-            <div className="productDescContainer">
-              <div className="productDescImgContainer">
-                <img
-                  src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg"
-                  alt="new"
-                />
-              </div>
-
-              {/* action buttons */}
+          <div className="productDescContainer">
+            <div className="productDescImgContainer">
+              <img src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg" />
             </div>
           </div>
           {/* home > category > subCategory > productName */}
           <div className=" detailsWrapper">
             <div className="prodDesc clearfix">
-              <div className="productDetails" style={{ width: "600px" }}>
+              <div className="productDetails" style={{ maxWidth: "525px" }}>
                 <div>
                   <div
                     className="Storename"
                     style={{ maxWidth: "521px", top: "-1px" }}
                   >
-                    <p style={{ display: "flex" }}>
-                      {productDetails.storeId.storeName}
+                    <div style={{ display: "flex", alignItems: "flex-end" }}>
+                      <p style={{ minWidth: "400px" }}>
+                        {productDetails.storeId.storeName}{" "}
+                      </p>
                       {renderButton(productDetails.storeId._id)}
-                    </p>
+                    </div>
+
                     <p
                       style={{
                         width: "130px",
@@ -138,7 +163,7 @@ const ProductModal = (props) => {
                         marginRight: "20px",
                       }}
                     >
-                      {productDetails.storeLocation.name}
+                      Viman Nagr
                     </p>
                   </div>
                 </div>
@@ -147,9 +172,7 @@ const ProductModal = (props) => {
                 </h1>
                 <div className="flexRow priceContainer price">
                   Price :
-                  <span
-                  // classNa me="price"
-                  >
+                  <span className="price">
                     <BiRupee />
                     {productDetails.productPrice}
                   </span>
@@ -168,14 +191,22 @@ const ProductModal = (props) => {
                     >
                       Description
                     </span>
-                    <span
+                    <p
                       style={{
                         fontSize: "12px",
                         color: "#212121",
                       }}
                     >
-                      {productDetails.productDescription}
-                    </span>
+                      64MP+8MP+2MP triple rear camera with 1080p video at 30/60
+                      fps, 4k 30 fps | 16MP front camera with 1080p video at
+                      30/60 fps. 6.43-inch, 90Hz fluid AMOLED display with 2400
+                      x 1080 pixels resolution | 410ppi Memory, Storage & SIM:
+                      8GB RAM | 128GB internal memory on UFS 2.1 storage system.
+                      Dual SIM (nano + nano) Alexa Hands-Free capable: Download
+                      the Alexa app to use Alexa hands-free. Play music, make
+                      calls, hear news, open apps, navigate and more, all using
+                      just your voice, while on-the-go.
+                    </p>
                   </p>
                   <div className="share-btn-container">
                     <div
@@ -183,7 +214,10 @@ const ProductModal = (props) => {
                       style={{
                         float: "left",
                         width: "100%",
-                        marginLeft: "0px",
+                        marginLeft: "85px",
+                        display: "flex",
+                        gap: "20px",
+                        marginTop: "10px",
                       }}
                     >
                       <div className="addToBagBtn  fixedCartBtnWrapper">
@@ -232,6 +266,29 @@ const ProductModal = (props) => {
                           </button>
                         </div>
                       </div>
+                      <Button
+                        title="Add to cart"
+                        backgroundColor
+                        radius="8px"
+                        border="1px solid #d4d4d4"
+                        border-radius="3px"
+                        color="#000"
+                        padding="5px 10px"
+                        width="200px"
+                        height="50px"
+                        onClick={addToCart}
+                      ></Button>
+                      <Button
+                        title="Share"
+                        backgroundColor
+                        radius="8px"
+                        border="1px solid #d4d4d4"
+                        border-radius="3px"
+                        color="#000"
+                        padding="5px 10px"
+                        width="200px"
+                        height="50px"
+                      ></Button>
                     </div>
                   </div>
                 </div>
@@ -239,6 +296,7 @@ const ProductModal = (props) => {
             </div>
           </div>
         </div>
+
         <ToastContainer />
       </Modal>
     </>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../../components/MaterialUI";
 import Navigationbar from "../../components/Navbar";
 import CartItem from "../CartPage/CartItem";
 import "./cartstyle.css";
@@ -90,7 +91,7 @@ const newCart = () => {
                         ></input>
                       </div>
                     </section>
-                    <div
+                    {/* <div
                       className="d-flex"
                       style={{
                         justifyContent: "flex-end",
@@ -100,7 +101,21 @@ const newCart = () => {
                       <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
                         <div className="btn-text">Save and Continue</div>
                       </div>
-                    </div>
+                    </div> */}
+                    <Button
+          title="Continue"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="33%"
+          height="52px"
+          marginLeft='530px'
+          fontSize="20px"
+          marginBottom="10px"
+        ></Button>
                   </div>
                 </form>
                   </form>

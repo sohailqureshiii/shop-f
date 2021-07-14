@@ -11,6 +11,8 @@ import {
   unfollowStoreAction,
 } from "../../actions/user.action";
 import Signup from "../SignUp";
+import StoreProduct from "../../components/StoreProduct";
+import { Button } from "../../components/MaterialUI";
 
 const StoreProfile = (props) => {
   const storeId = props.match.params.storeId;
@@ -20,6 +22,8 @@ const StoreProfile = (props) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const dispatch = useDispatch();
 
   const followStore = (storeId) => {
     const store = {
@@ -38,6 +42,7 @@ const StoreProfile = (props) => {
   const renderButton = (storeId) => {
     if (!auth.authenticate) {
       return (
+
         <div
           className="Btn-label-1Zf e2e-Btn-label"
           onClick={() =>
@@ -49,6 +54,22 @@ const StoreProfile = (props) => {
         >
           Follow Store
         </div>
+        <Button
+        title=" Follow Store"
+        backgroundColor
+        radius="5px"
+        border
+        border-radius="3px"
+        color="#000"
+        padding="5px 10px"
+        width="100%"
+        height="50px"
+        onClick={() => {
+            setShowLoginModal(true);
+           
+          }}
+          font='18px'
+      ></Button>
       );
     }
     if (auth.authenticate && !user.following.includes(storeId)) {
@@ -61,6 +82,21 @@ const StoreProfile = (props) => {
         >
           Follow Store
         </div>
+        <Button
+        title=" Follow Store"
+        backgroundColor
+        radius="5px"
+        border
+        border-radius="3px"
+        color="#000"
+        padding="5px 10px"
+        width="100%"
+        height="50px"
+        onClick={() => {
+          followStore(storeId);
+          }}
+          font='18px'
+      ></Button>
       );
     }
 
@@ -70,10 +106,21 @@ const StoreProfile = (props) => {
           className="Btn-label-1Zf e2e-Btn-label"
           onClick={() => {
             UnFollowStore(storeId);
+        <Button
+        title="Following"
+        backgroundColor
+        radius="5px"
+        border
+        border-radius="3px"
+        color="#000"
+        padding="5px 10px"
+        width="100%"
+        height="50px"
+        onClick={() => {
+          UnFollowStore(storeId);
           }}
-        >
-          Following
-        </div>
+        font='18px'
+      ></Button>
       );
     }
   };
@@ -89,6 +136,7 @@ const StoreProfile = (props) => {
             })
             .map((product, index) => (
               <Product product={product} />
+              <StoreProduct product={product} />
             ))}
         </div>
       </div>
@@ -222,7 +270,7 @@ const StoreProfile = (props) => {
                         <div className="ProfileCard-userInteractions-1W1 ProfileCard-buttons-ZNH ProfileCard-userFollowActions-3eh ProfileCard-mediumLargeBtn-fW8 ProfileCard-noDesktopNotification-2ya">
                           {/* !----- */}
                           <div className="FollowButton-root-VgV ProfileCard-interactionButton-1gk ProfileCard-followButton-1N4 ProfileCard-follow-39e">
-                            <button
+                            {/* <button
                               type="button"
                               className="Btn-button-BGn Btn-primary-1H3 Btn-mediumLarge-1uo ProfileCard-buttonWrapper-2kh"
                             >
@@ -250,6 +298,10 @@ const StoreProfile = (props) => {
                                 {/* !--- */}
                               </div>
                             </button>
+
+                                
+                              </div>
+                            </button> */}{renderButton(store._id)}
                           </div>
                         </div>
                         {/* !------ */}
