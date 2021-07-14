@@ -10,6 +10,15 @@ import { followStoreAction, unfollowStoreAction } from "../../../actions/user.ac
  * @function CartItem
  **/
 const CartItem = (props) => {
+  const [qty, setQty] = useState(props.cartItem.qty);
+  // const [qty, setQty] = useState(props.cartItem.productQu);
+  console.log("props",props);
+  // const { _id, name, price, img,storeId } = props.cartItem;
+  const { _id, productName, productPrice, img,storeId } = props.cartItem;
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+
   // const [qty, setQty] = useState(props.cartItem.qty);
 
   // console.log("props",props);
@@ -45,6 +54,33 @@ const CartItem = (props) => {
   //   dispatch(unfollowStoreAction(store));
   // };
 
+  const renderButton = (storeId) => {
+    if (!auth.authenticate) {
+      return (
+        <button
+          style={{ marginLeft: "250px" }}
+          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+          onClick={() => {
+            
+          }}
+        >
+          Follow Store
+        </button>
+      );
+    }
+    if (auth.authenticate && !user.following.includes(storeId)) {
+      return (
+        <button
+          style={{ marginLeft: "250px" }}
+          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+          onClick={() => {
+            followStore(storeId);
+          }}
+        >
+          Follow Store
+        </button>
+      );
+    }
   // const renderButton = (storeId) => {
   //   if (!auth.authenticate) {
   //     return (
@@ -99,11 +135,13 @@ const CartItem = (props) => {
                 <div className="cartProdText">
                   <span>
                     <span className="cartProductName" aria-current="false">
+                      {productName}
                      Addidas
                     </span>
                   </span>
                   <div className="productPriceDetails clearfix">
                     <span className="cartProductPrice">
+                      <b>₹ </b>: {productPrice}
                       <b>₹ </b>: 5,999
                     </span>
                   </div>
@@ -154,11 +192,6 @@ const CartItem = (props) => {
           </div>
         </div>
       </div>
-      <Signin
-        Modal
-        show={showLoginModal}
-        handleclose={() => setShowLoginModal(false)}
-      />
     </div>
   );
 };

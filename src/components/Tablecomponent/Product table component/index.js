@@ -19,7 +19,7 @@ const ProductTableCompo = (props) => {
       return storeProducts.map((product, index) => (
         <tr className="mnbnmnb" onClick={() => handleShow()} key={product._id}>
           <td className="jfkvvjvsv" data-label="S.No">
-            {index}
+            {index + 1}
           </td>
           <td className="jfkvvjvsv" data-label="Product Id">
             {product._id}

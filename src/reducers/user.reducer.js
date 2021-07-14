@@ -21,7 +21,18 @@ const initState = {
     // }
   },
   updatingCart: false,
+  _id:""
 };
+
+
+const newOne = (id,obj) =>{
+delete obj[id]
+// localStorage.setItem('cart',initState.cartItems)
+localStorage.setItem("cart", JSON.stringify(initState.cartItems));
+
+}
+
+
 
 export default (state = initState, action) => {
   switch (action.type) {
@@ -68,6 +79,16 @@ export default (state = initState, action) => {
       state = {
         ...initState,
       };
+      break;
+      case cartConstants.REMOVE_CART_ITEM_SUCCESS1:
+
+      const productId = action.payload.productId
+      const updateProduct = newOne(productId,state.cartItems)
+      console.log("updateProduct",updateProduct);
+      // state = {
+      //   ...state,
+    
+      // };
       break;
     case userContants.GET_USER_ADDRESS_REQUEST:
       state = {

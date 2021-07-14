@@ -31,7 +31,8 @@ import {
   userStoreDataAction,
 
 } from "./actions/initialData.action";
-import { PrivateRoute } from "./components/HOC/PrivateRoute";
+import { PrivateRoute,SharePrivateRoute } from "./components/HOC/PrivateRoute";
+
 import { updateCart } from "./actions/user.action";
 import StoreEditProduct from "./containers/StoreContainers/EditProduct";
 import CheckoutPage from "./containers/CheckoutPage";
@@ -45,6 +46,7 @@ function App() {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
+    dispatch(updateCart())
   }, []);
 
   useEffect(() => {
@@ -75,6 +77,7 @@ function App() {
           <Route path="/" exact component={HomePage} />
           <Route path="/ExploreStore" exact component={ExploreStore} />
           <Route path="/:storeId/store" exact component={ShopProfile} />
+          <SharePrivateRoute path="/store/:storeId" exact component={ShopProfile} />
           <Route path="/Signin" exact component={Signin} />
           <Route path="/Signup" exact component={Signup} />
           <Route path="/account/orders" exact component={OrderPage} />
@@ -82,7 +85,7 @@ function App() {
           <Route path="/favorite" exact component={Favorite} />
           <Route path="/plansection" exact component={Planselection} />
           <Route path="/myprofile" exact component={MyProfile} />
-          <Route path="/cart" exact component={newCart} />
+          <Route path="/cart" exact component={CartPage} />
           <Route path="/editprofile" exact component={EditProfile} />
           <Route path="/storeForm" exact component={StoreForm} />
           <Route path="/checkout" exact component={CheckoutPage} />

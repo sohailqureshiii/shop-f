@@ -122,7 +122,7 @@ const newCart = () => {
               </div>
           </div>
           <div className='onrlsjhrbnd'>
-           <CartItem/>
+           {/* <CartItem/> */}
            </div>
         </div>
         <div className='dhcvkj'>

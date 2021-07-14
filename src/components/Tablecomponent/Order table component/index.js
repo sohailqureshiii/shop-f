@@ -5,11 +5,11 @@ const OrderTableCompo = (props) => {
   const storeOrderDetails = useSelector((state) => state.userStore.storeOrder);
   const storeId = useSelector((state) => state.userStore.userStore._id);
   const totalPrice = 0;
-  const abcd = storeOrderDetails.map((orderItem, index) =>
-    orderItem.items.filter((orderProduct) => orderProduct.storeId === storeId)
-  );
+  // const abcd = storeOrderDetails.map((orderItem, index) =>
+  //   orderItem.items.filter((orderProduct) => orderProduct.storeId === storeId)
+  // );
 
-  console.log("totalPrice", abcd);
+  // console.log("totalPrice", abcd);
   return (
     <table className="table-new-table">
       <thead className="oknbhgrtyfc">

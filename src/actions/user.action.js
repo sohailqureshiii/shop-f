@@ -91,6 +91,10 @@ export const addToCart = (product, newQty = 1) => {
       }
     } else {
       localStorage.setItem("cart", JSON.stringify(cartItems));
+      dispatch({
+        type: cartConstants.ADD_TO_CART_SUCCESS,
+        payload: { cartItems },
+      });
     }
 
     console.log("addToCart::", cartItems);
@@ -105,18 +109,31 @@ export const addToCart = (product, newQty = 1) => {
 export const removeCartItem = (payload) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: cartConstants.REMOVE_CART_ITEM_REQUEST });
-      const res = await axiosIntance.post(`/user/cart/removeItem`, { payload });
-      if (res.status === 202) {
-        dispatch({ type: cartConstants.REMOVE_CART_ITEM_SUCCESS });
-        dispatch(getCartItems());
-      } else {
-        const { error } = res.data;
+
+      const {
+        auth
+      } = store.getState();
+      if(auth.authenticate){
+        dispatch({ type: cartConstants.REMOVE_CART_ITEM_REQUEST });
+        const res = await axiosIntance.post(`/user/cart/removeItem`, { payload });
+        if (res.status === 202) {
+          dispatch({ type: cartConstants.REMOVE_CART_ITEM_SUCCESS });
+          dispatch(getCartItems());
+        } else {
+          const { error } = res.data;
+          dispatch({
+            type: cartConstants.REMOVE_CART_ITEM_FAILURE,
+            payload: { error },
+          });
+        }
+      }else{
         dispatch({
-          type: cartConstants.REMOVE_CART_ITEM_FAILURE,
-          payload: { error },
-        });
+           type: cartConstants.REMOVE_CART_ITEM_SUCCESS1,
+           payload: {productId:payload.productId}
+         });
+
       }
+     
     } catch (error) {
       console.log(error);
     }
@@ -163,6 +180,8 @@ export const updateCart = () => {
 };
 
 export { getCartItems };
+
+
 
 
 

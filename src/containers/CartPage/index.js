@@ -13,7 +13,6 @@ import {
   removeCartItem,
 } from "../../actions/user.action";
 
-
 /**
  * @author
  * @function CartPage
@@ -46,13 +45,19 @@ const CartPage = (props) => {
 
   const onQuantityIncrement = (_id, qty) => {
     //console.log({_id, qty});
-    const { name, price, img } = cartItems[_id];
-    dispatch(addToCart({ _id, name, price, img }, 1));
+    // const { name, price, img } = cartItems[_id];
+    // dispatch(addToCart({ _id, name, price, img }, 1));
+    const {productName, productPrice,img} = cartItems[_id];
+    dispatch(addToCart({ _id,productName, productPrice,img }, 1));
+
   };
 
   const onQuantityDecrement = (_id, qty) => {
-    const { name, price, img } = cartItems[_id];
-    dispatch(addToCart({ _id, name, price, img }, -1));
+    // const { name, price, img } = cartItems[_id];
+    // dispatch(addToCart({ _id, name, price, img }, -1));
+    const {productName, productPrice,img} = cartItems[_id];
+
+    dispatch(addToCart({ _id,productName, productPrice,img }, -1));
   };
 
   const onRemoveCartItem = (_id) => {
@@ -176,6 +181,10 @@ const CartPage = (props) => {
             }}
           >
             <div style={{ width: "250px" }}>
+              <MaterialButton
+                title="PLACE ORDER"
+                onClick={() => props.history.push(`/checkout`)}
+              />
               {/* <Button title="PLACE ORDER" 
                  onClick={() => props.history.push(`/checkout`)}
               /> */}
@@ -187,13 +196,12 @@ const CartPage = (props) => {
             return qty + cart.cartItems[key].qty;
           }, 0)}
           totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-            const { price, qty } = cart.cartItems[key];
-            return totalPrice + price * qty;
+            const { productPrice, qty } = cart.cartItems[key];
+            return totalPrice + productPrice * qty;
           }, 0)}
         />
       </div>
       <Footer />
-     
     </>
   );
 };

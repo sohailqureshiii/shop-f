@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import Product from "../../components/Product";
 import "./style.css";
 import NavBar from "../../components/Navbar";
@@ -20,6 +20,8 @@ const StoreProfile = (props) => {
   const product = useSelector((state) => state.products.products);
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const dispatch = useDispatch();
 
@@ -40,6 +42,18 @@ const StoreProfile = (props) => {
   const renderButton = (storeId) => {
     if (!auth.authenticate) {
       return (
+
+        <div
+          className="Btn-label-1Zf e2e-Btn-label"
+          onClick={() =>
+            history.push({
+              pathname: "/Signin",
+              state: { storeId: storeId, Follow: true },
+            })
+          }
+        >
+          Follow Store
+        </div>
         <Button
         title=" Follow Store"
         backgroundColor
@@ -60,6 +74,14 @@ const StoreProfile = (props) => {
     }
     if (auth.authenticate && !user.following.includes(storeId)) {
       return (
+        <div
+          className="Btn-label-1Zf e2e-Btn-label"
+          onClick={() => {
+            followStore(storeId);
+          }}
+        >
+          Follow Store
+        </div>
         <Button
         title=" Follow Store"
         backgroundColor
@@ -80,6 +102,10 @@ const StoreProfile = (props) => {
 
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
+        <div
+          className="Btn-label-1Zf e2e-Btn-label"
+          onClick={() => {
+            UnFollowStore(storeId);
         <Button
         title="Following"
         backgroundColor
@@ -109,6 +135,7 @@ const StoreProfile = (props) => {
               else if (product.storeId._id !== storeId) return null;
             })
             .map((product, index) => (
+              <Product product={product} />
               <StoreProduct product={product} />
             ))}
         </div>
@@ -257,6 +284,21 @@ const StoreProfile = (props) => {
                                     <path d="M9,1a8,8,0,1,0,8,8A8,8,0,0,0,9,1Zm5,8.5a.5.5,0,0,1-.5.5H10v3.5a.5.5,0,0,1-.5.5h-1a.5.5,0,0,1-.5-.5V10H4.5A.5.5,0,0,1,4,9.5v-1A.5.5,0,0,1,4.5,8H8V4.5A.5.5,0,0,1,8.5,4h1a.5.5,0,0,1,.5.5V8h3.5a.5.5,0,0,1,.5.5Z"></path>
                                   </svg>
                                 </div>
+                                {renderButton(store._id)}
+
+                                {/* <div className="Btn-label-1Zf e2e-Btn-label"
+                              //  onClick = 
+                              //       {
+                              //         ()=> follow(store._id)
+                              //       }
+                               
+                              >
+                                Follow
+                              </div> */}
+                                {/* !--- */}
+                              </div>
+                            </button>
+
                                 
                               </div>
                             </button> */}{renderButton(store._id)}
@@ -355,16 +397,6 @@ const StoreProfile = (props) => {
         ))}
 
       <Footer></Footer>
-      <Signin
-        Modal
-        show={showLoginModal}
-        handleclose={() => setShowLoginModal(false)}
-      />
-      <Signup
-        Modal
-        show={showLoginModal}
-        handleclose={() => setShowLoginModal(false)}
-      />
     </>
   );
 };

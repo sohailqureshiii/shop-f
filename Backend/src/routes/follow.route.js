@@ -18,7 +18,7 @@ router.put(`/follow`,requireSignin,userMiddleware,(req,res)=>{
        User.findByIdAndUpdate(req.user._id,{
             $push:{following:req.body.followId}
         },{new:true,useFindAndModify: false})
-        .select("-hash_password")
+        .select("-password")
         .then(following=>{
              return   res.status(201).json(following)
         }).catch(err=>{
@@ -45,7 +45,7 @@ router.put(`/unfollow`,requireSignin,userMiddleware,(req,res)=>{
         
         User.findByIdAndUpdate(req.user._id,{
             $pull:{following:req.body.unfollowId}
-        },{new:true,useFindAndModify: false}).select("-hash_password").then(following=>{
+        },{new:true,useFindAndModify: false}).select("-password").then(following=>{
             // res.json(result)
             return   res.status(201).json(following)
         }).catch(err=>{

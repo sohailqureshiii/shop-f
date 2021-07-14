@@ -5,7 +5,7 @@ const Store = (props) => {
   const { store, index } = props;
   return (
     <>
-      <div className="border-for-store">
+      <div className="border-for-store" key={store._id}>
         <div className="Galleries-gridCover-j9D">
           <div className="ProjectCoverNeue-root-166 ProjectCoverNeue-statsVisible-19j ProjectCover-cover-3zh">
           <Link 
@@ -54,7 +54,7 @@ const Store = (props) => {
                       style={{ marginBottom: "20px", color: "black" }}
                       // onClick={() => showProductDetailsModal(product)}
                     >
-                      Follow Store
+                      Follow Store  
                     </div>
                   </div>
                 </div>
