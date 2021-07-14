@@ -110,14 +110,23 @@ const Signup = (props) => {
                 />
             </section>
             <section className="EmailPage__submit mod-submit">
-              <div className="ta-left"></div>
-              <div className="ta-right">
-                <Button
-                title='SignUp'
-                  onClick={userSignup}
-                >
-                </Button>
-              </div>
+              
+              <Button
+                        title="Signup"
+                        backgroundColor
+                        radius="5px"
+                        border="1px solid #828282"
+                        border-radius="3px"
+                        color="#000"
+                        padding="5px 10px"
+                        width="100%"
+                        height="50px"
+                        onClick={userSignup}
+                        
+                        marginBottom='10px'
+                        fontSize='20px'
+                      ></Button>
+              
             </section>
           </form>
      

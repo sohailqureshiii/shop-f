@@ -10,6 +10,7 @@ import {
   followStoreAction,
   unfollowStoreAction,
 } from "../../actions/user.action";
+import "./style.css";
 
 const ProductModal = (props) => {
   const { show, handleclose, productDetails } = props;
@@ -47,43 +48,63 @@ const ProductModal = (props) => {
   const renderButton = (storeId) => {
     if (!auth.authenticate) {
       return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+        <Button
+          title="Follow Store"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="23%"
+          height="32px"
           onClick={() => {
             setShowLoginModal(true);
-            handleclose(false);
           }}
-        >
-          Follow Store
-        </button>
+          fontSize="15px"
+          marginTop="10px"
+        ></Button>
       );
     }
     if (auth.authenticate && !user.following.includes(storeId)) {
       return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+        <Button
+          title="Follow Store"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="23%"
+          height="32px"
           onClick={() => {
             followStore(storeId);
           }}
-        >
-          Follow Store
-        </button>
+          fontSize="15px"
+          marginTop="10px"
+        ></Button>
       );
     }
 
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+        <Button
+          title="Following"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="23%"
+          height="32px"
           onClick={() => {
             UnFollowStore(storeId);
           }}
-        >
-          Following
-        </button>
+          fontSize="15px"
+          marginTop="10px"
+        ></Button>
       );
     }
   };
@@ -106,10 +127,13 @@ const ProductModal = (props) => {
                     className="Storename"
                     style={{ maxWidth: "521px", top: "-1px" }}
                   >
-                    <p style={{ display: "flex" }}>
-                      {productDetails.storeId.storeName}
-                      {/* {renderButton(productDetails.storeId._id)} */}
-                    </p>
+                    <div style={{ display: "flex", alignItems: "flex-end" }}>
+                      <p style={{ minWidth: "400px" }}>
+                        {productDetails.storeId.storeName}{" "}
+                      </p>
+                      {renderButton(productDetails.storeId._id)}
+                    </div>
+
                     <p
                       style={{
                         width: "130px",
@@ -124,13 +148,11 @@ const ProductModal = (props) => {
                   </div>
                 </div>
                 <h1 className="productTitle" style={{ maxWidth: "509px" }}>
-                  OnePlus Nord CE 5G
+                  {productDetails.productName}
                 </h1>
                 <div className="flexRow priceContainer price">
                   Price :
-                  <span
-                  // classNa me="price"
-                  >
+                  <span className="price">
                     <BiRupee />
                     {productDetails.productPrice}
                   </span>
@@ -178,8 +200,29 @@ const ProductModal = (props) => {
                         marginTop: "10px",
                       }}
                     >
-                      <Button title="Add to cart"></Button>
-                      <Button title="Share"></Button>
+                      <Button
+                        title="Add to cart"
+                        backgroundColor
+                        radius="8px"
+                        border="1px solid #d4d4d4"
+                        border-radius="3px"
+                        color="#000"
+                        padding="5px 10px"
+                        width="200px"
+                        height="50px"
+                        onClick={addToCart}
+                      ></Button>
+                      <Button
+                        title="Share"
+                        backgroundColor
+                        radius="8px"
+                        border="1px solid #d4d4d4"
+                        border-radius="3px"
+                        color="#000"
+                        padding="5px 10px"
+                        width="200px"
+                        height="50px"
+                      ></Button>
                     </div>
                   </div>
                 </div>

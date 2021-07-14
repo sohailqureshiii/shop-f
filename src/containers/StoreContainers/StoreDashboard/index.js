@@ -35,7 +35,7 @@ const StoreDasboard = () => {
                 <h1 className="mkoqszert">Orders</h1>
               </div>
               <div className="nnsxnslxkax">
-                <h1 className="mkoqszerdefeft">{storeOrders.length}</h1>
+                {/* <h1 className="mkoqszerdefeft">{storeOrders.length}</h1> */}
               </div>
             </div>
             <div className="bvncmdkdj">

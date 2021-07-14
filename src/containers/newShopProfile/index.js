@@ -4,11 +4,15 @@ import Product from "../../components/Product";
 import "./style.css";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Signin from "../Signin";
-import { followStoreAction, unfollowStoreAction } from "../../actions/user.action";
+import {
+  followStoreAction,
+  unfollowStoreAction,
+} from "../../actions/user.action";
 import Signup from "../SignUp";
 import StoreProduct from "../../components/StoreProduct";
+import { Button } from "../../components/MaterialUI";
 
 const StoreProfile = (props) => {
   const storeId = props.match.params.storeId;
@@ -17,14 +21,13 @@ const StoreProfile = (props) => {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const  dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const followStore = (storeId) => {
     const store = {
       followId: storeId,
     };
     dispatch(followStoreAction(store));
-
   };
 
   const UnFollowStore = (storeId) => {
@@ -34,44 +37,64 @@ const StoreProfile = (props) => {
     dispatch(unfollowStoreAction(store));
   };
 
-
   const renderButton = (storeId) => {
-    // let storeterm = storeId;
-    // return <div className="Btn-label-1Zf e2e-Btn-label">Follow</div>;
     if (!auth.authenticate) {
       return (
-        <div className="Btn-label-1Zf e2e-Btn-label"
+        <Button
+        title=" Follow Store"
+        backgroundColor
+        radius="5px"
+        border
+        border-radius="3px"
+        color="#000"
+        padding="5px 10px"
+        width="100%"
+        height="50px"
         onClick={() => {
             setShowLoginModal(true);
            
           }}
-        
-        >
-          Follow Store
-          </div>
+          font='18px'
+      ></Button>
       );
     }
     if (auth.authenticate && !user.following.includes(storeId)) {
       return (
-        <div className="Btn-label-1Zf e2e-Btn-label"
-          onClick={() => {
-            followStore(storeId);
+        <Button
+        title=" Follow Store"
+        backgroundColor
+        radius="5px"
+        border
+        border-radius="3px"
+        color="#000"
+        padding="5px 10px"
+        width="100%"
+        height="50px"
+        onClick={() => {
+          followStore(storeId);
           }}
-        >
-          Follow Store
-          </div>
+          font='18px'
+      ></Button>
       );
     }
 
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
-        <div className="Btn-label-1Zf e2e-Btn-label"
-          onClick={() => {
-            UnFollowStore(storeId);
+        <Button
+        title="Following"
+        backgroundColor
+        radius="5px"
+        border
+        border-radius="3px"
+        color="#000"
+        padding="5px 10px"
+        width="100%"
+        height="50px"
+        onClick={() => {
+          UnFollowStore(storeId);
           }}
-        >
-          Following
-        </div>
+        font='18px'
+      ></Button>
       );
     }
   };
@@ -85,9 +108,9 @@ const StoreProfile = (props) => {
               if (product.storeId._id === storeId) return product;
               else if (product.storeId._id !== storeId) return null;
             })
-            .map((product, index) => 
+            .map((product, index) => (
               <StoreProduct product={product} />
-            )}
+            ))}
         </div>
       </div>
     );
@@ -220,34 +243,23 @@ const StoreProfile = (props) => {
                         <div className="ProfileCard-userInteractions-1W1 ProfileCard-buttons-ZNH ProfileCard-userFollowActions-3eh ProfileCard-mediumLargeBtn-fW8 ProfileCard-noDesktopNotification-2ya">
                           {/* !----- */}
                           <div className="FollowButton-root-VgV ProfileCard-interactionButton-1gk ProfileCard-followButton-1N4 ProfileCard-follow-39e">
-                            <button
+                            {/* <button
                               type="button"
                               className="Btn-button-BGn Btn-primary-1H3 Btn-mediumLarge-1uo ProfileCard-buttonWrapper-2kh"
                             >
                               <div className="Btn-labelWrapper-1jS ProfileCard-buttonLabel-2_O">
-                            <div className="Btn-icon-flr Btn-leading-29d">
-                              <svg
-                                viewBox="0 0 18 18"
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="FollowButton-followMark-6kv"
-                              >
-                                <path d="M9,1a8,8,0,1,0,8,8A8,8,0,0,0,9,1Zm5,8.5a.5.5,0,0,1-.5.5H10v3.5a.5.5,0,0,1-.5.5h-1a.5.5,0,0,1-.5-.5V10H4.5A.5.5,0,0,1,4,9.5v-1A.5.5,0,0,1,4.5,8H8V4.5A.5.5,0,0,1,8.5,4h1a.5.5,0,0,1,.5.5V8h3.5a.5.5,0,0,1,.5.5Z"></path>
-                              </svg>
-                            </div>
-                            {renderButton(store._id)}
-
-                            {/* <div className="Btn-label-1Zf e2e-Btn-label"
-                              //  onClick = 
-                              //       {
-                              //         ()=> follow(store._id)
-                              //       }
-                               
-                              >
-                                Follow
-                              </div> */}
-                            {/* !--- */}
-                          </div>
-                            </button>
+                                <div className="Btn-icon-flr Btn-leading-29d">
+                                  <svg
+                                    viewBox="0 0 18 18"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="FollowButton-followMark-6kv"
+                                  >
+                                    <path d="M9,1a8,8,0,1,0,8,8A8,8,0,0,0,9,1Zm5,8.5a.5.5,0,0,1-.5.5H10v3.5a.5.5,0,0,1-.5.5h-1a.5.5,0,0,1-.5-.5V10H4.5A.5.5,0,0,1,4,9.5v-1A.5.5,0,0,1,4.5,8H8V4.5A.5.5,0,0,1,8.5,4h1a.5.5,0,0,1,.5.5V8h3.5a.5.5,0,0,1,.5.5Z"></path>
+                                  </svg>
+                                </div>
+                                
+                              </div>
+                            </button> */}{renderButton(store._id)}
                           </div>
                         </div>
                         {/* !------ */}

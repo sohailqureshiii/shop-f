@@ -54,18 +54,38 @@ const StoreProduct = (props) => {
                 </div>
                 <span
                   className="ProjectCoverNeue-ownersContainer-3Go"
-                  style={{ display: "flex",justifyContent:'space-between', paddingTop:'8px' }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingTop: "8px",
+                  }}
                 >
-                  <div style={{paddingLeft:'7px',display:'flex', padding:'5px', fontSize:'15px'}}> 
+                  <div
+                    style={{
+                      paddingLeft: "7px",
+                      display: "flex",
+                      padding: "5px",
+                      fontSize: "15px",
+                      alignItems: "center",
+                    }}
+                  >
                     Price
                     <h4>
                       <BiRupee />
                       52133
                     </h4>
                   </div>
-                  <button style={{border:'1px solid rgb(189 189 189)',borderRadius:'5px'}}>
-                    <span style={{padding:'5px', fontSize:'13px'}}>Add To Cart</span>
-                  </button>
+                  <Button
+                    title="Add to cart"
+                    backgroundColor="#027ad6;"
+                    radius="5px"
+                    border="1px solid #d4d4d4"
+                    color="#000"
+                    padding="5px 10px"
+                    width="100px"
+                    height="30px"
+                    font=" 300 14px sans-serif"
+                  ></Button>
                 </span>
               </div>
               {/* ///////// */}
