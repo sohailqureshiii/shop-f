@@ -25,6 +25,7 @@ const Button = (props) => {
     marginTop,
     marginLeft,
     fontSize,
+    zIndex
   } = props;
 
   return (
@@ -44,6 +45,7 @@ const Button = (props) => {
         marginTop,
         marginLeft,
         fontSize,
+        zIndex
       }}
     >
       {title}

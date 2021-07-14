@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navigationbar from "../../components/Navbar";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addStoreAction } from "../../actions/store.action";
 
@@ -18,6 +18,22 @@ const StoreForm = () => {
   const [storeAddress, setStoreAddress] = useState("");
   const [storeDescription, setStoreDescription] = useState("");
   const [storePinCode, setStorePinCode] = useState("");
+  const history = useHistory();
+
+  
+  // if(!auth.authenticate){
+
+  //   return(
+  //     history.push({
+  //       pathname: "/Signin",
+  //       // state: { storeFrom:"storeFrom", storeFrom1: true }, 
+  //      }
+  //   )
+    
+
+  //    )
+  // }
+
 
   const createStore = (e) => {
     e.preventDefault();
@@ -36,9 +52,10 @@ const StoreForm = () => {
     console.log(store);
   };
 
-  if(store){
+  if(auth.authenticate && store.hasOwnProperty("_id") && Object.keys(store).length !== 0){
     return(<Redirect  to="/storeDashboard"/>)
   }
+ 
 
   return (
     <>

@@ -181,13 +181,16 @@ const CartPage = (props) => {
             }}
           >
             <div style={{ width: "250px" }}>
-              <MaterialButton
+              {/* <MaterialButton
                 title="PLACE ORDER"
                 onClick={() => props.history.push(`/checkout`)}
-              />
-              {/* <Button title="PLACE ORDER" 
-                 onClick={() => props.history.push(`/checkout`)}
               /> */}
+              <button 
+                 onClick={() => props.history.push(`/checkout`)}
+              >
+  title="PLACE ORDER" 
+              </button>
+            
             </div>
           </div>
         </Card>

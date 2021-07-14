@@ -28,31 +28,31 @@ const CartItem = (props) => {
   // const user = useSelector((state) => state.user);
   const [showLoginModal, setShowLoginModal] = useState(false);
 
-  // const onQuantityIncrement = () => {
-  //   setQty(qty + 1);
-  //   props.onQuantityInc(_id, qty + 1);
-  // };
+  const onQuantityIncrement = () => {
+    setQty(qty + 1);
+    props.onQuantityInc(_id, qty + 1);
+  };
 
-  // const onQuantityDecrement = () => {
-  //   if (qty <= 1) return;
-  //   setQty(qty - 1);
-  //   props.onQuantityDec(_id, qty - 1);
-  // };
+  const onQuantityDecrement = () => {
+    if (qty <= 1) return;
+    setQty(qty - 1);
+    props.onQuantityDec(_id, qty - 1);
+  };
 
-  // const followStore = (storeId) => {
-  //   const store = {
-  //     followId: storeId,
-  //   };
-  //   dispatch(followStoreAction(store));
+  const followStore = (storeId) => {
+    const store = {
+      followId: storeId,
+    };
+    dispatch(followStoreAction(store));
   
-  // };
+  };
 
-  // const UnFollowStore = (storeId) => {
-  //   const store = {
-  //     unfollowId: storeId,
-  //   };
-  //   dispatch(unfollowStoreAction(store));
-  // };
+  const UnFollowStore = (storeId) => {
+    const store = {
+      unfollowId: storeId,
+    };
+    dispatch(unfollowStoreAction(store));
+  };
 
   const renderButton = (storeId) => {
     if (!auth.authenticate) {
@@ -74,6 +74,34 @@ const CartItem = (props) => {
           style={{ marginLeft: "250px" }}
           className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
           onClick={() => {
+            // followStore(storeId);
+          }}
+        >
+          Follow Store
+        </button>
+      );
+    }
+  const renderButton = (storeId) => {
+    if (!auth.authenticate) {
+      return (
+        <button
+          style={{ marginLeft: "250px" }}
+          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+          onClick={() => {
+            setShowLoginModal(true);
+  
+          }}
+        >
+          Follow Store
+        </button>
+      );
+    }
+    if (auth.authenticate && !user.following.includes(storeId)) {
+      return (
+        <button
+          style={{ marginLeft: "250px" }}
+          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+          onClick={() => {
             followStore(storeId);
           }}
         >
@@ -81,49 +109,23 @@ const CartItem = (props) => {
         </button>
       );
     }
-  // const renderButton = (storeId) => {
-  //   if (!auth.authenticate) {
-  //     return (
-  //       <button
-  //         style={{ marginLeft: "250px" }}
-  //         className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-  //         onClick={() => {
-  //           setShowLoginModal(true);
-  
-  //         }}
-  //       >
-  //         Follow Store
-  //       </button>
-  //     );
-  //   }
-  //   if (auth.authenticate && !user.following.includes(storeId)) {
-  //     return (
-  //       <button
-  //         style={{ marginLeft: "250px" }}
-  //         className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-  //         onClick={() => {
-  //           followStore(storeId);
-  //         }}
-  //       >
-  //         Follow Store
-  //       </button>
-  //     );
-  //   }
 
-    // if (auth.authenticate && user.following.includes(storeId)) {
-    //   return (
-    //     <button
-    //       style={{ marginLeft: "250px" }}
-    //       className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-    //       onClick={() => {
-    //         UnFollowStore(storeId);
-    //       }}
-    //     >
-    //       Following
-    //     </button>
-    //   );
-    // }
-  // };
+    if (auth.authenticate && user.following.includes(storeId)) {
+      return (
+        <button
+          style={{ marginLeft: "250px" }}
+          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+          onClick={() => {
+            UnFollowStore(storeId);
+          }}
+        >
+          Following
+        </button>
+      );
+    }
+  };
+
+}
 
   return (
     <div className="leftSection" style={{ width: "100%" }}>
@@ -136,24 +138,24 @@ const CartItem = (props) => {
                   <span>
                     <span className="cartProductName" aria-current="false">
                       {productName}
-                     Addidas
+            
                     </span>
                   </span>
                   <div className="productPriceDetails clearfix">
                     <span className="cartProductPrice">
                       <b>₹ </b>: {productPrice}
-                      <b>₹ </b>: 5,999
+                   
                     </span>
                   </div>
-                  <div className="cart-prod-info-msg">You saved $700!</div>
+                 
                   {/*  */}
                   <div className="cartModOptionWrap">
                     <div className="cartModOptionInner">
                       <div className="cartModOptions">
                         <div className="quantityControl">
-                          <button>-</button>
-                          <input  readOnly />
-                          <button >+</button>
+                          <button onClick={onQuantityDecrement}>-</button>
+                          <input  readOnly value ={qty} />
+                          <button onClick={onQuantityIncrement} >+</button>
                         </div>
                       </div>
                     </div>
@@ -178,7 +180,7 @@ const CartItem = (props) => {
                 <Link
                   id="testRemoveCart"
                   className="rmv-action"
-                  // onClick={() => props.onRemoveCartItem(_id)}
+                  onClick={() => props.onRemoveCartItem(_id)}
                 >
                   {" "}
                   Remove{" "}
@@ -196,4 +198,4 @@ const CartItem = (props) => {
   );
 };
 
-export default CartItem;
+export default CartItem

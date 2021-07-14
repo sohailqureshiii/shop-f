@@ -2,19 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder, getAddress, getCartItems } from "../../actions/user.action";
 // import { getCartItems } from "../../actions/cart.action";
-import {
-  Anchor,
-  Button,
-  MaterialInput,
-} from "../../components/MaterialUI";
+import { Anchor, Button, MaterialInput } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
-import Card from "../../components/UI/Card/index"
+import Card from "../../components/UI/Card/index";
 import CartPage from "../CartPage/index";
 import AddressForm from "./AddressForm";
 
 import "./style.css";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
+import { useHistory } from "react-router-dom";
 
 /**
  * @author
@@ -110,6 +107,7 @@ const CheckoutPage = (props) => {
   const [confirmOrder, setConfirmOrder] = useState(false);
   const cart = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const onAddressSubmit = (addr) => {
     setSelectedAddress(addr);
@@ -118,7 +116,6 @@ const CheckoutPage = (props) => {
   };
 
   const selectAddress = (addr) => {
-
     const updatedAddress = address.map((adr) =>
       adr._id === addr._id
         ? { ...adr, selected: true }
@@ -154,12 +151,12 @@ const CheckoutPage = (props) => {
       },
       0
     );
-    
+
     const items = Object.keys(cart.cartItems).map((key) => ({
       productId: key,
       payablePrice: cart.cartItems[key].price,
       purchasedQty: cart.cartItems[key].qty,
-      storeId:cart.cartItems[key].storeId
+      storeId: cart.cartItems[key].storeId,
     }));
     const payload = {
       addressId: selectedAddress._id,
@@ -168,7 +165,6 @@ const CheckoutPage = (props) => {
       paymentStatus: "pending",
       paymentType: "cod",
     };
-
 
     dispatch(addOrder(payload));
     setConfirmOrder(true);
@@ -195,41 +191,53 @@ const CheckoutPage = (props) => {
     }
   }, [user.placedOrderId]);
 
-  if(confirmOrder){
-    return(    
-       <Card>
-          <div>
-            Thankyou
-          </div>
-        </Card>
-    )
+  if (confirmOrder) {
+    return (
+      <Card>
+        <div>Thankyou</div>
+      </Card>
+    );
   }
 
   return (
     <>
-     <NavBar/>
+      <NavBar />
       <div className="cartContainer" style={{ alignItems: "flex-start" }}>
         <div className="checkoutContainer">
           {/* check if user logged in or not */}
-          <CheckoutStep
+
+          {
+            !auth.authenticate ?  
+            <CheckoutStep
             stepNumber={"1"}
             title={"LOGIN"}
             active={!auth.authenticate}
             body={
               auth.authenticate ? (
                 <div className="loggedInId">
-                  <span style={{ fontWeight: 500 }}>{auth.user.fullName}</span>
+                  <span style={{ fontWeight: 500 }}>{auth.user.name}</span>
                   <span style={{ margin: "0 5px" }}>{auth.user.email}</span>
                 </div>
               ) : (
-                <div>
-                  <MaterialInput label="Email" />
-                </div>
+                // <div><MaterialInput label="Email" /></div>
+                <button
+                  onClick={() => {
+                    history.push({
+                      pathname: "/Signin",
+                      state: {checkout: true },
+                    });
+                  }}
+                >
+                  Login
+                </button>
               )
             }
           />
+          : null
+          }
+         
           <CheckoutStep
-            stepNumber={"2"}
+            stepNumber={auth.authenticate ? "1" : "2"}
             title={"DELIVERY ADDRESS"}
             active={!confirmAddress && auth.authenticate}
             body={
@@ -263,8 +271,8 @@ const CheckoutPage = (props) => {
             />
           ) : null}
 
-          <CheckoutStep
-            stepNumber={"3"}
+          {/* <CheckoutStep
+            stepNumber={auth.authenticate ? "2" : "3"}
             title={"ORDER SUMMARY"}
             active={orderSummary}
             body={
@@ -304,7 +312,7 @@ const CheckoutPage = (props) => {
                 />
               </div>
             </Card>
-          )}
+          )} */}
 
           <CheckoutStep
             stepNumber={"4"}
@@ -348,8 +356,8 @@ const CheckoutPage = (props) => {
           }, 0)}
         />
       </div>
-      <Footer/>
-</>
+      <Footer />
+    </>
   );
 };
 
