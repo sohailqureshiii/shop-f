@@ -47,3 +47,32 @@ exports.getAddress = (req, res) => {
     }
   });
 };
+
+
+
+
+exports.deleteAddress = (req, res) => {
+
+  // const  addId  = req.body;
+  if (req.body.addId) {
+
+      UserAddress.findOneAndUpdate(
+        { user: req.user._id },
+        {
+          $pull: {
+            "address": {_id:req.body.addId},
+          },
+        },{
+          new:true,useFindAndModify: false
+      }
+      ).exec((error, address) => {
+        if (error) return res.status(400).json({ error });
+        if (address) {
+          res.status(201).json({ address });
+        }
+      });
+
+  } else {
+    res.status(400).json({ error: "Params address required" });
+  }
+};

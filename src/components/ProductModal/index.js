@@ -139,7 +139,7 @@ const ProductModal = (props) => {
         <div className="productDescriptionContainer">
           <div className="productDescContainer">
             <div className="productDescImgContainer">
-              <img src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg" />
+              <img src={productDetails.productPictures[0].img} />
             </div>
           </div>
           {/* home > category > subCategory > productName */}

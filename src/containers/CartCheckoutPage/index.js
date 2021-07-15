@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addOrder, getAddress, getCartItems } from "../../actions/user.action";
+import { addOrder, addToCart, deleteAddressAction, getAddress, getCartItems, removeCartItem } from "../../actions/user.action";
 // import { getCartItems } from "../../actions/cart.action";
 import { Anchor, Button, MaterialInput } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
@@ -12,11 +12,22 @@ import "./style.css";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
 import { useHistory } from "react-router-dom";
+import CartItem from "../CartPage/CartItem";
+
 
 /**
  * @author
  * @function CheckoutPage
  **/
+
+//  const onDeleteAddress = (deladd) =>{
+// //    const  dispatch = useDispatch()
+// //    const addId = deladd
+// //  dispatch(deleteAddressAction(addId))
+// setaddid(deladd)
+ 
+// }
+
 
 const CheckoutStep = (props) => {
   return (
@@ -41,6 +52,8 @@ const Address = ({
   enableAddressEditForm,
   confirmDeliveryAddress,
   onAddressSubmit,
+  enableDeleteAddressFrom,
+  onDeleteAddress
 }) => {
   return (
     <div className="flexRow addressContainer">
@@ -57,6 +70,7 @@ const Address = ({
                 <span className="addressMobileNumber">{adr.mobileNumber}</span>
               </div>
               {adr.selected && (
+                <>
                 <Anchor
                   name="EDIT"
                   onClick={() => enableAddressEditForm(adr)}
@@ -65,6 +79,17 @@ const Address = ({
                     color: "#2874f0",
                   }}
                 />
+                  <Anchor
+                  name="Delete"
+                  onClick={() => enableDeleteAddressFrom(adr)}
+                  style={{
+                    fontWeight: "500",
+                    color: "#2874f0",
+                  }}
+                />
+
+                </>
+                
               )}
             </div>
             <div className="fullAddress">
@@ -82,38 +107,92 @@ const Address = ({
             )}
           </div>
         ) : (
+          
+          adr.delete ?
+          deleteadd(adr) 
+         
+          :
           <AddressForm
             withoutLayout={true}
             onSubmitForm={onAddressSubmit}
             initialData={adr}
             onCancel={() => {}}
+            onDeleteAddress={onDeleteAddress}
           />
+          
         )}
       </div>
     </div>
   );
 };
 
-const CheckoutPage = (props) => {
+const deleteadd = (adr) =>{
+  console.log("adrasfafa",adr);
+}
+
+
+const CartCheckoutPage = (props) => {
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth);
   const [newAddress, setNewAddress] = useState(false);
   const [address, setAddress] = useState([]);
+  const [deleteAddress, setDeleteAddress] = useState([]);
   const [confirmAddress, setConfirmAddress] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [orderSummary, setOrderSummary] = useState(false);
   const [orderConfirmation, setOrderConfirmation] = useState(false);
   const [paymentOption, setPaymentOption] = useState(false);
   const [confirmOrder, setConfirmOrder] = useState(false);
+  const [addid, setaddid] = useState(false);
   const cart = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory()
+  const [cartItems, setCartItems] = useState(cart.cartItems);
+
+  useEffect(() => {
+    setCartItems(cart.cartItems);
+  }, [cart.cartItems]);
+
+  useEffect(() => {
+    if (auth.authenticate) {
+      dispatch(getCartItems());
+    }
+  }, [auth.authenticate]);
+
+
+
+  const onQuantityIncrement = (_id, qty) => {
+    const {productName, productPrice,img} = cartItems[_id];
+    dispatch(addToCart({ _id,productName, productPrice,img }, 1));
+
+  };
+
+  const onQuantityDecrement = (_id, qty) => {
+    const {productName, productPrice,img} = cartItems[_id];
+
+    dispatch(addToCart({ _id,productName, productPrice,img }, -1));
+  };
+
+  const onRemoveCartItem = (_id) => {
+    dispatch(removeCartItem({ productId: _id }));
+  };
 
   const onAddressSubmit = (addr) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
     setOrderSummary(true);
   };
+
+  const onDeleteAddress = (addID) =>{
+    const add = {
+      addId: addID
+    };
+    dispatch(deleteAddressAction(add))
+  }
+  const  onCancelSubmit = (yes) =>{
+    setNewAddress(false)
+  }
+
 
   const selectAddress = (addr) => {
     const updatedAddress = address.map((adr) =>
@@ -127,7 +206,9 @@ const CheckoutPage = (props) => {
   const confirmDeliveryAddress = (addr) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
-    setOrderSummary(true);
+    setPaymentOption(true);
+    setOrderConfirmation(true);
+    // setOrderSummary(true);
   };
 
   const enableAddressEditForm = (addr) => {
@@ -135,6 +216,13 @@ const CheckoutPage = (props) => {
       adr._id === addr._id ? { ...adr, edit: true } : { ...adr, edit: false }
     );
     setAddress(updatedAddress);
+  };
+
+  const enableDeleteAddressFrom = (addr) => {
+    const updatedAddress = deleteAddress.map((adr) =>
+      adr._id === addr._id ? { ...adr, delete: true } : { ...adr, delete: false }
+    );
+    setDeleteAddress(updatedAddress);
   };
 
   const userOrderConfirmation = () => {
@@ -199,6 +287,78 @@ const CheckoutPage = (props) => {
     );
   }
 
+
+  if (Object.keys(cartItems).length === 0) {
+    return (
+      <>
+        <NavBar />
+        <div
+          className="container"
+          style={{ backgroundColor: "rgb(255, 255, 255)" }}
+        >
+          <div
+            className="emptycartwish emptyPage"
+            style={{ padding: "30px 0px 0px" }}
+          >
+            <img
+              src="https://images.bewakoof.com/images/doodles/empty-cart-page-doodle.png"
+              title="Empty Cart Page Doodle"
+              alt="Empty Cart Page Doodle"
+              width="150px"
+            />
+            <div className="clearfix">Nothing in the Cart</div>
+            <div className="clearfix">
+              <a
+                class="success"
+                hreflang="en-in"
+                href="/"
+                style={{
+                  padding: "10px",
+                  border: "2px solid",
+                  borderRadius: "5px",
+                  display: "inline-block",
+                  marginTop: "15px",
+                }}
+              >
+                Continue Shopping
+              </a>
+            </div>
+          </div>
+          <div
+            className="emptylisting"
+            style={{ backgroundColor: "rgb(255, 255, 255)" }}
+          >
+            <hr
+              style={{
+                height: "1px",
+                borderWidth: "1px 0px 0px",
+                borderTopStyle: "solid",
+                borderRightStyle: "initial",
+                borderBottomStyle: "initial",
+                borderLeftStyle: "initial",
+                borderTopColor: "rgb(204, 204, 204)",
+                borderRightColor: "initial",
+                borderBottomColor: "initial",
+                borderLeftColor: "initial",
+                borderImage: "initial",
+              }}
+            ></hr>
+            <div style={{ margin: "20px auto" }}></div>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  const changeAddress = () =>{
+    setPaymentOption(false);
+    setConfirmAddress(false);
+
+
+  }
+  
+
   return (
     <>
       <NavBar />
@@ -242,6 +402,7 @@ const CheckoutPage = (props) => {
             active={!confirmAddress && auth.authenticate}
             body={
               <>
+         
                 {confirmAddress ? (
                   <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
                 ) : (
@@ -249,19 +410,24 @@ const CheckoutPage = (props) => {
                     <Address
                       selectAddress={selectAddress}
                       enableAddressEditForm={enableAddressEditForm}
+                      enableDeleteAddressFrom = {enableDeleteAddressFrom}
                       confirmDeliveryAddress={confirmDeliveryAddress}
                       onAddressSubmit={onAddressSubmit}
+                      onDeleteAddress={onDeleteAddress}
                       adr={adr}
                     />
                   ))
                 )}
+                {
+                  confirmAddress ? <h2 onClick={changeAddress}>change</h2> : null
+                }
               </>
             }
           />
 
           {/* AddressForm */}
           {confirmAddress ? null : newAddress ? (
-            <AddressForm onSubmitForm={onAddressSubmit} onCancel={() => {}} />
+            <AddressForm onSubmitForm={onAddressSubmit} onCancel={onCancelSubmit}/>
           ) : auth.authenticate ? (
             <CheckoutStep
               stepNumber={"+"}
@@ -271,51 +437,9 @@ const CheckoutPage = (props) => {
             />
           ) : null}
 
-          {/* <CheckoutStep
-            stepNumber={auth.authenticate ? "2" : "3"}
-            title={"ORDER SUMMARY"}
-            active={orderSummary}
-            body={
-              orderSummary ? (
-                <CartPage onlyCartItems={true} />
-              ) : orderConfirmation ? (
-                <div className="stepCompleted">
-                  {Object.keys(cart.cartItems).length} items
-                </div>
-              ) : null
-            }
-          />
-
-          {orderSummary && (
-            <Card
-              style={{
-                margin: "10px 0",
-              }}
-            >
-              <div
-                className="flexRow sb"
-                style={{
-                  padding: "20px",
-                  alignItems: "center",
-                }}
-              >
-                <p style={{ fontSize: "12px" }}>
-                  Order confirmation email will be sent to{" "}
-                  <strong>{auth.user.email}</strong>
-                </p>
-                <Button
-                  title="CONTINUE"
-                  onClick={userOrderConfirmation}
-                  style={{
-                    width: "200px",
-                  }}
-                />
-              </div>
-            </Card>
-          )} */}
-
+        
           <CheckoutStep
-            stepNumber={"4"}
+            stepNumber={auth.authenticate ? "2" : "3"}
             title={"PAYMENT OPTIONS"}
             active={paymentOption}
             body={
@@ -355,28 +479,20 @@ const CheckoutPage = (props) => {
             return totalPrice + productPrice * qty;
           }, 0)}
         />
-         <div>
-              <PriceDetails
-                totalItem={Object.keys(cart.cartItems).reduce(function (
-                  qty,
-                  key
-                ) {
-                  return qty + cart.cartItems[key].qty;
-                },
-                0)}
-                totalPrice={Object.keys(cart.cartItems).reduce(
-                  (totalPrice, key) => {
-                    const { productPrice, qty } = cart.cartItems[key];
-                    return totalPrice + productPrice * qty;
-                  },
-                  0
-                )}
-              />
-            </div>
+          
       </div>
+      {Object.keys(cartItems).map((key, index) => (
+            <CartItem
+              key={index}
+              cartItem={cartItems[key]}
+              onQuantityInc={onQuantityIncrement}
+              onQuantityDec={onQuantityDecrement}
+              onRemoveCartItem={onRemoveCartItem}
+            />
+          ))}
       <Footer />
     </>
   );
 };
 
-export default CheckoutPage;
+export default CartCheckoutPage;

@@ -36,6 +36,8 @@ import { updateCart } from "./actions/user.action";
 import StoreEditProduct from "./containers/StoreContainers/EditProduct";
 import CheckoutPage from "./containers/CheckoutPage";
 import NewCart from "./containers/New Cart Page/cartindex";
+import store from "./store";
+import CartCheckoutPage from "./containers/CartCheckoutPage";
 
 
 function App() {
@@ -66,10 +68,11 @@ function App() {
   }, [auth.authenticate]);
 
   useEffect(() => {
-    if (auth.authenticate && store) {
+    if (auth.authenticate && auth.user.store==="Yes") {
       dispatch(userStoreDataAction())
     }
-  }, [store && auth.authenticate]);
+    
+  }, [auth.authenticate && auth.user.store==="Yes"]);
 
   return (
     <div className="App">
@@ -104,6 +107,7 @@ function App() {
           <PrivateRoute path="/storeProfile" exact component={StoreProfile} />
           <PrivateRoute path="/Addproduct" exact component={StoreAddProduct} />
           <Route path="/products/details" component={ProductDetailsPage} />
+          <Route path="/cartcheck" component={CartCheckoutPage} />
         </Switch>
       </Router>
     </div>

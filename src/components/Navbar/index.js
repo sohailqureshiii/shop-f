@@ -30,7 +30,7 @@ const Navigationbar = (props) => {
   };
 
   const renderLoggedInMenu = () => {
-    if (store && auth.user.storeId) {
+    if (store && auth.user.store==="Yes") {
       return (
         <DropdownMenu
           menu={

@@ -24,7 +24,9 @@ const OrderTableCompo = (props) => {
 
       <tbody className="lgadkyhdtq">
         {/* <tr className="mnbnmnb"> */}
-        {storeOrderDetails.map((orderItem, index) => (
+        {storeOrderDetails && storeOrderDetails.length > 0 ?
+        
+        storeOrderDetails.map((orderItem, index) => (
           <tr className="mnbnmnb">
             <td className="jfkvvjvsv" data-label="S.No">
               {index}
@@ -48,7 +50,9 @@ const OrderTableCompo = (props) => {
               Pending
             </td>
           </tr>
-        ))}
+        ))
+         :"No Orders"
+        }
         {/* </tr> */}
       </tbody>
     </table>

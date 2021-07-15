@@ -30,14 +30,14 @@ exports.userMiddleware = (req, res, next) => {
 
 
 const s3 = new aws.S3({
-  accessKeyId: "AKIAUJCXMGNZ2OINXLGZ",
-  secretAccessKey : "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",
+  accessKeyId: "AKIAWQ55IQGMOR4ZY47B",
+  secretAccessKey : "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",
 })
 
  exports.uploadS3 = multer({
   storage: multerS3({
     s3: s3,
-    bucket: 'shopisthan-demo-images',
+    bucket: 'shopidemo',
     acl: 'public-read',
     metadata: function (req, file, cb) {
       cb(null, {fieldName: file.fieldname});
