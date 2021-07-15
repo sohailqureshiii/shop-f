@@ -236,6 +236,28 @@ export const addAddress = (payload) => {
       console.log(error);
     }
   };
+
+
+};
+
+export const deleteAddressAction = (addId) => {
+  return async (dispatch) => {
+    try {
+      const res = await axiosIntance.post(`/user/deleteaddress`,  {...addId} );
+      // dispatch({ type: userContants.ADD_USER_ADDRESS_REQUEST });
+      if (res.status === 201) {
+      dispatch(getAddress())
+      } else {
+        const { error } = res.data;
+        // dispatch({
+        //   type: userContants.ADD_USER_ADDRESS_FAILURE,
+        //   payload: { error },
+        // });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 
@@ -324,3 +346,5 @@ export const getOrder = (payload) => {
     }
   };
 };
+
+

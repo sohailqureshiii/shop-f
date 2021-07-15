@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import Signin from "../../Signin";
 import { useDispatch, useSelector } from "react-redux";
-import { followStoreAction, unfollowStoreAction } from "../../../actions/user.action";
+import {
+  followStoreAction,
+  unfollowStoreAction,
+} from "../../../actions/user.action";
 
 /**
  * @author
@@ -12,9 +15,9 @@ import { followStoreAction, unfollowStoreAction } from "../../../actions/user.ac
 const CartItem = (props) => {
   const [qty, setQty] = useState(props.cartItem.qty);
   // const [qty, setQty] = useState(props.cartItem.productQu);
-  console.log("props",props);
+  console.log("props", props);
   // const { _id, name, price, img,storeId } = props.cartItem;
-  const { _id, productName, productPrice, img,storeId } = props.cartItem;
+  const { _id, productName, productPrice, img, storeId } = props.cartItem;
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
@@ -44,7 +47,6 @@ const CartItem = (props) => {
       followId: storeId,
     };
     dispatch(followStoreAction(store));
-  
   };
 
   const UnFollowStore = (storeId) => {
@@ -60,9 +62,7 @@ const CartItem = (props) => {
         <button
           style={{ marginLeft: "250px" }}
           className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-          onClick={() => {
-            
-          }}
+          onClick={() => {}}
         >
           Follow Store
         </button>
@@ -81,51 +81,49 @@ const CartItem = (props) => {
         </button>
       );
     }
-  const renderButton = (storeId) => {
-    if (!auth.authenticate) {
-      return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-          onClick={() => {
-            setShowLoginModal(true);
-  
-          }}
-        >
-          Follow Store
-        </button>
-      );
-    }
-    if (auth.authenticate && !user.following.includes(storeId)) {
-      return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-          onClick={() => {
-            followStore(storeId);
-          }}
-        >
-          Follow Store
-        </button>
-      );
-    }
+    const renderButton = (storeId) => {
+      if (!auth.authenticate) {
+        return (
+          <button
+            style={{ marginLeft: "250px" }}
+            className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+            onClick={() => {
+              setShowLoginModal(true);
+            }}
+          >
+            Follow Store
+          </button>
+        );
+      }
+      if (auth.authenticate && !user.following.includes(storeId)) {
+        return (
+          <button
+            style={{ marginLeft: "250px" }}
+            className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+            onClick={() => {
+              followStore(storeId);
+            }}
+          >
+            Follow Store
+          </button>
+        );
+      }
 
-    if (auth.authenticate && user.following.includes(storeId)) {
-      return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-          onClick={() => {
-            UnFollowStore(storeId);
-          }}
-        >
-          Following
-        </button>
-      );
-    }
+      if (auth.authenticate && user.following.includes(storeId)) {
+        return (
+          <button
+            style={{ marginLeft: "250px" }}
+            className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+            onClick={() => {
+              UnFollowStore(storeId);
+            }}
+          >
+            Following
+          </button>
+        );
+      }
+    };
   };
-
-}
 
   return (
     <div className="leftSection" style={{ width: "100%" }}>
@@ -138,24 +136,22 @@ const CartItem = (props) => {
                   <span>
                     <span className="cartProductName" aria-current="false">
                       {productName}
-            
                     </span>
                   </span>
                   <div className="productPriceDetails clearfix">
                     <span className="cartProductPrice">
                       <b>₹ </b>: {productPrice}
-                   
                     </span>
                   </div>
-                 
+
                   {/*  */}
                   <div className="cartModOptionWrap">
                     <div className="cartModOptionInner">
                       <div className="cartModOptions">
                         <div className="quantityControl">
                           <button onClick={onQuantityDecrement}>-</button>
-                          <input  readOnly value ={qty} />
-                          <button onClick={onQuantityIncrement} >+</button>
+                          <input readOnly value={qty} />
+                          <button onClick={onQuantityIncrement}>+</button>
                         </div>
                       </div>
                     </div>
@@ -165,9 +161,7 @@ const CartItem = (props) => {
                   <a aria-current="false">
                     <img
                       style={{ padding: "10px" }}
-                      src={
-                        "https://images-eu.ssl-images-amazon.com/images/I/31RMVSKxpeL._SX300_SY300_QL70_FMwebp_.jpg"
-                      }
+                      src={img}
                       title="Marvel Joggers (AVL)"
                       alt="Marvel Joggers (AVL)"
                     />
@@ -198,4 +192,4 @@ const CartItem = (props) => {
   );
 };
 
-export default CartItem
+export default CartItem;

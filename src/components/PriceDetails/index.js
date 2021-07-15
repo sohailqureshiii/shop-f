@@ -1,189 +1,60 @@
-import React, { useState } from "react";
-import { Button , Modal } from "../../components/MaterialUI";
-import { BiRupee } from "react-icons/bi";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Signin from "../../containers/Signin";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addToCart,
-  followStoreAction,
-  unfollowStoreAction,
-} from "../../actions/user.action";
+import React from "react";
+import { Link } from 'react-router-dom';
+
 /**
  * @author
  * @function PriceDetails
  **/
 
 const PriceDetails = (props) => {
-
-  const { show, handleclose, productDetails } = props;
-  const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  const user = useSelector((state) => state.user);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
-  if (!productDetails) {
-    return null;
-  }
-
-  const diffToast = () => {
-    toast.success("Item Added Successfull !", {
-      position: "top-center",
-    });
-  };
-
-  const followStore = (storeId) => {
-    const store = {
-      followId: storeId,
-    };
-    dispatch(followStoreAction(store));
-    handleclose(false);
-  };
-
-  const UnFollowStore = (storeId) => {
-    const store = {
-      unfollowId: storeId,
-    };
-    dispatch(unfollowStoreAction(store));
-    handleclose(false);
-  };
-
-  const renderButton = (storeId) => {
-    if (!auth.authenticate) {
-      return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-          onClick={() => {
-            setShowLoginModal(true);
-            handleclose(false);
-          }}
-        >
-          Follow Store
-        </button>
-      );
-    }
-    if (auth.authenticate && !user.following.includes(storeId)) {
-      return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-          onClick={() => {
-            followStore(storeId);
-          }}
-        >
-          Follow Store
-        </button>
-      );
-    }
-
-    if (auth.authenticate && user.following.includes(storeId)) {
-      return (
-        <button
-          style={{ marginLeft: "250px" }}
-          className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-          onClick={() => {
-            UnFollowStore(storeId);
-          }}
-        >
-          Following
-        </button>
-      );
-    }
-  };
-
   return (
-    <div className="productDescriptionContainer">
-    <div className="flexRow">
-      <div className="productDescContainer">
-        <div className="productDescImgContainer">
-          <img
-            src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg"
-            alt="new"
-          />
+    <div className="summaryBox col-sm-5 rightSection noPdRight">
+      <div className="summeryBorderBox prc-summary">
+        <div className="sectionTopHeading">
+          <h5>Price Summary</h5>
         </div>
+        <div className="paymentBox">
+          <div className="paymentBoxInner">
+            <p>No of Items</p>
+            <p>{props.totalItem} Items</p>
+          </div>
+          {/* <div className="paymentBoxInner">
+            <p>Delivery Fee</p>
+            <p style={{ color: "rgb(29, 136, 2)" }}>FREE</p>
+          </div> */}
+          <div
+            className="paymentBoxInner"
+            style={{ fontFamily: "montserrat, sans-serif" }}
+          >
+            <p>Total</p>
+            <p>₹ {props.totalPrice}</p>
+          </div>
+          {/* <div
+            className="savingLabel"
+            style={{
+              backgroundColor: "rgba(29, 136, 2, 0.1)",
+              color: "rgb(29, 136, 2)",
+            }}
+          > */}
+            {/* <p id="os_savingLabel_text">You are saving ₹ 650 on this order</p> */}
+          </div>
+          {/* <div className="pmts-wrap">
+            <button
+                  id="os_payNow_btn"
+                  className="pmts-btn false"
+                  style={{
+                    backgroundColor: "rgb(66, 162, 162)",
+                    borderColor: "rgb(66, 162, 162)",
+                    color: "white",
+                  }}
+                  
+                >
+                  Continue
+                </button>
+          </div> */}
+        {/* </div> */}
       </div>
     </div>
-    {/* home > category > subCategory > productName */}
-    <div className=" detailsWrapper">
-      <div className="prodDesc clearfix">
-        <div className="productDetails" style={{ width: "600px" }}>
-          <div>
-            <div
-              className="Storename"
-              style={{ maxWidth: "521px", top: "-1px" }}
-            >
-              <p style={{ display: "flex" }}> 
-                {productDetails.storeId.storeName}
-                {renderButton(productDetails.storeId._id)}
-              </p>
-              <p
-                style={{
-                  width: "130px",
-                  fontSize: "12px",
-                  color: "#878787",
-                  fontWeight: "600",
-                  marginRight: "20px",
-                }}
-              >
-                {productDetails.storeLocation.name}
-              </p>
-            </div>
-          </div>
-          <h1 className="productTitle" style={{ maxWidth: "509px" }}>
-            {productDetails.productName}
-          </h1>
-          <div className="flexRow priceContainer price">
-            Price :
-            <span
-            // classNa me="price"
-            >
-              <BiRupee />
-              {productDetails.productPrice}
-            </span>
-            {/* <span>i</span> */}
-          </div>
-          <div>
-            <p style={{ display: "flex", maxWidth: "500px" }}>
-              <span
-                style={{
-                  width: "100px",
-                  fontSize: "12px",
-                  color: "#878787",
-                  fontWeight: "600",
-                  marginRight: "20px",
-                }}
-              >
-                Description
-              </span>
-              <span
-                style={{
-                  fontSize: "12px",
-                  color: "#212121",
-                }}
-              >
-                {productDetails.productDescription}
-              </span>
-            </p>
-            <div className="share-btn-container">
-              <div
-                id="addButtons"
-                style={{
-                  float: "left",
-                  width: "100%",
-                  marginLeft: "0px",
-                }}
-              >
-                <Button title='Add to cart'>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   );
 };
 

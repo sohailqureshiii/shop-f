@@ -67,6 +67,7 @@ export const userInitialdataAction = () => {
 };
 
 export const userStoreDataAction = () => {
+
   return async (dispatch) => {
     const res = await axiosIntance.get(`/userStoreData`);
     if (res.status === 200) {

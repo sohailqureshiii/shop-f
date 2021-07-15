@@ -1,5 +1,5 @@
 const express = require("express");
-const { requireSignin, userMiddleware } = require("../common-middleware");
+const { requireSignin, userMiddleware, uploadS3 } = require("../common-middleware");
 const router = express.Router();
 const { createProduct, editProduct } = require("../controller/product.controller");
 const multer = require("multer");
@@ -21,7 +21,7 @@ router.post(
   "/create/product",
   requireSignin,
   userMiddleware,
-  upload.array("productPictures"),
+  uploadS3.array("productPictures"),
   createProduct
 );
 

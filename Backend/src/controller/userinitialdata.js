@@ -54,82 +54,89 @@ exports.userinitialdata = async (req, res) => {
   });
 };
 
+// exports.userStoreData = async (req, res) => {
+
+//   const {
+//     storeID
+//   } = req.body;
+
+//   const store = await Store.findOne({ createdBy: req.user._id })
+//     .populate({ path: "storeCategory", select: "_id name" })
+//     .populate({ path: "storeLocation", select: "_id name" })
+//     .populate({path:"followers",select:"name"})
+//     .exec();
+//   const product = await Product.find({ storeId:storeID })
+//     .populate({ path: "productCategory", select: "_id name" })
+//     .populate({ path: "productParentCategory", select: "_id name" })
+//     .populate({ path: "storeLocation", select: "_id name" })
+//     .sort("-createdAt")
+//     .exec();
+
+//  const orders =  Order.find({
+//     items: {
+//       $elemMatch: {
+//         storeId:  req.body.storeID,
+//       },
+//     },
+//   })
+//     .populate("items.productId", "productName")
+//     .populate({ path: "user", select: "name" })
+//     .exec();
+//     // let orders = []
+
+//     // if( store._id !== null){
+//     //    orders = await Order.find({
+//     //     items: {
+//     //       $elemMatch: {
+//     //         storeId: store._id,
+//     //       },
+//     //     },
+//     //   })
+//     //     .populate("items.productId", "productName")
+//     //     .populate({ path: "user", select: "name" })
+//     //     .exec();
+//     // }
+//   res.status(200).json({
+//     store,
+//     product,
+//     orders,
+//   });
+// };
+
 exports.userStoreData = async (req, res) => {
-  const store = await Store.findOne({ createdBy: req.user._id })
-    .populate({ path: "storeCategory", select: "_id name" })
-    .populate({ path: "storeLocation", select: "_id name" })
-    .populate({path:"followers",select:"name"})
-    .exec();
-  const product = await Product.find({ createdBy: req.user._id })
-    .populate({ path: "productCategory", select: "_id name" })
-    .populate({ path: "productParentCategory", select: "_id name" })
-    .populate({ path: "storeLocation", select: "_id name" })
-    .sort("-createdAt")
-    .exec();
+  try {
+    let storeDetails = await Store.findOne({ createdBy: req.user._id });
 
- const orders =  Order.find({
-    items: {
-      $elemMatch: {
-        storeId: store._id,
-      },
-    },
-  })
-    .populate("items.productId", "productName")
-    .populate({ path: "user", select: "name" })
-    .exec();
-    // let orders = []
+    if (storeDetails) {
+      const store = await Store.findOne({ _id: storeDetails._id })
+        .populate({ path: "storeCategory", select: "_id name" })
+        .populate({ path: "storeLocation", select: "_id name" })
+        .populate({ path: "followers", select: "name" })
+        .exec();
+      const product = await Product.find({ storeId: storeDetails._id })
+        .populate({ path: "productCategory", select: "_id name" })
+        .populate({ path: "productParentCategory", select: "_id name" })
+        .populate({ path: "storeLocation", select: "_id name" })
+        .sort("-createdAt")
+        .exec();
+      const orders = Order.find({
+        items: {
+          $elemMatch: {
+            storeId: storeDetails._id
+          },
+        },
+      })
+        .populate("items.productId", "productName")
+        .populate({ path: "user", select: "name" })
+        .exec();
 
-    // if( store._id !== null){
-    //    orders = await Order.find({
-    //     items: {
-    //       $elemMatch: {
-    //         storeId: store._id,
-    //       },
-    //     },
-    //   })
-    //     .populate("items.productId", "productName")
-    //     .populate({ path: "user", select: "name" })
-    //     .exec();
-    // }
-  res.status(200).json({
-    store,
-    product,
-    // orders,
-  });
+      return res.status(200).json({
+        store,
+        product,
+        orders
+      });
+    }
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
 };
-
-// exports.userData = async(req,res) =>{
-//     const store =   await Store.findOne({createdBy: req.user._id})
-//     res.status(200).json({
-//         store
-//     })
-
-//   }
-
-// exports.userData = async(req,res) =>{
-
-//         User.findOne({_id:req.user._id})
-//         .exec(async(error, user) => {
-//             if (error) return res.status(400).json({ error })
-//             if (user) {
-//              const { following } = user;
-//              const followingProduct = await Product.find({createdBy:{$in:following}})
-//              .select('_id name price quantity slug description productPictures category createdBy outOfStock ParCategory')
-//             .populate({path: 'category', select: '_id name'})
-//             .populate({path: 'ParCategory', select: '_id name'})
-//             .populate({path:'createdBy',select: '_id shopName shopLocation'})
-//              .exec();
-//              const followingStore = await store.find({_id:{$in:following}})
-//              .select('shopName')
-//              .exec();
-//              res.status(200).json({
-//                 following,
-//                 followingProduct,
-//                 followingStore
-
-//              })
-
-//             }
-//         })
-
-// }

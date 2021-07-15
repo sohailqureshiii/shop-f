@@ -30,7 +30,7 @@ const Product = (props) => {
                     <img onClick={() => handleShow()}
                       sizes="404px"
                       style={{ padding: "10px" }}
-                      src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg"
+                      src={product.productPictures[0].img}
                       alt="new"
                       loading="lazy"
                       class="ProjectCoverNeue-image-1MZ js-cover-image"

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getCartItems, removeCartItem } from "../../actions/user.action";
+import {
+  addToCart,
+  getCartItems,
+  removeCartItem,
+} from "../../actions/user.action";
 import Footer from "../../components/Footerr/Footer";
 import { Button } from "../../components/MaterialUI";
 import NavBar from "../../components/Navbar";
+import PriceDetails from "../../components/PriceDetails";
 import CartItem from "../CartPage/CartItem";
 import "./cartstyle.css";
 
-
 const NewCart = (props) => {
-
   const cart = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth);
   const [cartItems, setCartItems] = useState(cart.cartItems);
@@ -26,39 +29,38 @@ const NewCart = (props) => {
   }, [auth.authenticate]);
 
   const onQuantityIncrement = (_id, qty) => {
-    const {productName, productPrice,img} = cartItems[_id];
-    dispatch(addToCart({ _id,productName, productPrice,img }, 1));
-
+    const { productName, productPrice, img } = cartItems[_id];
+    dispatch(addToCart({ _id, productName, productPrice, img }, 1));
   };
 
   const onQuantityDecrement = (_id, qty) => {
-    const {productName, productPrice,img} = cartItems[_id];
- dispatch(addToCart({ _id,productName, productPrice,img }, -1));
+    const { productName, productPrice, img } = cartItems[_id];
+    dispatch(addToCart({ _id, productName, productPrice, img }, -1));
   };
 
   const onRemoveCartItem = (_id) => {
     dispatch(removeCartItem({ productId: _id }));
   };
 
-  if (props.onlyCartItems) {
-    return (
-      <>
-        {Object.keys(cartItems).map((key, index) => (
-          <CartItem
-            key={index}
-            cartItem={cartItems[key]}
-            onQuantityInc={onQuantityIncrement}
-            onQuantityDec={onQuantityDecrement}
-            onRemoveCartItem={onRemoveCartItem}
-          />
-        ))}
-      </>
-    );
-  }
+  // if (props.onlyCartItems) {
+  //   return (
+  //     <>
+  //       {Object.keys(cartItems).map((key, index) => (
+  //         <CartItem
+  //           key={index}
+  //           cartItem={cartItems[key]}
+  //           onQuantityInc={onQuantityIncrement}
+  //           onQuantityDec={onQuantityDecrement}
+  //           onRemoveCartItem={onRemoveCartItem}
+  //         />
+  //       ))}
+  //     </>
+  //   );
+  // }
   if (Object.keys(cartItems).length === 0) {
     return (
       <>
-        <NavBar/>
+        <NavBar />
         <div
           className="container"
           style={{ backgroundColor: "rgb(255, 255, 255)" }}
@@ -118,11 +120,12 @@ const NewCart = (props) => {
     );
   }
 
-
-
   return (
     <>
       <NavBar />
+
+      
+
 
       <div className="qwsaqwsa">
         <div className="bfbdvtv">
@@ -231,18 +234,18 @@ const NewCart = (props) => {
               </form>
             </div>
           </div>
+         
           <div className="onrlsjhrbnd">
-
-          {Object.keys(cartItems).map((key, index) => (
-            <CartItem
-              key={index}
-              cartItem={cartItems[key]}
-              onQuantityInc={onQuantityIncrement}
-              onQuantityDec={onQuantityDecrement}
-              onRemoveCartItem={onRemoveCartItem}
-            />
-          ))}
-
+        
+            {Object.keys(cartItems).map((key, index) => (
+              <CartItem
+                key={index}
+                cartItem={cartItems[key]}
+                onQuantityInc={onQuantityIncrement}
+                onQuantityDec={onQuantityDecrement}
+                onRemoveCartItem={onRemoveCartItem}
+              />
+            ))}
           </div>
         </div>
         <div className="dhcvkj">
@@ -257,8 +260,26 @@ const NewCart = (props) => {
           </div>
         </div>
       </div>
+      <div>
+              <PriceDetails
+                totalItem={Object.keys(cart.cartItems).reduce(function (
+                  qty,
+                  key
+                ) {
+                  return qty + cart.cartItems[key].qty;
+                },
+                0)}
+                totalPrice={Object.keys(cart.cartItems).reduce(
+                  (totalPrice, key) => {
+                    const { productPrice, qty } = cart.cartItems[key];
+                    return totalPrice + productPrice * qty;
+                  },
+                  0
+                )}
+              />
+            </div>
     </>
   );
-}
+};
 
-export default NewCart
+export default NewCart;
