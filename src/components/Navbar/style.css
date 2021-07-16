@@ -21,8 +21,8 @@
   height: 50px;
   background-color: #ffffff;
   color: #191919;
-  padding-right: 60px;
-  padding-left: 65px;
+  padding-right: 90px;
+  padding-left: 85px;
   position: fixed;
   z-index: 100;
   width: 100%;
@@ -418,9 +418,10 @@ h3 {
 
 .SearchTypeahead-searchContainer-175 {
   position: relative;
-  width: 100%;
-  min-width: 380px;
-  padding-left: 20px;
+  width: 126%;
+  min-width: 100px;
+  padding-left: 135px;
+  margin-left: 187%;
 }
 
 @media (min-width: 922px) {

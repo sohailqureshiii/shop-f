@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addOrder, addToCart, deleteAddressAction, getAddress, getCartItems, removeCartItem } from "../../actions/user.action";
+import {
+  addOrder,
+  addToCart,
+  deleteAddressAction,
+  getAddress,
+  getCartItems,
+  removeCartItem,
+} from "../../actions/user.action";
 // import { getCartItems } from "../../actions/cart.action";
 import { Anchor, Button, MaterialInput } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
@@ -14,7 +21,6 @@ import Footer from "../../components/Footerr/Footer";
 import { useHistory } from "react-router-dom";
 import CartItem from "../CartPage/CartItem";
 
-
 /**
  * @author
  * @function CheckoutPage
@@ -25,9 +31,8 @@ import CartItem from "../CartPage/CartItem";
 // //    const addId = deladd
 // //  dispatch(deleteAddressAction(addId))
 // setaddid(deladd)
- 
-// }
 
+// }
 
 const CheckoutStep = (props) => {
   return (
@@ -56,7 +61,7 @@ const Address = ({
   onDeleteAddress,
   onCancelSubmit1,
   onCancelSubmit,
-  onClose
+  onClose,
 }) => {
   return (
     <div className="flexRow addressContainer">
@@ -74,25 +79,13 @@ const Address = ({
               </div>
               {adr.selected && (
                 <>
-                <Anchor
-                  name="EDIT"
-                  onClick={() => enableAddressEditForm(adr)}
-                  style={{
-                    fontWeight: "500",
-                    color: "#2874f0",
-                  }}
-                />
-                  {/* <Anchor
-                  name="Delete"
-                  onClick={() => enableDeleteAddressFrom(adr)}
-                  style={{
-                    fontWeight: "500",
-                    color: "#2874f0",
-                  }}
-                /> */}
-
+                  <Button
+                    title="Edit"
+                    onClick={() => enableAddressEditForm(adr)}
+                    fontSize="0.8rem"
+                    padding="5px 10px"
+                  />
                 </>
-                
               )}
             </div>
             <div className="fullAddress">
@@ -100,21 +93,16 @@ const Address = ({
             </div>
             {adr.selected && (
               <Button
-                title="DELIVERY HERE"
+                title="Deliver here"
                 onClick={() => confirmDeliveryAddress(adr)}
-                style={{
-                  width: "200px",
-                  margin: "10px 0",
-                }}
+                fontSize="0.8rem"
+                padding="5px 10px"
               />
             )}
           </div>
+        ) : adr.delete ? (
+          deleteadd(adr)
         ) : (
-          
-          adr.delete ?
-          deleteadd(adr) 
-         
-          :
           <AddressForm
             withoutLayout={true}
             onSubmitForm={onAddressSubmit}
@@ -124,17 +112,15 @@ const Address = ({
             onCancel={onCancelSubmit}
             onClose={onClose}
           />
-          
         )}
       </div>
     </div>
   );
 };
 
-const deleteadd = (adr) =>{
-  console.log("adrasfafa",adr);
-}
-
+const deleteadd = (adr) => {
+  console.log("adrasfafa", adr);
+};
 
 const CartCheckoutPage = (props) => {
   const user = useSelector((state) => state.user);
@@ -151,7 +137,7 @@ const CartCheckoutPage = (props) => {
   const [addid, setaddid] = useState(false);
   const cart = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const [cartItems, setCartItems] = useState(cart.cartItems);
 
   useEffect(() => {
@@ -164,18 +150,15 @@ const CartCheckoutPage = (props) => {
     }
   }, [auth.authenticate]);
 
-
-
   const onQuantityIncrement = (_id, qty) => {
-    const {productName, productPrice,img} = cartItems[_id];
-    dispatch(addToCart({ _id,productName, productPrice,img }, 1));
-
+    const { productName, productPrice, img } = cartItems[_id];
+    dispatch(addToCart({ _id, productName, productPrice, img }, 1));
   };
 
   const onQuantityDecrement = (_id, qty) => {
-    const {productName, productPrice,img} = cartItems[_id];
+    const { productName, productPrice, img } = cartItems[_id];
 
-    dispatch(addToCart({ _id,productName, productPrice,img }, -1));
+    dispatch(addToCart({ _id, productName, productPrice, img }, -1));
   };
 
   const onRemoveCartItem = (_id) => {
@@ -189,28 +172,26 @@ const CartCheckoutPage = (props) => {
     setPaymentOption(true);
   };
 
-  const onDeleteAddress = (addID) =>{
+  const onDeleteAddress = (addID) => {
     const add = {
-      addId: addID
+      addId: addID,
     };
-    dispatch(deleteAddressAction(add))
-  }
-  const onClose = (addr) =>{
+    dispatch(deleteAddressAction(add));
+  };
+  const onClose = (addr) => {
     setConfirmAddress(true);
     setSelectedAddress(addr);
     setPaymentOption(true);
     console.log("sdfd");
-  }
-  const  onCancelSubmit = (yes) =>{
-    setNewAddress(false)
+  };
+  const onCancelSubmit = (yes) => {
+    setNewAddress(false);
     // console.log("dfsvfrg");
-  }
+  };
 
-  const  onCancelSubmit1 = (yes) =>{
-   console.log("sdgsg");
-  }
-
-
+  const onCancelSubmit1 = (yes) => {
+    console.log("sdgsg");
+  };
 
   const selectAddress = (addr) => {
     const updatedAddress = address.map((adr) =>
@@ -238,7 +219,9 @@ const CartCheckoutPage = (props) => {
 
   const enableDeleteAddressFrom = (addr) => {
     const updatedAddress = deleteAddress.map((adr) =>
-      adr._id === addr._id ? { ...adr, delete: true } : { ...adr, delete: false }
+      adr._id === addr._id
+        ? { ...adr, delete: true }
+        : { ...adr, delete: false }
     );
     setDeleteAddress(updatedAddress);
   };
@@ -305,7 +288,6 @@ const CartCheckoutPage = (props) => {
     );
   }
 
-
   if (Object.keys(cartItems).length === 0) {
     return (
       <>
@@ -369,58 +351,52 @@ const CartCheckoutPage = (props) => {
     );
   }
 
-  const changeAddress = () =>{
+  const changeAddress = () => {
     setPaymentOption(false);
     setConfirmAddress(false);
-
-
-  }
-  
+  };
 
   return (
     <>
       <NavBar />
-      <div className="cartContainer" style={{ alignItems: "flex-start" }}>
+      <div className="cartContainer" style={{ display: "flex" }}>
         <div className="checkoutContainer">
           {/* check if user logged in or not */}
 
-          {
-            !auth.authenticate ?  
+          {!auth.authenticate ? (
             <CheckoutStep
-            stepNumber={"1"}
-            title={"LOGIN"}
-            active={!auth.authenticate}
-            body={
-              auth.authenticate ? (
-                <div className="loggedInId">
-                  <span style={{ fontWeight: 500 }}>{auth.user.name}</span>
-                  <span style={{ margin: "0 5px" }}>{auth.user.email}</span>
-                </div>
-              ) : (
-                // <div><MaterialInput label="Email" /></div>
-                <button
-                  onClick={() => {
-                    history.push({
-                      pathname: "/Signin",
-                      state: {checkout: true },
-                    });
-                  }}
-                >
-                  Login
-                </button>
-              )
-            }
-          />
-          : null
-          }
-         
+              stepNumber={"1"}
+              title={"LOGIN"}
+              active={!auth.authenticate}
+              body={
+                auth.authenticate ? (
+                  <div className="loggedInId">
+                    <span style={{ fontWeight: 500 }}>{auth.user.name}</span>
+                    <span style={{ margin: "0 5px" }}>{auth.user.email}</span>
+                  </div>
+                ) : (
+                  // <div><MaterialInput label="Email" /></div>
+                  <button
+                    onClick={() => {
+                      history.push({
+                        pathname: "/Signin",
+                        state: { checkout: true },
+                      });
+                    }}
+                  >
+                    Login
+                  </button>
+                )
+              }
+            />
+          ) : null}
+
           <CheckoutStep
             stepNumber={auth.authenticate ? "1" : "2"}
             title={"DELIVERY ADDRESS"}
             active={!confirmAddress && auth.authenticate}
             body={
               <>
-         
                 {confirmAddress ? (
                   <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
                 ) : (
@@ -428,28 +404,31 @@ const CartCheckoutPage = (props) => {
                     <Address
                       selectAddress={selectAddress}
                       enableAddressEditForm={enableAddressEditForm}
-                      enableDeleteAddressFrom = {enableDeleteAddressFrom}
+                      enableDeleteAddressFrom={enableDeleteAddressFrom}
                       confirmDeliveryAddress={confirmDeliveryAddress}
                       onAddressSubmit={onAddressSubmit}
                       onDeleteAddress={onDeleteAddress}
                       adr={adr}
-                      onClose = {onClose}
+                      onClose={onClose}
                       onCancel1={onCancelSubmit1}
                       onCancel={onCancelSubmit}
-                      
                     />
                   ))
                 )}
-                {
-                  confirmAddress ? <h2 onClick={changeAddress}>change</h2> : null
-                }
+                {confirmAddress ? (
+                  <h2 onClick={changeAddress}>change</h2>
+                ) : null}
               </>
             }
           />
 
           {/* AddressForm */}
           {confirmAddress ? null : newAddress ? (
-            <AddressForm onSubmitForm={onAddressSubmit} onCancel={onCancelSubmit} onCancel1={onCancelSubmit1} />
+            <AddressForm
+              onSubmitForm={onAddressSubmit}
+              onCancel={onCancelSubmit}
+              onCancel1={onCancelSubmit1}
+            />
           ) : auth.authenticate ? (
             <CheckoutStep
               stepNumber={"+"}
@@ -459,7 +438,6 @@ const CartCheckoutPage = (props) => {
             />
           ) : null}
 
-        
           <CheckoutStep
             stepNumber={auth.authenticate ? "2" : "3"}
             title={"PAYMENT OPTIONS"}
@@ -490,28 +468,53 @@ const CartCheckoutPage = (props) => {
             }
           />
         </div>
-
-        {/* Price Component */}
-        <PriceDetails
-          totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
-            return qty + cart.cartItems[key].qty;
-          }, 0)}
-          totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-            const { productPrice, qty } = cart.cartItems[key];
-            return totalPrice + productPrice * qty;
-          }, 0)}
-        />
-          
-      </div>
-      {Object.keys(cartItems).map((key, index) => (
-            <CartItem
-              key={index}
-              cartItem={cartItems[key]}
-              onQuantityInc={onQuantityIncrement}
-              onQuantityDec={onQuantityDecrement}
-              onRemoveCartItem={onRemoveCartItem}
+        <div className="new-proce-and-cart">
+          <div style={{ width: "100%" }}>
+            {/* Price Component */}
+            <PriceDetails
+              totalItem={Object.keys(cart.cartItems).reduce(function (
+                qty,
+                key
+              ) {
+                return qty + cart.cartItems[key].qty;
+              },
+              0)}
+              totalPrice={Object.keys(cart.cartItems).reduce(
+                (totalPrice, key) => {
+                  const { productPrice, qty } = cart.cartItems[key];
+                  return totalPrice + productPrice * qty;
+                },
+                0
+              )}
             />
-          ))}
+          </div>
+          <div
+            style={{
+              height: "500px",
+              background: "white",
+              overflowY: "scroll",
+              padding: "20px",
+            }}
+          >
+            <div className="summeryBorderBox prc-summary">
+              <div className="sectionTopHeading">
+                <h5>Cart Items</h5>
+              </div>
+            </div>
+
+            {Object.keys(cartItems).map((key, index) => (
+              <CartItem
+                key={index}
+                cartItem={cartItems[key]}
+                onQuantityInc={onQuantityIncrement}
+                onQuantityDec={onQuantityDecrement}
+                onRemoveCartItem={onRemoveCartItem}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
       <Footer />
     </>
   );

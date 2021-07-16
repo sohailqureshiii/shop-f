@@ -35,7 +35,7 @@ const Navigationbar = (props) => {
         <DropdownMenu
           menu={
             <Link to="/myprofile">
-              <div style={{ marginLeft: 10 }}>
+              <div style={{ marginLeft: 10,display:'flex'}}>
                 <img
                   src={Profilepiclogo}
                   style={{
@@ -46,10 +46,10 @@ const Navigationbar = (props) => {
                   }}
                   alt="Shopisthan Logo"
                 />
-                <span style={{ fontSize: 15 }}>
+                <h1 style={{ fontSize: 15,textAlign:'center',marginTop:'3px',marginLeft:'4px'}}>
                   {" "}
                   {auth.user ? auth.user.name : "Hello User"}
-                </span>
+                </h1>
               </div>
             </Link>
           }
