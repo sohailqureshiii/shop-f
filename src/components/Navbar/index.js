@@ -237,7 +237,7 @@ const Navigationbar = (props) => {
               </h3>
             </a>
           </Link>
-          <Link className="cart" to="/cart">
+          <Link className="cart" to="/cartcheck">
             <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
               <h3 className="PrimaryNav-coreNavigationLabel-3rj">
                 <div class="link-background">

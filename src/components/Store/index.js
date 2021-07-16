@@ -131,18 +131,18 @@ const Store = (props) => {
             <div style={{ padding: "10px" }}>
               <div className="Cover-overlay-28e Cover-showOnHover-Ks- Cover-transitionDone-22y"></div>
               <div className="ProjectCoverNeue-visibleStatsAndOwners-2Av">
-                <span className="ProjectCoverNeue-ownersContainer-3Go">
+                <Link   to ={`/${store._id}/store`} className="ProjectCoverNeue-ownersContainer-3Go">
                   <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
                     <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
-                      <a
+                      <span
                         className="Owners-owner-2lB e2e-Owner-user-link"
                         style={{ color: "black" }}
                       >
                         {store.storeName}
-                      </a>
+                      </span>
                     </span>
                   </div>
-                </span>
+                </Link>
 
                 {renderButton(store._id)}
               </div>

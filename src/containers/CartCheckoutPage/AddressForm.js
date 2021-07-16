@@ -49,6 +49,19 @@ const AddressForm = (props) => {
   };
 
   const onAddressSubmit = (e) => {
+
+    if(name === "" ||
+      mobileNumber === "" ||
+      pinCode === "" ||
+      locality === "" ||
+      address === "" ||
+      cityDistrictTown === "" ||
+      state === "" ||
+      landmark === "" ||
+      alternatePhone === "" ||
+      addressType === ""){
+          return(alert("Please fill all the details"))
+      }
     const payload = {
       address: {
         name,
@@ -102,6 +115,19 @@ const AddressForm = (props) => {
      props.onDeleteAddress(id)
   }
 
+  const close = () =>{
+    props.onCancel("yes");
+    // props.onCancel1("yes")
+   
+  }
+
+  const onclose = () =>{
+    props.onClose(initialData);
+    // props.onCancel1("yes")
+   
+  }
+
+
  
 
   const renderAddressForm = () => {
@@ -109,6 +135,11 @@ const AddressForm = (props) => {
       <>
 
      { id ?    <span className="stepTitle" onClick={deleteadd}>{"delete"}</span> : null}
+     {
+       id ?  <span className="stepTitle" onClick={onclose}>{"Close 1"}</span> : 
+       <span className="stepTitle" onClick={close}>{"close"}</span>
+     }
+     
       
         <div className="flexRow">
           <div style={inputContainer}>
@@ -225,10 +256,6 @@ const AddressForm = (props) => {
     return <div>{renderAddressForm()}</div>;
   }
 
-  const close = () =>{
-    props.onCancel("yes");
-   
-  }
 
 
 
@@ -238,7 +265,7 @@ const AddressForm = (props) => {
         <div>
           <span className="stepNumber">+</span>
           <span className="stepTitle">{"ADD NEW ADDRESS"}</span>
-          <span className="stepTitle" onClick={close}>{"close"}</span>
+         
        
 
         </div>
