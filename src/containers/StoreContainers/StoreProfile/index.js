@@ -1,15 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.css'
 import { FacebookShareButton, WhatsappShareButton } from "react-share";
 import { WhatsappIcon,FacebookIcon } from "react-share";
 import {IoMdCreate} from 'react-icons/io'
 import DashBoard from '../../../components/DashBoardSidebar'
 import  Navbar  from "../../../components/Navbar";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { shareApi } from '../../../urlConfig';
+import { Modal } from '../../../components/MaterialUI';
+import { storeProfileAction } from '../../../actions/store.action';
 
 const StoreProfile = () => {
  const storeDetails = useSelector((state)=>state.userStore)
+ const [storeProfileEdit,setStoreProfileEdit] = useState(false)
+ const [storeProfile, setstoreProfile] = useState('');
+ const dispatch = useDispatch()
+
+ const handleProfileImage = (e) => {
+  setstoreProfile(e.target.files[0]);
+
+}
+
+const uploadStoreProfile = (e) =>{
+  e.preventDefault();
+  if(!storeProfile){
+    return alert("Select Pic")
+  }
+  const form = new FormData();
+  form.append('storeProfilePicture',storeProfile)
+  dispatch(storeProfileAction(form))
+  setStoreProfileEdit(false)
+  
+}
+
 
     return (
        <>
@@ -18,8 +41,13 @@ const StoreProfile = () => {
         <div style={{paddingTop:'135px'}}>
           <div className="StoreCard__container">
         <div className="StoreCard__row"><img className="Shop__logo"
-         src= "https://as1.ftcdn.net/jpg/03/01/31/70/500_F_301317052_ajbJFzcmAbkAUJPW57nj4fevWm4ZlKJB.jpg"
+         src= {storeDetails.userStore.storeProfilePicture.img}
           alt="Logo" />
+              <IoMdCreate 
+               onClick ={()=>setStoreProfileEdit(true)}
+               
+
+               /> 
          
         </div>
         <div className="StoreCard__column">
@@ -76,6 +104,14 @@ const StoreProfile = () => {
              
       </div> </div></div>
       </DashBoard>
+      <Modal visible={storeProfileEdit} onClose={()=>setStoreProfileEdit(false)} >
+      <input type="file" name="Store Profile" onChange={handleProfileImage} />
+      <button
+      onClick={uploadStoreProfile}
+      >
+        Upload
+      </button>
+      </Modal>
        </>
     )
 }

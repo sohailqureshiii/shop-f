@@ -161,11 +161,21 @@ const StoreProfile = (props) => {
               <div data-ssr-fetched="true" className="esdfrgh">
                 <main className="Profile-root-3Ir Profile-bannerEmpty-3ep e2e-Profile-page-container">
                   <div className="ProfileBanner-root-UPy ProfileBanner-hasBanner-1fU Profile-banner-2HT">
+                  {
+                    store.storeBackgroundPicture && store.storeBackgroundPicture.img ?
+                    <img
+                      src={store.storeBackgroundPicture.img}
+                      alt="$translate('profile_banner_image_alt', 'User's profile banner')"
+                      className="ProfileBanner-bannerImage-1_4 ProfileBanner-bannerImageLoaded-2N5"
+                    />
+                    :
                     <img
                       src="https://mir-s3-cdn-cf.behance.net/4ed4b944616f6f1b93f621ee1e0c69e8/dbcbb282-b7cb-423f-95b8-a92208da4972_rwc_0x14x3200x349x3200.png?h=8299a70b560a9d72b29b129326e049cc"
                       alt="$translate('profile_banner_image_alt', 'User's profile banner')"
                       className="ProfileBanner-bannerImage-1_4 ProfileBanner-bannerImageLoaded-2N5"
                     />
+                  }
+                  
                     <div className="ProfileBanner-uploadArea-2g2">
                       <div
                         className="ProfileBanner-uploader-ojO"
@@ -227,13 +237,23 @@ const StoreProfile = (props) => {
                                     className="Avatar-avatar-1-h"
                                     style={{ height: "110px", width: "110px" }}
                                   >
+                                  {
+                                    store.storeProfilePicture && store.storeProfilePicture.img ?
                                     <img
-                                      src="https://mir-s3-cdn-cf.behance.net/user/115/37f6c150416365.605f800371d72.png"
+                                      src= {store.storeProfilePicture.img}
                                       alt="User's avatar"
-                                      srcset="https://mir-s3-cdn-cf.behance.net/user/50/37f6c150416365.605f800371d72.png 50w, https://mir-s3-cdn-cf.behance.net/user/100/37f6c150416365.605f800371d72.png 100w, https://mir-s3-cdn-cf.behance.net/user/115/37f6c150416365.605f800371d72.png 115w, https://mir-s3-cdn-cf.behance.net/user/138/37f6c150416365.605f800371d72.png 138w, https://mir-s3-cdn-cf.behance.net/user/230/37f6c150416365.605f800371d72.png 230w, https://mir-s3-cdn-cf.behance.net/user/276/37f6c150416365.605f800371d72.png 276w"
                                       sizes="115px"
                                       className="AvatarImage-avatarImage-3uu Avatar-root--Wh"
                                     ></img>
+                                    :
+                                    <img
+                                      src="https://mir-s3-cdn-cf.behance.net/user/115/37f6c150416365.605f800371d72.png"
+                                      alt="User's avatar"
+                                      sizes="115px"
+                                      className="AvatarImage-avatarImage-3uu Avatar-root--Wh"
+                                    ></img>
+                                  }
+                                   
                                   </div>
                                 </div>
                               </div>

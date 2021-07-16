@@ -10,6 +10,7 @@ exports.userData = async (req, res) => {
   const locations = await StoreLocation.find({}).sort("-createdAt").exec();
 
   const stores = await Store.find({})
+  .populate({ path: "createdBy", select: "name" })
     .populate({ path: "storeCategory", select: "_id name" })
     .populate({ path: "storeLocation", select: "_id name" })
     .sort("-createdAt")

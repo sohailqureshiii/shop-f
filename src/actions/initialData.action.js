@@ -74,7 +74,7 @@ export const userStoreDataAction = () => {
       console.log(res.data);
       const { store, product,orders } = res.data;
       dispatch({
-        type: userStoreData.GET_USER_STORE_DETAILS_SUCCESS,
+        type: userStoreData.GET_USER_STORE_DETAILS_SUCCESS, 
         payload: { store, product,orders},
       });
     } else {
