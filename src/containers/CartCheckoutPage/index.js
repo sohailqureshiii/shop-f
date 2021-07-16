@@ -397,6 +397,7 @@ const CartCheckoutPage = (props) => {
             active={!confirmAddress && auth.authenticate}
             body={
               <>
+              <div className='iaovbwvj'>
                 {confirmAddress ? (
                   <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
                 ) : (
@@ -416,8 +417,11 @@ const CartCheckoutPage = (props) => {
                   ))
                 )}
                 {confirmAddress ? (
-                  <h2 onClick={changeAddress}>change</h2>
+                  <h2 
+                  style={{padding:'5px 10px', border:'1px solid #e0e0e0',borderRadius:'5px'}}
+                  onClick={changeAddress}>change</h2>
                 ) : null}
+              </div>
               </>
             }
           />
