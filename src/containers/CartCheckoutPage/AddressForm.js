@@ -134,12 +134,14 @@ const AddressForm = (props) => {
     return (
       <>
 
-     { id ?    <span className="stepTitle" onClick={deleteadd}>{"delete"}</span> : null}
+      <div className='iaovbwvj'>
+      { id ?    <span className="stepTitle" onClick={deleteadd}>{"Delete"}</span> : null}
      {
-       id ?  <span className="stepTitle" onClick={onclose}>{"Close 1"}</span> : 
-       <span className="stepTitle" onClick={close}>{"close"}</span>
+       id ?  <span className="stepTitle" onClick={onclose}>{"X"}</span> : 
+       <span className="stepTitle" onClick={close}>{"X"}</span>
      }
      
+      </div>
       
         <div className="flexRow">
           <div style={inputContainer}>
@@ -240,7 +242,7 @@ const AddressForm = (props) => {
         </div>
         <div className="flexRow">
           <Button
-            title="SAVE AND DELIVER HERE"
+            title="Save and Deliver Here"
             onClick={onAddressSubmit}
             style={{
               width: "250px",

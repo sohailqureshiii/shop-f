@@ -2,7 +2,7 @@
   display: flex;
   max-width: 1260px;
   margin: auto;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding-top: 55px;
 }
 
@@ -43,14 +43,13 @@ Layout {
 }
 
 .cartProductName {
-  font-size: 18px;
-  line-height: 18px;
-  display: block;
-  font-family: montserrat-regular, sans-serif;
-  color: #000;
-  text-transform: capitalize;
-  margin-bottom: 8px;
-  color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-family: montserrat-regular,sans-serif;
+  font-size: 12px;
+  line-height: 1.33;
+  padding-bottom: 10px;
 }
 a,
 a:focus,
@@ -70,9 +69,13 @@ a {
 }
 
 .productPriceDetails .cartProductPrice {
-  font-family: montserrat-bold, sans-serif;
-  font-size: 18px;
-  margin-right: 5px;
+
+  justify-content: space-between;
+  width: 100%;
+  font-family: montserrat-regular,sans-serif;
+  font-size: 12px;
+  line-height: 1.33;
+  padding-bottom: 10px;
 }
 
 @media only screen and (min-width: 769px) {
@@ -155,7 +158,7 @@ b {
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   object-fit: contain;
-  height: 150px;
+  height: 100%;
 }
 
 .cartBottomAction {
@@ -210,7 +213,7 @@ b {
 }
 .summeryBorderBox {
   border: 1px solid #e0e0e0;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   padding-right: 0;
   border-radius: 5px;
 }

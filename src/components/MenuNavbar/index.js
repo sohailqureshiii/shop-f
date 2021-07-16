@@ -32,7 +32,7 @@ const MenuNavBar = (props) => {
         <nav
           className="NavigationBar-subcategoryList-1nX"
           style={{
-            padding: "15px 10px 15px 79px",
+            padding: "15px 10px 15px 88px",
             border: "1px solid #eaeaea",
             overflow: "auto",
             paddingLeft: "79px",

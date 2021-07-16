@@ -140,7 +140,7 @@ const CartItem = (props) => {
                   </span>
                   <div className="productPriceDetails clearfix">
                     <span className="cartProductPrice">
-                      <b>₹ </b>: {productPrice}
+                      <b>₹ </b> {productPrice}
                     </span>
                   </div>
 
