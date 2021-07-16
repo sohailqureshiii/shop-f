@@ -53,7 +53,10 @@ const Address = ({
   confirmDeliveryAddress,
   onAddressSubmit,
   enableDeleteAddressFrom,
-  onDeleteAddress
+  onDeleteAddress,
+  onCancelSubmit1,
+  onCancelSubmit,
+  onClose
 }) => {
   return (
     <div className="flexRow addressContainer">
@@ -79,14 +82,14 @@ const Address = ({
                     color: "#2874f0",
                   }}
                 />
-                  <Anchor
+                  {/* <Anchor
                   name="Delete"
                   onClick={() => enableDeleteAddressFrom(adr)}
                   style={{
                     fontWeight: "500",
                     color: "#2874f0",
                   }}
-                />
+                /> */}
 
                 </>
                 
@@ -116,8 +119,10 @@ const Address = ({
             withoutLayout={true}
             onSubmitForm={onAddressSubmit}
             initialData={adr}
-            onCancel={() => {}}
+            // onCancel={() => {}}
             onDeleteAddress={onDeleteAddress}
+            onCancel={onCancelSubmit}
+            onClose={onClose}
           />
           
         )}
@@ -181,6 +186,7 @@ const CartCheckoutPage = (props) => {
     setSelectedAddress(addr);
     setConfirmAddress(true);
     setOrderSummary(true);
+    setPaymentOption(true);
   };
 
   const onDeleteAddress = (addID) =>{
@@ -189,9 +195,21 @@ const CartCheckoutPage = (props) => {
     };
     dispatch(deleteAddressAction(add))
   }
+  const onClose = (addr) =>{
+    setConfirmAddress(true);
+    setSelectedAddress(addr);
+    setPaymentOption(true);
+    console.log("sdfd");
+  }
   const  onCancelSubmit = (yes) =>{
     setNewAddress(false)
+    // console.log("dfsvfrg");
   }
+
+  const  onCancelSubmit1 = (yes) =>{
+   console.log("sdgsg");
+  }
+
 
 
   const selectAddress = (addr) => {
@@ -415,6 +433,10 @@ const CartCheckoutPage = (props) => {
                       onAddressSubmit={onAddressSubmit}
                       onDeleteAddress={onDeleteAddress}
                       adr={adr}
+                      onClose = {onClose}
+                      onCancel1={onCancelSubmit1}
+                      onCancel={onCancelSubmit}
+                      
                     />
                   ))
                 )}
@@ -427,7 +449,7 @@ const CartCheckoutPage = (props) => {
 
           {/* AddressForm */}
           {confirmAddress ? null : newAddress ? (
-            <AddressForm onSubmitForm={onAddressSubmit} onCancel={onCancelSubmit}/>
+            <AddressForm onSubmitForm={onAddressSubmit} onCancel={onCancelSubmit} onCancel1={onCancelSubmit1} />
           ) : auth.authenticate ? (
             <CheckoutStep
               stepNumber={"+"}

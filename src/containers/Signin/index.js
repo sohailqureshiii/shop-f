@@ -203,6 +203,7 @@ const Signin = (props) => {
               </section>
             </form>
           </section>
+
           <GoogleLogin
             clientId="578690882773-rkanjv60fh7ip7gus67q1s0kshnfu14b.apps.googleusercontent.com"
             buttonText="Login with Google"
