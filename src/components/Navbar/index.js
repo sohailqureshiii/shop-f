@@ -23,7 +23,15 @@ const Navigationbar = (props) => {
   const store = useSelector((state) => state.userStore.userStore);
   const cartCount = useSelector((state)=>state.user.cartItems)
   const history = useHistory();
+  const cart = useSelector((state) => state.user);
+  const [cartItems, setCartItems] = useState(cart.cartItems);
 
+
+
+  useEffect(() => {
+    setCartItems(cart.cartItems);
+  }, [cart.cartItems]);
+    
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -244,7 +252,7 @@ const Navigationbar = (props) => {
                 <div class="link-background">
 
                 {
-                      cartCount && Object.keys(cartCount).length >= 1 ? 
+                  cartItems && Object.keys(cartItems).length >= 1 ? 
                       <span
                     style={{
                       position: "absolute",
@@ -261,7 +269,8 @@ const Navigationbar = (props) => {
                       color: "white",
                     }}
                   >
-                  { Object.keys(cartCount).length}
+                  { Object.keys(cartItems).length}
+                 {/* { count} */}
                   </span>
                       
                        :null
