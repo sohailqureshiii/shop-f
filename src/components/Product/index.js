@@ -22,39 +22,18 @@ const Product = (props) => {
         <div>
           <div className="Galleries-gridCover-j9D">
             <div className="ProjectCoverNeue-root-166 ProjectCoverNeue-statsVisible-19j ProjectCover-cover-3zh">
-              <div
-                className="Cover-cover-2mr ProjectCoverNeue-cover-3Ni e2e-ProjectCoverNeue js-project-cover e2e-ProjectCoverNeue-cover ProjectCoverNeue-coverWithFlags-1Aq ProjectCoverNeue-statsVisible-19j ProjectCoverNeue-loaded-26R"
-              >
+              <div className="Cover-cover-2mr ProjectCoverNeue-cover-3Ni e2e-ProjectCoverNeue js-project-cover e2e-ProjectCoverNeue-cover ProjectCoverNeue-coverWithFlags-1Aq ProjectCoverNeue-statsVisible-19j ProjectCoverNeue-loaded-26R">
                 <div className="Cover-wrapper-300 ProjectCoverNeue-wrapper-27j e2e-ProjectCoverNeue-wrapper">
-                  <div className="Cover-content-2R2" >
-                    <img onClick={() => handleShow()}
+                  <div className="Cover-content-2R2">
+                    <img
+                      onClick={() => handleShow()}
                       sizes="404px"
-                      style={{ padding: "10px" }}
                       src={product.productPictures[0].img}
                       alt="new"
                       loading="lazy"
                       class="ProjectCoverNeue-image-1MZ js-cover-image"
                     />{" "}
-                    <div
-                      className="productStatusBox"
-                      style={{
-                        alignItems: "end",
-                        marginLeft: "296px",
-                        marginTop: "8px",
-                        top: "0",
-                        background: "white",
-                        borderRadius:'50%'
-                      }}
-                    >
-                      <span className="wishProduct">
-                        <div style={{ zIndex: "100" }} >
-                          <img
-                            src={Whislisticon}
-                            style={{ width: "25px", height: "25px", marginTop:'6px',marginLeft:'7px' }}
-                          />
-                        </div>
-                      </span>
-                    </div>
+                    
                     <div className="ProjectCoverNeue-controlsAndPrivacyContainer-20r"></div>
                   </div>
                 </div>
