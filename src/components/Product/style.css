@@ -16,7 +16,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+
 .productStatusBox{
+    align-items: end;
+    margin-left: 296px;
+    margin-top: 8px;
+    top: 0;
+    background: white;
+    border-radius: 50%;
     position: absolute;
     left: 0;
     right: 0;
@@ -472,3 +479,18 @@ button, input, optgroup, select, textarea {
     margin-top: 0;
 }
 }
+
+
+/* ///////// NEW STYLE /////////// */
+
+
+.Cover-wrapper-300:not(.Cover-noConstraints-PzQ) {
+    height: 0;
+    }
+    .Cover-wrapper-300 {
+    border-radius: 4px;
+    display: block;
+    padding-top: 80.22%;
+    position: relative;
+    width: 100%;
+    }
