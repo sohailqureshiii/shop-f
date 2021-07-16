@@ -13,6 +13,7 @@ import {
   removeCartItem,
 } from "../../actions/user.action";
 
+
 /**
  * @author
  * @function CartPage
@@ -204,6 +205,7 @@ const CartPage = (props) => {
           }, 0)}
         />
       </div>
+ 
       <Footer />
     </>
   );

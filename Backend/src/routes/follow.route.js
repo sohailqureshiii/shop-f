@@ -6,6 +6,9 @@ const User = require('../models/auth')
 
 
 router.put(`/follow`,requireSignin,userMiddleware,(req,res)=>{
+
+
+
     Store.findByIdAndUpdate(req.body.followId,{
         $push:{followers: req.user._id}
     },{
