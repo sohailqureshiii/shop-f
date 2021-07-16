@@ -26,7 +26,9 @@ const shopSchema = new mongoose.Schema(
       },
     ],
     storeProfilePicture: {
-      img: { type: String },
+      img: { type: String
+      },
+      
     },
     storeBackgroundPicture: {
       img: { type: String },

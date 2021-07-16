@@ -123,3 +123,76 @@ exports.editStore = async(req,res)=>{
       })
   
 }
+
+
+exports.uploadProfilePic = async (req,res) =>{
+
+  let storeProfilePicture = null;
+  if(req.file){
+    storeProfilePicture = {img:req.file.location}
+  }
+
+
+  const updatedStoreProfile = await Store.findOneAndUpdate({ createdBy: req.user._id},{$set:{storeProfilePicture}},
+    {new:true,useFindAndModify: false},
+    (err,updatedStoreInfo)=>{
+        if(err) {
+             return res.status(400).json({err});
+        }
+        if(updatedStoreInfo){
+            const store = Store.findOne({createdBy: req.user._id})
+            .populate({ path: "storeCategory", select: "_id name" })
+            .populate({ path: "storeLocation", select: "_id name" })
+            .populate({path:"followers",select:"name"})
+            .exec((err,storeInfo)=>{
+                if(err)    return res.status(400).json({err});
+                if(storeInfo){
+                    return res.status(201).json({storeInfo});
+                }
+            });
+        }
+
+    })
+
+
+ 
+
+}
+
+
+
+
+
+exports.uploadBackgroundPic = async (req,res) =>{
+
+  let storeBackgroundPicture = null;
+  if(req.file){
+    storeBackgroundPicture = {img:req.file.location}
+  }
+
+
+  const updatedStoreProfile = await Store.findOneAndUpdate({ createdBy: req.user._id},{$set:{storeBackgroundPicture}},
+    {new:true,useFindAndModify: false},
+    (err,updatedStoreInfo)=>{
+        if(err) {
+             return res.status(400).json({err});
+        }
+        if(updatedStoreInfo){
+            const store = Store.findOne({createdBy: req.user._id})
+            .populate({ path: "storeCategory", select: "_id name" })
+            .populate({ path: "storeLocation", select: "_id name" })
+            .populate({path:"followers",select:"name"})
+            .exec((err,storeInfo)=>{
+                if(err)    return res.status(400).json({err});
+                if(storeInfo){
+                    return res.status(201).json({storeInfo});
+                }
+            });
+        }
+
+    })
+
+
+ 
+
+}

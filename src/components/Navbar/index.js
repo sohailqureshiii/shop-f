@@ -21,7 +21,8 @@ const Navigationbar = (props) => {
   const [isMobile, setIsMobile] = useState(false);
   const auth = useSelector((state) => state.auth);
   const store = useSelector((state) => state.userStore.userStore);
-  const history = useHistory()
+  const cartCount = useSelector((state)=>state.user.cartItems)
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ const Navigationbar = (props) => {
   };
 
   const renderLoggedInMenu = () => {
-    if (store && auth.user.store==="Yes") {
+    if (store && auth.user.store === "Yes") {
       return (
         <DropdownMenu
           menu={
@@ -175,10 +176,10 @@ const Navigationbar = (props) => {
             <button
               style={{ color: "#2874f0" }}
               onClick={() =>
-                  history.push({
-                    pathname: "/Signup"
-                  })
-                }
+                history.push({
+                  pathname: "/Signup",
+                })
+              }
             >
               Sign Up
             </button>
@@ -241,6 +242,31 @@ const Navigationbar = (props) => {
             <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
               <h3 className="PrimaryNav-coreNavigationLabel-3rj">
                 <div class="link-background">
+
+                {
+                      cartCount && Object.keys(cartCount).length >= 1 ? 
+                      <span
+                    style={{
+                      position: "absolute",
+                      background: "red",
+                      width: "18px",
+                      height: "18px",
+                      borderRadius: "5px",
+                      fontSize: "15px",
+                      border: "1px solid #fff",
+                      textAlign: "center",
+                      alignSelf: "center",
+                      top: "-15px",
+                      right: "-8px",
+                      color: "white",
+                    }}
+                  >
+                  { Object.keys(cartCount).length}
+                  </span>
+                      
+                       :null
+                }
+                 
                   <img src={Carticon} className="homepagenavbar-icon" />
                   <a href="" class="middle">
                     Cart
@@ -266,7 +292,6 @@ const Navigationbar = (props) => {
           )}
         </button>
       </nav>
-
     </>
   );
 };

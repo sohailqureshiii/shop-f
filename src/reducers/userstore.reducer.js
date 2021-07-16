@@ -29,7 +29,18 @@ export default (state = initState, action) => {
 
         };
         break;
-
+        case userStoreData.GET_USER_STORE_DETAILS_EDIT_SUCCESS:
+          state = {
+            ...state,
+            userStore:action.payload.storeInfo
+          }
+          break;
+        // case userStoreData.GET_USER_STORE_DETAILS_EDIT_SUCCESS:
+        //   state = {
+        //     ...state,
+        //     userStore: action.payload.storeInfo,
+        //   };
+        //   break;
         case authConstants.LOGOUT_REQUEST:
           state = {
             ...state,
