@@ -40,9 +40,9 @@ exports.addOrder = (req, res) => {
   });
 };
 
-exports.getOrders = (req, res) => {
-  Order.find({ user: req.user._id })
-    .select("_id paymentStatus paymentType orderStatus items")
+exports.getOrders = async(req, res) => {
+   await Order.find({ user: req.user._id })
+    .select("_id paymentStatus paymentType orderStatus items totalAmount")
     .populate("items.productId", "_id productName productPictures")
     .exec((error, orders) => {
       if (error) return res.status(400).json({ error });

@@ -5,14 +5,23 @@ import "./style.css";
 import Navbar from "../../../components/Navbar";
 // import { editProductAction } from "../../../actions/product.action";
 
-const StoreEditProduct = () => {
+const StoreEditProduct = (props) => {
   const dispatch = useDispatch();
+
 
   const [productCategory, setProductCategory] = useState("");
   const [productName, setProductName] = useState("");
   const [productQuantity, setProductQuantity] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productDescription, setProductDescription] = useState("");
+
+  // if (props.location && props.location.state && !props.location.state.edit) {
+  //   // const storeId = props.location.state.storeId;
+  //   console.log("Yes");
+    
+  // }else{
+  //   console.log("Yessss");
+  // }
 
   const editProduct = (e) => {
     e.preventDefault();

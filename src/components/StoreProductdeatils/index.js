@@ -5,9 +5,17 @@ import { WhatsappShareButton } from "react-share";
 import { WhatsappIcon } from "react-share";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { shareApi } from "../../urlConfig";
+import { useHistory } from "react-router-dom";
 
 const StoreProdDeatils = (props) => {
-  const { show, handleclose } = props;
+  const { show, handleclose, productDetails } = props;
+  const history = useHistory()
+
+  if (!productDetails) {
+    return null;
+  }
+
 
   return (
     <>
@@ -16,10 +24,15 @@ const StoreProdDeatils = (props) => {
           <div className="flexRow">
             <div className="productDescContainer">
               <div className="productDescImgContainer">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp0-c7PZi3hJulH_fnbH3UfG_4iX6ULwsuKQ&usqp=CAU"
-                  alt="new"
-                />
+                {productDetails.productPictures  ?
+                (
+                  <img src={productDetails.productPictures[0].img} alt="new" />
+                ) : (
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp0-c7PZi3hJulH_fnbH3UfG_4iX6ULwsuKQ&usqp=CAU"
+                    alt="new"
+                  />
+                )}
               </div>
 
               {/* action buttons */}
@@ -30,15 +43,14 @@ const StoreProdDeatils = (props) => {
             <div className="prodDesc clearfix">
               <div className="productDetails" style={{ width: "600px" }}>
                 <p className="productTitle" style={{ maxWidth: "500px" }}>
-                  2020 Apple MacBook Pro (13.3-inch/33.78 cm, Apple M1 chip with
-                  8‑core CPU and 8‑core GPU, 8GB RAM, 256GB SSD) - Space Grey
+                  {productDetails.productName}
                 </p>
                 <div>{/* //// */}</div>
                 <div className="extraOffer">{/* //// */}</div>
                 <div className="flexRow priceContainer">
                   <span className="price">
                     <BiRupee />
-                    1,00,000
+                    {productDetails.productPrice}
                   </span>
 
                   {/* <span>i</span> */}
@@ -68,23 +80,14 @@ const StoreProdDeatils = (props) => {
                         color: "#212121",
                       }}
                     >
-                      Apple-designed M1 chip for a giant leap in CPU, GPU, and
-                      machine learning performance Get more done with up to 20
-                      hours of battery life, the longest ever in a Mac 8-core
-                      CPU delivers up to 2.8x faster performance to fly through
-                      workflows quicker than ever 8-core GPU with up to 5x
-                      faster graphics for graphics-intensive apps and games
-                      16-core Neural Engine for advanced machine learning 8GB of
-                      unified memory so everything you do is fast and fluid
-                      Superfast SSD storage launches apps and opens files in an
-                      instant
+                      {productDetails.productDescription}
                     </span>
                   </p>
                   <div className="share-btn-container">
                     <WhatsappShareButton
-                      // title={productDetails.name}
+                      title={productDetails.productName}
                       separator=" "
-                      //   url={currentUrl}
+                      url={`${shareApi}/product/${productDetails._id}`}
                     >
                       <WhatsappIcon
                         logoFillColor="green"
@@ -107,7 +110,16 @@ const StoreProdDeatils = (props) => {
                       id="testWishButton"
                       className="addtocart pull-left "
                     >
-                      <span>Edit</span>
+                      <span
+                        onClick={() => {
+                          history.push({
+                            pathname: "/editProduct",
+                            state: { productDetails: productDetails, edit: true },
+                          });
+                        }}
+                      >
+                        Edit
+                      </span>
                     </button>
                     <button id="addToCart" className="wishlists pull-left ">
                       <span>Delete</span>

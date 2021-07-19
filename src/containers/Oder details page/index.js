@@ -5,8 +5,11 @@ import { BiRupee } from "react-icons/bi";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
 import './style.css'
+import { useSelector } from "react-redux";
 
 const OrderDeatilsP = (props) => {
+
+  const userOrders = useSelector((state)=>state.user.orders)
   
     return (
         <>
@@ -32,9 +35,14 @@ const OrderDeatilsP = (props) => {
       
           
             <Card style={{ display: "block", margin: "5px 0" }}>
-              <Link
+
+            {
+              userOrders && userOrders.length > 0 ?
+              userOrders.map((order,index)=>(
+                <Link
                 // to={`/order_details/${order._id}`}
                 className="orderItemContainer"
+                key={order._id}
               >
                 <div className="orderImgContainer">
                   <img
@@ -44,13 +52,19 @@ const OrderDeatilsP = (props) => {
                 </div>
                 <div className="orderRow">
                   <div className="orderName">Microsoft Surface Pro X 1876 13" (33.02 cms) Laptop </div>
+                  
                   <div className="orderPrice">
                     <BiRupee />
-                    1,04,999.00
+                    {order.totalAmount}
                   </div>
-                  <div>Pending</div>
+                  <div>Total Items:{order.items.length}</div>
                 </div>
               </Link>
+              ))
+              : "No Orders"
+            }
+             
+             
             </Card>
       </div>
       
