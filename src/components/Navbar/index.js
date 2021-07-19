@@ -256,16 +256,16 @@ const Navigationbar = (props) => {
                       <span
                     style={{
                       position: "absolute",
-                      background: "red",
-                      width: "18px",
-                      height: "18px",
-                      borderRadius: "5px",
-                      fontSize: "15px",
+                      background: "black",
+                      width: "17px",
+                      height: "22px",
+                      borderRadius: "50%",
+                      fontSize: "14px",
                       border: "1px solid #fff",
                       textAlign: "center",
                       alignSelf: "center",
-                      top: "-15px",
-                      right: "-8px",
+                      top: "-14px",
+                      right: "-16px",
                       color: "white",
                     }}
                   >

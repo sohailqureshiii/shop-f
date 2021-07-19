@@ -12,9 +12,9 @@ const Cart = (props) => {
       <span
         style={{
           position: "absolute",
-          background: "red",
+          background: "black",
           width: "18px",
-          height: "18px",
+          height: "22px",
           borderRadius: "5px",
           fontSize: "15px",
           border: "1px solid #fff",
