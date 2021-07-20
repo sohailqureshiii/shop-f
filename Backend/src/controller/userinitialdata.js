@@ -43,7 +43,7 @@ exports.userinitialdata = async (req, res) => {
     .sort("-createdAt")
     .exec();
   const followingStore = await Store.find({ _id: { $in: following } })
-    .select("storeName")
+    .select("storeName storeProfilePicture")
     .sort("-createdAt")
     .exec();
   // const store = await Store.findOne({createdBy: req.user._id}).exec();

@@ -276,6 +276,7 @@ export const addOrder = (payload) => {
           type: userContants.ADD_USER_ORDER_SUCCESS,
           payload: { order },
         });
+        dispatch(getOrders())
         // const {
         //   address: { address },
         // } = res.data;

@@ -42,7 +42,7 @@ const uploadStoreProfile = (e) =>{
           <div className="StoreCard__container">
         <div className="StoreCard__row">
         <img className="Shop__logo"
-         src= {storeDetails.userStore.storeProfilePicture.img ? storeDetails.userStore.storeProfilePicture.img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp0-c7PZi3hJulH_fnbH3UfG_4iX6ULwsuKQ&usqp=CAU"}
+         src= {storeDetails.userStore.storeProfilePicture && storeDetails.userStore.storeProfilePicture.img ? storeDetails.userStore.storeProfilePicture.img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp0-c7PZi3hJulH_fnbH3UfG_4iX6ULwsuKQ&usqp=CAU"}
           alt="Logo" />
               <IoMdCreate 
                onClick ={()=>setStoreProfileEdit(true)}

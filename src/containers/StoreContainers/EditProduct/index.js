@@ -3,36 +3,70 @@ import { useDispatch, useSelector } from "react-redux";
 import DashBoard from "../../../components/DashBoardSidebar";
 import "./style.css";
 import Navbar from "../../../components/Navbar";
-// import { editProductAction } from "../../../actions/product.action";
+import { editProductAction } from "../../../actions/product.action";
 
 const StoreEditProduct = (props) => {
   const dispatch = useDispatch();
 
+  const productDetails = props.location.state.productDetails;
+  const categoriesList = useSelector((state) => state.category.categories);
+  const storeCategory = useSelector(
+    (state) => state.userStore.userStore.storeCategory
+  );
 
-  const [productCategory, setProductCategory] = useState("");
-  const [productName, setProductName] = useState("");
-  const [productQuantity, setProductQuantity] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productDescription, setProductDescription] = useState("");
+  const [productCategory, setProductCategory] = useState(
+    productDetails ? productDetails.productCategory._id : ""
+  );
+  const [productName, setProductName] = useState(
+    productDetails ? productDetails.productName : ""
+  );
+  const [productQuantity, setProductQuantity] = useState(
+    productDetails ? productDetails.productQuantity : ""
+  );
+  const [productPrice, setProductPrice] = useState(
+    productDetails ? productDetails.productPrice : ""
+  );
+  const [productDescription, setProductDescription] = useState(
+    productDetails ? productDetails.productDescription : ""
+  );
+  const [productId, setProductId] = useState(
+    productDetails ? productDetails._id : ""
+  );
 
-  // if (props.location && props.location.state && !props.location.state.edit) {
-  //   // const storeId = props.location.state.storeId;
-  //   console.log("Yes");
-    
-  // }else{
-  //   console.log("Yessss");
-  // }
-
+  if (props.location && props.location.state && !props.location.state.edit) {
+    return null;
+  }
   const editProduct = (e) => {
     e.preventDefault();
 
-    const form = new FormData();
-    form.append("productName", productName);
-    form.append("productQuantity", productQuantity);
-    form.append("productPrice", productPrice);
-    form.append("productDescription", productDescription);
+    if (
+      productName === "" ||
+      productQuantity === "" ||
+      productPrice === "" ||
+      productDescription === "" ||
+      productCategory === ""
+    ) {
+      return alert("Fill All the details");
+    }
 
-    // dispatch(editProductAction(form));
+    // const form = new FormData();
+    // form.append("_id", productId);
+    // form.append("productName", productName);
+    // form.append("productQuantity", productQuantity);
+    // form.append("productPrice", productPrice);
+    // form.append("productDescription", productDescription);
+    // form.append("productCategory", productCategory);
+
+    const form = {
+      _id: productId,
+      productName,
+      productQuantity,
+      productPrice,
+      productDescription,
+      productCategory,
+    };
+
+    dispatch(editProductAction(form));
   };
 
   return (
@@ -84,14 +118,35 @@ const StoreEditProduct = (props) => {
                           className="spectrum-FieldLabel"
                           style={{ fontSize: "14px" }}
                         >
-                          Discounted productPrice *
+                          product Category *
                         </label>
-                        <input
+                        <select
                           className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter Discounted productPrice"
-                          // value={productName}
-                          // onChange={(e) => setProductName(e.target.value)}
-                        ></input>
+                          placeholder="Enter Product Category"
+                          value={productCategory}
+                          onChange={(e) => setProductCategory(e.target.value)}
+                        >
+                          <option
+                            className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
+                            value=""
+                          >
+                            Product Category
+                          </option>
+
+                          {categoriesList
+                            .filter(
+                              (category) =>
+                                category.parentId === storeCategory._id
+                            )
+                            .map((filterCategory) => (
+                              <option
+                                key={filterCategory._id}
+                                value={filterCategory._id}
+                              >
+                                {filterCategory.name}
+                              </option>
+                            ))}
+                        </select>
                       </div>
                       <div>
                         <label
@@ -123,7 +178,6 @@ const StoreEditProduct = (props) => {
                           }
                         ></input>
                       </div>
-
                     </section>
                     <div
                       className="d-flex"

@@ -45,7 +45,7 @@ const Signin = (props) => {
       );
     }
     if (props.location && props.location.state && props.location.state.checkout) {
-      return <Redirect to="/checkout" />;
+      return <Redirect to="/cartcheck" />;
     }
 
     if (props.location && props.location.state && props.location.state.storeForm) {

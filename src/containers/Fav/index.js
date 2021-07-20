@@ -58,11 +58,21 @@ const Favorite = (props) => {
                       to={`/${store._id}/store`}
                     >
                       <section className="cfvdstyb">
+                      {
+                        store.storeProfilePicture && store.storeProfilePicture.img ?
+                        <img
+                          alt={store.storeName}
+                          className="lhdatvoy"
+                          src={store.storeProfilePicture.img}
+                        />
+                        :
                         <img
                           alt="Profile Pic"
                           className="lhdatvoy"
                           src={Profilepic}
                         />
+                      }
+                        
                       </section>
                       <div>
                         <h1 className="shopnameinfav">{store.storeName}</h1>
@@ -93,10 +103,13 @@ const Favorite = (props) => {
                           <div className="Cover-wrapper-300 ProjectCoverNeue-wrapper-27j e2e-ProjectCoverNeue-wrapper">
                             <div className="Cover-content-2R2">
                               <div className="DominantColor-dominantColor-2PM"></div>
+                              {
+
+                              }
                               <img
                                 sizes="404px"
                                 style={{ padding: "10px" }}
-                                src="https://images-eu.ssl-images-amazon.com/images/I/41vqgX0c5EL._SX300_SY300_QL70_FMwebp_.jpg"
+                                src={product.productPictures[0].img}
                                 alt="Children's Day - ''SEE ME&quot;"
                                 loading="lazy"
                                 class="ProjectCoverNeue-image-1MZ js-cover-image"

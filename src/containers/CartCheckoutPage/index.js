@@ -232,7 +232,35 @@ const CartCheckoutPage = (props) => {
     setPaymentOption(true);
   };
 
+  // if (auth.authenticate && auth.user.store === "Yes") {
+  //   // const same = Object.keys(cart.cartItems).filter((product,index)=>{
+  //   //   return product.storeId === auth.user.storeId
+  //   // })
+  //   // console.log("same",same);
+  //   const storeIDDD = auth.user.storeId;
+  //   console.log(storeIDDD);
+  //   const same = Object.keys(cart.cartItems).filter(
+  //     (key) => storeIDDD === cart.cartItems[key].storeId
+  //   );
+
+  //   same && same.length > 0 ? console.log("Done") : console.log("Done Not");
+  //   console.log(same, "sdasas");
+  // }
+
   const onConfirmOrder = () => {
+    if (auth.authenticate && auth.user.store === "Yes") {
+      const storeIDDD = auth.user.storeId;
+      const same = Object.keys(cart.cartItems).filter(
+        (key) => storeIDDD === cart.cartItems[key].storeId
+      );
+      if(same && same.length>0){
+        return(
+          alert("You cant buy your own product")
+         )
+      }
+    
+    }
+
     const totalAmount = Object.keys(cart.cartItems).reduce(
       (totalPrice, key) => {
         const { productPrice, qty } = cart.cartItems[key];
@@ -241,9 +269,14 @@ const CartCheckoutPage = (props) => {
       0
     );
 
+    const storeID = Object.keys(cart.cartItems).map((key) => ({
+      storeId: cart.cartItems[key].storeId,
+    }));
+    
+    const unqiue = storeID.filter((elem,index)=>storeID.findIndex(obj =>obj.storeId === elem.storeId) === index);
     const items = Object.keys(cart.cartItems).map((key) => ({
       productId: key,
-      payablePrice: cart.cartItems[key].price,
+      payablePrice: cart.cartItems[key].productPrice,
       purchasedQty: cart.cartItems[key].qty,
       storeId: cart.cartItems[key].storeId,
     }));
@@ -253,10 +286,12 @@ const CartCheckoutPage = (props) => {
       items,
       paymentStatus: "pending",
       paymentType: "cod",
+      storeID:unqiue
     };
 
     dispatch(addOrder(payload));
     setConfirmOrder(true);
+    // console.log(payload);
   };
 
   useEffect(() => {
@@ -397,31 +432,38 @@ const CartCheckoutPage = (props) => {
             active={!confirmAddress && auth.authenticate}
             body={
               <>
-              <div className='iaovbwvj'>
-                {confirmAddress ? (
-                  <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
-                ) : (
-                  address.map((adr) => (
-                    <Address
-                      selectAddress={selectAddress}
-                      enableAddressEditForm={enableAddressEditForm}
-                      enableDeleteAddressFrom={enableDeleteAddressFrom}
-                      confirmDeliveryAddress={confirmDeliveryAddress}
-                      onAddressSubmit={onAddressSubmit}
-                      onDeleteAddress={onDeleteAddress}
-                      adr={adr}
-                      onClose={onClose}
-                      onCancel1={onCancelSubmit1}
-                      onCancel={onCancelSubmit}
-                    />
-                  ))
-                )}
-                {confirmAddress ? (
-                  <h2 
-                  style={{padding:'5px 10px', border:'1px solid #e0e0e0',borderRadius:'5px'}}
-                  onClick={changeAddress}>change</h2>
-                ) : null}
-              </div>
+                <div className="iaovbwvj">
+                  {confirmAddress ? (
+                    <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
+                  ) : (
+                    address.map((adr) => (
+                      <Address
+                        selectAddress={selectAddress}
+                        enableAddressEditForm={enableAddressEditForm}
+                        enableDeleteAddressFrom={enableDeleteAddressFrom}
+                        confirmDeliveryAddress={confirmDeliveryAddress}
+                        onAddressSubmit={onAddressSubmit}
+                        onDeleteAddress={onDeleteAddress}
+                        adr={adr}
+                        onClose={onClose}
+                        onCancel1={onCancelSubmit1}
+                        onCancel={onCancelSubmit}
+                      />
+                    ))
+                  )}
+                  {confirmAddress ? (
+                    <h2
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #e0e0e0",
+                        borderRadius: "5px",
+                      }}
+                      onClick={changeAddress}
+                    >
+                      change
+                    </h2>
+                  ) : null}
+                </div>
               </>
             }
           />
