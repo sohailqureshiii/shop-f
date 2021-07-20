@@ -5,19 +5,21 @@ import ProductModal from "../../../components/StoreProductdeatils";
 
 const ProductTableCompo = (props) => {
   const [show, setShow] = useState(false);
+  const [productDetails,setProductDetails] = useState("");
   const { searchKeyword } = props;
 
   const storeProducts = useSelector((state) => state.userStore.storeProduct);
   // const [searchKeyword , setsearchKeyword] = useState("");
 
-  const handleShow = () => {
+  const handleShow = (product) => {
     setShow(true);
+    setProductDetails(product)
   };
 
   const renderProducts = () => {
     if (searchKeyword === "" || searchKeyword === null) {
       return storeProducts.map((product, index) => (
-        <tr className="mnbnmnb" onClick={() => handleShow()} key={product._id}>
+        <tr className="mnbnmnb" onClick={() => handleShow(product)} key={product._id}>
           <td className="jfkvvjvsv" data-label="S.No">
             {index + 1}
           </td>
@@ -36,9 +38,16 @@ const ProductTableCompo = (props) => {
           <td className="jfkvvjvsv" data-label="Items">
             {product.productCategory.name}
           </td>
-          <td className="jfkvvjvsv" data-label="Stock">
+          {/* <td className="jfkvvjvsv" data-label="Stock">
             Available
-          </td>
+          </td> */}
+          {/* <td className="jfkvvjvsv" data-label="Edit"
+             onClick={()=>
+              <Link to ="/editProduct" />
+             }
+            >
+              edit
+            </td> */}
         </tr>
       ));
     }
@@ -78,16 +87,16 @@ const ProductTableCompo = (props) => {
             <td className="jfkvvjvsv" data-label="Items">
               {product.productCategory}
             </td>
-            <td className="jfkvvjvsv" data-label="Stock">
+            {/* <td className="jfkvvjvsv" data-label="Stock">
               Available 
-            </td>
-            <td className="jfkvvjvsv" data-label="Stock"
+            </td> */}
+            {/* <td className="jfkvvjvsv" data-label="Edit"
             //  onClick={()=>
             //   <Link to ="/editProduct" />
             //  }
             >
               edit
-            </td>
+            </td> */}
            
           </tr>
         ));
@@ -103,8 +112,8 @@ const ProductTableCompo = (props) => {
           <th className="jfkvvjvsv kjilljjhn">Quantity</th>
           <th className="jfkvvjvsv kjilljjhn">Amount</th>
           <th className="jfkvvjvsv kjilljjhn">Category</th>
-          <th className="jfkvvjvsv kjilljjhn">Stock</th>
-          <th className="jfkvvjvsv kjilljjhn">Edit/Delete</th>
+          {/* <th className="jfkvvjvsv kjilljjhn">Stock</th> */}
+          {/* <th className="jfkvvjvsv kjilljjhn">Edit/Delete</th> */}
         </thead>
         <tbody className="lgadkyhdtq">{renderProducts()}</tbody>
       </table>
@@ -112,7 +121,7 @@ const ProductTableCompo = (props) => {
       <ProductModal
         show={show}
         handleclose={() => setShow(false)}
-        // productDetails={productDetails}
+        productDetails={productDetails}
       />
     </>
   );

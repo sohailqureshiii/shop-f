@@ -46,6 +46,19 @@ const orderSchema = new mongoose.Schema(
       enum: ["cod", "card"],
       required: true,
     },
+    storeID : [
+      // {
+      //   type: mongoose.Schema.Types.ObjectId,
+      //   ref: "Store",
+      // },
+      {
+        storeId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Store",
+        }
+      }
+   
+    ],
     orderStatus: [
       {
         type: {

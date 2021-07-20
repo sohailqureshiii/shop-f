@@ -9,10 +9,12 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       component={(props) => {
-        if (store.hasOwnProperty("_id") && Object.keys(store).length !== 0) {
-          return <Component {...props} />;
+        if (store.hasOwnProperty("_id") && Object.keys(store).length !== 0) 
+        // if(auth.user && auth.user.store && auth.user.store === "Yes")
+        {
+          return <Component {...props} />
         } else {
-          return <Redirect to={`/Signin`} />;
+          return <Redirect to={`/Signin`} />
         }
       }}
     />

@@ -32,7 +32,7 @@ import {
 } from "./actions/initialData.action";
 import { PrivateRoute,SharePrivateRoute } from "./components/HOC/PrivateRoute";
 
-import { updateCart } from "./actions/user.action";
+import { getOrder, getOrders, updateCart } from "./actions/user.action";
 import StoreEditProduct from "./containers/StoreContainers/EditProduct";
 import CheckoutPage from "./containers/CheckoutPage";
 import NewCart from "./containers/New Cart Page/cartindex";
@@ -50,11 +50,12 @@ function App() {
       dispatch(isUserLoggedIn());
     }
     dispatch(updateCart())
-  }, []);
+  }, []); 
 
   useEffect(() => {
     // window.location.reload();
     dispatch(getUserDataAction());
+    dispatch(getOrders())
   }, [auth.authenticate]);
 
   useEffect(() => {

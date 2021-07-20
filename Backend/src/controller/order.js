@@ -1,8 +1,24 @@
 const Order = require("../models/order");
 const Cart = require("../models/cart");
 const Address = require("../models/address");
-const Store = require("../models/store")
+const Store = require("../models/store");
 
+
+function reviceStorePhoneNo(orderId) {
+  Order.findOne({ _id: orderId })
+    .select("storeID")
+    .populate("storeID.storeId", "_id storeName storePhoneNo ")
+    .exec((error, order) => {
+      if (error) return res.status(400).json({ error });
+      if (order) {
+        let storePh = order.storeID.map((obj) => obj.storeId.storePhoneNo);
+         storePh.forEach(element => {
+           console.log(element);
+         });
+      }
+    });
+  
+}
 
 exports.addOrder = (req, res) => {
   Cart.deleteOne({ user: req.user._id }).exec((error, result) => {
@@ -32,17 +48,34 @@ exports.addOrder = (req, res) => {
       order.save((error, order) => {
         if (error) return res.status(400).json({ error });
         if (order) {
-          console.log(order.items.storeId);
           res.status(201).json({ order });
+
+          // reviceStorePhoneNo(order._id)
+
+          // Order.findOne({ _id: order._id })
+          // .select("storeID")
+          // .populate("storeID.storeId", "_id storeName storePhoneNo ")
+          // .exec((error, order) => {
+          //   if (error) return res.status(400).json({ error });
+          //   if (order) {
+          //     // res.status(200).json({
+          //     //   order,
+          //     // });
+          //     let storePh = order.storeID.map((obj) => obj.storeId.storePhoneNo);
+          //     console.log(storePh);
+          //   }
+          // });
+
+        
         }
       });
     }
   });
 };
 
-exports.getOrders = (req, res) => {
-  Order.find({ user: req.user._id })
-    .select("_id paymentStatus paymentType orderStatus items")
+exports.getOrders = async (req, res) => {
+  await Order.find({ user: req.user._id })
+    .select("_id paymentStatus paymentType orderStatus items totalAmount")
     .populate("items.productId", "_id productName productPictures")
     .exec((error, orders) => {
       if (error) return res.status(400).json({ error });
@@ -93,3 +126,40 @@ exports.getOrder = (req, res) => {
 //       }
 //     });
 // };
+
+exports.getStorePhone = (req, res) => {
+  Order.findOne({ _id: req.body.orderId })
+    .select("storeID")
+    .populate("storeID.storeId", "_id storeName storePhoneNo ")
+    .exec((error, order) => {
+      if (error) return res.status(400).json({ error });
+      if (order) {
+        res.status(200).json({
+          order,
+        });
+        let storePh = order.storeID.map((obj) => obj.storeId.storePhoneNo);
+        console.log(storePh);
+      }
+    });
+};
+
+
+  // const data = order
+  // const st =  Order
+  // .populate(order,{path:'storeID.storeId',select:'_id storeName storePhoneNo'})
+  // .execPopulate();
+  // console.log(st);
+  
+
+  // Order
+  //   .select("storeID")
+  //   .populate("storeID.storeId", "_id storeName storePhoneNo ")
+  //   .exec((error, storePhones) => {
+  //     if (error) return res.status(400).json({ error });
+  //     if (storePhones) {
+  //       let storePh = storePhones.storeID.map(
+  //         (obj) => obj.storeId.storePhoneNo
+  //       );
+  //       console.log(storePh);
+  //     }
+  //   });

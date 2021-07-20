@@ -9,7 +9,6 @@ exports.createProduct = async (req, res) => {
     productQuantity,
     productDescription,
     productCategory,
-
   } = req.body;
 
   let productPictures = [];
@@ -21,7 +20,7 @@ exports.createProduct = async (req, res) => {
   // }
   if (req.files.length > 0) {
     productPictures = req.files.map((file) => {
-      return { img: file.location  };
+      return { img: file.location };
     });
   }
 
@@ -31,7 +30,6 @@ exports.createProduct = async (req, res) => {
       return res.status(400).json({ message: "Something went worng" });
     }
 
-
     product = new Product({
       productName,
       productPrice,
@@ -39,27 +37,22 @@ exports.createProduct = async (req, res) => {
       productDescription,
       productCategory,
       productPictures,
-      productParentCategory:store.storeCategory,
-      createdBy:req.user._id,
-      storeId:store._id,
-      storeLocation:store.storeLocation
+      productParentCategory: store.storeCategory,
+      createdBy: req.user._id,
+      storeId: store._id,
+      storeLocation: store.storeLocation,
     });
 
-
-    
-
-
     await product.save((error, product) => {
-      if (error) return res.status(400).json({ "error hai":error });
+      if (error) return res.status(400).json({ "error ": error });
       if (product) {
         return res.status(200).json({ product });
       }
     });
   } catch (error) {
-    return res.status(400).json({ "error hai 11":error });
+    return res.status(400).json({ "error ": error });
   }
 };
-
 
 // exports.createProduct = (req, res) => {
 //   //res.status(200).json( { file: req.files, body: req.body } );
@@ -73,8 +66,7 @@ exports.createProduct = async (req, res) => {
 //         productCategory,
 //         productParentCategory,
 //         storeLocation,
-      
-  
+
 //   } = req.body;
 //   let productPictures = [];
 
@@ -104,22 +96,35 @@ exports.createProduct = async (req, res) => {
 //   });
 // };
 
-
-exports.editProduct = async(req,res)=>{
+exports.editProduct = async (req, res) => {
   const {
-    productName,productPrice,productQuantity,productDescription,_id
-   } = req.body;  
+    productName,
+    productPrice,
+    productQuantity,
+    productDescription,
+    _id,
+    productCategory,
+  } = req.body;
 
-   const updatedProduct = await Product.findOneAndUpdate({_id:_id},{$set:{productName,productPrice,productQuantity,productDescription}},
-      {new:true,useFindAndModify: false},
-      (err,updatedProductInfo)=>{
-          if(err) {
-               return res.status(400).json({err});
-          }
-          if(updatedProductInfo){
-              return res.status(201).json({updatedProductInfo});
-          }
-
-      })
-  
-}
+  const updatedProduct = await Product.findOneAndUpdate(
+    { _id: _id },
+    {
+      $set: {
+        productName,
+        productPrice,
+        productQuantity,
+        productDescription,
+        productCategory,
+      },
+    },
+    { new: true, useFindAndModify: false },
+    (err, updatedProductInfo) => {
+      if (err) {
+        return res.status(400).json({ err });
+      }
+      if (updatedProductInfo) {
+        return res.status(201).json({ updatedProductInfo });
+      }
+    }
+  );
+};
