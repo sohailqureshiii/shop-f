@@ -39,7 +39,7 @@ const HomePage = (props) => {
   const renderProduct = () => {
     if (searchTerm === "" && categoryTerm === "" && locationTerm === "") {
       return (
-        <div style={{ padding: "30px", paddingTop: "135px" }}>
+        <div style={{ padding: "30px", paddingTop: "125px" }}>
           <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
             {productLists.map((product, index) => (
               <Product product={product} index={index} />

@@ -52,18 +52,6 @@ const ProductModal = (props) => {
   const renderButton = (storeId) => {
     if (!auth.authenticate) {
       return (
-        // <button
-        //   style={{ marginLeft: "250px" }}
-        //   className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-        //   onClick={() =>
-        //     history.push({
-        //       pathname: "/Signin",
-        //       state: { storeId: storeId, Follow: true },
-        //     })
-        //   }
-        // >
-        //   Follow Store
-        // </button>
         <Button
           title="Follow Store"
           backgroundColor
@@ -251,26 +239,24 @@ const ProductModal = (props) => {
                           handleclose(false);
                         }}
                       ></Button>
-                     
-                       <WhatsappShareButton
-                          title={productDetails.productName}
-                          separator=" "
-                          url={`${shareApi}/product/${productDetails._id}`}
-                        >
-                           <Button
-                        title="Share"
-                        backgroundColor
-                        radius="8px"
-                        border="1px solid #d4d4d4"
-                        border-radius="3px"
-                        color="#000"
-                        padding="5px 10px"
-                        width="200px"
-                        height="50px"
-                      ></Button>
-                        </WhatsappShareButton>
-                     
-               
+
+                      <WhatsappShareButton
+                        title={productDetails.productName}
+                        separator=" "
+                        url={`${shareApi}/product/${productDetails._id}`}
+                      >
+                        <Button
+                          title="Share"
+                          backgroundColor
+                          radius="8px"
+                          border="1px solid #d4d4d4"
+                          border-radius="3px"
+                          color="#000"
+                          padding="5px 10px"
+                          width="200px"
+                          height="50px"
+                        ></Button>
+                      </WhatsappShareButton>
                     </div>
                   </div>
                 </div>

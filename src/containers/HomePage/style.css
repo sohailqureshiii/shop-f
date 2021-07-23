@@ -72,7 +72,7 @@
 }
 
 .detailsWrapper {
-    background-color: #f9f9f9;
+    background-color: #fff;
     border: 1px solid #d4d4d4;
     min-width: 520px;
     border-radius: 8px;
@@ -506,12 +506,6 @@ max-height: 35px;
 padding-top: 2px;
 }
 
-.ProjectCoverNeue-statsVisible-19j .ProjectCoverNeue-visibleStatsAndOwners-2Av .ProjectCoverNeue-ownersContainer-3Go {
--webkit-box-flex: 1;
-flex: 1;
-max-width: calc(404px - 130px);
-min-width: 0;
-}
 
 .ProjectCoverNeue-statsVisible-19j .ProjectCoverNeue-visibleStatsAndOwners-2Av .ProjectCoverNeue-owners-1qo {
 font-size: 13px;
@@ -539,16 +533,7 @@ vertical-align: top;
 width: 20px;
 }
 
-.Owners-root-3c9.Owners-dark-1Vh .Owners-owner-2lB {
-color: #191919;
-padding: 5px;
-font-family: "-webkit-pictograph";
-}
 
-.Owners-ownerImageEl-3cu {
-border-radius: 50%;
-width: 100%;
-}
 
 .ProjectCoverNeue-statsVisible-19j .ProjectCoverNeue-visibleStats-1lK {
 color: #696969;
@@ -992,19 +977,7 @@ select#xyz {
   border: none;
 }
 
-@media (min-width: 1440px){
-  .SubCategory-label-30F {
-    font-size: 14px;
-    border: none;
-}
-}
 
-.SubCategory-label-30F {
-    font-size: 15px;
-    line-height: 1;
-    color: #696969;
-    font-weight: 100px;
-}
 
 h5 {
   font-size: 15px;

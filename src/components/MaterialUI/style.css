@@ -42,9 +42,11 @@
 
 .modalClose{
   position: absolute;
-  color: #fff;
-  right: -25px;
-  font-size: 20px;
+    color: #fff;
+    right: -30px;
+    font-size: 26px;
+    cursor: pointer;
+
 }
 
 /* Material Input */

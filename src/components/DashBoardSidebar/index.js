@@ -49,7 +49,7 @@ const DashBoard = (props) => {
               </ul>
             </div>
           </div>
-          <div style={{paddingLeft:'342px'}}>
+          <div style={{paddingLeft:'342px',backgroundColor:'#f1f5f9'}}>
           {props.children}
           </div>
         </div>

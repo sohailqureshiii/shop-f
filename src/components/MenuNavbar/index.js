@@ -1,12 +1,14 @@
 import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
+import SeachCompo from "../SearchComponent";
+import './style.css'
 
 const MenuNavBar = (props) => {
   const categoriesList = useSelector((state) => state.category.categories);
   const locationList = useSelector((state) => state.location.locations);
 
   const inputSearch = useRef("");
-  const inputLocation = useRef(""); 
+  const inputLocation = useRef("");
   const inputCategory = useRef("");
 
   const getSearchTerm = () => {
@@ -23,7 +25,7 @@ const MenuNavBar = (props) => {
     <>
       <div
         style={{
-          paddingTop: "45px",
+          paddingTop: "40px",
           position: "fixed",
           width: "100%",
           zIndex: "99",
@@ -32,10 +34,10 @@ const MenuNavBar = (props) => {
         <nav
           className="NavigationBar-subcategoryList-1nX"
           style={{
-            padding: "15px 10px 15px 88px",
+            padding: "15px 8px 8px 87px",
             border: "1px solid #eaeaea",
             overflow: "auto",
-            paddingLeft: "79px",
+            paddingLeft: "87px",
           }}
         >
           <ul style={{ display: "contents" }}>
@@ -99,8 +101,8 @@ const MenuNavBar = (props) => {
                 </div>
               </a>
             </li>
-            <li>
-              <div
+            <li style={{marginLeft:'57.8%'}}>
+              {/* <div
                 tabIndex="0"
                 className="SearchTypeahead-searchContainer-175 SearchTypeahead-isTypeaheadEnabled-3i3"
               >
@@ -110,30 +112,29 @@ const MenuNavBar = (props) => {
                       <path d="M11.407,10.421,8.818,7.832a4.276,4.276,0,1,0-.985.985l2.589,2.589a.7.7,0,0,0,.985-.985ZM2.355,5.352a3,3,0,1,1,3,3,3,3,0,0,1-3-3Z"></path>
                     </svg>
                   </div>
-                  <form className="SearchTypeahead-searchForm-20c">
-                    <label for="search">
-                      <input
-                        type="search"
-                        name="search"
-                        autocomplete="off"
-                        placeholder="Search…"
-                        aria-label="Search "
-                        className="SearchTypeahead-searchInput-1qk e2e-SearchInput-input"
-                        ref={inputSearch}
-                        // onChange={(e) => {
+                  <label for="search">
+                    <input
+                    style={{border:'black'}}
+                      type="search"
+                      name="search"
+                      autocomplete="off"
+                      placeholder="Search…"
+                      aria-label="Search "
+                      className="SearchTypeahead-searchInput-1qk e2e-SearchInput-input"
+                      ref={inputSearch}
+                      // onChange={(e) => {
 
-                        //   abcd(e)
-                        //   //  setSearchTerm(e.target.value)
-                        //   // dispatch(searchTermAction(searchTerm))
-                        //   // console.log(searchTerm);
+                      //   abcd(e)
+                      //   //  setSearchTerm(e.target.value)
+                      //   // dispatch(searchTermAction(searchTerm))
+                      //   // console.log(searchTerm);
 
-                        // }}
-                        // onChange={changeHandler}
-                        value={props.term}
-                        onChange={getSearchTerm}
-                      />
-                    </label>
-                  </form>
+                      // }}
+                      // onChange={changeHandler}
+                      value={props.term}
+                      onChange={getSearchTerm}
+                    />
+                  </label>
                 </div>
                 <button
                   tabIndex="-1"
@@ -143,8 +144,12 @@ const MenuNavBar = (props) => {
                     <div className="Btn-label-1Zf e2e-Btn-label">Cancel</div>
                   </div>
                 </button>
-              </div>
+              </div> */}
+              <SeachCompo 
+              // term={searchTerm} searchKeyword={searchHandler} 
+              />
             </li>
+            <div></div>
           </ul>
         </nav>
       </div>
