@@ -1,84 +1,75 @@
 import axiosIntance from "../helpers/axios";
-import { authConstants, cartConstants} from "./constants";
+import { authConstants, cartConstants } from "./constants";
 
-export const loginAction = userData => dispatch => {
+export const loginAction = (userData) => (dispatch) => {
   axiosIntance
     .post("/signin", userData)
-    .then(res => {
+    .then((res) => {
       const { token, user } = res.data;
-       localStorage.setItem("token", token);
-       localStorage.setItem("user", JSON.stringify(user));
-       dispatch({
-         type: authConstants.LOGIN_SUCCESS,
-         payload: {
-           token,
-           user
-        }
-       });
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      dispatch({
+        type: authConstants.LOGIN_SUCCESS,
+        payload: {
+          token,
+          user,
+        },
+      });
     })
 
-    .catch(error =>{    
+    .catch((error) => {
       dispatch({
-         type: authConstants.LOGIN_FAILURE,
-         payload: {error:"Something went worng"}
-        });
-    }
-
-    );
+        type: authConstants.LOGIN_FAILURE,
+        payload: { error: "Something went worng" },
+      });
+    });
 };
 
-
-export const googleLoginAction = tokenId => dispatch => {
+export const googleLoginAction = (tokenId) => (dispatch) => {
   axiosIntance
     .post("/google-login", tokenId)
-    .then(res => {
+    .then((res) => {
       const { token, user } = res.data;
-       localStorage.setItem("token", token);
-       localStorage.setItem("user", JSON.stringify(user));
-       dispatch({
-         type: authConstants.LOGIN_SUCCESS,
-         payload: {
-           token,
-           user
-        }
-       });
-      //  isUserLoggedIn()
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      dispatch({
+        type: authConstants.LOGIN_SUCCESS,
+        payload: {
+          token,
+          user,
+        },
+      });
     })
 
-    .catch(error =>{    
+    .catch((error) => {
       dispatch({
-         type: authConstants.LOGIN_FAILURE,
-         payload: {error:"Something went worng"}
-        });
-    }
-
-    );
+        type: authConstants.LOGIN_FAILURE,
+        payload: { error: "Something went worng" },
+      });
+    });
 };
 
-
-export const signUpAction = userData => dispatch => {
- 
+export const signUpAction = (userData) => (dispatch) => {
   axiosIntance
     .post("/signup", userData)
-    .then(res => {
+    .then((res) => {
       const { token, user } = res.data;
-       localStorage.setItem("token", token);
-       localStorage.setItem("user", JSON.stringify(user));
-       dispatch({
-         type: authConstants.LOGIN_SUCCESS,
-         payload: {
-           token,
-           user
-        }
-       });
-    }).catch(error =>{    
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
       dispatch({
-         type: authConstants.LOGIN_FAILURE,
-         payload: {error:"User already registered"}
-        });
-    }
-
-    );
+        type: authConstants.LOGIN_SUCCESS,
+        payload: {
+          token,
+          user,
+        },
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: authConstants.LOGIN_FAILURE,
+        payload: { error: "User already registered" },
+      });
+    });
 };
 
 export const isUserLoggedIn = () => {
@@ -90,37 +81,31 @@ export const isUserLoggedIn = () => {
         type: authConstants.LOGIN_SUCCESS,
         payload: {
           token,
-          user
-        }
+          user,
+        },
       });
     } else {
       dispatch({
         type: authConstants.LOGIN_FAILURE,
-        payload: { error: "Failed to login" }
+        payload: { error: "Failed to login" },
       });
     }
   };
 };
 
-
 export const signoutAction = () => {
   return async (dispatch) => {
     dispatch({ type: authConstants.LOGOUT_REQUEST });
-    // localStorage.removeItem('user');
-    // localStorage.removeItem('token');
-    // localStorage.clear();
-    // dispatch({ type: authConstants.LOGOUT_SUCCESS });
-    // dispatch({ type: cartConstants.RESET_CART });
     const res = await axiosIntance.post(`/signout`);
-    if(res.status === 200){
+    if (res.status === 200) {
       localStorage.clear();
       dispatch({ type: authConstants.LOGOUT_SUCCESS });
       dispatch({ type: cartConstants.RESET_CART });
-    }else{
-        dispatch({
-            type: authConstants.LOGOUT_FAILURE,
-            payload: { error: res.data.error }
-        });
+    } else {
+      dispatch({
+        type: authConstants.LOGOUT_FAILURE,
+        payload: { error: res.data.error },
+      });
     }
   };
 };

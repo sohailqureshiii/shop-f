@@ -1,26 +1,25 @@
 import { categoryContants } from "../actions/constants";
 
 const initState = {
-    categories: [],
-    loading: false,
-    error: null
+  categories: [],
+  loading: false,
+  error: null,
 };
 
+const category = (state = initState, action) => {
+  switch (action.type) {
+    case categoryContants.GET_ALL_CATEGORIES_SUCCESS:
+      state = {
+        ...state,
+        categories: action.payload.categories,
+      };
 
+      break;
+    default:
+      return state;
+  }
 
-const category =  (state = initState, action) => {
-    switch (action.type) {
-        case categoryContants.GET_ALL_CATEGORIES_SUCCESS:
-            state = {
-                ...state,
-                categories: action.payload.categories
-            }
+  return state;
+};
 
-            break;
-
-    }
-
-    return state;
-}
-
-export default category
+export default category;

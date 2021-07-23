@@ -129,6 +129,7 @@ exports.userStoreData = async (req, res) => {
       })
         .populate("items.productId", "productName")
         .populate({ path: "user", select: "name" })
+        .sort("-createdAt")
         .exec();
 
       return res.status(200).json({

@@ -8,13 +8,10 @@ import {
   getCartItems,
   removeCartItem,
 } from "../../actions/user.action";
-// import { getCartItems } from "../../actions/cart.action";
-import { Anchor, Button, MaterialInput } from "../../components/MaterialUI";
+import {Button } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
 import Card from "../../components/UI/Card/index";
-import CartPage from "../CartPage/index";
 import AddressForm from "./AddressForm";
-
 import "./style.css";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
@@ -26,13 +23,7 @@ import CartItem from "../CartPage/CartItem";
  * @function CheckoutPage
  **/
 
-//  const onDeleteAddress = (deladd) =>{
-// //    const  dispatch = useDispatch()
-// //    const addId = deladd
-// //  dispatch(deleteAddressAction(addId))
-// setaddid(deladd)
 
-// }
 
 const CheckoutStep = (props) => {
   return (
@@ -57,9 +48,7 @@ const Address = ({
   enableAddressEditForm,
   confirmDeliveryAddress,
   onAddressSubmit,
-  enableDeleteAddressFrom,
   onDeleteAddress,
-  onCancelSubmit1,
   onCancelSubmit,
   onClose,
 }) => {
@@ -107,7 +96,6 @@ const Address = ({
             withoutLayout={true}
             onSubmitForm={onAddressSubmit}
             initialData={adr}
-            // onCancel={() => {}}
             onDeleteAddress={onDeleteAddress}
             onCancel={onCancelSubmit}
             onClose={onClose}
@@ -186,7 +174,7 @@ const CartCheckoutPage = (props) => {
   };
   const onCancelSubmit = (yes) => {
     setNewAddress(false);
-    // console.log("dfsvfrg");
+  
   };
 
   const onCancelSubmit1 = (yes) => {
@@ -232,20 +220,6 @@ const CartCheckoutPage = (props) => {
     setPaymentOption(true);
   };
 
-  // if (auth.authenticate && auth.user.store === "Yes") {
-  //   // const same = Object.keys(cart.cartItems).filter((product,index)=>{
-  //   //   return product.storeId === auth.user.storeId
-  //   // })
-  //   // console.log("same",same);
-  //   const storeIDDD = auth.user.storeId;
-  //   console.log(storeIDDD);
-  //   const same = Object.keys(cart.cartItems).filter(
-  //     (key) => storeIDDD === cart.cartItems[key].storeId
-  //   );
-
-  //   same && same.length > 0 ? console.log("Done") : console.log("Done Not");
-  //   console.log(same, "sdasas");
-  // }
 
   const onConfirmOrder = () => {
     if (auth.authenticate && auth.user.store === "Yes") {
@@ -291,7 +265,7 @@ const CartCheckoutPage = (props) => {
 
     dispatch(addOrder(payload));
     setConfirmOrder(true);
-    // console.log(payload);
+
   };
 
   useEffect(() => {
@@ -311,7 +285,7 @@ const CartCheckoutPage = (props) => {
 
   useEffect(() => {
     if (confirmOrder && user.placedOrderId) {
-      props.history.push(`/order_details/${user.placedOrderId}`);
+      props.history.push(`/Orderpage`);
     }
   }, [user.placedOrderId]);
 
@@ -446,7 +420,7 @@ const CartCheckoutPage = (props) => {
                         onDeleteAddress={onDeleteAddress}
                         adr={adr}
                         onClose={onClose}
-                        onCancel1={onCancelSubmit1}
+                        // onCancel1={onCancelSubmit1}
                         onCancel={onCancelSubmit}
                       />
                     ))
@@ -473,7 +447,7 @@ const CartCheckoutPage = (props) => {
             <AddressForm
               onSubmitForm={onAddressSubmit}
               onCancel={onCancelSubmit}
-              onCancel1={onCancelSubmit1}
+              // onCancel1={onCancelSubmit1}
             />
           ) : auth.authenticate ? (
             <CheckoutStep

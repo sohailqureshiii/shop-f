@@ -5,7 +5,6 @@ import { BiRupee } from "react-icons/bi";
 import { IoIosArrowForward } from "react-icons/io";
 import "./style.css";
 import { Breed } from "../../components/MaterialUI";
-import { generatePublicUrl } from "../../urlConfig";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
 import { getOrders } from "../../actions/user.action";
@@ -48,7 +47,7 @@ const OrderPage = (props) => {
                 <div className="orderImgContainer">
                   <img
                     className="orderImg"
-                    src={generatePublicUrl(item.productId.productPictures[0].img)}
+                    src={"https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg"}
                   />
                 </div>
                 <div className="orderRow">

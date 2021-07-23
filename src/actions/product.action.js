@@ -23,18 +23,10 @@ export const createProductAction = (form) => (dispatch) => {
     });
 };
 
-
-
 export const editProductAction = (form) => (dispatch) => {
   axiosIntance
-    .post("/edit/product", {...form})
+    .post("/edit/product", { ...form })
     .then((res) => {
-      const { updatedProductInfo } = res.data;
-      console.log(updatedProductInfo);
-      // dispatch({
-      //   type: productContants.ADD_NEW_PRODUCT_SUCCESS,
-      //   payload: { product },
-      // });
       dispatch(userStoreDataAction());
     })
     .catch((error) => {
