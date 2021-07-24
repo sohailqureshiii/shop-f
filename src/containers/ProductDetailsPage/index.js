@@ -6,7 +6,6 @@ import { BiRupee } from "react-icons/bi";
 import { Button } from "../../components/MaterialUI";
 
 import "./style.css";
-import { generatePublicUrl } from "../../urlConfig";
 import { WhatsappShareButton } from "react-share";
 import { WhatsappIcon } from "react-share";
 import NavBar from "../../components/Navbar";

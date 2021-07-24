@@ -74,7 +74,6 @@ const auth = (state = initState, action) => {
       state = {
         ...state,
         user: action.payload.user,
-        // userStore: action.payload.stores,
         authenticate: true,
         authenticating: false,
         errorTF: false,

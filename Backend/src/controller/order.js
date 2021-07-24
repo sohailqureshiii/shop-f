@@ -77,6 +77,7 @@ exports.getOrders = async (req, res) => {
   await Order.find({ user: req.user._id })
     .select("_id paymentStatus paymentType orderStatus items totalAmount")
     .populate("items.productId", "_id productName productPictures")
+    .sort("-createdAt")
     .exec((error, orders) => {
       if (error) return res.status(400).json({ error });
       if (orders) {

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./style.css";
-import { Modal, DropdownMenu } from "../../components/MaterialUI";
+import { DropdownMenu } from "../../components/MaterialUI";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import Carticon from "../../img/cart.png";
 import Storeicon from "../../img/shop.png";
 import Homeicon from "../../img/home.png";
 import Wishlisticon from "../../img/heart.png";
 import { useDispatch, useSelector } from "react-redux";
-import Signin from "../../containers/Signin";
-import Signup from "../../containers/SignUp";
 import { signoutAction } from "../../actions/auth.action";
 
 /**
@@ -21,17 +19,14 @@ const Navigationbar = (props) => {
   const [isMobile, setIsMobile] = useState(false);
   const auth = useSelector((state) => state.auth);
   const store = useSelector((state) => state.userStore.userStore);
-  const cartCount = useSelector((state)=>state.user.cartItems)
   const history = useHistory();
   const cart = useSelector((state) => state.user);
   const [cartItems, setCartItems] = useState(cart.cartItems);
 
-
-
   useEffect(() => {
     setCartItems(cart.cartItems);
   }, [cart.cartItems]);
-    
+
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -44,7 +39,7 @@ const Navigationbar = (props) => {
         <DropdownMenu
           menu={
             <Link to="/myprofile">
-              <div style={{ marginLeft: 10,display:'flex'}}>
+              <div style={{ marginLeft: 10, display: "flex" }}>
                 <img
                   src={Profilepiclogo}
                   style={{
@@ -55,7 +50,14 @@ const Navigationbar = (props) => {
                   }}
                   alt="Shopisthan Logo"
                 />
-                <h1 style={{ fontSize: 15,textAlign:'center',marginTop:'3px',marginLeft:'4px'}}>
+                <h1
+                  style={{
+                    fontSize: 15,
+                    textAlign: "center",
+                    marginTop: "3px",
+                    marginLeft: "4px",
+                  }}
+                >
                   {" "}
                   {auth.user ? auth.user.name : "Hello User"}
                 </h1>
@@ -69,7 +71,6 @@ const Navigationbar = (props) => {
               to: "/Orderpage",
               icon: null,
             },
-            // { label: "Create Store", to: "/storeForm", icon: null,  },
             { label: "Logout", to: "", icon: null, onClick: logout },
             { label: "Store Dashboard", to: "/storeDashboard", icon: null },
           ]}
@@ -111,44 +112,6 @@ const Navigationbar = (props) => {
         />
       );
     }
-
-    // return (
-    //   <DropdownMenu
-    //     menu={
-    //       <Link to="/myprofile">
-    //       <div
-    //         style={{ marginLeft: 10 }}
-    //       >
-    //           <img
-    //             src={Profilepiclogo}
-    //             style={{
-    //               height: 22,
-    //               width: 22,
-    //               marginBottom: "3px",
-    //               marginRight: "4px",
-    //             }}
-    //             alt="Shopisthan Logo"
-
-    //           />
-    //           <span style={{ fontSize: 15 }}> {auth.user ? auth.user.name :"Hello User"}</span>
-    //       </div>
-    //       </Link>
-    //     }
-
-    //    menus={[
-    //       { label: "Edit Profile", to: "/editprofile", icon: null },
-    //       {
-    //         label: "Orders",
-    //         to: "/Orderpage",
-    //         icon: null,
-    //       },
-    //       { label: "Create Store", to: "/storeForm", icon: null,  },
-    //       { label: "Logout", to: "", icon: null,onClick: logout  },
-    //       { label: "Store Dashboard", to: "/storeDashboard", icon: null,  },
-    //     ]}
-
-    //   />
-    // );
   };
   const renderNonLoggedInMenu = () => {
     return (
@@ -250,32 +213,28 @@ const Navigationbar = (props) => {
             <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
               <h3 className="PrimaryNav-coreNavigationLabel-3rj">
                 <div class="link-background">
+                  {cartItems && Object.keys(cartItems).length >= 1 ? (
+                    <span
+                      style={{
+                        position: "absolute",
+                        background: "black",
+                        width: "17px",
+                        height: "22px",
+                        borderRadius: "50%",
+                        fontSize: "14px",
+                        border: "1px solid #fff",
+                        textAlign: "center",
+                        alignSelf: "center",
+                        top: "-14px",
+                        right: "-16px",
+                        color: "white",
+                      }}
+                    >
+                      {Object.keys(cartItems).length}
+                      {/* { count} */}
+                    </span>
+                  ) : null}
 
-                {
-                  cartItems && Object.keys(cartItems).length >= 1 ? 
-                      <span
-                    style={{
-                      position: "absolute",
-                      background: "black",
-                      width: "17px",
-                      height: "22px",
-                      borderRadius: "50%",
-                      fontSize: "14px",
-                      border: "1px solid #fff",
-                      textAlign: "center",
-                      alignSelf: "center",
-                      top: "-14px",
-                      right: "-16px",
-                      color: "white",
-                    }}
-                  >
-                  { Object.keys(cartItems).length}
-                 {/* { count} */}
-                  </span>
-                      
-                       :null
-                }
-                 
                   <img src={Carticon} className="homepagenavbar-icon" />
                   <a href="" class="middle">
                     Cart

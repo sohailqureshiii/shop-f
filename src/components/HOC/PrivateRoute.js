@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Redirect, Route, useParams } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   const store = useSelector((state) => state.userStore.userStore);
@@ -9,12 +9,10 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       component={(props) => {
-        if (store.hasOwnProperty("_id") && Object.keys(store).length !== 0) 
-        // if(auth.user && auth.user.store && auth.user.store === "Yes")
-        {
-          return <Component {...props} />
+        if (store.hasOwnProperty("_id") && Object.keys(store).length !== 0) {
+          return <Component {...props} />;
         } else {
-          return <Redirect to={`/Signin`} />
+          return <Redirect to={`/Signin`} />;
         }
       }}
     />
@@ -41,16 +39,15 @@ export const SharePrivateRoute = ({ component: Component, ...rest }) => {
                 }}
               />
             );
-          }else{
-            return(
+          } else {
+            return (
               <Redirect
                 to={{
                   pathname: `/Signin`,
-                  state: { storeForm : true },
+                  state: { storeForm: true },
                 }}
-                />
-            )
-           
+              />
+            );
           }
         }
       }}

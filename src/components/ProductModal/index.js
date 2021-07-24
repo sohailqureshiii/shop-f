@@ -201,15 +201,7 @@ const ProductModal = (props) => {
                         color: "#212121",
                       }}
                     >
-                      64MP+8MP+2MP triple rear camera with 1080p video at 30/60
-                      fps, 4k 30 fps | 16MP front camera with 1080p video at
-                      30/60 fps. 6.43-inch, 90Hz fluid AMOLED display with 2400
-                      x 1080 pixels resolution | 410ppi Memory, Storage & SIM:
-                      8GB RAM | 128GB internal memory on UFS 2.1 storage system.
-                      Dual SIM (nano + nano) Alexa Hands-Free capable: Download
-                      the Alexa app to use Alexa hands-free. Play music, make
-                      calls, hear news, open apps, navigate and more, all using
-                      just your voice, while on-the-go.
+                      {productDetails.productDescription}
                     </p>
                   </p>
                   <div className="share-btn-container">

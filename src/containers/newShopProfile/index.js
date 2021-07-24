@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import Product from "../../components/Product";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import "./style.css";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import Signin from "../Signin";
 import {
   followStoreAction,
   unfollowStoreAction,
 } from "../../actions/user.action";
-import Signup from "../SignUp";
 import StoreProduct from "../../components/StoreProduct";
 import { Button } from "../../components/MaterialUI";
 
@@ -22,8 +19,6 @@ const StoreProfile = (props) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
 
   const followStore = (storeId) => {
     const store = {
@@ -42,85 +37,63 @@ const StoreProfile = (props) => {
   const renderButton = (storeId) => {
     if (!auth.authenticate) {
       return (
-
-        // <div
-        //   className="Btn-label-1Zf e2e-Btn-label"
-        //   onClick={() =>
-        //     history.push({
-        //       pathname: "/Signin",
-        //       state: { storeId: storeId, Follow: true },
-        //     })
-        //   }
-        // >
-        //   Follow Store
-        // </div>
         <Button
-        title=" Follow Store"
-        backgroundColor
-        radius="5px"
-        border
-        border-radius="3px"
-        color="#000"
-        padding="5px 10px"
-        width="100%"
-        height="50px"
-        onClick={() => {
-            // setShowLoginModal(true);
-           
+          title=" Follow Store"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="5px 10px"
+          width="100%"
+          height="50px"
+          onClick={() => {
+            history.push({
+              pathname: "/Signin",
+              state: { storeId: storeId, Follow: true },
+            });
           }}
-          font='18px'
-      ></Button>
+          font="18px"
+        ></Button>
       );
     }
     if (auth.authenticate && !user.following.includes(storeId)) {
       return (
-        // <div
-        //   className="Btn-label-1Zf e2e-Btn-label"
-        //   onClick={() => {
-        //     followStore(storeId);
-        //   }}
-        // >
-        //   Follow Store
-        // </div>
         <Button
-        title=" Follow Store"
-        backgroundColor
-        radius="5px"
-        border
-        border-radius="3px"
-        color="#000"
-        padding="5px 10px"
-        width="100%"
-        height="50px"
-        onClick={() => {
-          followStore(storeId);
+          title=" Follow Store"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="5px 10px"
+          width="100%"
+          height="50px"
+          onClick={() => {
+            followStore(storeId);
           }}
-          font='18px'
-      ></Button>
+          font="18px"
+        ></Button>
       );
     }
 
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
-        // <div
-        //   className="Btn-label-1Zf e2e-Btn-label"
-        //   onClick={() => {
-        //     UnFollowStore(storeId);
         <Button
-        title="Following"
-        backgroundColor
-        radius="5px"
-        border
-        border-radius="3px"
-        color="#000"
-        padding="5px 10px"
-        width="100%"
-        height="50px"
-        onClick={() => {
-          UnFollowStore(storeId);
+          title="Following"
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="5px 10px"
+          width="100%"
+          height="50px"
+          onClick={() => {
+            UnFollowStore(storeId);
           }}
-        font='18px'
-      ></Button>
+          font="18px"
+        ></Button>
       );
     }
   };
@@ -133,8 +106,9 @@ const StoreProfile = (props) => {
             .filter((product) => {
               if (product.storeId._id === storeId) return product;
               else if (product.storeId._id !== storeId) return null;
+              else return null;
             })
-            .map((product, index) => (
+            .map((product) => (
               <StoreProduct product={product} />
             ))}
         </div>
@@ -149,6 +123,8 @@ const StoreProfile = (props) => {
         .filter((store) => {
           if (store._id === storeId) {
             return store;
+          } else {
+            return null;
           }
         })
         .map((store, index) => (
@@ -161,21 +137,21 @@ const StoreProfile = (props) => {
               <div data-ssr-fetched="true" className="esdfrgh">
                 <main className="Profile-root-3Ir Profile-bannerEmpty-3ep e2e-Profile-page-container">
                   <div className="ProfileBanner-root-UPy ProfileBanner-hasBanner-1fU Profile-banner-2HT">
-                  {
-                    store.storeBackgroundPicture && store.storeBackgroundPicture.img ?
-                    <img
-                      src={store.storeBackgroundPicture.img}
-                      alt="$translate('profile_banner_image_alt', 'User's profile banner')"
-                      className="ProfileBanner-bannerImage-1_4 ProfileBanner-bannerImageLoaded-2N5"
-                    />
-                    :
-                    <img
-                      src="https://mir-s3-cdn-cf.behance.net/4ed4b944616f6f1b93f621ee1e0c69e8/dbcbb282-b7cb-423f-95b8-a92208da4972_rwc_0x14x3200x349x3200.png?h=8299a70b560a9d72b29b129326e049cc"
-                      alt="$translate('profile_banner_image_alt', 'User's profile banner')"
-                      className="ProfileBanner-bannerImage-1_4 ProfileBanner-bannerImageLoaded-2N5"
-                    />
-                  }
-                  
+                    {store.storeBackgroundPicture &&
+                    store.storeBackgroundPicture.img ? (
+                      <img
+                        src={store.storeBackgroundPicture.img}
+                        alt="$translate('profile_banner_image_alt', 'User's profile banner')"
+                        className="ProfileBanner-bannerImage-1_4 ProfileBanner-bannerImageLoaded-2N5"
+                      />
+                    ) : (
+                      <img
+                        src="https://mir-s3-cdn-cf.behance.net/4ed4b944616f6f1b93f621ee1e0c69e8/dbcbb282-b7cb-423f-95b8-a92208da4972_rwc_0x14x3200x349x3200.png?h=8299a70b560a9d72b29b129326e049cc"
+                        alt="$translate('profile_banner_image_alt', 'User's profile banner')"
+                        className="ProfileBanner-bannerImage-1_4 ProfileBanner-bannerImageLoaded-2N5"
+                      />
+                    )}
+
                     <div className="ProfileBanner-uploadArea-2g2">
                       <div
                         className="ProfileBanner-uploader-ojO"
@@ -237,23 +213,22 @@ const StoreProfile = (props) => {
                                     className="Avatar-avatar-1-h"
                                     style={{ height: "110px", width: "110px" }}
                                   >
-                                  {
-                                    store.storeProfilePicture && store.storeProfilePicture.img ?
-                                    <img
-                                      src= {store.storeProfilePicture.img}
-                                      alt="User's avatar"
-                                      sizes="115px"
-                                      className="AvatarImage-avatarImage-3uu Avatar-root--Wh"
-                                    ></img>
-                                    :
-                                    <img
-                                      src="https://mir-s3-cdn-cf.behance.net/user/115/37f6c150416365.605f800371d72.png"
-                                      alt="User's avatar"
-                                      sizes="115px"
-                                      className="AvatarImage-avatarImage-3uu Avatar-root--Wh"
-                                    ></img>
-                                  }
-                                   
+                                    {store.storeProfilePicture &&
+                                    store.storeProfilePicture.img ? (
+                                      <img
+                                        src={store.storeProfilePicture.img}
+                                        alt="User's avatar"
+                                        sizes="115px"
+                                        className="AvatarImage-avatarImage-3uu Avatar-root--Wh"
+                                      ></img>
+                                    ) : (
+                                      <img
+                                        src="https://mir-s3-cdn-cf.behance.net/user/115/37f6c150416365.605f800371d72.png"
+                                        alt="User's avatar"
+                                        sizes="115px"
+                                        className="AvatarImage-avatarImage-3uu Avatar-root--Wh"
+                                      ></img>
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -289,7 +264,7 @@ const StoreProfile = (props) => {
                         <div className="ProfileCard-userInteractions-1W1 ProfileCard-buttons-ZNH ProfileCard-userFollowActions-3eh ProfileCard-mediumLargeBtn-fW8 ProfileCard-noDesktopNotification-2ya">
                           {/* !----- */}
                           <div className="FollowButton-root-VgV ProfileCard-interactionButton-1gk ProfileCard-followButton-1N4 ProfileCard-follow-39e">
-                           {renderButton(store._id)}
+                            {renderButton(store._id)}
                           </div>
                         </div>
                         {/* !------ */}
@@ -390,37 +365,3 @@ const StoreProfile = (props) => {
 };
 
 export default StoreProfile;
-
-
-//  {/* <button
-//                               type="button"
-//                               className="Btn-button-BGn Btn-primary-1H3 Btn-mediumLarge-1uo ProfileCard-buttonWrapper-2kh"
-//                             >
-//                               <div className="Btn-labelWrapper-1jS ProfileCard-buttonLabel-2_O">
-//                                 <div className="Btn-icon-flr Btn-leading-29d">
-//                                   <svg
-//                                     viewBox="0 0 18 18"
-//                                     xmlns="http://www.w3.org/2000/svg"
-//                                     className="FollowButton-followMark-6kv"
-//                                   >
-//                                     <path d="M9,1a8,8,0,1,0,8,8A8,8,0,0,0,9,1Zm5,8.5a.5.5,0,0,1-.5.5H10v3.5a.5.5,0,0,1-.5.5h-1a.5.5,0,0,1-.5-.5V10H4.5A.5.5,0,0,1,4,9.5v-1A.5.5,0,0,1,4.5,8H8V4.5A.5.5,0,0,1,8.5,4h1a.5.5,0,0,1,.5.5V8h3.5a.5.5,0,0,1,.5.5Z"></path>
-//                                   </svg>
-//                                 </div>
-//                                 {renderButton(store._id)}
-
-//                                 {/* <div className="Btn-label-1Zf e2e-Btn-label"
-//                               //  onClick = 
-//                               //       {
-//                               //         ()=> follow(store._id)
-//                               //       }
-                               
-//                               >
-//                                 Follow
-//                               </div> */}
-//                                 {/* !--- */}
-//                                 </div>
-//                                 </button>
-    
-                                    
-//                                   </div>
-//                                 </button> */}
