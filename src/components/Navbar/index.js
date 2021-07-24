@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import "./style.css";
 import { DropdownMenu } from "../../components/MaterialUI";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
@@ -19,6 +19,7 @@ const Navigationbar = (props) => {
   const [isMobile, setIsMobile] = useState(false);
   const auth = useSelector((state) => state.auth);
   const store = useSelector((state) => state.userStore.userStore);
+  const cartCount = useSelector((state) => state.user.cartItems);
   const history = useHistory();
   const cart = useSelector((state) => state.user);
   const [cartItems, setCartItems] = useState(cart.cartItems);
@@ -38,7 +39,20 @@ const Navigationbar = (props) => {
       return (
         <DropdownMenu
           menu={
-            <Link to="/myprofile">
+            <Link>
+              <div style={{ marginLeft: 10, display: "flex" }}>
+                <h1
+                  style={{
+                    fontSize: 15,
+                    textAlign: "center",
+                    marginTop: "3px",
+                    marginLeft: "4px",
+                  }}
+                >
+                  {" "}
+                  {auth.user ? auth.user.name : "Hello User"}
+                </h1>
+<Link to="/myprofile">
               <div style={{ marginLeft: 10, display: "flex" }}>
                 <img
                   src={Profilepiclogo}
@@ -46,7 +60,7 @@ const Navigationbar = (props) => {
                     height: 22,
                     width: 22,
                     marginBottom: "3px",
-                    marginRight: "4px",
+                    marginLeft: "4px",
                   }}
                   alt="Shopisthan Logo"
                 />
@@ -80,7 +94,7 @@ const Navigationbar = (props) => {
       return (
         <DropdownMenu
           menu={
-            <Link to="/myprofile">
+            <Link>
               <div style={{ marginLeft: 10 }}>
                 <img
                   src={Profilepiclogo}
@@ -117,63 +131,83 @@ const Navigationbar = (props) => {
     return (
       <DropdownMenu
         menu={
-          <li className="PrimaryNav-loggedOutOption-3xV">
-            {/* <Link
+          <>
+            <div style={{ display: "flex" }}>
+              <li className="PrimaryNav-loggedOutOption-3xV">
+                {/* <Link
             > */}
-            <div className="PrimaryNav-a11yButtonWrap-23Z">
-              {/* <Link to='/Signin'>  */}
-              <button
-                className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-                onClick={() =>
-                  history.push({
-                    pathname: "/Signin",
-                  })
-                }
-              >
-                <div className="Btn-labelWrapper-1jS">
-                  <div className="Btn-label-1Zf e2e-Btn-label"> Log In</div>
+                <div className="PrimaryNav-a11yButtonWrap-23Z">
+                  {/* <Link to='/Signin'>  */}
+                  <button
+                    className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+                    onClick={() =>
+                      history.push({
+                        pathname: "/Signup",
+                      })
+                    }
+                  >
+                    <div className="Btn-labelWrapper-1jS">
+                      <div className="Btn-label-1Zf e2e-Btn-label">Sign up</div>
+                    </div>
+                  </button>
+                  {/* </Link> */}
+                  <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
                 </div>
-              </button>
-              {/* </Link> */}
-              <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
+                {/* </Link> */}
+              </li>
+
+              <li className="PrimaryNav-loggedOutOption-3xV">
+                {/* <Link
+            > */}
+                <div className="PrimaryNav-a11yButtonWrap-23Z">
+                  {/* <Link to='/Signin'>  */}
+                  <button
+                    className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
+                    onClick={() =>
+                      history.push({
+                        pathname: "/Signin",
+                      })
+                    }
+                  >
+                    <div className="Btn-labelWrapper-1jS">
+                      <div className="Btn-label-1Zf e2e-Btn-label"> Log In</div>
+                    </div>
+                  </button>
+                  {/* </Link> */}
+                  <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
+                </div>
+                {/* </Link> */}
+              </li>
             </div>
-            {/* </Link> */}
-          </li>
-        }
-        menus={[{ label: "Shopisthan About us", href: "", icon: null }]}
-        firstMenu={
-          <div className="firstmenu">
-            <span>New Customer?</span>
-            <button
-              style={{ color: "#2874f0" }}
-              onClick={() =>
-                history.push({
-                  pathname: "/Signup",
-                })
-              }
-            >
-              Sign Up
-            </button>
-          </div>
+          </>
         }
       />
     );
   };
 
+  const items = document.querySelectorAll("ul li");
+  items.forEach( (item) => {
+    item.addEventListener('click', () => {
+      document.querySelector('li.active').classList.remove("active")
+      ;
+      item.classList.add("active");
+    })
+  })
+
   return (
     <>
       <nav className="navbar">
         <h3 className="logo">
-          <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-home-2zH">
-            <a href="/" className="PrimaryNav-coreNavigationLink-2uv">
+          <Link className="PrimaryNav-coreNavigationItem-236 PrimaryNav-home-2zH">
+            <Link to="/" className="PrimaryNav-coreNavigationLink-2uv">
               <div className="PrimaryNav-logoWrap-564">
                 <span>Shopisthan</span>
               </div>
-            </a>
-          </li>
+            </Link>
+          </Link>
         </h3>
         <ul className={isMobile ? "nav-links-mobile" : "nav-links"}>
-          <Link className="cart" to="/">
+          <Link className="cart " to="/">
             <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
               <h3 className="PrimaryNav-coreNavigationLabel-3rj">
                 <div class="link-background">
@@ -260,8 +294,23 @@ const Navigationbar = (props) => {
           )}
         </button>
       </nav>
+      {/* <ul className='ul-new-li-jxsx'>
+        <li className='active'>Home</li>
+        <li>Store</li>
+        <li>Favorite</li>
+        <li>Cart</li>
+      </ul> */}
     </>
   );
 };
 
 export default Navigationbar;
+
+{
+  /* <li>
+                  <NavLink exact activeClassName="active" to="/storeDashboard">
+                  <img src={Homeicon} className="dashicon-icon" />
+                    <span class="las la-igloo"></span> <span>Dashboard</span>
+                  </NavLink>
+                </li> */
+}

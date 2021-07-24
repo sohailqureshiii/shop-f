@@ -133,6 +133,10 @@ header label span {
   border: none;
   outline: none;
 }
+
+.search-wrapper input :active{
+  border: none;
+}
 .user-wrapper {
   display: flex;
   align-items: center;
@@ -246,4 +250,12 @@ main {
 .dashicon-icon {
   height: 14px;
   margin-right: 7px;
+}
+
+
+.nav-links a.active {
+  background: #fff;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #fff;
 }

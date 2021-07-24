@@ -37,7 +37,7 @@ const Button = (props) => {
     <button
       onClick={onClick}
       style={{
-        backgroundColor: "white",
+        backgroundColor,
         border: "1px solid #d9d9d9",
         borderRadius: radius,
         height,
