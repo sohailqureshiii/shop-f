@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import "./style.css";
-import { Modal, DropdownMenu } from "../../components/MaterialUI";
+import { DropdownMenu } from "../../components/MaterialUI";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import Carticon from "../../img/cart.png";
 import Storeicon from "../../img/shop.png";
 import Homeicon from "../../img/home.png";
 import Wishlisticon from "../../img/heart.png";
 import { useDispatch, useSelector } from "react-redux";
-import Signin from "../../containers/Signin";
-import Signup from "../../containers/SignUp";
 import { signoutAction } from "../../actions/auth.action";
 
 /**
@@ -54,6 +52,8 @@ const Navigationbar = (props) => {
                   {" "}
                   {auth.user ? auth.user.name : "Hello User"}
                 </h1>
+<Link to="/myprofile">
+              <div style={{ marginLeft: 10, display: "flex" }}>
                 <img
                   src={Profilepiclogo}
                   style={{
@@ -64,6 +64,17 @@ const Navigationbar = (props) => {
                   }}
                   alt="Shopisthan Logo"
                 />
+                <h1
+                  style={{
+                    fontSize: 15,
+                    textAlign: "center",
+                    marginTop: "3px",
+                    marginLeft: "4px",
+                  }}
+                >
+                  {" "}
+                  {auth.user ? auth.user.name : "Hello User"}
+                </h1>
               </div>
             </Link>
           }
@@ -74,7 +85,6 @@ const Navigationbar = (props) => {
               to: "/Orderpage",
               icon: null,
             },
-            // { label: "Create Store", to: "/storeForm", icon: null,  },
             { label: "Logout", to: "", icon: null, onClick: logout },
             { label: "Store Dashboard", to: "/storeDashboard", icon: null },
           ]}
@@ -255,6 +265,7 @@ const Navigationbar = (props) => {
                       }}
                     >
                       {Object.keys(cartItems).length}
+                      {/* { count} */}
                     </span>
                   ) : null}
 

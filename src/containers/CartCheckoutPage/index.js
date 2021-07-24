@@ -8,13 +8,10 @@ import {
   getCartItems,
   removeCartItem,
 } from "../../actions/user.action";
-// import { getCartItems } from "../../actions/cart.action";
-import { Anchor, Button, MaterialInput } from "../../components/MaterialUI";
+import {Button } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
 import Card from "../../components/UI/Card/index";
-import CartPage from "../CartPage/index";
 import AddressForm from "./AddressForm";
-
 import "./style.css";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
@@ -26,13 +23,7 @@ import CartItem from "../CartPage/CartItem";
  * @function CheckoutPage
  **/
 
-//  const onDeleteAddress = (deladd) =>{
-// //    const  dispatch = useDispatch()
-// //    const addId = deladd
-// //  dispatch(deleteAddressAction(addId))
-// setaddid(deladd)
 
-// }
 
 const CheckoutStep = (props) => {
   return (
@@ -57,9 +48,7 @@ const Address = ({
   enableAddressEditForm,
   confirmDeliveryAddress,
   onAddressSubmit,
-  enableDeleteAddressFrom,
   onDeleteAddress,
-  onCancelSubmit1,
   onCancelSubmit,
   onClose,
 }) => {
@@ -107,7 +96,6 @@ const Address = ({
             withoutLayout={true}
             onSubmitForm={onAddressSubmit}
             initialData={adr}
-            // onCancel={() => {}}
             onDeleteAddress={onDeleteAddress}
             onCancel={onCancelSubmit}
             onClose={onClose}
@@ -186,7 +174,7 @@ const CartCheckoutPage = (props) => {
   };
   const onCancelSubmit = (yes) => {
     setNewAddress(false);
-    // console.log("dfsvfrg");
+  
   };
 
   const onCancelSubmit1 = (yes) => {
@@ -232,7 +220,21 @@ const CartCheckoutPage = (props) => {
     setPaymentOption(true);
   };
 
+
   const onConfirmOrder = () => {
+    if (auth.authenticate && auth.user.store === "Yes") {
+      const storeIDDD = auth.user.storeId;
+      const same = Object.keys(cart.cartItems).filter(
+        (key) => storeIDDD === cart.cartItems[key].storeId
+      );
+      if(same && same.length>0){
+        return(
+          alert("You cant buy your own product")
+         )
+      }
+    
+    }
+
     const totalAmount = Object.keys(cart.cartItems).reduce(
       (totalPrice, key) => {
         const { productPrice, qty } = cart.cartItems[key];
@@ -241,9 +243,14 @@ const CartCheckoutPage = (props) => {
       0
     );
 
+    const storeID = Object.keys(cart.cartItems).map((key) => ({
+      storeId: cart.cartItems[key].storeId,
+    }));
+    
+    const unqiue = storeID.filter((elem,index)=>storeID.findIndex(obj =>obj.storeId === elem.storeId) === index);
     const items = Object.keys(cart.cartItems).map((key) => ({
       productId: key,
-      payablePrice: cart.cartItems[key].price,
+      payablePrice: cart.cartItems[key].productPrice,
       purchasedQty: cart.cartItems[key].qty,
       storeId: cart.cartItems[key].storeId,
     }));
@@ -253,10 +260,12 @@ const CartCheckoutPage = (props) => {
       items,
       paymentStatus: "pending",
       paymentType: "cod",
+      storeID:unqiue
     };
 
     dispatch(addOrder(payload));
     setConfirmOrder(true);
+
   };
 
   useEffect(() => {
@@ -276,7 +285,7 @@ const CartCheckoutPage = (props) => {
 
   useEffect(() => {
     if (confirmOrder && user.placedOrderId) {
-      props.history.push(`/order_details/${user.placedOrderId}`);
+      props.history.push(`/Orderpage`);
     }
   }, [user.placedOrderId]);
 
@@ -397,31 +406,38 @@ const CartCheckoutPage = (props) => {
             active={!confirmAddress && auth.authenticate}
             body={
               <>
-              <div className='iaovbwvj'>
-                {confirmAddress ? (
-                  <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
-                ) : (
-                  address.map((adr) => (
-                    <Address
-                      selectAddress={selectAddress}
-                      enableAddressEditForm={enableAddressEditForm}
-                      enableDeleteAddressFrom={enableDeleteAddressFrom}
-                      confirmDeliveryAddress={confirmDeliveryAddress}
-                      onAddressSubmit={onAddressSubmit}
-                      onDeleteAddress={onDeleteAddress}
-                      adr={adr}
-                      onClose={onClose}
-                      onCancel1={onCancelSubmit1}
-                      onCancel={onCancelSubmit}
-                    />
-                  ))
-                )}
-                {confirmAddress ? (
-                  <h2 
-                  style={{padding:'5px 10px', border:'1px solid #e0e0e0',borderRadius:'5px'}}
-                  onClick={changeAddress}>change</h2>
-                ) : null}
-              </div>
+                <div className="iaovbwvj">
+                  {confirmAddress ? (
+                    <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
+                  ) : (
+                    address.map((adr) => (
+                      <Address
+                        selectAddress={selectAddress}
+                        enableAddressEditForm={enableAddressEditForm}
+                        enableDeleteAddressFrom={enableDeleteAddressFrom}
+                        confirmDeliveryAddress={confirmDeliveryAddress}
+                        onAddressSubmit={onAddressSubmit}
+                        onDeleteAddress={onDeleteAddress}
+                        adr={adr}
+                        onClose={onClose}
+                        // onCancel1={onCancelSubmit1}
+                        onCancel={onCancelSubmit}
+                      />
+                    ))
+                  )}
+                  {confirmAddress ? (
+                    <h2
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #e0e0e0",
+                        borderRadius: "5px",
+                      }}
+                      onClick={changeAddress}
+                    >
+                      change
+                    </h2>
+                  ) : null}
+                </div>
               </>
             }
           />
@@ -431,7 +447,7 @@ const CartCheckoutPage = (props) => {
             <AddressForm
               onSubmitForm={onAddressSubmit}
               onCancel={onCancelSubmit}
-              onCancel1={onCancelSubmit1}
+              // onCancel1={onCancelSubmit1}
             />
           ) : auth.authenticate ? (
             <CheckoutStep

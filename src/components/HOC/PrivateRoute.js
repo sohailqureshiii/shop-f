@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Redirect, Route, useParams } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   const store = useSelector((state) => state.userStore.userStore);
@@ -39,16 +39,15 @@ export const SharePrivateRoute = ({ component: Component, ...rest }) => {
                 }}
               />
             );
-          }else{
-            return(
+          } else {
+            return (
               <Redirect
                 to={{
                   pathname: `/Signin`,
-                  state: { storeForm : true },
+                  state: { storeForm: true },
                 }}
-                />
-            )
-           
+              />
+            );
           }
         }
       }}

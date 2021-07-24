@@ -1,4 +1,8 @@
-import { cartConstants, followContants, userContants } from "../actions/constants";
+import {
+  cartConstants,
+  followContants,
+  userContants,
+} from "../actions/constants";
 
 const initState = {
   address: [],
@@ -11,30 +15,17 @@ const initState = {
   loading: false,
   orderFetching: false,
   placedOrderId: null,
-  cartItems: {
-    // 123: {
-    //     _id: 123,
-    //     name: 'Samsung mobile',
-    //     img: 'some.jpg',
-    //     price: 200,
-    //     qty: 1,
-    // }
-  },
+  cartItems: {},
   updatingCart: false,
-  _id:""
+  _id: "",
 };
 
+const newOne = (id, obj) => {
+  delete obj[id];
+  localStorage.setItem("cart", JSON.stringify(initState.cartItems));
+};
 
-const newOne = (id,obj) =>{
-delete obj[id]
-// localStorage.setItem('cart',initState.cartItems)
-localStorage.setItem("cart", JSON.stringify(initState.cartItems));
-
-}
-
-
-
-export default (state = initState, action) => {
+const user = (state = initState, action) => {
   switch (action.type) {
     case followContants.GET_ALL_FOLLOWING_SUCCESS:
       state = {
@@ -80,15 +71,9 @@ export default (state = initState, action) => {
         ...initState,
       };
       break;
-      case cartConstants.REMOVE_CART_ITEM_SUCCESS1:
-
-      const productId = action.payload.productId
-      const updateProduct = newOne(productId,state.cartItems)
-      console.log("updateProduct",updateProduct);
-      // state = {
-      //   ...state,
-    
-      // };
+    case cartConstants.REMOVE_CART_ITEM_SUCCESS1:
+      const productId = action.payload.productId;
+       newOne(productId, state.cartItems);
       break;
     case userContants.GET_USER_ADDRESS_REQUEST:
       state = {
@@ -166,6 +151,11 @@ export default (state = initState, action) => {
         placedOrderId: action.payload.order._id,
       };
       break;
+
+    default:
+      return state;
   }
   return state;
 };
+
+export default user;

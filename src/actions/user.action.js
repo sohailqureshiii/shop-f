@@ -1,6 +1,5 @@
 import axiosIntance from "../helpers/axios";
 import { cartConstants, followContants, userContants } from "./constants";
-import { userData } from "./user.action";
 import store from "../store";
 import { userInitialdataAction } from "./initialData.action";
 
@@ -55,9 +54,6 @@ export const addToCart = (product, newQty = 1) => {
       user: { cartItems },
       auth,
     } = store.getState();
-    //console.log('action::products', products);
-    //const product = action.payload.product;
-    //const products = state.products;
     const qty = cartItems[product._id]
       ? parseInt(cartItems[product._id].qty + newQty)
       : 1;
@@ -69,12 +65,6 @@ export const addToCart = (product, newQty = 1) => {
     if (auth.authenticate) {
       dispatch({ type: cartConstants.ADD_TO_CART_REQUEST });
       const payload = {
-        // cartItems: Object.keys(cartItems).map((key, index) => {
-        //     return {
-        //         quantity: cartItems[key].qty,
-        //         product: cartItems[key]._id
-        //     }
-        // })
         cartItems: [
           {
             product: product._id,
@@ -83,9 +73,7 @@ export const addToCart = (product, newQty = 1) => {
           },
         ],
       };
-      console.log(payload);
       const res = await axiosIntance.post(`/user/cart/addtocart`, payload);
-      console.log(res);
       if (res.status === 201) {
         dispatch(getCartItems());
       }
@@ -97,8 +85,6 @@ export const addToCart = (product, newQty = 1) => {
       });
     }
 
-    console.log("addToCart::", cartItems);
-
     dispatch({
       type: cartConstants.ADD_TO_CART_SUCCESS,
       payload: { cartItems },
@@ -109,13 +95,12 @@ export const addToCart = (product, newQty = 1) => {
 export const removeCartItem = (payload) => {
   return async (dispatch) => {
     try {
-
-      const {
-        auth
-      } = store.getState();
-      if(auth.authenticate){
+      const { auth } = store.getState();
+      if (auth.authenticate) {
         dispatch({ type: cartConstants.REMOVE_CART_ITEM_REQUEST });
-        const res = await axiosIntance.post(`/user/cart/removeItem`, { payload });
+        const res = await axiosIntance.post(`/user/cart/removeItem`, {
+          payload,
+        });
         if (res.status === 202) {
           dispatch({ type: cartConstants.REMOVE_CART_ITEM_SUCCESS });
           dispatch(getCartItems());
@@ -126,14 +111,12 @@ export const removeCartItem = (payload) => {
             payload: { error },
           });
         }
-      }else{
+      } else {
         dispatch({
-           type: cartConstants.REMOVE_CART_ITEM_SUCCESS1,
-           payload: {productId:payload.productId}
-         });
-
+          type: cartConstants.REMOVE_CART_ITEM_SUCCESS1,
+          payload: { productId: payload.productId },
+        });
       }
-     
     } catch (error) {
       console.log(error);
     }
@@ -149,7 +132,6 @@ export const updateCart = () => {
 
     if (auth.authenticate) {
       localStorage.removeItem("cart");
-      //dispatch(getCartItems());
       if (cartItems) {
         const payload = {
           cartItems: Object.keys(cartItems).map((key, index) => {
@@ -180,10 +162,6 @@ export const updateCart = () => {
 };
 
 export { getCartItems };
-
-
-
-
 
 export const getAddress = () => {
   return async (dispatch) => {
@@ -217,7 +195,6 @@ export const addAddress = (payload) => {
       const res = await axiosIntance.post(`/user/address/create`, { payload });
       dispatch({ type: userContants.ADD_USER_ADDRESS_REQUEST });
       if (res.status === 201) {
-        // console.log(res);
         const {
           address: { address },
         } = res.data;
@@ -236,30 +213,23 @@ export const addAddress = (payload) => {
       console.log(error);
     }
   };
-
-
 };
 
 export const deleteAddressAction = (addId) => {
   return async (dispatch) => {
     try {
-      const res = await axiosIntance.post(`/user/deleteaddress`,  {...addId} );
-      // dispatch({ type: userContants.ADD_USER_ADDRESS_REQUEST });
+      const res = await axiosIntance.post(`/user/deleteaddress`, { ...addId });
       if (res.status === 201) {
-      dispatch(getAddress())
+        dispatch(getAddress());
       } else {
         const { error } = res.data;
-        // dispatch({
-        //   type: userContants.ADD_USER_ADDRESS_FAILURE,
-        //   payload: { error },
-        // });
+        console.log(error);
       }
     } catch (error) {
       console.log(error);
     }
   };
 };
-
 
 export const addOrder = (payload) => {
   return async (dispatch) => {
@@ -276,13 +246,7 @@ export const addOrder = (payload) => {
           type: userContants.ADD_USER_ORDER_SUCCESS,
           payload: { order },
         });
-        // const {
-        //   address: { address },
-        // } = res.data;
-        // dispatch({
-        //   type: userConstants.ADD_USER_ADDRESS_SUCCESS,
-        //   payload: { address },
-        // });
+        dispatch(getOrders());
       } else {
         const { error } = res.data;
         dispatch({
@@ -346,5 +310,3 @@ export const getOrder = (payload) => {
     }
   };
 };
-
-

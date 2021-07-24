@@ -67,15 +67,14 @@ export const userInitialdataAction = () => {
 };
 
 export const userStoreDataAction = () => {
-
   return async (dispatch) => {
     const res = await axiosIntance.get(`/userStoreData`);
     if (res.status === 200) {
       console.log(res.data);
-      const { store, product,orders } = res.data;
+      const { store, product, orders } = res.data;
       dispatch({
-        type: userStoreData.GET_USER_STORE_DETAILS_SUCCESS, 
-        payload: { store, product,orders},
+        type: userStoreData.GET_USER_STORE_DETAILS_SUCCESS,
+        payload: { store, product, orders },
       });
     } else {
       console.log("Error");
