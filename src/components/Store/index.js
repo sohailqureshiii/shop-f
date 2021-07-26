@@ -9,10 +9,12 @@ import { Button } from "../MaterialUI";
 
 const Store = (props) => {
   const { store, index } = props;
+
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   let history = useHistory();
+  const product = useSelector((state) => state.products.products);
 
   const followStore = (storeId) => {
     const store = {
@@ -33,20 +35,20 @@ const Store = (props) => {
       return (
         <Button
           title="Follow Store"
-          backgroundColor
-          radius="5px"
-          border
-          border-radius="3px"
-          color="#000"
-          padding="2px 5px"
-          width="%"
-          height="32px"
           onClick={() => {
             history.push({
               pathname: "/Signin",
               state: { storeId: storeId, Follow: true },
             });
           }}
+          backgroundColor
+          radius="5px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="100%"
+          height="32px"
           fontSize="15px"
           marginTop="10px"
           zIndex="10"
@@ -57,18 +59,18 @@ const Store = (props) => {
       return (
         <Button
           title="Follow Store"
+          onClick={() => {
+            followStore(storeId);
+          }}
           backgroundColor
           radius="5px"
           border
           border-radius="3px"
           color="#000"
           padding="2px 5px"
-          width="30%"
+          width="100%"
           height="32px"
-          onClick={() => {
-            followStore(storeId);
-          }}
-          fontSize="14px"
+          fontSize="15px"
           marginTop="10px"
           zIndex="10"
         />
@@ -79,17 +81,17 @@ const Store = (props) => {
       return (
         <Button
           title="Following"
+          onClick={() => {
+            UnFollowStore(storeId);
+          }}
           backgroundColor
           radius="5px"
           border
           border-radius="3px"
           color="#000"
           padding="2px 5px"
-          width="23%"
+          width="100%"
           height="32px"
-          onClick={() => {
-            UnFollowStore(storeId);
-          }}
           fontSize="15px"
           marginTop="10px"
           zIndex="10"
@@ -98,14 +100,37 @@ const Store = (props) => {
     }
   };
 
+  const renderStoreProduct = (storeId) => {
+    const productList = product.filter((product) => {
+      if (product.storeId._id === store._id) return product;
+    });
+
+    if (productList.length > 0) {
+      return productList.slice(0, 5).map((product, index) => (
+        <div className="product-new-container-of-store">
+          <img
+            // src={product.productPictures[0].img}
+            alt={product.productName}
+            className="new-products-of-shops"
+          />
+        </div>
+      ));
+    } else {
+      return null;
+    }
+  };
+
   return (
     <>
       <div className="new-store-profile-card-one">
-        <Link to="" className="rf-avatar e2e-avatar js-avatar " style={{padding: '20px 0px 30px 10px'}}>
+        <Link
+          to=""
+          className="rf-avatar e2e-avatar js-avatar "
+          style={{ padding: "20px 0px 30px 10px" }}
+        >
           <img
             src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
-            srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
-            alt="Avatar profile image"
+            alt={store.storeName}
             className="rf-avatar__image js-avatar__image"
           />
         </Link>
@@ -113,81 +138,26 @@ const Store = (props) => {
           <div>
             <div className="store-profile-card-three">
               <Link className="new-store-profile-storeName">
-                Sohail Qureshi
+                {store.storeName}
               </Link>
             </div>
             <div className="new-store-profile-Location">
-              <Link to="">Bangalore, India</Link>
+              <Link to="">{store.storeLocation.name}</Link>
             </div>
             <div className="new-store-profile-Category">
-              <span>Electronics</span>
+              {/* <span>{store.storeCategory.name}</span> */}
             </div>
           </div>
           <div className="new-store-profile-card-followes-number">
-            <h4 style={{ paddingRight: "5px" }}>1,000</h4>
+            <h4 style={{ paddingRight: "5px" }}>{store.followers.length}</h4>
             Followers
           </div>
           <div className="new-store-profile-card-follow-followes">
-            <Button
-              title="Following"
-              backgroundColor
-              radius="5px"
-              border
-              border-radius="3px"
-              color="#000"
-              padding="2px 5px"
-              width="100%"
-              height="32px"
-              // onClick={() => {
-              //   UnFollowStore(storeId);
-              // }}
-              fontSize="15px"
-              marginTop="10px"
-              zIndex="10"
-            />
+            {renderButton(store._id)}
           </div>
         </div>
         <div className="product-container-store">
-          <div className="product-new-container-of-store">
-            <img
-              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
-              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
-              alt="Avatar profile image"
-              className="new-products-of-shops"
-            />
-          </div>
-          <div className="product-new-container-of-store">
-            <img
-              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
-              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
-              alt="Avatar profile image"
-              className="new-products-of-shops"
-            />
-          </div>
-          <div className="product-new-container-of-store">
-            <img
-              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
-              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
-              alt="Avatar profile image"
-              className="new-products-of-shops"
-            />
-          </div>
-          <div className="product-new-container-of-store">
-            <img
-              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
-              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
-              alt="Avatar profile image"
-              className="new-products-of-shops"
-            />
-          </div>
-          <div className="product-new-container-of-store">
-            <img
-              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
-              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
-              alt="Avatar profile image"
-              className="new-products-of-shops"
-            />
-          </div>
+          {renderStoreProduct(store._id)}
         </div>
       </div>
     </>

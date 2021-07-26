@@ -12,10 +12,14 @@ const storePlanSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    noOfProducts:{
-        type: Number,
-        required: true,
-    }
+    noOfProducts: {
+      type: Number,
+      required: true,
+    },
+    noOfCatalogs: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );

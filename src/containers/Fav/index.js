@@ -89,7 +89,7 @@ const Favorite = (props) => {
           <div className="store-following-container-two">
           {auth && followingStoreLists.length > 0
                 ? followingStoreLists.map((store, index) => (
-            <div className="following-container-css">
+            <div className="following-container-css" key={index}>
               <div className="following-img-css">
                 <img
                   src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
@@ -99,7 +99,7 @@ const Favorite = (props) => {
                 />
               </div>
               <div style={{ textAlign: "center" }}>
-                <h4>Sohail Shop</h4>
+                <h4>{store.storeName}</h4>
               </div>
             </div>
             ))

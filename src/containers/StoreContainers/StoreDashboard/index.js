@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import { Button } from "../../../components/MaterialUI";
 
 const StoreDasboard = () => {
-  const storeProducts = useSelector((state) => state.userStore.storeProduct);
-  const storeOrders = useSelector((state) => state.userStore.storeOrder);
+  const storeDetails = useSelector((state) => state.userStore);
+  const storeId = useSelector((state) => state.userStore.userStore._id);
   return (
     <>
       <Navbar />
@@ -47,109 +47,58 @@ const StoreDasboard = () => {
                   </div>
 
                   <table className="table-new-table">
-                    <thead className="oknbhgrtyfc">
-                      <th className="new-order-table-heeder">S.No</th>
-                      <th className="new-order-table-heeder">Order Id</th>
-                      <th className="new-order-table-heeder">Customer</th>
-                      <th className="new-order-table-heeder">Date/Time</th>
-                      <th className="new-order-table-heeder">Amount</th>
-                      <th className="new-order-table-heeder">Items</th>
-                      <th className="new-order-table-heeder">Status</th>
-                    </thead>
+                    {storeDetails &&
+                    storeDetails.storeOrder &&
+                    storeDetails.storeOrder.length < 0 ? (
+                      <thead className="oknbhgrtyfc">
+                        <th className="new-order-table-heeder">S.No</th>
+                        <th className="new-order-table-heeder">Order Id</th>
+                        <th className="new-order-table-heeder">Customer</th>
+                        <th className="new-order-table-heeder">Date/Time</th>
+                        <th className="new-order-table-heeder">Amount</th>
+                        <th className="new-order-table-heeder">Items</th>
+                        <th className="new-order-table-heeder">Status</th>
+                      </thead>
+                    ) : null}
 
                     <tbody className="lgadkyhdtq">
-                      <tr className="mnbnmnb">
-                        <td className="jfkvvjvsv" data-label="S.No">
-                          1
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Order Id">
-                          GG23233
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Customer">
-                          ASAS1223
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Date / Time">
-                          3:59
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Amount">
-                          $ 599
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Items">
-                          3 Items
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Status">
-                          Pending
-                        </td>
-                      </tr>
-                      <tr className="new-table-border-new">
-                        <td className="jfkvvjvsv" data-label="S.No">
-                          1
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Order Id">
-                          GG23233
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Customer">
-                          ASAS1223
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Date / Time">
-                          3:59
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Amount">
-                          $ 599
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Items">
-                          3 Items
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Status">
-                          Pending
-                        </td>
-                      </tr>
-                      <tr className="new-table-border-new">
-                        <td className="jfkvvjvsv" data-label="S.No">
-                          1
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Order Id">
-                          GG23233
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Customer">
-                          ASAS1223
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Date / Time">
-                          3:59
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Amount">
-                          $ 599
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Items">
-                          3 Items
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Status">
-                          Pending
-                        </td>
-                      </tr>
-                      <tr className="new-table-border-new">
-                        <td className="jfkvvjvsv" data-label="S.No">
-                          1
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Order Id">
-                          GG23233
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Customer">
-                          ASAS1223
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Date / Time">
-                          3:59
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Amount">
-                          $ 599
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Items">
-                          3 Items
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Status">
-                          Pending
-                        </td>
-                      </tr>
+                      {storeDetails &&
+                      storeDetails.storeOrder &&
+                      storeDetails.storeOrder.length < 0
+                        ? storeDetails.storeOrder.map((order, index) => (
+                            <tr className="mnbnmnb">
+                              <td className="jfkvvjvsv" data-label="S.No">
+                                {index + 1}
+                              </td>
+                              <td className="jfkvvjvsv" data-label="Order Id">
+                                {order._id}
+                              </td>
+                              <td className="jfkvvjvsv" data-label="Customer">
+                                {order.user.name}
+                              </td>
+                              <td
+                                className="jfkvvjvsv"
+                                data-label="Date / Time"
+                              >
+                                3:59
+                              </td>
+                              <td className="jfkvvjvsv" data-label="Amount">
+                                $ 599
+                              </td>
+                              <td className="jfkvvjvsv" data-label="Items">
+                                {
+                                  order.items.filter(
+                                    (orderProduct) =>
+                                      orderProduct.storeId === storeId
+                                  ).length + "Items"
+                                }
+                              </td>
+                              <td className="jfkvvjvsv" data-label="Status">
+                                Pending
+                              </td>
+                            </tr>
+                          ))
+                        : null}
                     </tbody>
                   </table>
                 </div>
@@ -163,60 +112,36 @@ const StoreDasboard = () => {
                   </div>
 
                   <table className="table-new-table">
-                    <thead className="oknbhgrtyfc">
-                      <th className="new-order-table-heeder">S.No</th>
-                      <th className="new-order-table-heeder">Customer Id</th>
-                      <th className="new-order-table-heeder">Customer Name</th>
-                      <th className="new-order-table-heeder">Following</th>
-                      {/* <th className="new-order-table-heeder">Order Id</th> */}
-                      <th className="new-order-table-heeder">Customer</th>
-                      {/* <th className="new-order-table-heeder">Date/Time</th> */}
-                    </thead>
+                    {storeDetails.userStore &&
+                    storeDetails.userStore.followers &&
+                    storeDetails.userStore.followers.length > 0 ? (
+                      <thead className="oknbhgrtyfc">
+                        <th className="new-order-table-heeder">S.No</th>
+                        <th className="new-order-table-heeder">
+                          Customer Name
+                        </th>
+                      </thead>
+                    ) : (
+                      "Share Store"
+                    )}
 
                     <tbody className="lgadkyhdtq">
-                      <tr className="new-table-border-new">
-                        <td className="jfkvvjvsv" data-label="S.No">
-                          1
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Order Id">
-                          GG23233
-                        </td>
-                        {/* <td className="jfkvvjvsv" data-label="Customer">
-                          ASAS1223
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Date / Time">
-                          3:59
-                        </td> */}
-                      </tr>
-                      <tr className="new-table-border-new">
-                      {/* <tr className="mnbnmnb">
-                        <td className="jfkvvjvsv" data-label="S.No">
-                          1
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Order Id">
-                          GG23233
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Customer">
-                          ASAS1223
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Date / Time">
-                          3:59
-                        </td>
-                      </tr>
-                      <tr className="new-table-border-new">
-                        <td className="jfkvvjvsv" data-label="S.No">
-                          1
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Order Id">
-                          GG23233
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Customer">
-                          ASAS1223
-                        </td>
-                        <td className="jfkvvjvsv" data-label="Date / Time">
-                          3:59
-                        </td>*/}
-                      </tr> 
+                      {storeDetails.userStore &&
+                      storeDetails.userStore.followers &&
+                      storeDetails.userStore.followers.length > 0
+                        ? storeDetails.userStore.followers.map(
+                            (followers, index) => (
+                              <tr className="new-table-border-new">
+                                <td className="jfkvvjvsv" data-label="S.No">
+                                  {index + 1}
+                                </td>
+                                <td className="jfkvvjvsv" data-label="Order Id">
+                                  {followers.name}
+                                </td>
+                              </tr>
+                            )
+                          )
+                        : null}
                     </tbody>
                   </table>
                 </div>
