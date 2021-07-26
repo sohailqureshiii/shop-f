@@ -4,15 +4,17 @@ const Store = require("../models/store");
 const StoreLocation = require("../models/location");
 const User = require("../models/auth");
 const Order = require("../models/order");
+const Catalog = require("../models/catalog");
 
 exports.userData = async (req, res) => {
   const categories = await Category.find({}).sort("-createdAt").exec();
   const locations = await StoreLocation.find({}).sort("-createdAt").exec();
 
   const stores = await Store.find({})
-  .populate({ path: "createdBy", select: "name" })
+    .populate({ path: "createdBy", select: "name" })
     .populate({ path: "storeCategory", select: "_id name" })
     .populate({ path: "storeLocation", select: "_id name" })
+    .populate({ path: "storeCatalogs", select: "_id name" })
     .sort("-createdAt")
     .exec();
   const products = await Product.find({})
@@ -31,7 +33,9 @@ exports.userData = async (req, res) => {
 };
 
 exports.userinitialdata = async (req, res) => {
-  const user = await User.findOne({ _id: req.user._id })
+
+  try{
+    const user = await User.findOne({ _id: req.user._id })
     .select("-password")
     .exec();
   const { following } = user;
@@ -53,6 +57,10 @@ exports.userinitialdata = async (req, res) => {
     followingProduct,
     followingStore,
   });
+  }catch(error){
+    return res.status(400).json({ error });
+  }
+ 
 };
 
 // exports.userStoreData = async (req, res) => {
@@ -120,10 +128,14 @@ exports.userStoreData = async (req, res) => {
         .populate({ path: "storeLocation", select: "_id name" })
         .sort("-createdAt")
         .exec();
+      const catalog = await Catalog.find({ storeId: storeDetails._id })
+        .select("name")
+        .sort("-createdAt")
+        .exec();
       const orders = Order.find({
         items: {
           $elemMatch: {
-            storeId: storeDetails._id
+            storeId: storeDetails._id,
           },
         },
       })
@@ -135,7 +147,8 @@ exports.userStoreData = async (req, res) => {
       return res.status(200).json({
         store,
         product,
-        orders
+        orders,
+        catalog,
       });
     }
   } catch (error) {

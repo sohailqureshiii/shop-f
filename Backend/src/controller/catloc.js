@@ -43,6 +43,7 @@ exports.addStorePlan = (req, res) => {
     planDescription: req.body.planDescription,
     planPrice: req.body.planPrice,
     noOfProducts: req.body.noOfProducts,
+    noOfCatalogs: req.body.noOfCatalogs,
   };
   const storePlan = new StorePlan(storePlanObj);
   storePlan.save((error, plan) => {

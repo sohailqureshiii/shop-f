@@ -25,6 +25,12 @@ const shopSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    storeCatalogs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Catalog",
+      },
+    ],
     storeProfilePicture: {
       img: { type: String
       },
@@ -41,6 +47,11 @@ const shopSchema = new mongoose.Schema(
     storeLocation: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "StoreLocation",
+      required: true,
+    },
+    storePlan: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "StorePlan",
       required: true,
     },
     storePhoneNo: {
