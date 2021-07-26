@@ -20,6 +20,7 @@ const userinitialdata = require('./routes/userinitialdata');
 const followRoutes = require('./routes/follow.route');
 // const UsereditProfile = require('./routes/auth');
 const catloc = require('./routes/catloc')
+const catalog = require('./routes/catalog')
 
 // environment variable 
 env.config();
@@ -55,6 +56,7 @@ app.use('/api',followRoutes);
 // app.use('/api',UsereditProfile)
  
 app.use('/api',catloc)
+app.use('/api',catalog);
 
 app.listen(process.env.PORT,()=>{
     console.log(`Server is running on port ${process.env.PORT}`);
