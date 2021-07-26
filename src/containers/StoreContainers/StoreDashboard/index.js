@@ -168,6 +168,9 @@ const StoreDasboard = () => {
                       <th className="new-order-table-heeder">Customer Id</th>
                       <th className="new-order-table-heeder">Customer Name</th>
                       <th className="new-order-table-heeder">Following</th>
+                      {/* <th className="new-order-table-heeder">Order Id</th> */}
+                      <th className="new-order-table-heeder">Customer</th>
+                      {/* <th className="new-order-table-heeder">Date/Time</th> */}
                     </thead>
 
                     <tbody className="lgadkyhdtq">
@@ -178,14 +181,15 @@ const StoreDasboard = () => {
                         <td className="jfkvvjvsv" data-label="Order Id">
                           GG23233
                         </td>
-                        <td className="jfkvvjvsv" data-label="Customer">
+                        {/* <td className="jfkvvjvsv" data-label="Customer">
                           ASAS1223
                         </td>
                         <td className="jfkvvjvsv" data-label="Date / Time">
                           3:59
-                        </td>
+                        </td> */}
                       </tr>
                       <tr className="new-table-border-new">
+                      {/* <tr className="mnbnmnb">
                         <td className="jfkvvjvsv" data-label="S.No">
                           1
                         </td>
@@ -212,7 +216,7 @@ const StoreDasboard = () => {
                         <td className="jfkvvjvsv" data-label="Date / Time">
                           3:59
                         </td>
-                      </tr>
+                      </tr> */}
                     </tbody>
                   </table>
                 </div>
