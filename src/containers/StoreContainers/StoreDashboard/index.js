@@ -215,8 +215,8 @@ const StoreDasboard = () => {
                         </td>
                         <td className="jfkvvjvsv" data-label="Date / Time">
                           3:59
-                        </td>
-                      </tr> */}
+                        </td>*/}
+                      </tr> 
                     </tbody>
                   </table>
                 </div>
