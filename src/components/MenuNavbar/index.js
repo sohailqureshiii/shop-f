@@ -33,10 +33,11 @@ const MenuNavBar = (props) => {
         <nav
           className="NavigationBar-subcategoryList-1nX"
           style={{
-            padding: "15px 8px 8px 87px",
+            padding: "15px 8px 8px 55px",
             border: "1px solid #eaeaea",
             overflow: "auto",
-            paddingLeft: "87px",
+            paddingLeft: "55px",
+            alignItems:'center'
           }}
         >
           <ul style={{ display: "contents" }}>
@@ -100,8 +101,9 @@ const MenuNavBar = (props) => {
                 </div>
               </a>
             </li>
-            <li style={{ marginLeft: "57.8%" }}>
-              <div
+            <li style={{marginLeft:'58.8%'}}>
+               <div
+
                 tabIndex="0"
                 className="kfjfhurcncncbchn SearchTypeahead-isTypeaheadEnabled-3i3"
               >
