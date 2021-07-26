@@ -100,83 +100,93 @@ const Store = (props) => {
 
   return (
     <>
-      <div className="border-for-store" key={store._id && index}>
-        <div className="Galleries-gridCover-j9D">
-          <div className="ProjectCoverNeue-root-166 ProjectCoverNeue-statsVisible-19j ProjectCover-cover-3zh">
-            <Link to={`/${store._id}/store`}>
-              <div
-                style={{ zIndex: "1" }}
-                className="Cover-cover-2mr ProjectCoverNeue-cover-3Ni e2e-ProjectCoverNeue js-project-cover e2e-ProjectCoverNeue-cover ProjectCoverNeue-coverWithFlags-1Aq ProjectCoverNeue-statsVisible-19j ProjectCoverNeue-loaded-26R"
-              >
-                <div className="Cover-wrapper-300 ProjectCoverNeue-wrapper-27j e2e-ProjectCoverNeue-wrapper">
-                  <div className="Cover-content-2R2">
-                    <div className="DominantColor-dominantColor-2PM"></div>
-                    {store.storeProfilePicture &&
-                    store.storeProfilePicture.img ? (
-                      <img
-                        sizes="404px"
-                        style={{ padding: "10px" }}
-                        src={
-                          store.storeProfilePicture.img
-                          // "https://rtlimages.apple.com/cmc/dieter/store/16_9/R325.png?resize=1440:806&output-format=jpg&output-quality=85&interpolation=progressive-bicubic"
-                        }
-                        alt="Children's Day - ''SEE ME&quot;"
-                        loading="lazy"
-                        class="ProjectCoverNeue-image-1MZ js-cover-image"
-                      ></img>
-                    ) : (
-                      <img
-                        sizes="404px"
-                        style={{ padding: "10px" }}
-                        src={
-                          "https://rtlimages.apple.com/cmc/dieter/store/16_9/R325.png?resize=1440:806&output-format=jpg&output-quality=85&interpolation=progressive-bicubic"
-                        }
-                        alt="Children's Day - ''SEE ME&quot;"
-                        loading="lazy"
-                        class="ProjectCoverNeue-image-1MZ js-cover-image"
-                      ></img>
-                    )}
-
-                    <div className="ProjectCoverNeue-controlsAndPrivacyContainer-20r"></div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            {/* /////// */}
-
-            <div style={{ padding: "10px" }}>
-              <div className="Cover-overlay-28e Cover-showOnHover-Ks- Cover-transitionDone-22y"></div>
-              <div className="ProjectCoverNeue-visibleStatsAndOwners-2Av">
-                <Link
-                  to={`/${store._id}/store`}
-                  className="ProjectCoverNeue-ownersContainer-3Go"
-                  style={{zIndex:"90"}}
-                >
-                  <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
-                    <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
-                      <span
-                        className="Owners-owner-2lB e2e-Owner-user-link"
-                        style={{ color: "black" }}
-                      >
-                        {store.storeName}
-                      </span>
-                    </span>
-                  </div>
-                </Link>
-
-                {renderButton(store._id)}
-              </div>
-              <span className="ProjectCoverNeue-ownersContainer-3Go">
-                <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
-                  <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
-                    <a className="Owners-owner-2lB e2e-Owner-user-link">
-                      By -{store.createdBy.name}
-                    </a>
-                  </span>
-                </div>
-              </span>
+      <div className="new-store-profile-card-one">
+        <Link to="" className="rf-avatar e2e-avatar js-avatar " style={{padding: '20px 0px 30px 10px'}}>
+          <img
+            src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
+            srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
+            alt="Avatar profile image"
+            className="rf-avatar__image js-avatar__image"
+          />
+        </Link>
+        <div className="details-continer-store">
+          <div>
+            <div className="store-profile-card-three">
+              <Link className="new-store-profile-storeName">
+                Sohail Qureshi
+              </Link>
             </div>
-            {/* ///////// */}
+            <div className="new-store-profile-Location">
+              <Link to="">Bangalore, India</Link>
+            </div>
+            <div className="new-store-profile-Category">
+              <span>Electronics</span>
+            </div>
+          </div>
+          <div className="new-store-profile-card-followes-number">
+            <h4 style={{ paddingRight: "5px" }}>1,000</h4>
+            Followers
+          </div>
+          <div className="new-store-profile-card-follow-followes">
+            <Button
+              title="Following"
+              backgroundColor
+              radius="5px"
+              border
+              border-radius="3px"
+              color="#000"
+              padding="2px 5px"
+              width="100%"
+              height="32px"
+              // onClick={() => {
+              //   UnFollowStore(storeId);
+              // }}
+              fontSize="15px"
+              marginTop="10px"
+              zIndex="10"
+            />
+          </div>
+        </div>
+        <div className="product-container-store">
+          <div className="product-new-container-of-store">
+            <img
+              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
+              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
+              alt="Avatar profile image"
+              className="new-products-of-shops"
+            />
+          </div>
+          <div className="product-new-container-of-store">
+            <img
+              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
+              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
+              alt="Avatar profile image"
+              className="new-products-of-shops"
+            />
+          </div>
+          <div className="product-new-container-of-store">
+            <img
+              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
+              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
+              alt="Avatar profile image"
+              className="new-products-of-shops"
+            />
+          </div>
+          <div className="product-new-container-of-store">
+            <img
+              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
+              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
+              alt="Avatar profile image"
+              className="new-products-of-shops"
+            />
+          </div>
+          <div className="product-new-container-of-store">
+            <img
+              src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
+              srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
+              alt="Avatar profile image"
+              className="new-products-of-shops"
+            />
           </div>
         </div>
       </div>

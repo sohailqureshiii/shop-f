@@ -1,13 +1,61 @@
-@media (min-width: 1440px){
-    .SubCategory-label-30F {
-      font-size: 14px;
-      border: none;
-  }
-  }
-  
+@media (min-width: 1440px) {
   .SubCategory-label-30F {
-      font-size: 16px;
-      line-height: 1;
-      color: #696969;
-      font-weight: 100px;
+    font-size: 14px;
+    border: none;
   }
+}
+
+.SubCategory-label-30F {
+  font-size: 16px;
+  line-height: 1;
+  color: #696969;
+  font-weight: 100px;
+}
+
+@media (min-width: 604px) {
+  .NavigationBar-subcategoryList-1nX {
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    /* justify-content: center; */
+  }
+}
+
+.NavigationBar-subcategoryList-1nX {
+  position: relative;
+  padding: 0px;
+  border-bottom: 1px solid #e6e6e6;
+  background-color: #ffffff;
+  padding: 15px 33px 8px 87px;
+  border: 1px solid rgb(234, 234, 234);
+  overflow: auto;
+  align-items: center;
+}
+
+.search-filter-home {
+  margin-left: 58.8%;
+}
+
+/* ///// Css for Laptop ////////// */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  .NavigationBar-subcategoryList-1nX {
+    position: relative;
+    padding: 0px;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #ffffff;
+    padding: 15px 8px 8px 87px;
+    border: 1px solid rgb(234, 234, 234);
+    overflow: auto;
+    align-items: center;
+  }
+
+  .search-filter-home {
+    margin-left: 57.8%;
+  }
+}
+
+
+/* ///// Css for Laptop ////////// */
