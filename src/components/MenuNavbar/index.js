@@ -102,7 +102,7 @@ const MenuNavBar = (props) => {
               </a>
             </li>
             <li style={{marginLeft:'58.8%'}}>
-              {/* <div
+               <div
 
                 tabIndex="0"
                 className="kfjfhurcncncbchn SearchTypeahead-isTypeaheadEnabled-3i3"
