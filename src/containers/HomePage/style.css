@@ -905,26 +905,6 @@ img {
 }
 
 
-
-@media (min-width: 604px){
-  .NavigationBar-subcategoryList-1nX {
-    display: -webkit-box;
-    display: flex;
-    flex-wrap: wrap;
-    -webkit-box-pack: center;
-    /* justify-content: center; */
-   
-  }
-}
-
-.NavigationBar-subcategoryList-1nX {
-  -webkit-overflow-scrolling: touch;
-  position: relative;
-  padding: 0px;
-  border-bottom: 1px solid #e6e6e6;
-  background-color: #ffffff;
-}
-
 .NavigationBar-subcategoryLink-3Ua {
   color: inherit;
 }

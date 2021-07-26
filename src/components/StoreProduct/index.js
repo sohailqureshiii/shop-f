@@ -109,6 +109,7 @@ const StoreProduct = (props) => {
                       width="100px"
                       height="30px"
                       font=" 300 14px sans-serif"
+                      fontSize='14px'
                       onClick={() => {
                         const storeId = product.storeId._id;
                         const { _id, productName, productPrice } = product;

@@ -25,13 +25,35 @@
   height: 50px;
   background-color: #ffffff;
   color: #191919;
-  padding-right: 65px;
-  padding-left: 65px;
+  padding-right: 98px;
+  padding-left: 98px;
   position: fixed;
   z-index: 100;
   width: 100%;
   border-bottom: 1px solid #e6e6e6;
 }
+
+/* ///// Css for Laptop ////////// */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 50px;
+      background-color: #ffffff;
+      color: #191919;
+      padding-right: 65px;
+      padding-left: 65px;
+      position: fixed;
+      z-index: 100;
+      width: 100%;
+      border-bottom: 1px solid #e6e6e6;
+    }
+}
+
+/* ///// Css for Laptop ////////// */
+
 
 .logo {
   font-size: 25px;

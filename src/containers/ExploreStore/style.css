@@ -1,65 +1,222 @@
-#store{
-    width: 100%;
+#store {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.border-for-store {
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+}
+.nocard {
+  min-width: 100px;
+  min-height: 500px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  padding: 10px;
+  box-shadow: 2px 8px 20px #ddd;
+  margin: 10px;
+  transition: 0.5s linear;
+}
+.nocard:hover {
+  box-shadow: none;
+}
+.nocard img {
+  max-width: 300px;
+  width: 100%;
+  height: 100%;
+  max-height: 300px;
+  display: block;
+  object-fit: cover;
+}
+.nocard h3 {
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+.nocard h3 a {
+  text-decoration: none;
+  color: #333;
+}
+.nocard h3 a:hover {
+  color: crimson;
+}
+.nocard span {
+  color: crimson;
+}
+.nocard p {
+  margin: 10px 0;
+}
+.gobutton {
+  align-items: center;
+  border: none;
+  outline: none;
+  background: rgb(206, 206, 206);
+  color: rgb(209, 209, 209);
+  width: 100%;
+  height: 40px;
+  display: block;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 15px 0;
+}
+
+/* //////// New Store Css Starts ////////////// */
+
+.rf-profile-row .rf-avatar {
+  float: left;
+  height: 90px;
+  margin: 5px 20px 0 0;
+  min-height: 90px;
+  min-width: 90px;
+  position: relative;
+  width: 90px;
+  padding: 20px 0px 30px 10px;
+}
+
+.rf-avatar__image:only-of-type {
+  border-radius: 50%;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.new-store-profile-card-one {
+  display: flex;
+  padding: 15px 0px;
+  border-bottom: 1px solid #c7c7c7;
+  box-shadow: 0 0px 3px rgb(0 0 0 / 20%)
+}
+
+.new-store-page-container-two {
+  padding: 15px;
+}
+
+.store-profile-card-three {
+  display: block;
+}
+
+.rf-avatar .e2e-avatar .js-avatar {
+  float: left;
+  height: 90px;
+  width: 90px;
+  margin: 5px 20px 0 0;
+  min-height: 90px;
+  min-width: 90px;
+  position: relative;
+}
+
+.store-profile-card-three {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #191919;
+  display: block;
+  float: left;
+  font-size: 19px;
+  font-weight: bold;
+  max-width: 100%;
+}
+
+.new-store-profile-Location {
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  color: #191919;
+}
+
+.new-store-profile-Category {
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #191919;
+}
+
+.new-store-profile-card-follow-followes {
+  display: flex;
+  padding: 10px 0px 0px;
+}
+
+.new-store-profile-card-follow-btn {
+  background-color: #555555;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 6px 15px 8px;
+  text-shadow: none;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+  -webkit-transition-property: "background", color, border;
+  transition-property: "background", color, border;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.details-continer-store {
+  padding: 15px 17px 10px;
+  border-right: 1px solid #c7c7c7;
+}
+
+.product-container-store {
+  display: flex;
+}
+
+.product-new-container-of-store {
+    margin-right: 8px;
+    padding: 10px 10px 0px 10px;
+}
+
+.new-store-profile-card-followes-number{
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #191919;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
 }
 
-.border-for-store{
-    border: 1px solid #d4d4d4;
-    border-radius: 5px;
+.filter-for-store{
+   background-color: #555555;
+   border-bottom: 1px solid #e8e8e8;
+    clear: left;
+    float: left;
+    font-size: 13px;
+    line-height: 19px;
+    padding: 18px 20px;
+    position: relative;
+    width: 360px;
+    word-wrap: break-word;
+    z-index: 3;
 }
-.nocard{
-    min-width: 100px;
-    min-height: 500px;
-    border: 1px solid #eee;
-    overflow: hidden;
-    padding: 10px;
-    box-shadow: 2px 8px 20px #ddd;
-    margin: 10px;
-    transition: 0.5s linear;
 
+.store-list-main-container{
+  padding: 135px 85px 30px 100px;
+  display:flex 
 }
-.nocard:hover{
-    box-shadow: none;
+
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .store-list-main-container{
+    padding: 135px 66px 30px;
+    display:flex 
+  }
 }
-.nocard img{
-    max-width: 300px;
-    width: 100%;
-    height: 100%;
-    max-height: 300px;
-    display: block;
-    object-fit: cover;
-}
-.nocard h3{
-    text-transform: uppercase;
-    margin: 10px 0;
-}
-.nocard h3 a{
-    text-decoration: none;
-    color: #333;
-}
-.nocard h3 a:hover{
-    color: crimson;
-}
-.nocard span{
-    color: crimson;
-}
-.nocard p{
-    margin: 10px 0;
-}
-.gobutton{
-    align-items: center;
-    border: none;
-    outline: none;
-    background: rgb(206, 206, 206);
-    color: rgb(209, 209, 209);
-    width: 100%;
-    height: 40px;
-    display: block;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin: 15px 0;
-    
-}
+
+
+/* //////// New Store Css Starts ////////////// */
