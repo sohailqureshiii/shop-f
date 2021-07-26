@@ -13,10 +13,10 @@ const DashBoard = (props) => {
     <>
       {props.sidebar ? (
         <div>
-          <div className="sidebar">
+          <div className="sidebar"> 
             <div className="sidebar-menu">
               <ul>
-                <li>
+                <li> 
                   <NavLink exact activeClassName="active" to="/storeDashboard">
                   <img src={Homeicon} className="dashicon-icon" />
                     <span class="las la-igloo"></span> <span>Dashboard</span>

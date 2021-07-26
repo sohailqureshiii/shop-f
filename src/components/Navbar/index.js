@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./style.css";
 import { DropdownMenu } from "../../components/MaterialUI";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
@@ -39,44 +39,24 @@ const Navigationbar = (props) => {
       return (
         <DropdownMenu
           menu={
-            <Link>
-              <div style={{ marginLeft: 10, display: "flex" }}>
-                <h1
-                  style={{
-                    fontSize: 15,
-                    textAlign: "center",
-                    marginTop: "3px",
-                    marginLeft: "4px",
-                  }}
-                >
-                  {" "}
-                  {auth.user ? auth.user.name : "Hello User"}
-                </h1>
-<Link to="/myprofile">
-              <div style={{ marginLeft: 10, display: "flex" }}>
+            <div>
+              <div style={{ marginLeft: 10 }}>
                 <img
                   src={Profilepiclogo}
                   style={{
                     height: 22,
                     width: 22,
                     marginBottom: "3px",
-                    marginLeft: "4px",
+                    marginRight: "4px",
                   }}
                   alt="Shopisthan Logo"
                 />
-                <h1
-                  style={{
-                    fontSize: 15,
-                    textAlign: "center",
-                    marginTop: "3px",
-                    marginLeft: "4px",
-                  }}
-                >
+                <span style={{ fontSize: 15 }}>
                   {" "}
                   {auth.user ? auth.user.name : "Hello User"}
-                </h1>
+                </span>
               </div>
-            </Link>
+            </div>
           }
           menus={[
             { label: "Edit Profile", to: "/editprofile", icon: null },
@@ -85,8 +65,8 @@ const Navigationbar = (props) => {
               to: "/Orderpage",
               icon: null,
             },
-            { label: "Logout", to: "", icon: null, onClick: logout },
             { label: "Store Dashboard", to: "/storeDashboard", icon: null },
+            { label: "Logout", to: "", icon: null, onClick: logout },
           ]}
         />
       );
@@ -106,7 +86,15 @@ const Navigationbar = (props) => {
                   }}
                   alt="Shopisthan Logo"
                 />
-                <span style={{ fontSize: 15 }}>
+                <span
+                  style={{
+                    fontSize: 15,
+                    fontSize: 15,
+                    textAlign: "center",
+                    marginTop: "3px",
+                    marginLeft: "4px",
+                  }}
+                >
                   {" "}
                   {auth.user ? auth.user.name : "Hello User"}
                 </span>
@@ -127,6 +115,7 @@ const Navigationbar = (props) => {
       );
     }
   };
+
   const renderNonLoggedInMenu = () => {
     return (
       <DropdownMenu
@@ -185,14 +174,14 @@ const Navigationbar = (props) => {
     );
   };
 
-  const items = document.querySelectorAll("ul li");
-  items.forEach( (item) => {
-    item.addEventListener('click', () => {
-      document.querySelector('li.active').classList.remove("active")
-      ;
-      item.classList.add("active");
-    })
-  })
+  // const items = document.querySelectorAll("ul li");
+  // items.forEach( (item) => {
+  //   item.addEventListener('click', () => {
+  //     document.querySelector('li.cart').classList.remove("cart")
+  //     ;
+  //     item.classList.add("cart");
+  //   })
+  // })
 
   return (
     <>
@@ -206,78 +195,90 @@ const Navigationbar = (props) => {
             </Link>
           </Link>
         </h3>
-        <ul className={isMobile ? "nav-links-mobile" : "nav-links"}>
-          <Link className="cart " to="/">
-            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
-              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
-                <div class="link-background">
-                  <img src={Homeicon} className="homepagenavbar-icon" />
-                  <a href="" class="middle">
-                    Home
-                  </a>
-                </div>
-              </h3>
-            </a>
-          </Link>
-          <Link className="cart" to="/ExploreStore">
-            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
-              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
-                <div class="link-background">
-                  <img src={Storeicon} className="homepagenavbar-icon" />
-                  <a href="" class="middle">
-                    Store
-                  </a>
-                </div>
-              </h3>
-            </a>
-          </Link>
-          <Link className="cart" to="/favorite">
-            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
-              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
-                <div class="link-background">
-                  <img src={Wishlisticon} className="homepagenavbar-icon" />
-                  <a href="" class="middle">
-                    Favorite
-                  </a>
-                </div>
-              </h3>
-            </a>
-          </Link>
-          <Link className="cart" to="/cartcheck">
-            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
-              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
-                <div class="link-background">
-                  {cartItems && Object.keys(cartItems).length >= 1 ? (
-                    <span
-                      style={{
-                        position: "absolute",
-                        background: "black",
-                        width: "17px",
-                        height: "22px",
-                        borderRadius: "50%",
-                        fontSize: "14px",
-                        border: "1px solid #fff",
-                        textAlign: "center",
-                        alignSelf: "center",
-                        top: "-14px",
-                        right: "-16px",
-                        color: "white",
-                      }}
-                    >
-                      {Object.keys(cartItems).length}
-                      {/* { count} */}
-                    </span>
-                  ) : null}
 
-                  <img src={Carticon} className="homepagenavbar-icon" />
-                  <a href="" class="middle">
-                    Cart
-                  </a>
-                </div>
-              </h3>
-            </a>
-          </Link>
-        </ul>
+        <div className="new-navbar" style={{display:"flex"}}>
+          <ul className={isMobile ? "nav-links-mobile" : "nav-links"}>
+            <Link className="cart">
+              <Link exact class="cart" to="/">
+                <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+                  <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                    <div class="link-background">
+                      <img src={Homeicon} className="homepagenavbar-icon" />
+                      <a href="" class="middle">
+                        Home
+                      </a>
+                    </div>
+                  </h3>
+                </a>
+              </Link>
+            </Link>
+            <Link className="cart">
+              <Link exact class="cart" to="/ExploreStore">
+                <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+                  <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                    <div class="link-background">
+                      <img src={Storeicon} className="homepagenavbar-icon" />
+                      <a href="" class="middle">
+                        Store
+                      </a>
+                    </div>
+                  </h3>
+                </a>
+              </Link>
+            </Link>
+            <Link className="cart">
+              <Link exact class="cart" to="/favorite">
+                <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+                  <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                    <div class="link-background">
+                      <img src={Wishlisticon} className="homepagenavbar-icon" />
+                      <a href="" class="middle">
+                        Favorite
+                      </a>
+                    </div>
+                  </h3>
+                </a>
+              </Link>
+            </Link>
+            <Link className="cart">
+              <Link exact class="cart" to="/cartcheck">
+                <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+                  <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                    <div class="link-background">
+                      {cartItems && Object.keys(cartItems).length >= 1 ? (
+                        <span
+                          style={{
+                            position: "absolute",
+                            background: "black",
+                            width: "17px",
+                            height: "22px",
+                            borderRadius: "50%",
+                            fontSize: "14px",
+                            border: "1px solid #fff",
+                            textAlign: "center",
+                            alignSelf: "center",
+                            top: "-14px",
+                            right: "-16px",
+                            color: "white",
+                          }}
+                        >
+                          {Object.keys(cartItems).length}
+                          {/* { count} */}
+                        </span>
+                      ) : null}
+
+                      <img src={Carticon} className="homepagenavbar-icon" />
+                      <a href="" class="middle">
+                        Cart
+                      </a>
+                    </div>
+                  </h3>
+                </a>
+              </Link>
+            </Link>
+          </ul>
+        </div>
+
         <div className="PrimaryNav-signup-Yf6">
           <ul className="PrimaryNav-loggedOutOptions-1SQ">
             {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
@@ -295,7 +296,7 @@ const Navigationbar = (props) => {
         </button>
       </nav>
       {/* <ul className='ul-new-li-jxsx'>
-        <li className='active'>Home</li>
+        <li className='cart'>Home</li>
         <li>Store</li>
         <li>Favorite</li>
         <li>Cart</li>
@@ -308,9 +309,65 @@ export default Navigationbar;
 
 {
   /* <li>
-                  <NavLink exact activeClassName="active" to="/storeDashboard">
+                  <Link exact class="cart" to="/storeDashboard">
                   <img src={Homeicon} className="dashicon-icon" />
                     <span class="las la-igloo"></span> <span>Dashboard</span>
-                  </NavLink>
+                  </Link>
                 </li> */
+}
+
+{
+  /* <DropdownMenu
+menu={
+  <Link>
+    <div style={{ marginLeft: 10, display: "flex" }}>
+      <h1
+        style={{
+          fontSize: 15,
+          textAlign: "center",
+          marginTop: "3px",
+          marginLeft: "4px",
+        }}
+      >
+        {" "}
+        {auth.user ? auth.user.name : "Hello User"}
+      </h1>
+<Link to="/myprofile">
+
+    <div style={{ marginLeft: 10, display: "flex" }}>
+      <img
+        src={Profilepiclogo}
+        style={{
+          height: 22,
+          width: 22,
+          marginBottom: "3px",
+          marginLeft: "4px",
+        }}
+        alt="Shopisthan Logo"
+      />
+      <h1
+        style={{
+          fontSize: 15,
+          textAlign: "center",
+          marginTop: "3px",
+          marginLeft: "4px",
+        }}
+      >
+        {" "}
+        {auth.user ? auth.user.name : "Hello User"}
+      </h1>
+    </div>
+  </Link>
+}
+menus={[
+  { label: "Edit Profile", to: "/editprofile", icon: null },
+  {
+    label: "Orders",
+    to: "/Orderpage",
+    icon: null,
+  },
+  { label: "Logout", to: "", icon: null, onClick: logout },
+  { label: "Store Dashboard", to: "/storeDashboard", icon: null },
+]}
+/> */
 }

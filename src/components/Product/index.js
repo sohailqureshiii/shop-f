@@ -1,19 +1,110 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ProductModal from "../ProductModal";
-import { BiRupee } from "react-icons/bi";
 import "./style.css";
 import { Button } from "../MaterialUI";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, followStoreAction, unfollowStoreAction } from "../../actions/user.action";
 
 const Product = (props) => {
   const { product } = props;
   const [show, setShow] = useState(false);
   const [productDetails, setProductDetails] = useState("");
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleShow = () => {
     setShow(true);
     setProductDetails(product);
   };
+
+  const followStore = (storeId) => {
+    const store = {
+      followId: storeId,
+    };
+    dispatch(followStoreAction(store));
+ 
+  };
+
+  const UnFollowStore = (storeId) => {
+    const store = {
+      unfollowId: storeId,
+    };
+    dispatch(unfollowStoreAction(store));
+
+  };
+
+  const renderButton = (storeId) => {
+    if (!auth.authenticate) {
+      return (
+        <Button
+          title="Follow"
+          backgroundColor
+          radius="3px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="23%"
+          height="22px"
+          fontSize="12px"
+          onClick={() => {
+            history.push({
+              pathname: "/Signin",
+              state: { storeId: storeId, Follow: true },
+            });
+          }}
+        ></Button>
+      );
+    }
+
+    if (auth.authenticate && !user.following.includes(storeId)) {
+      return (
+        <Button
+          title="Follow"
+          backgroundColor
+          radius="3px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="23%"
+          height="22px"
+          onClick={() => {
+            followStore(storeId);
+          }}
+          fontSize="12px"
+        ></Button>
+      );
+    }
+
+    
+    if (auth.authenticate && user.following.includes(storeId)) {
+      return (
+        <Button
+          title="Following"
+          backgroundColor
+          radius="3px"
+          border
+          border-radius="3px"
+          color="#000"
+          padding="2px 5px"
+          width="23%"
+          height="22px"
+          onClick={() => {
+            UnFollowStore(storeId);
+          }}
+          fontSize="12px"
+        ></Button>
+      );
+    }
+
+  
+  };
+
+
 
   return (
     <>
@@ -33,25 +124,12 @@ const Product = (props) => {
               >
                 <Link
                   to={`/${product.storeId._id}/store`}
-                  style={{ fontSize: "15px",color:'rgb(63, 63, 71)'}}
+                  style={{ fontSize: "15px", color: "rgb(63, 63, 71)" }}
                 >
                   {product.storeId.storeName}
                 </Link>
-                <Button
-                  title="Following"
-                  backgroundColor
-                  radius="3px"
-                  border
-                  border-radius="3px"
-                  color="#000"
-                  padding="2px 5px"
-                  width="23%"
-                  height="22px"
-                  // onClick={() => {
-                  //   UnFollowStore(storeId);
-                  // }}
-                  fontSize="12px"
-                ></Button>
+                {renderButton(product.storeId._id)}
+                
               </div>
               <div className="Cover-cover-2mr ProjectCoverNeue-cover-3Ni e2e-ProjectCoverNeue js-project-cover e2e-ProjectCoverNeue-cover ProjectCoverNeue-coverWithFlags-1Aq ProjectCoverNeue-statsVisible-19j ProjectCoverNeue-loaded-26R">
                 <div className="Cover-wrapper-300 ProjectCoverNeue-wrapper-27j e2e-ProjectCoverNeue-wrapper">
@@ -97,18 +175,33 @@ const Product = (props) => {
                       left: "0",
                     }}
                   >
-                    <div style={{ display: "flex",alignItems:'center' }}>
+                    <div style={{ display: "flex", alignItems: "center" }}>
                       <span className="price-new-price">
-                        {/* <BiRupee /> */}$
-                        {product.productPrice}
+                        {/* <BiRupee /> */}
+                        {"₹ " + product.productPrice}
                       </span>
                       {/* <span>i</span> */}
                     </div>
-                    <h1
-                      className="new-add-btn"
-                    >
-                      Add +
-                    </h1>
+                    <h1 className="new-add-btn"
+                       onClick={() => {
+                      
+                          const storeId = product.storeId._id;
+                          const { _id, productName, productPrice } =
+                          product;
+                          const img = product.productPictures[0].img;
+                          dispatch(
+                            addToCart({
+                              _id,
+                              productName,
+                              productPrice,
+                              storeId,
+                              img,
+                            })
+                          );
+                         
+                          
+                        }}
+                    >Add +</h1>
                   </div>
                 </div>
               </div>

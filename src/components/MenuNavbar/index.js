@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import SeachCompo from "../SearchComponent";
-import './style.css'
+import "./style.css";
 
 const MenuNavBar = (props) => {
   const categoriesList = useSelector((state) => state.category.categories);
@@ -101,10 +100,10 @@ const MenuNavBar = (props) => {
                 </div>
               </a>
             </li>
-            <li style={{marginLeft:'57.8%'}}>
-              {/* <div
+            <li style={{ marginLeft: "57.8%" }}>
+              <div
                 tabIndex="0"
-                className="SearchTypeahead-searchContainer-175 SearchTypeahead-isTypeaheadEnabled-3i3"
+                className="kfjfhurcncncbchn SearchTypeahead-isTypeaheadEnabled-3i3"
               >
                 <div className="SearchTypeahead-searchInputWrap-3Hg">
                   <div className="SearchTypeahead-searchIcon-1ld">
@@ -112,29 +111,20 @@ const MenuNavBar = (props) => {
                       <path d="M11.407,10.421,8.818,7.832a4.276,4.276,0,1,0-.985.985l2.589,2.589a.7.7,0,0,0,.985-.985ZM2.355,5.352a3,3,0,1,1,3,3,3,3,0,0,1-3-3Z"></path>
                     </svg>
                   </div>
-                  <label for="search">
-                    <input
-                    style={{border:'black'}}
-                      type="search"
-                      name="search"
-                      autocomplete="off"
-                      placeholder="Search…"
-                      aria-label="Search "
-                      className="SearchTypeahead-searchInput-1qk e2e-SearchInput-input"
-                      ref={inputSearch}
-                      // onChange={(e) => {
-
-                      //   abcd(e)
-                      //   //  setSearchTerm(e.target.value)
-                      //   // dispatch(searchTermAction(searchTerm))
-                      //   // console.log(searchTerm);
-
-                      // }}
-                      // onChange={changeHandler}
-                      value={props.term}
-                      onChange={getSearchTerm}
-                    />
-                  </label>
+                  <input
+                    type="search"
+                    name="search"
+                    autocomplete="off"
+                    placeholder="Search…"
+                    aria-label="Search "
+                    className="SearchTypeahead-searchInput-1qk e2e-SearchInput-input"
+                    style={{ outline: "none" }}
+                    // ref={inputSearch}
+                    // value={props.term}
+                    onChange={getSearchTerm}
+                    ref={inputSearch}
+                    value={props.term}
+                  />
                 </div>
                 <button
                   tabIndex="-1"
@@ -144,10 +134,7 @@ const MenuNavBar = (props) => {
                     <div className="Btn-label-1Zf e2e-Btn-label">Cancel</div>
                   </div>
                 </button>
-              </div> */}
-              <SeachCompo 
-              // term={searchTerm} searchKeyword={searchHandler} 
-              />
+              </div>
             </li>
             <div></div>
           </ul>

@@ -1,6 +1,7 @@
 const slugify = require("slugify");
 const StoreLocation = require("../models/location");
-const Category = require("../models/category")
+const Category = require("../models/category");
+const StorePlan = require("../models/store.plan")
 
 exports.addLocation = (req, res) => {
   const locationobj = {
@@ -32,6 +33,22 @@ exports.addCategory = (req, res) => {
     if (error) return res.status(400).json({ error });
     if (category) {
       return res.status(201).json({ category });
+    }
+  });
+};
+
+exports.addStorePlan = (req, res) => {
+  const storePlanObj = {
+    planName: req.body.planName,
+    planDescription: req.body.planDescription,
+    planPrice: req.body.planPrice,
+    noOfProducts: req.body.noOfProducts,
+  };
+  const storePlan = new StorePlan(storePlanObj);
+  storePlan.save((error, plan) => {
+    if (error) return res.status(400).json({ error });
+    if (plan) {
+      return res.status(201).json({ plan });
     }
   });
 };
