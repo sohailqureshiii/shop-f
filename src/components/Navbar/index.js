@@ -248,7 +248,7 @@ const Navigationbar = (props) => {
                         textAlign: "center",
                         alignSelf: "center",
                         top: "-14px",
-                        right: "-16px",
+                        right: "-4px",
                         color: "white",
                       }}
                     >

@@ -76,17 +76,17 @@ const ExploreStore = (props) => {
   return (
     <>
       <NavBar />
-      <MenuNavbar
+      {/* <MenuNavbar
         term={searchTerm}
         locationterm={locationTerm}
         categoryterm={categoryTerm}
         searchKeyword={searchHandler}
         searchLocation={searchLocation}
         searchCategory={searchCategory}
-      />
-
-      <div className="store-list-main-container">
-        <div className="filter-for-store"></div>
+      /> */}
+      {/* <div> {renderStores()}</div> */}
+      <div className='store-list-main-container'>
+      <div className='filter-for-store'></div>
         <div className="new-store-page-container-one">
           <div className="new-store-page-container-two">
             {renderStores()}
