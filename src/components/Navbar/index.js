@@ -39,6 +39,19 @@ const Navigationbar = (props) => {
       return (
         <DropdownMenu
           menu={
+            <>
+              <Link>
+              <div style={{ marginLeft: 10, display: "flex" }}>
+                <span
+                  style={{
+                    fontSize: 15,
+                    marginRight: "12px",
+                    marginTop: "4px",
+                  }}
+                >
+                  {" "}
+                  {auth.user ? auth.user.name : "Hello User"}
+                </span>
             <div>
               <div style={{ marginLeft: 10 }}>
                 <img
@@ -51,7 +64,10 @@ const Navigationbar = (props) => {
                   }}
                   alt="Shopisthan Logo"
                 />
-                <span style={{ fontSize: 15 }}>
+              </div>
+            </Link>
+            </>
+     <span style={{ fontSize: 15 }}>
                   {" "}
                   {auth.user ? auth.user.name : "Hello User"}
                 </span>
@@ -75,7 +91,17 @@ const Navigationbar = (props) => {
         <DropdownMenu
           menu={
             <Link>
-              <div style={{ marginLeft: 10 }}>
+              <div style={{ marginLeft: 10, display: "flex" }}>
+                <span
+                  style={{
+                    fontSize: 15,
+                    marginRight: "12px",
+                    marginTop: "4px",
+                  }}
+                >
+                  {" "}
+                  {auth.user ? auth.user.name : "Hello User"}
+                </span>
                 <img
                   src={Profilepiclogo}
                   style={{
@@ -146,10 +172,7 @@ const Navigationbar = (props) => {
               </li>
 
               <li className="PrimaryNav-loggedOutOption-3xV">
-                {/* <Link
-            > */}
                 <div className="PrimaryNav-a11yButtonWrap-23Z">
-                  {/* <Link to='/Signin'>  */}
                   <button
                     className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
                     onClick={() =>
@@ -174,6 +197,13 @@ const Navigationbar = (props) => {
     );
   };
 
+  const items = document.querySelectorAll("ul a");
+  items.forEach((item) => {
+    item.addEventListener("click", () => {
+      document.querySelector("a.active").classList.remove("active");
+      item.classList.add("active");
+    });
+  });
   // const items = document.querySelectorAll("ul li");
   // items.forEach( (item) => {
   //   item.addEventListener('click', () => {
@@ -195,6 +225,70 @@ const Navigationbar = (props) => {
             </Link>
           </Link>
         </h3>
+        {/* <ul className={isMobile ? "nav-links-mobile" : "nav-links"}> */}
+        <ul className={isMobile ? "nav-links-mobile" : "ul-new-li-jxsx"}>
+          <Link className="active" to='/'>
+            <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+              <div class="link-background">
+                <img src={Homeicon} className="homepagenavbar-icon" />
+                Home
+              </div>
+            </h3>
+          </Link>
+
+          <Link to='/ExploreStore'>
+            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  <img src={Storeicon} className="homepagenavbar-icon" />
+                  <h1>Store</h1>
+                </div>
+              </h3>
+            </a>
+          </Link>
+
+          <Link to='/favorite'>
+            {" "}
+            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  <img src={Wishlisticon} className="homepagenavbar-icon" />
+                  Favorite
+                </div>
+              </h3>
+            </a>
+          </Link>
+          <Link to='/cartcheck'>
+            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  {cartItems && Object.keys(cartItems).length >= 1 ? (
+                    <span
+                      style={{
+                        position: "absolute",
+                        background: "black",
+                        width: "17px",
+                        height: "22px",
+                        borderRadius: "50%",
+                        fontSize: "14px",
+                        border: "1px solid #fff",
+                        textAlign: "center",
+                        alignSelf: "center",
+                        top: "-14px",
+                        right: "-16px",
+                        color: "white",
+                      }}
+                    >
+                      {Object.keys(cartItems).length}
+                    </span>
+                  ) : null}
+                  <img src={Carticon} className="homepagenavbar-icon" />
+                  Cart
+                </div>
+              </h3>
+            </a>
+          </Link>
+        </ul>
 
         <div className="new-navbar" style={{display:"flex"}}>
           <ul className={isMobile ? "nav-links-mobile" : "nav-links"}>
@@ -317,6 +411,76 @@ export default Navigationbar;
 }
 
 {
+  /* <Link className="cart " to="/">
+            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  <img src={Homeicon} className="homepagenavbar-icon" />
+                  <a href="" class="middle">
+                    Home
+                  </a>
+                </div>
+              </h3>
+            </a>
+          </Link>
+          <Link className="cart" to="/ExploreStore">
+            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  <img src={Storeicon} className="homepagenavbar-icon" />
+                  <a href="" class="middle">
+                    Store
+                  </a>
+                </div>
+              </h3>
+            </a>
+          </Link>
+          <Link className="cart" to="/favorite">
+            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  <img src={Wishlisticon} className="homepagenavbar-icon" />
+                  <a href="" class="middle">
+                    Favorite
+                  </a>
+                </div>
+              </h3>
+            </a>
+          </Link>
+          <Link className="cart" to="/cartcheck">
+            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  {cartItems && Object.keys(cartItems).length >= 1 ? (
+                    <span
+                      style={{
+                        position: "absolute",
+                        background: "black",
+                        width: "17px",
+                        height: "22px",
+                        borderRadius: "50%",
+                        fontSize: "14px",
+                        border: "1px solid #fff",
+                        textAlign: "center",
+                        alignSelf: "center",
+                        top: "-14px",
+                        right: "-16px",
+                        color: "white",
+                      }}
+                    >
+                      {Object.keys(cartItems).length}
+                      
+                    </span>
+                  ) : null}
+
+                  <img src={Carticon} className="homepagenavbar-icon" />
+                  <a href="" class="middle">
+                    Cart
+                  </a>
+                </div>
+              </h3>
+            </a>
+          </Link> */
   /* <DropdownMenu
 menu={
   <Link>

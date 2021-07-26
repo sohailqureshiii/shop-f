@@ -31,8 +31,9 @@ const StoreDasboard = () => {
                   width="20%"
                   height="85%"
                   fontSize="1.2rem"
-                  backgroundColor="rgb(236, 236, 236)"
-                  color="#5f5f5f"
+                  backgroundColor="black"
+                  color="white"
+                  radius="5px"
                 />
               </Link>
             </div>
@@ -80,7 +81,7 @@ const StoreDasboard = () => {
                           Pending
                         </td>
                       </tr>
-                      <tr className="mnbnmnb">
+                      <tr className="new-table-border-new">
                         <td className="jfkvvjvsv" data-label="S.No">
                           1
                         </td>
@@ -103,7 +104,7 @@ const StoreDasboard = () => {
                           Pending
                         </td>
                       </tr>
-                      <tr className="mnbnmnb">
+                      <tr className="new-table-border-new">
                         <td className="jfkvvjvsv" data-label="S.No">
                           1
                         </td>
@@ -126,7 +127,7 @@ const StoreDasboard = () => {
                           Pending
                         </td>
                       </tr>
-                      <tr className="mnbnmnb">
+                      <tr className="new-table-border-new">
                         <td className="jfkvvjvsv" data-label="S.No">
                           1
                         </td>
@@ -158,19 +159,22 @@ const StoreDasboard = () => {
               <div className="new-order-table-new">
                 <div>
                   <div className="new-order-new-heder-new">
-                    <h1 className="new-order-hearder-new">New Orders</h1>
+                    <h1 className="new-order-hearder-new">Customers</h1>
                   </div>
 
                   <table className="table-new-table">
                     <thead className="oknbhgrtyfc">
                       <th className="new-order-table-heeder">S.No</th>
+                      <th className="new-order-table-heeder">Customer Id</th>
+                      <th className="new-order-table-heeder">Customer Name</th>
+                      <th className="new-order-table-heeder">Following</th>
                       {/* <th className="new-order-table-heeder">Order Id</th> */}
                       <th className="new-order-table-heeder">Customer</th>
                       {/* <th className="new-order-table-heeder">Date/Time</th> */}
                     </thead>
 
                     <tbody className="lgadkyhdtq">
-                      <tr className="mnbnmnb">
+                      <tr className="new-table-border-new">
                         <td className="jfkvvjvsv" data-label="S.No">
                           1
                         </td>
@@ -184,6 +188,7 @@ const StoreDasboard = () => {
                           3:59
                         </td> */}
                       </tr>
+                      <tr className="new-table-border-new">
                       {/* <tr className="mnbnmnb">
                         <td className="jfkvvjvsv" data-label="S.No">
                           1
@@ -198,7 +203,7 @@ const StoreDasboard = () => {
                           3:59
                         </td>
                       </tr>
-                      <tr className="mnbnmnb">
+                      <tr className="new-table-border-new">
                         <td className="jfkvvjvsv" data-label="S.No">
                           1
                         </td>
@@ -225,34 +230,3 @@ const StoreDasboard = () => {
 };
 
 export default StoreDasboard;
-
-{
-  /* <div style={{ padding: "30px" }}>
-            <div className="mklydfbsn">
-              <div className="bvncmdkdj">
-                <div className="njhgyflvdiw">
-                  <h1 className="mkoqszert">Products</h1>
-                </div>
-                <div className="nnsxnslxkax">
-                  <h1 className="mkoqszerdefeft">{storeProducts.length}</h1>
-                </div>
-              </div>
-              <div className="bvncmdkdj">
-                <div className="njhgyflvdiw">
-                  <h1 className="mkoqszert">Orders</h1>
-                </div>
-                <div className="nnsxnslxkax">
-                  
-                </div>
-              </div>
-              <div className="bvncmdkdj">
-                <div className="njhgyflvdiw">
-                  <h1 className="mkoqszert">Customer</h1>
-                </div>
-                <div className="nnsxnslxkax">
-                  <h1 className="mkoqszerdefeft">960</h1>
-                </div>
-              </div>
-            </div>
-          </div> */
-}
