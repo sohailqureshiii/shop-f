@@ -4,7 +4,11 @@ import ProductModal from "../ProductModal";
 import "./style.css";
 import { Button } from "../MaterialUI";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, followStoreAction, unfollowStoreAction } from "../../actions/user.action";
+import {
+  addToCart,
+  followStoreAction,
+  unfollowStoreAction,
+} from "../../actions/user.action";
 
 const Product = (props) => {
   const { product } = props;
@@ -25,7 +29,6 @@ const Product = (props) => {
       followId: storeId,
     };
     dispatch(followStoreAction(store));
- 
   };
 
   const UnFollowStore = (storeId) => {
@@ -33,7 +36,6 @@ const Product = (props) => {
       unfollowId: storeId,
     };
     dispatch(unfollowStoreAction(store));
-
   };
 
   const renderButton = (storeId) => {
@@ -80,7 +82,6 @@ const Product = (props) => {
       );
     }
 
-    
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
         <Button
@@ -100,11 +101,7 @@ const Product = (props) => {
         ></Button>
       );
     }
-
-  
   };
-
-
 
   return (
     <>
@@ -129,14 +126,15 @@ const Product = (props) => {
                   {product.storeId.storeName}
                 </Link>
                 {renderButton(product.storeId._id)}
-                
               </div>
               <div className="Cover-cover-2mr ProjectCoverNeue-cover-3Ni e2e-ProjectCoverNeue js-project-cover e2e-ProjectCoverNeue-cover ProjectCoverNeue-coverWithFlags-1Aq ProjectCoverNeue-statsVisible-19j ProjectCoverNeue-loaded-26R">
                 <div className="Cover-wrapper-300 ProjectCoverNeue-wrapper-27j e2e-ProjectCoverNeue-wrapper">
                   <div className="Cover-content-2R2">
                     <img
                       sizes="404px"
-                      src={product.productPictures[0].img}
+                      src={
+                        "https://images-eu.ssl-images-amazon.com/images/I/41fBz4s1nzS._AC_SX184_.jpg"
+                      }
                       alt="new"
                       loading="lazy"
                       class="ProjectCoverNeue-image-1MZ js-cover-image"
@@ -155,7 +153,9 @@ const Product = (props) => {
                       left: "0",
                     }}
                   >
-                    <span className="new-h-product-name">
+                    <span className="new-h-product-name"
+                     onClick={() => handleShow()}
+                    >
                       {product.productName}
                     </span>
                     <div
@@ -182,26 +182,25 @@ const Product = (props) => {
                       </span>
                       {/* <span>i</span> */}
                     </div>
-                    <h1 className="new-add-btn"
-                       onClick={() => {
-                      
-                          const storeId = product.storeId._id;
-                          const { _id, productName, productPrice } =
-                          product;
-                          const img = product.productPictures[0].img;
-                          dispatch(
-                            addToCart({
-                              _id,
-                              productName,
-                              productPrice,
-                              storeId,
-                              img,
-                            })
-                          );
-                         
-                          
-                        }}
-                    >Add +</h1>
+                    <h1
+                      className="new-add-btn"
+                      onClick={() => {
+                        const storeId = product.storeId._id;
+                        const { _id, productName, productPrice } = product;
+                        const img = product.productPictures[0].img;
+                        dispatch(
+                          addToCart({
+                            _id,
+                            productName,
+                            productPrice,
+                            storeId,
+                            img,
+                          })
+                        );
+                      }}
+                    >
+                      Add +
+                    </h1>
                   </div>
                 </div>
               </div>

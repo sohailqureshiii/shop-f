@@ -46,7 +46,7 @@ const Favorite = (props) => {
     <>
       <NavBar />
       {/* ProfileHEader  starts*/}
-      <div className="follow-store-profile" style={{ paddingTop: "55px" }}>
+      {/* <div className="follow-store-profile" style={{ paddingTop: "55px" }}>
         <div className="inside-div-of-pro">
           <div className="lkjh-bdbdh">
             <div className="olkbgh-pldhdy">
@@ -83,6 +83,29 @@ const Favorite = (props) => {
             </div>
           </div>
         </div>
+      </div> */}
+      <div style={{ paddingTop: "70px" }}>
+        <div className="store-following-container-one">
+          <div className="store-following-container-two">
+          {auth && followingStoreLists.length > 0
+                ? followingStoreLists.map((store, index) => (
+            <div className="following-container-css">
+              <div className="following-img-css">
+                <img
+                  src="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg"
+                  srcset="https://mir-s3-cdn-cf.behance.net/user/115/116178.53ab83f268ef3.jpg,  2x"
+                  alt="Avatar profile image"
+                  className="following-store-profile"
+                />
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <h4>Sohail Shop</h4>
+              </div>
+            </div>
+            ))
+                : "Follow Suggestions"}
+          </div>
+        </div>
       </div>
       {/* ProfileHEader  ends*/}
 
@@ -94,7 +117,6 @@ const Favorite = (props) => {
             ? followingStoreProductLists.map((product, index) => (
                 <div
                   style={{ border: "1px solid #d4d4d4", borderRadius: "6px" }}
-                 
                 >
                   <div>
                     <div className="Galleries-gridCover-j9D">
@@ -103,14 +125,12 @@ const Favorite = (props) => {
                           <div className="Cover-wrapper-300 ProjectCoverNeue-wrapper-27j e2e-ProjectCoverNeue-wrapper">
                             <div className="Cover-content-2R2">
                               <div className="DominantColor-dominantColor-2PM"></div>
-                              {
-
-                              }
+                              {}
                               <img
                                 sizes="404px"
                                 style={{ padding: "10px" }}
-                                src={product.productPictures[0].img}
-                                alt="Children's Day - ''SEE ME&quot;"
+                                src={"https://images-eu.ssl-images-amazon.com/images/I/41fBz4s1nzS._AC_SX184_.jpg"}
+                                alt="''"
                                 loading="lazy"
                                 class="ProjectCoverNeue-image-1MZ js-cover-image"
                               ></img>
@@ -134,17 +154,17 @@ const Favorite = (props) => {
                               <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
                                 <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
                                   <a className="Owners-owner-2lB e2e-Owner-user-link">
-                                   {product.productName}
+                                    {product.productName}
                                   </a>
                                 </span>
                               </div>
                             </span>
-                            <div className="Stats-stats-1iI" >
+                            <div className="Stats-stats-1iI">
                               <div className="Product__priceFlex">
                                 <button
                                   className="abcjnalnajcsn"
                                   style={{ marginTop: "0px" }}
-                                  onClick={()=>handleShow(product)}
+                                  onClick={() => handleShow(product)}
                                 >
                                   View Details
                                 </button>
