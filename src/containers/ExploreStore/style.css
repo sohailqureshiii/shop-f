@@ -86,11 +86,12 @@
   display: flex;
   padding: 15px 0px;
   border-bottom: 1px solid #c7c7c7;
-  box-shadow: 0 0px 3px rgb(0 0 0 / 20%)
+  box-shadow: 0 0px 3px rgb(0 0 0 / 20%);
+  margin-bottom: 20px;
 }
 
 .new-store-page-container-two {
-  padding: 15px;
+  padding:0px 0px 0px 15px;
 }
 
 .store-profile-card-three {
@@ -206,7 +207,7 @@
 }
 
 .store-list-main-container{
-  padding: 135px 85px 30px 100px;
+  padding: 85px 95px 30px 100px;
   display:flex 
 }
 
