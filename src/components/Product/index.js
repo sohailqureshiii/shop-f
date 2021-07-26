@@ -136,7 +136,7 @@ const Product = (props) => {
                   <div className="Cover-content-2R2">
                     <img
                       sizes="404px"
-                      src={product.productPictures[0].img}
+                      // src={product.productPictures[0].img}
                       alt="new"
                       loading="lazy"
                       class="ProjectCoverNeue-image-1MZ js-cover-image"
