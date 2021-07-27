@@ -58,7 +58,7 @@
 .addressDetail{
     display: flex;
     justify-content: space-between;
-    width: 300%;
+    width: 100%;
     box-sizing: border-box;
     padding-bottom: 20px;
     font-weight: 600;

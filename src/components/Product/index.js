@@ -45,7 +45,7 @@ const Product = (props) => {
           title="Follow"
           backgroundColor
           radius="3px"
-          border
+          border='1px solid #d9d9d9'
           border-radius="3px"
           color="#000"
           padding="2px 5px"
@@ -68,7 +68,7 @@ const Product = (props) => {
           title="Follow"
           backgroundColor
           radius="3px"
-          border
+          border='1px solid #d9d9d9'
           border-radius="3px"
           color="#000"
           padding="2px 5px"
@@ -88,7 +88,7 @@ const Product = (props) => {
           title="Following"
           backgroundColor
           radius="3px"
-          border
+          border="1px solid"
           border-radius="3px"
           color="#000"
           padding="2px 5px"
@@ -153,8 +153,9 @@ const Product = (props) => {
                       left: "0",
                     }}
                   >
-                    <span className="new-h-product-name"
-                     onClick={() => handleShow()}
+                    <span
+                      className="new-h-product-name"
+                      onClick={() => handleShow()}
                     >
                       {product.productName}
                     </span>

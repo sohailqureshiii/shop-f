@@ -34,6 +34,7 @@ import StoreEditProduct from "./containers/StoreContainers/EditProduct";
 import CheckoutPage from "./containers/CheckoutPage";
 import NewCart from "./containers/New Cart Page/cartindex";
 import CartCheckoutPage from "./containers/CartCheckoutPage";
+import NewProfile from "./components/Pages for No Reult/No Location Found Page";
 
 function App() {
   const dispatch = useDispatch();
@@ -115,6 +116,7 @@ function App() {
           <PrivateRoute path="/Addproduct" exact component={StoreAddProduct} />
           <Route path="/products/details" component={ProductDetailsPage} />
           <Route path="/cartcheck" component={CartCheckoutPage} />
+          <Route path="/pro" component={NewProfile} />
         </Switch>
       </Router>
     </div>

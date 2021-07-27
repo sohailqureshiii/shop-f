@@ -30,7 +30,8 @@ const Button = (props) => {
     marginTop,
     marginLeft,
     fontSize,
-    zIndex
+    zIndex,
+    style
   } = props;
 
   return (
@@ -38,7 +39,8 @@ const Button = (props) => {
       onClick={onClick}
       style={{
         backgroundColor,
-        border: "1px solid #d9d9d9",
+        border,
+        // : "1px solid #d9d9d9",
         borderRadius: radius,
         height,
         width,
@@ -50,7 +52,8 @@ const Button = (props) => {
         marginTop,
         marginLeft,
         fontSize,
-        zIndex
+        zIndex,
+        style
       }}
     >
       {title}
