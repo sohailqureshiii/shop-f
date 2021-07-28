@@ -29,6 +29,7 @@ const Button = (props) => {
     marginBottom,
     marginTop,
     marginLeft,
+    marginRight,
     fontSize,
     zIndex,
     style
@@ -51,6 +52,7 @@ const Button = (props) => {
         marginBottom,
         marginTop,
         marginLeft,
+        marginRight,
         fontSize,
         zIndex,
         style

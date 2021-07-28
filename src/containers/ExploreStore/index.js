@@ -84,20 +84,17 @@ const ExploreStore = (props) => {
       <div className="store-list-main-container">
         <div className="filter-for-store">
           <div className="filter-bar-filter-explore-header">
-            <h1 className="filter-bar-filter-explore-h2-tag">Explore Stores</h1>
+            <h1 className="filter-bar-filter-explore-h2-tag">Filters</h1>
           </div>
-          <div className="filter-bar-filter-header">
-            <h1 className="filter-bar-filter-header-h1-tag">Filters</h1>
-          </div>
-          <div>
-          <div className='new-compo-conatiner-div'>
+          <div style={{ marginTop: "10px" }}>
+            <div className="new-compo-conatiner-div">
               {" "}
               <div className="filter-bar-filter-new">
                 <h1 className="filter-bar-filter-header-h1-tag">
                   Search For Shops
                 </h1>
               </div>
-              <div className='compo-for-filter'>
+              <div className="compo-for-filter">
                 <div
                   tabIndex="0"
                   className="bsjnansnaksn SearchTypeahead-isTypeaheadEnabled-3i3"
@@ -134,13 +131,29 @@ const ExploreStore = (props) => {
                 </div>
               </div>
             </div>
-            <div className='new-compo-conatiner-div'>
-              <div className="filter-bar-filter-new">
-                <h1 className="filter-bar-filter-header-h1-tag">
-                  Filter By Location
-                </h1>
+            <div className="new-compo-conatiner-div">
+              {/* <div className="filter-bar-filter-new">
+                <h1 className="filter-bar-filter-header-h1-tag">Show Only</h1>
+              </div> */}
+              <h1 className="show-only-tag">Show Only</h1>
+              <div style={{marginTop:'5px',display:'flex',alignItems:'center',lineHeight:'1.5'}}>
+                <input type="radio" style={{cursor:'pointer'}}></input>
+                <h1 className='cbildcbdc'>On Sale</h1>
               </div>
-              <div className='compo-for-filter'>
+              <div style={{display:'flex',alignItems:'center',lineHeight:'1.5' }}>
+              <input type="radio" style={{cursor:'pointer'}}></input>
+                <h1 className='cbildcbdc'>On Disscount</h1>
+              </div>
+              <div style={{display:'flex',alignItems:'center',lineHeight:'1.5' }}>
+              <input type="radio" style={{cursor:'pointer'}}></input>
+                <h1 className='cbildcbdc'>Verified</h1>
+              </div>
+            </div>
+            <div className="new-compo-conatiner-div">
+              <div className="filter-bar-filter-new">
+                <h1 className="filter-bar-filter-header-h1-tag">Location</h1>
+              </div>
+              <div className="compo-for-filter">
                 <div className="SubCategory-root-mwEfghi ">
                   <select
                     className="SubCategory-root-mwE"
@@ -158,7 +171,37 @@ const ExploreStore = (props) => {
                       className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
                       value=""
                     >
-                      location
+                      State
+                    </option>
+                    {/* {locationList.map((value) => ( */}
+                    <option
+                    // key={value._id} value={value._id}
+                    >
+                      {/* {value.name} */}
+                    </option>
+                    {/* ))} */}
+                  </select>
+                </div>
+              </div>
+              <div className="compo-for-filter">
+                <div className="SubCategory-root-mwEfghi ">
+                  <select
+                    className="SubCategory-root-mwE"
+                    className="SubCategory-label-30Fmjdh"
+                    // value={filterdLocation}
+                    // onChange={(e) => {
+                    //   const selectedLocation = e.target.value;
+                    //   setFilterdLocation(selectedLocation);
+                    // // }}
+                    // ref={inputLocation}
+                    // value={props.locationterm}
+                    // onChange={getLocationTerm}
+                  >
+                    <option
+                      className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
+                      value=""
+                    >
+                      City
                     </option>
                     {/* {locationList.map((value) => ( */}
                     <option
@@ -171,13 +214,11 @@ const ExploreStore = (props) => {
                 </div>
               </div>
             </div>
-            <div className='new-compo-conatiner-div'>
+            <div className="new-compo-conatiner-div">
               <div className="filter-bar-filter-new">
-                <h1 className="filter-bar-filter-header-h1-tag">
-                  Filter By Category
-                </h1>
+                <h1 className="filter-bar-filter-header-h1-tag">Category</h1>
               </div>
-              <div className='compo-for-filter'>
+              <div className="compo-for-filter">
                 <div className="SubCategory-root-mwEfghi SubCategory-active-Sxz NavigationBar-subcategory-2m5">
                   <select
                     className="SubCategory-label-30Fmjdh"

@@ -80,15 +80,16 @@
   display: block;
   height: 100%;
   width: 100%;
+  border: 1px solid #c7c7c7;
 }
 
 .new-store-profile-card-one {
   display: flex;
   padding: 15px 0px;
   box-shadow: 0 0px 3px rgb(0 0 0 / 20%);
-  border: 1px solid #e6e6e6;
+  border: 0.5px solid rgb(215, 215, 224);;
   margin-bottom: 20px;
-  border-radius: 5px  ;
+  border-radius: 5px;
 }
 
 .new-store-page-container-two {
@@ -184,6 +185,8 @@
 
 .product-container-store {
   display: flex;
+  align-items: center;
+  margin-left: 30px;
 }
 
 .product-new-container-of-store {
@@ -199,16 +202,15 @@
   display: flex;
 }
 
-
 .store-list-main-container {
   padding: 85px 95px 30px 100px;
   display: flex;
+  position: fixed;
 }
 
 .new-store-page-container-one {
   width: 100%;
-  width: 100%;
-  height: 50rem;
+  height: 43rem;
   overflow-y: scroll;
 }
 
@@ -216,15 +218,15 @@
   .store-list-main-container {
     padding: 135px 66px 30px;
     display: flex;
+    position: fixed;
   }
 }
 
 /* //// Filter Css Starts ///// */
 
-
 .filter-for-store {
   background-color: white;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #c7c7c7;
   clear: left;
   float: left;
   font-size: 13px;
@@ -237,7 +239,7 @@
   max-height: 600px;
   height: 550px;
   border-radius: 8px;
-  box-shadow: 0 0px 3px rgb(0 0 0 / 20%);
+  /* box-shadow: 0 0px 3px rgb(0 0 0 / 20%); */
 }
 
 .bsjnansnaksn {
@@ -259,7 +261,7 @@
   color: #585858;
   font-family: montserrat-bold, sans-serif;
   margin: 0 8px 0 0;
-  
+  font-weight: 600;
 }
 
 .filter-bar-filter-explore-header {
@@ -275,6 +277,7 @@
   text-align: left;
   display: inline-block;
   color: #292929;
+  
 }
 
 .filter-bar-filter-new {
@@ -282,22 +285,22 @@
   line-height: normal;
   color: #191919;
   font-family: montserrat-bold, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   margin: 0 8px 0 0;
 }
 
-.compo-for-filter{
-padding-top: 10px;
+.compo-for-filter {
+  padding-top: 10px;
 }
 
-.new-compo-conatiner-div{
+.new-compo-conatiner-div {
   margin-bottom: 10px;
 }
 
-.SubCategory-root-mwEfghi{
+.SubCategory-root-mwEfghi {
   align-items: center;
   background-color: #ffffff;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #c7c7c7;
   border-radius: 5px;
   cursor: pointer;
   justify-content: center;
@@ -309,13 +312,24 @@ padding-top: 10px;
   color: #191919;
 }
 
-.SubCategory-label-30Fmjdh{
-  font-size: 14px;
-    line-height: 1;
-    color: rgba(45, 45, 45, 0.5);
-    width: 100%;
-    border: none;
+.SubCategory-label-30Fmjdh {
+  font-size: 12px;
+  line-height: 1;
+  color: rgba(45, 45, 45, 0.5);
+  width: 100%;
+  border: none;
+}
 
+.show-only-tag{
+  color: #585858;
+  font-family: montserrat-bold, sans-serif;
+  font-weight: 600;
+  margin: 0 8px 0 0;
+}
+
+.cbildcbdc{
+  margin-left: 5px;
+  color:  rgba(32, 32, 32, 0.5);
 }
 
 /* //////// Filter Css Ends ////// */

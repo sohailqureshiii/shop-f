@@ -45,7 +45,7 @@ const Product = (props) => {
           title="Follow"
           backgroundColor
           radius="3px"
-          border='1px solid #d9d9d9'
+          border='1px solid #c7c7c7'
           border-radius="3px"
           color="#000"
           padding="2px 5px"
@@ -68,7 +68,7 @@ const Product = (props) => {
           title="Follow"
           backgroundColor
           radius="3px"
-          border='1px solid #d9d9d9'
+          border='1px solid #c7c7c7'
           border-radius="3px"
           color="#000"
           padding="2px 5px"
@@ -88,7 +88,7 @@ const Product = (props) => {
           title="Following"
           backgroundColor
           radius="3px"
-          border="1px solid"
+          border="1px solid #000"
           border-radius="3px"
           color="#000"
           padding="2px 5px"
@@ -121,7 +121,7 @@ const Product = (props) => {
               >
                 <Link
                   to={`/${product.storeId._id}/store`}
-                  style={{ fontSize: "15px", color: "rgb(63, 63, 71)" }}
+                  className='store-name-on-product'
                 >
                   {product.storeId.storeName}
                 </Link>
@@ -133,7 +133,7 @@ const Product = (props) => {
                     <img
                       sizes="404px"
                       src={
-                        "https://images-eu.ssl-images-amazon.com/images/I/41fBz4s1nzS._AC_SX184_.jpg"
+                        "https://images.meesho.com/images/pow/homepage/hbd-dos1.jpg"
                       }
                       alt="new"
                       loading="lazy"
