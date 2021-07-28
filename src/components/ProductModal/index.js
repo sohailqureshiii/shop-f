@@ -56,9 +56,9 @@ const ProductModal = (props) => {
           title="Follow Store"
           backgroundColor
           radius="5px"
-          border
+          border='1px solid #c7c7c7'
           border-radius="3px"
-          color="#000"
+          color= 'rgb(63, 63, 71)'
           padding="2px 5px"
           width="23%"
           height="32px"
@@ -79,9 +79,9 @@ const ProductModal = (props) => {
           title="Follow Store"
           backgroundColor
           radius="5px"
-          border
+          border='1px solid #c7c7c7'
           border-radius="3px"
-          color="#000"
+          color= 'rgb(63, 63, 71)'
           padding="2px 5px"
           width="23%"
           height="32px"
@@ -100,7 +100,7 @@ const ProductModal = (props) => {
           title="Following"
           backgroundColor
           radius="5px"
-          border
+          border='1px solid'
           border-radius="3px"
           color="#000"
           padding="2px 5px"

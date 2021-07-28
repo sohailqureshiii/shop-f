@@ -80,18 +80,20 @@
   display: block;
   height: 100%;
   width: 100%;
+  border: 1px solid #c7c7c7;
 }
 
 .new-store-profile-card-one {
   display: flex;
   padding: 15px 0px;
-  border-bottom: 1px solid #c7c7c7;
   box-shadow: 0 0px 3px rgb(0 0 0 / 20%);
+  border: 0.5px solid rgb(215, 215, 224);;
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .new-store-page-container-two {
-  padding:0px 0px 0px 15px;
+  padding: 0px 0px 0px 15px;
 }
 
 .store-profile-card-three {
@@ -170,54 +172,166 @@
   user-select: none;
 }
 
+.new-products-of-shops-img-of-pro {
+  width: 100px;
+  height: 150px;
+}
+
 .details-continer-store {
   padding: 15px 17px 10px;
   border-right: 1px solid #c7c7c7;
+  width: 23%;
 }
 
 .product-container-store {
   display: flex;
+  align-items: center;
+  margin-left: 30px;
 }
 
 .product-new-container-of-store {
-    margin-right: 8px;
-    padding: 10px 10px 0px 10px;
+  margin-right: 8px;
+  padding: 10px 10px 0px 10px;
 }
 
-.new-store-profile-card-followes-number{
-    font-family: inherit;
-    font-size: 13px;
-    line-height: 1.5;
-    color: #191919;
-    display: flex;
+.new-store-profile-card-followes-number {
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #191919;
+  display: flex;
 }
 
-.filter-for-store{
-   background-color: #555555;
-   border-bottom: 1px solid #e8e8e8;
-    clear: left;
-    float: left;
-    font-size: 13px;
-    line-height: 19px;
-    padding: 18px 20px;
-    position: relative;
-    width: 360px;
-    word-wrap: break-word;
-    z-index: 3;
-}
-
-.store-list-main-container{
+.store-list-main-container {
   padding: 85px 95px 30px 100px;
-  display:flex 
+  display: flex;
+  position: fixed;
 }
 
+.new-store-page-container-one {
+  width: 100%;
+  height: 43rem;
+  overflow-y: scroll;
+}
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .store-list-main-container{
+  .store-list-main-container {
     padding: 135px 66px 30px;
-    display:flex 
+    display: flex;
+    position: fixed;
   }
 }
 
+/* //// Filter Css Starts ///// */
+
+.filter-for-store {
+  background-color: white;
+  border: 1px solid #c7c7c7;
+  clear: left;
+  float: left;
+  font-size: 13px;
+  line-height: 19px;
+  padding: 18px 20px;
+  position: relative;
+  width: 360px;
+  word-wrap: break-word;
+  z-index: 3;
+  max-height: 600px;
+  height: 550px;
+  border-radius: 8px;
+  /* box-shadow: 0 0px 3px rgb(0 0 0 / 20%); */
+}
+
+.bsjnansnaksn {
+  margin-top: 2px;
+  width: 285px;
+}
+
+.filter-bar-filter-header {
+  padding: 12px 0;
+  border: none;
+  font-size: 1.3rem;
+  color: #191919;
+  padding-bottom: 20px;
+}
+
+.filter-bar-filter-header-h1-tag {
+  line-height: normal;
+  float: left;
+  color: #585858;
+  font-family: montserrat-bold, sans-serif;
+  margin: 0 8px 0 0;
+  font-weight: 600;
+}
+
+.filter-bar-filter-explore-header {
+  position: relative;
+  font-size: 1rem;
+  color: #191919;
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 10px;
+}
+
+.filter-bar-filter-explore-h2-tag {
+  font-size: 24px;
+  text-align: left;
+  display: inline-block;
+  color: #292929;
+  
+}
+
+.filter-bar-filter-new {
+  padding: 12px 0;
+  line-height: normal;
+  color: #191919;
+  font-family: montserrat-bold, sans-serif;
+  font-size: 14px;
+  margin: 0 8px 0 0;
+}
+
+.compo-for-filter {
+  padding-top: 10px;
+}
+
+.new-compo-conatiner-div {
+  margin-bottom: 10px;
+}
+
+.SubCategory-root-mwEfghi {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  padding: 5px 5px;
+  transition: color 0.1s linear;
+  -webkit-user-select: none;
+  user-select: none;
+  min-width: 100px;
+  color: #191919;
+}
+
+.SubCategory-label-30Fmjdh {
+  font-size: 12px;
+  line-height: 1;
+  color: rgba(45, 45, 45, 0.5);
+  width: 100%;
+  border: none;
+}
+
+.show-only-tag{
+  color: #585858;
+  font-family: montserrat-bold, sans-serif;
+  font-weight: 600;
+  margin: 0 8px 0 0;
+}
+
+.cbildcbdc{
+  margin-left: 5px;
+  color:  rgba(32, 32, 32, 0.5);
+}
+
+/* //////// Filter Css Ends ////// */
 
 /* //////// New Store Css Starts ////////////// */

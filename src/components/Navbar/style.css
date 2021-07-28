@@ -8,10 +8,6 @@
   box-sizing: border-box;
 }
 
-
-
-
-
 .homepagenavbar-icon {
   height: 13px;
   margin-right: 7px;
@@ -30,7 +26,7 @@
   position: fixed;
   z-index: 100;
   width: 100%;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 0.5px solid rgb(215, 215, 224);;
 }
 
 /* ///// Css for Laptop ////////// */
@@ -596,10 +592,10 @@ button {
 
 .SearchTypeahead-searchIcon-1ld .SearchTypeahead-icon-20K {
   fill: #959595;
-  height: 18px;
+  height: 14px;
   margin-left: 4px;
   margin-top: -3px;
-  width: 18px;
+  width: 14px;
 }
 
 .SearchTypeahead-searchInput-1qk {
@@ -611,7 +607,7 @@ button {
   border: 0;
   border-style: none;
   color: #191919;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 200;
   height: 100%;
   margin-top: -1px;

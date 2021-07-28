@@ -6,6 +6,7 @@ import Product from "../../components/Product";
 import MenuNavbar from "../../components/MenuNavbar";
 import { useSelector } from "react-redux";
 import category from "../../reducers/category.reducer";
+import NoProductFound from "../../components/Pages for No Reult/No Products Found Page";
 
 /**
  * @author
@@ -39,7 +40,7 @@ const HomePage = (props) => {
   const renderProduct = () => {
     if (searchTerm === "" && categoryTerm === "" && locationTerm === "") {
       return (
-        <div style={{ padding: "30px", paddingTop: "125px" }}>
+        <div className="homepageprocontainer" >
           <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
             {productLists.map((product, index) => (
               <Product product={product} index={index} />
@@ -79,13 +80,13 @@ const HomePage = (props) => {
       );
 
       return (
-        <div style={{ padding: "30px", paddingTop: "135px" }}>
+        <div className="homepageprocontainer" >
           <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
             {searchTermProducts.length > 0
               ? searchTermProducts.map((product, index) => (
                   <Product product={product} index={index} />
                 ))
-              : "No Product"}
+              :  <NoProductFound/>}
           </div>
         </div>
       );
@@ -95,13 +96,13 @@ const HomePage = (props) => {
         product.productParentCategory._id.includes(categoryTerm)
       );
       return (
-        <div style={{ padding: "30px", paddingTop: "135px" }}>
+        <div className="homepageprocontainer" >
           <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
             {categoryTermProducts.length > 0
               ? categoryTermProducts.map((product, index) => (
                   <Product product={product} index={index} />
                 ))
-              : "No Product"}
+              : <NoProductFound/>}
           </div>
         </div>
       );
@@ -111,13 +112,13 @@ const HomePage = (props) => {
         product.storeLocation._id.includes(locationTerm)
       );
       return (
-        <div style={{ padding: "30px", paddingTop: "135px" }}>
+        <div className="homepageprocontainer" >
           <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
             {locationTermProducts.length > 0
               ? locationTermProducts.map((product, index) => (
                   <Product product={product} index={index} />
                 ))
-              : "No Product"}
+              : <NoProductFound/>}
           </div>
         </div>
       );
@@ -129,13 +130,13 @@ const HomePage = (props) => {
           product.productParentCategory._id.includes(categoryTerm)
       );
       return (
-        <div style={{ padding: "30px", paddingTop: "135px" }}>
+        <div className="homepageprocontainer" >
           <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
             {locationCategoryTermProducts.length > 0
               ? locationCategoryTermProducts.map((product, index) => (
                   <Product product={product} index={index} />
                 ))
-              : "No Products"}
+              : <NoProductFound/>}
           </div>
         </div>
       );

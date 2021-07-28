@@ -111,7 +111,7 @@ const Favorite = (props) => {
 
       {/* ////// Following Products Starts ////// */}
 
-      <div style={{ padding: "30px" }}>
+      <div style={{ padding: "25px 30px 30px 100px" }}>
         <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
           {auth && followingStoreProductLists.length > 0
             ? followingStoreProductLists.map((product, index) => (
