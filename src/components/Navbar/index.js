@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import "./style.css";
-import { Modal, DropdownMenu } from "../../components/MaterialUI";
+import { Modal, DropdownMenu, Button } from "../../components/MaterialUI";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import Carticon from "../../img/cart.png";
 import Storeicon from "../../img/shop.png";
@@ -231,7 +231,13 @@ const Navigationbar = (props) => {
               </h3>
             </a>
           </Link>
-          <Link className="cart" to="/cartcheck">
+        </ul>
+        {/* <div className="PrimaryNav-signup-Yf6">
+          <ul className="PrimaryNav-loggedOutOptions-1SQ">
+            {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
+          </ul>
+        </div> */}
+        <Link className="cart" to="/cartcheck">
             <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
               <h3 className="PrimaryNav-coreNavigationLabel-3rj">
                 <div class="link-background">
@@ -256,20 +262,18 @@ const Navigationbar = (props) => {
                     </span>
                   ) : null}
 
-                  <img src={Carticon} className="homepagenavbar-icon" />
-                  <a href="" class="middle">
-                    Cart
-                  </a>
+                  <img src={Carticon} className="homepagenavbar-icon-cart" />
+                  
                 </div>
               </h3>
             </a>
           </Link>
-        </ul>
-        <div className="PrimaryNav-signup-Yf6">
-          <ul className="PrimaryNav-loggedOutOptions-1SQ">
-            {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
-          </ul>
-        </div>
+        <Link className='new-sell-online-btn'>
+        <h1>Sell Online</h1>
+        </Link>
+        <button className="new-bar-new">
+          <li className="fas fa-bars"></li>
+        </button>
         <button
           onClick={() => setIsMobile(!isMobile)}
           className="mobile-menu-icon"
