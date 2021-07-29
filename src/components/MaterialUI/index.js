@@ -7,11 +7,6 @@ import "./style.css";
  * @function
  **/
 
-   
-  
-
-
-
 const Button = (props) => {
   const {
     border,
@@ -32,7 +27,7 @@ const Button = (props) => {
     marginRight,
     fontSize,
     zIndex,
-    style
+    style,
   } = props;
 
   return (
@@ -55,7 +50,7 @@ const Button = (props) => {
         marginRight,
         fontSize,
         zIndex,
-        style
+        style,
       }}
     >
       {title}
@@ -80,6 +75,26 @@ const Modal = (props) => {
     </>
   );
 };
+
+
+const NavbarPop = (props) => {
+  if (!props.visible) {
+    return null;
+  }
+  return (
+    <>
+      <div className="modalFixedBg">
+        <div style={{ position: "relative" }}>
+          <div className="modalClose" onClick={props.onClose}>
+            X
+          </div>
+          <div className="modalContainer">{props.children}</div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 
 const MaterialInput = (props) => {
   return (
@@ -215,5 +230,5 @@ export {
   DropdownMenu,
   Anchor,
   Breed,
-
+  NavbarPop
 };
