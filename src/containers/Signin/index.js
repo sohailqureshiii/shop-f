@@ -61,7 +61,7 @@ const Signin = (props) => {
       props.location.state &&
       props.location.state.storeForm
     ) {
-      return <Redirect to="/storeForm" />;
+      return <Redirect to="/plansection" />;
     }
 
     if (props.location && props.location.state === undefined) {

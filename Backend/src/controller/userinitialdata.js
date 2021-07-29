@@ -5,10 +5,12 @@ const StoreLocation = require("../models/location");
 const User = require("../models/auth");
 const Order = require("../models/order");
 const Catalog = require("../models/catalog");
+const StorePlan = require("../models/store.plan")
 
 exports.userData = async (req, res) => {
   const categories = await Category.find({}).sort("-createdAt").exec();
   const locations = await StoreLocation.find({}).sort("-createdAt").exec();
+  const storePlans = await StorePlan.find({}).exec();
 
   const stores = await Store.find({})
     .populate({ path: "createdBy", select: "name" })
@@ -29,6 +31,7 @@ exports.userData = async (req, res) => {
     categories,
     locations,
     products,
+    storePlans
   });
 };
 

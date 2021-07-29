@@ -16,6 +16,11 @@ export const categoryContants = {
   GET_ALL_CATEGORIES_SUCCESS: "GET_ALL_CATEGORIES_SUCCESS",
   GET_ALL_CATEGORIES_FAILURE: "GET_ALL_CATEGORIES_FAILURE",
 };
+export const storePlansContants = {
+  GET_ALL_Store_Plans_REQUEST: "GET_ALL_Store_Plans_REQUEST",
+  GET_ALL_Store_Plans_SUCCESS: "GET_ALL_Store_Plans_SUCCESS",
+  GET_ALL_Store_Plans_FAILURE: "GET_ALL_Store_Plans_FAILURE",
+};
 
 export const locationContants = {
   GET_ALL_LOCATION_REQUEST: "GET_ALL_LOCATION_REQUEST",

@@ -7,13 +7,14 @@ import {
   storeContants,
   userInitialdata,
   userStoreData,
+  storePlansContants
 } from "./constants";
 
 export const getUserDataAction = () => {
   return async (dispatch) => {
     const res = await axiosIntance.get(`/userData`);
     if (res.status === 200) {
-      const { categories, locations, products, stores } = res.data;
+      const { categories, locations, products, stores,storePlans } = res.data;
       dispatch({
         type: categoryContants.GET_ALL_CATEGORIES_SUCCESS,
         payload: { categories },
@@ -29,6 +30,10 @@ export const getUserDataAction = () => {
       dispatch({
         type: storeContants.GET_ALL_STORE_SUCCESS,
         payload: { stores },
+      });
+      dispatch({
+        type: storePlansContants.GET_ALL_Store_Plans_SUCCESS,
+        payload: {storePlans},
       });
     } else {
       dispatch({

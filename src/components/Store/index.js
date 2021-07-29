@@ -113,7 +113,7 @@ const Store = (props) => {
         <div className="product-new-container-of-store">
           <img
             src={
-              "https://m.media-amazon.com/images/I/41ZGJxnJu1S._AC_SY200_.jpg"
+              product.productPictures[0].img
             }
             alt={product.productName}
             className="new-products-of-shops-img-of-pro"
@@ -159,7 +159,7 @@ const Store = (props) => {
           </div>
           <div className="new-store-profile-card-follow-followes">
             {renderButton(store._id)}
-            <Link className="visit-store-btn" to="">
+            <Link className="visit-store-btn" to={`/${store._id}/store}`}>
               <Button
                 title="Visit Store"
                 backgroundColor
