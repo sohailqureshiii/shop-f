@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import myorders from "../../img/myorder-icon.svg";
 import Storeicon from "../../img/shop.png";
 import Logouticon from "../../img/logout.png";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Modal,
-  DropdownMenu,
-  Button,
-  NavbarPop,
-} from "../../components/MaterialUI";
+import {DropdownMenu} from "../../components/MaterialUI";
 import { signoutAction } from "../../actions/auth.action";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import "./style.css";
@@ -28,16 +23,28 @@ export const NavModal = ({ showModal, Modal }) => {
       return (
         <>
           <div>
-            <div style={{ display: "flex",alignItems:'center',textAlign:'center' }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
               <img
                 src={Profilepiclogo}
-                style={{ height: "20px", width: "20px",marginLeft:'5px' }}
-                // className="logo-png-navabar"
+                style={{
+                  height: 22,
+                  width: 22,
+                  marginBottom: "3px",
+                  marginLeft: "4px",
+                }}
                 alt="Shopisthan Logo"
               />
-              <h1 className="logo-header-navabar">
+              <h1
+                style={{
+                  fontSize: 15,
+                  textAlign: "center",
+                 
+                  marginLeft: "4px",
+                }}
+              >
                 {" "}
-                {auth.user ? auth.user.name : "Hello User"}
+                {/* {auth.user ? auth.user.name : "Hello User"} */}
+                My Profile
               </h1>
             </div>
             <Link
@@ -77,6 +84,7 @@ export const NavModal = ({ showModal, Modal }) => {
                 display: "flex",
                 alignItems: "center",
                 textAlign: "center",
+                cursor:'pointer'
               }}
             >
               <img
@@ -91,54 +99,78 @@ export const NavModal = ({ showModal, Modal }) => {
       );
     } else {
       return (
-        <DropdownMenu
-          menu={
-            <Link>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <h1
-                  style={{
-                    fontSize: 15,
-                    textAlign: "center",
-                    marginTop: "3px",
-                    marginLeft: "4px",
-                  }}
-                >
-                  {" "}
-                  {auth.user ? auth.user.name : "Hello User"}
-                </h1>
-                <img
-                  src={Profilepiclogo}
-                  style={{
-                    height: 22,
-                    width: 22,
-                    marginBottom: "3px",
-                    marginLeft: "4px",
-                  }}
-                  alt="Shopisthan Logo"
-                />
-              </div>
-              <Link to="/Orderpage">
-                <h1>My Orders</h1>
-              </Link>
-              <Link to="/storeForm">
-                <h1>Create Store</h1>
-              </Link>
-              <div onClick={() => logout()}>
-                <h1>Logout</h1>
-              </div>
-            </Link>
-          }
-          // menus={[
-          //   { label: "Edit Profile", to: "/editprofile", icon: null },
-          //   {
-          //     label: "Orders",
-          //     to: "/Orderpage",
-          //     icon: null,
-          //   },
-          //   { label: "Create Store", to: "/storeForm", icon: null },
-          //   { label: "Logout", to: "", icon: null, onClick: logout },
-          // ]}
-        />
+        <>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={Profilepiclogo}
+              style={{
+                height: 22,
+                width: 22,
+                marginBottom: "3px",
+                marginLeft: "4px",
+              }}
+              alt="Shopisthan Logo"
+            />
+            <h1
+              style={{
+                fontSize: 15,
+                textAlign: "center",
+                marginLeft: "4px",
+              }}
+            >
+              {" "}
+              {/* {auth.user ? auth.user.name : "Hello User"} */}
+              My Profile
+            </h1>
+          </div>
+          <Link
+            to="/Orderpage"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            <img
+              src={myorders}
+              className="logo-png-navabar"
+              alt="Shopisthan Logo"
+            />
+
+            <h1 className="logo-header-navabar">My Orders</h1>
+          </Link>
+          <Link
+            to="/storeForm"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            <img
+              src={Storeicon}
+              className="logo-png-navabar"
+              alt="Shopisthan Logo"
+            />
+            <h1 className="logo-header-navabar">Create Store</h1>
+          </Link>
+          <div
+            onClick={() => logout()}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              textAlign: "center",
+              cursor:'pointer'
+            }}
+          >
+            <img
+              src={Logouticon}
+              className="logo-png-navabar"
+              alt="Shopisthan Logo"
+            />
+            <h1 className="logo-header-navabar">Logout</h1>
+          </div>
+        </>
       );
     }
   };

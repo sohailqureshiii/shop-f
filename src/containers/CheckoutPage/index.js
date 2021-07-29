@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder, getAddress, getCartItems } from "../../actions/user.action";
-// import { getCartItems } from "../../actions/cart.action";
-import { Anchor, Button, MaterialInput } from "../../components/MaterialUI";
+import { Anchor, Button } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
 import Card from "../../components/UI/Card/index";
-import CartPage from "../CartPage/index";
 import AddressForm from "./AddressForm";
 
 import "./style.css";

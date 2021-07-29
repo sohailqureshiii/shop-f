@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Modal } from "../../components/MaterialUI";
 import { BiRupee } from "react-icons/bi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, Redirect } from "react-router-dom";
-import Signin from "../../containers/Signin";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -27,12 +25,7 @@ const ProductModal = (props) => {
     return null;
   }
 
-  const diffToast = () => {
-    toast.success("Item Added Successfull !", {
-      position: "top-center",
-    });
-  };
-
+  
   const followStore = (storeId) => {
     const store = {
       followId: storeId,
@@ -97,7 +90,7 @@ const ProductModal = (props) => {
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
         <Button
-          title="Following"
+          title="Unfollow"
           backgroundColor
           radius="5px"
           border='1px solid'
@@ -127,7 +120,7 @@ const ProductModal = (props) => {
         <div className="productDescriptionContainer">
           <div className="productDescContainer">
             <div className="productDescImgContainer">
-              <img src={"https://images-eu.ssl-images-amazon.com/images/I/41fBz4s1nzS._AC_SX184_.jpg"} />
+              <img src={"https://images.unsplash.com/photo-1490450243019-87fa188dd171?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUxfFM0TUtMQXNCQjc0fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"} alt='Hiiii'/>
             </div>
           </div>
           {/* home > category > subCategory > productName */}
@@ -264,61 +257,3 @@ const ProductModal = (props) => {
 };
 
 export default ProductModal;
-
-// <div
-//                       id="addButtons"
-//                       style={{
-//                         float: "left",
-//                         width: "100%",
-//                         marginLeft: "85px",
-//                         display: "flex",
-//                         gap: "20px",
-//                         marginTop: "10px",
-//                       }}
-//                     >
-//                       <div className="addToBagBtn  fixedCartBtnWrapper">
-//                         <div className="addButtons col-xs-12 pull-left">
-//                           {auth.authenticate &&
-//                           auth.user.storeId ===
-//                             productDetails.storeId._id ? null : (
-//                             <button
-//                               id="testWishButton"
-//                               className="addtocart pull-left "
-//                               onClick={() => {
-//                                 const storeId = productDetails.storeId._id;
-//                                 const { _id, productName, productPrice } =
-//                                   productDetails;
-//                                 const img =
-//                                   productDetails.productPictures[0].img;
-//                                 dispatch(
-//                                   addToCart({
-//                                     _id,
-//                                     productName,
-//                                     productPrice,
-//                                     storeId,
-//                                     img,
-//                                   })
-//                                 );
-//                                 handleclose(false);
-//                               }}
-//                             >
-//                               <span>ADD TO Cart</span>
-//                             </button>
-//                           )}
-
-//                           <button
-//                             id="addToCart"
-//                             className="wishlists pull-left "
-//                           >
-//                             <span>
-//                               {/* <WhatsappShareButton
-//                                 title={productDetails.productName}
-//                                 separator=" "
-//                                 url={`${shareApi}/product/${productDetails._id}`}
-//                               >
-//                                 SHARE
-//                               </WhatsappShareButton> */}
-//                             </span>
-//                           </button>
-//                         </div>
-//                       </div>

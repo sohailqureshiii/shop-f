@@ -18,6 +18,7 @@ const StoreForm = (props) => {
   const [storeAddress, setStoreAddress] = useState("");
   const [storeDescription, setStoreDescription] = useState("");
   const [storePinCode, setStorePinCode] = useState("");
+
   const history = useHistory();
   const [storePlanDetails, setStorePlanDetails] = useState("");
 

@@ -85,7 +85,7 @@ const Product = (props) => {
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
         <Button
-          title="Following"
+          title="Unfollow"
           backgroundColor
           radius="3px"
           border="1px solid #000"
@@ -196,7 +196,7 @@ const Product = (props) => {
                             productName,
                             productPrice,
                             storeId,
-                            img,
+                            // img,
                           })
                         );
                       }}

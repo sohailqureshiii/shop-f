@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal } from "../../components/MaterialUI";
 import { BiRupee } from "react-icons/bi";
 import { WhatsappShareButton } from "react-share";
 import { WhatsappIcon } from "react-share";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { shareApi } from "../../urlConfig";
 import { useHistory } from "react-router-dom";
