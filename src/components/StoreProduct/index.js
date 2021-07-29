@@ -38,7 +38,7 @@ const StoreProduct = (props) => {
                       <img
                         sizes="404px"
                         style={{ padding: "10px" }}
-                        // src={product.productPictures[0].img}
+                        src={product.productPictures[0].img}
                         alt="new"
                         loading="lazy"
                         class="ProjectCoverNeue-image-1MZ js-cover-image"

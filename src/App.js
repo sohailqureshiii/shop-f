@@ -84,11 +84,11 @@ function App() {
           <Route path="/account/orders" exact component={OrderPage} />
           <Route path="/Orderpage" exact component={OrderDeatilsP} />
           <Route path="/favorite" exact component={Favorite} />
-          <Route path="/plansection" exact component={Planselection} />
+          <SharePrivateRoute path="/plansection" exact component={Planselection} />
           <Route path="/myprofile" exact component={MyProfile} />
           <Route path="/cart" exact component={NewCart} />
           <Route path="/editprofile" exact component={EditProfile} />
-          <SharePrivateRoute path="/storeForm" exact component={StoreForm} />
+          <Route path="/storeForm" exact component={StoreForm} />
           <Route path="/checkout" exact component={CheckoutPage} />
           <Route path="/order_details/:orderId" component={OrderDeatilsP} />
           <PrivateRoute

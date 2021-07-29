@@ -193,8 +193,6 @@ exports.googleController = (req, res) => {
   client
     .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT })
     .then(response => {
-      // console.log('GOOGLE LOGIN RESPONSE',response)
-      console.log(response.payload);
       const { email_verified, name, email } = response.payload;
       if (email_verified) {
         User.findOne({ loginId:email }).exec((err, user) => {

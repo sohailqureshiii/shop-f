@@ -4,7 +4,7 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addStoreAction } from "../../actions/store.action";
 
-const StoreForm = () => {
+const StoreForm = (props) => {
   const auth = useSelector((state) => state.auth);
   const categoriesList = useSelector((state) => state.category.categories);
   const locationList = useSelector((state) => state.location.locations);
@@ -19,6 +19,24 @@ const StoreForm = () => {
   const [storeDescription, setStoreDescription] = useState("");
   const [storePinCode, setStorePinCode] = useState("");
 
+  const history = useHistory();
+  const [storePlanDetails, setStorePlanDetails] = useState("");
+
+  console.log(storePlanDetails);
+
+  // if (
+  //   props.location &&
+  //   props.location.state &&
+  //   props.location.state.storePlan
+  // ) {
+  //   setStorePlanDetails(props.location.state.storePlanId);
+  // } else {
+
+  //     history.push({
+  //       pathname: "/plansection"
+  //     })
+
+  // }
 
   const createStore = (e) => {
     e.preventDefault();
@@ -37,10 +55,13 @@ const StoreForm = () => {
     console.log(store);
   };
 
-  if(auth.authenticate && store.hasOwnProperty("_id") && Object.keys(store).length !== 0){
-    return(<Redirect  to="/storeDashboard"/>)
+  if (
+    auth.authenticate &&
+    store.hasOwnProperty("_id") &&
+    Object.keys(store).length !== 0
+  ) {
+    return <Redirect to="/storeDashboard" />;
   }
- 
 
   return (
     <>
@@ -72,7 +93,7 @@ const StoreForm = () => {
                     className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5"
                     className="SubCategory-label-30F"
                     value={storeCategory}
-                    onChange={(e)=>setStoreCategory(e.target.value)}
+                    onChange={(e) => setStoreCategory(e.target.value)}
                   >
                     <option
                       className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
@@ -98,7 +119,7 @@ const StoreForm = () => {
                     className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5"
                     className="SubCategory-label-30F"
                     value={storeLocation}
-                    onChange={(e)=>setStoreLocation(e.target.value)}
+                    onChange={(e) => setStoreLocation(e.target.value)}
                   >
                     <option
                       className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"

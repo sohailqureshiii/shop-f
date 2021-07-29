@@ -4,6 +4,7 @@ import categoryReducer from "./category.reducer";
 import locationReducers from "./location.reducers";
 import productsReducer from "./products.reducer";
 import storeReducer from "./store.reducer";
+import storePlan from "./storePlan.reducer";
 import userReducer from "./user.reducer";
 import userstoreReducer from "./userstore.reducer";
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   userStore: userstoreReducer,
   products: productsReducer,
   stores: storeReducer,
+  storePlans:storePlan
 });
 
 export default rootReducer;
