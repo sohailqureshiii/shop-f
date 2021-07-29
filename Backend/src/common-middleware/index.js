@@ -3,6 +3,7 @@ const multerS3 = require('multer-s3')
 const  aws = require("aws-sdk")
 const shortid = require('shortid');
 const multer = require('multer')
+const {accessKeyId,secretAccessKey} = require('../aws')
 
 
 
@@ -30,8 +31,8 @@ exports.userMiddleware = (req, res, next) => {
 
 
 const s3 = new aws.S3({
-  accessKeyId:process.env.accessKeyId ,
-  secretAccessKey:process.env.secretAccessKey
+  accessKeyId:accessKeyId,
+  secretAccessKey:secretAccessKey
 })
 
  exports.uploadS3 = multer({

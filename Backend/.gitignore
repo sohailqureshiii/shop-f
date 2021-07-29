@@ -1,3 +1,4 @@
+aws.js
 node_modules/
 logs/
 **/.env
