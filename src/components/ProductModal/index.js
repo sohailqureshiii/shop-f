@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Modal } from "../../components/MaterialUI";
 import { BiRupee } from "react-icons/bi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, Redirect } from "react-router-dom";
-import Signin from "../../containers/Signin";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -27,12 +25,7 @@ const ProductModal = (props) => {
     return null;
   }
 
-  const diffToast = () => {
-    toast.success("Item Added Successfull !", {
-      position: "top-center",
-    });
-  };
-
+  
   const followStore = (storeId) => {
     const store = {
       followId: storeId,
@@ -97,7 +90,7 @@ const ProductModal = (props) => {
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
         <Button
-          title="Following"
+          title="Unfollow"
           backgroundColor
           radius="5px"
           border='1px solid'
@@ -127,7 +120,7 @@ const ProductModal = (props) => {
         <div className="productDescriptionContainer">
           <div className="productDescContainer">
             <div className="productDescImgContainer">
-              <img src={"https://images.unsplash.com/photo-1490450243019-87fa188dd171?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUxfFM0TUtMQXNCQjc0fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"} />
+              <img src={"https://images.unsplash.com/photo-1490450243019-87fa188dd171?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUxfFM0TUtMQXNCQjc0fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"} alt='Hiiii'/>
             </div>
           </div>
           {/* home > category > subCategory > productName */}

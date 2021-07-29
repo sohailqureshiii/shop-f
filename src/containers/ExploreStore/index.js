@@ -4,7 +4,6 @@ import "./style.css";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
 import Store from "../../components/Store/index";
-import MenuNavbar from "../../components/MenuNavbar";
 
 /**
  * @author
@@ -161,8 +160,7 @@ const ExploreStore = (props) => {
               <div className="compo-for-filter">
                 <div className="SubCategory-root-mwEfghi ">
                   <select
-                    className="SubCategory-root-mwE"
-                    className="SubCategory-label-30Fmjdh"
+                    className="SubCategory-label-30Fmjdh SubCategory-root-mwE"
                     // value={filterdLocation}
                     // onChange={(e) => {
                     //   const selectedLocation = e.target.value;
@@ -191,8 +189,7 @@ const ExploreStore = (props) => {
               <div className="compo-for-filter">
                 <div className="SubCategory-root-mwEfghi ">
                   <select
-                    className="SubCategory-root-mwE"
-                    className="SubCategory-label-30Fmjdh"
+                    className="SubCategory-label-30Fmjdh SubCategory-root-mwE"
                     // value={filterdLocation}
                     // onChange={(e) => {
                     //   const selectedLocation = e.target.value;

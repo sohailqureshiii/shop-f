@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import NavBar from "../../components/Navbar";
-import { Link } from "react-router-dom";
-import Store from "../../components/Store";
 import Footer from "../../components/Footerr/Footer";
 import { useSelector } from "react-redux";
-import Product from "../../components/Product";
 
 /**
  * @author

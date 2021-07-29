@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { googleLoginAction, loginAction,facebookLoginAction } from "../../actions/auth.action";
+import {
+  googleLoginAction,
+  loginAction,
+  facebookLoginAction,
+} from "../../actions/auth.action";
 import GoogleLogin from "react-google-login";
 import { Button, MaterialInput, Modal } from "../../components/MaterialUI";
 import Signup from "../SignUp";
-import FacebookLogin from 'react-facebook-login';
 
 const Signin = (props) => {
   const [loginId, setLoginId] = useState("");
@@ -99,7 +102,12 @@ const Signin = (props) => {
   };
 
   const responseFacebook = (response) => {
-    dispatch(facebookLoginAction({accessToken:response.accessToken,userID:response.userID}));
+    dispatch(
+      facebookLoginAction({
+        accessToken: response.accessToken,
+        userID: response.userID,
+      })
+    );
   };
 
   const renderButtonSignUp = () => {
@@ -231,12 +239,6 @@ const Signin = (props) => {
             onSuccess={responseSuccessGoogle}
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
-          />
-
-          <FacebookLogin
-            appId="1503154153353581"
-            autoLoad={false}
-            callback={responseFacebook}
           />
         </section>
         {err}

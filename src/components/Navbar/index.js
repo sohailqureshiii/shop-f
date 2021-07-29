@@ -203,7 +203,7 @@ const Navigationbar = (props) => {
           <Link className="PrimaryNav-coreNavigationItem-236 PrimaryNav-home-2zH">
             <Link to="/" className="PrimaryNav-coreNavigationLink-2uv">
               <div className="PrimaryNav-logoWrap-564">
-                <span>Shopisthan</span>
+                <span style={{color:'black'}}>Shopisthan</span>
               </div>
             </Link>
           </Link>
