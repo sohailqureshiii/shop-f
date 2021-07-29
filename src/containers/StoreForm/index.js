@@ -18,21 +18,6 @@ const StoreForm = () => {
   const [storeAddress, setStoreAddress] = useState("");
   const [storeDescription, setStoreDescription] = useState("");
   const [storePinCode, setStorePinCode] = useState("");
-  const history = useHistory();
-
-  
-  // if(!auth.authenticate){
-
-  //   return(
-  //     history.push({
-  //       pathname: "/Signin",
-  //       // state: { storeFrom:"storeFrom", storeFrom1: true }, 
-  //      }
-  //   )
-    
-
-  //    )
-  // }
 
 
   const createStore = (e) => {

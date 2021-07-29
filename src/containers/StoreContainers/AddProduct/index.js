@@ -18,9 +18,8 @@ const StoreAddProduct = () => {
   const [productDescription, setProductDescription] = useState("");
   const [productPictures, setProductPictures] = useState([]);
   const [productDiscountedPrice, setProductDiscountedPrice] = useState("");
-  const [productDiscountedPercentage, setProductDiscountedPercentage] = useState(0)
-  const [productDiscount,setProductDiscount] = useState("No")
-   
+  const [productDiscountedPercentage, setProductDiscountedPercentage] =
+    useState(0);
 
   const createProduct = (e) => {
     e.preventDefault();
@@ -28,7 +27,7 @@ const StoreAddProduct = () => {
     if (productDiscountedPrice >= productPrice) {
       return alert("Enter vaild Discounted Price");
     }
-    if (productDiscountedPrice === null || productDiscountedPrice === "" ) {
+    if (productDiscountedPrice === null || productDiscountedPrice === "") {
       setProductDiscountedPrice(0) && setProductDiscountedPercentage(0);
     }
 
@@ -38,8 +37,11 @@ const StoreAddProduct = () => {
       );
     }
 
-   
-    console.log(productPrice,productDiscountedPrice,productDiscountedPercentage,productDiscount);
+    console.log(
+      productPrice,
+      productDiscountedPrice,
+      productDiscountedPercentage
+    );
     console.log(productDiscountedPercentage);
 
     const form = new FormData();
@@ -50,21 +52,17 @@ const StoreAddProduct = () => {
     form.append("productDescription", productDescription);
     // form.append("productDiscountedPrice", productDiscountedPrice);
     // form.append("productDiscountedPercentage",productDiscountedPercentage);
-  
+
     for (let pic of productPictures) {
       form.append("productPictures", pic);
     }
 
-
     dispatch(createProductAction(form));
-
   };
 
   const handleProductPictures = (e) => {
     setProductPictures([...productPictures, e.target.files[0]]);
   };
-
-
 
   return (
     <>
@@ -116,11 +114,10 @@ const StoreAddProduct = () => {
                             Product Category
                           </option>
 
-                          {
-                            
-                            categoriesList
+                          {categoriesList
                             .filter(
-                              (category) => category.parentId === storeCategory._id
+                              (category) =>
+                                category.parentId === storeCategory._id
                             )
                             .map((filterCategory) => (
                               <option
@@ -181,7 +178,7 @@ const StoreAddProduct = () => {
                           className="spectrum-FieldLabel"
                           style={{ fontSize: "14px" }}
                         >
-                         Description *
+                          Description *
                         </label>
                         <input
                           className="spectrum-Textfield spectrum-Textfield--quiet"
@@ -233,9 +230,9 @@ const StoreAddProduct = () => {
                                       <div className="Polaris-Stack__Item_yiyol">
                                         <div className="Polaris-DropZone-FileUpload__Button_r99lw">
                                           Add files
-                                          <input 
-                                          style={{border:'none'}}
-                                          className="Polaris-DropZone-FileUpload__Button_r99lw"
+                                          <input
+                                            style={{ border: "none" }}
+                                            className="Polaris-DropZone-FileUpload__Button_r99lw"
                                             type="file"
                                             name="productPicture"
                                             onChange={handleProductPictures}
@@ -271,15 +268,17 @@ const StoreAddProduct = () => {
                         </button>
                       </div> */}
                       <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
-                  <div
-                    className="d-flex"
-                    style={{ justifyContent: "flex-end" }}
-                  >
-                    <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
-                      <div className="btn-text" onClick={createProduct}>Add Product</div>
-                    </div>
-                  </div>
-              </div>
+                        <div
+                          className="d-flex"
+                          style={{ justifyContent: "flex-end" }}
+                        >
+                          <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
+                            <div className="btn-text" onClick={createProduct}>
+                              Add Product
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>

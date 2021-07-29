@@ -968,6 +968,7 @@ img {
 a,
 .fake-link {
   text-decoration: none;
+  color: #000000;
 }
 
 .galleries-page a,
