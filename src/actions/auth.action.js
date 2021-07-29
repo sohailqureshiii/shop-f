@@ -49,6 +49,31 @@ export const googleLoginAction = (tokenId) => (dispatch) => {
     });
 };
 
+
+export const facebookLoginAction = (userData) => (dispatch) => {
+  axiosIntance
+    .post("/facebooklogin", userData)
+    .then((res) => {
+      const { token, user } = res.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      dispatch({
+        type: authConstants.LOGIN_SUCCESS,
+        payload: {
+          token,
+          user,
+        },
+      });
+    })
+
+    .catch((error) => {
+      dispatch({
+        type: authConstants.LOGIN_FAILURE,
+        payload: { error: "Something went worng" },
+      });
+    });
+};
+
 export const signUpAction = (userData) => (dispatch) => {
   axiosIntance
     .post("/signup", userData)

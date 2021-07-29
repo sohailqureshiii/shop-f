@@ -133,7 +133,12 @@ const Product = (props) => {
                     <img
                       sizes="404px"
                       src={
+<<<<<<< HEAD
                         "https://images.unsplash.com/photo-1490450243019-87fa188dd171?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUxfFM0TUtMQXNCQjc0fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+=======
+                        product.productPictures[0].img
+
+>>>>>>> 80e35efe0ceb5511cde08a83731c193a20f1151d
                       }
                       alt="new"
                       loading="lazy"

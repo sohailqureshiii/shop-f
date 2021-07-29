@@ -52,7 +52,7 @@ const shopSchema = new mongoose.Schema(
     storePlan: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "StorePlan",
-      required: true,
+      // required: true,
     },
     storePhoneNo: {
       type: Number,

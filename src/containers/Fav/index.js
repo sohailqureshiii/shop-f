@@ -3,10 +3,10 @@ import "./style.css";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import NavBar from "../../components/Navbar";
 import { Link } from "react-router-dom";
-import ProductModal from "../../components/ProductModal";
 import Store from "../../components/Store";
 import Footer from "../../components/Footerr/Footer";
 import { useSelector } from "react-redux";
+import Product from "../../components/Product";
 
 /**
  * @author
@@ -22,25 +22,8 @@ const Favorite = (props) => {
   );
 
   const auth = useSelector((state) => state.auth.authenticate);
-  const [show, setShow] = useState(false);
-  const [productDetails, setProductDetails] = useState("");
 
-  const handleShow = (product) => {
-    setProductDetails(product);
-    setShow(true);
-  };
 
-  const renderStores = () => {
-    return (
-      <div style={{ padding: "30px", paddingTop: "30px" }}>
-        <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
-          <Store />
-          <Store />
-          <Store />
-        </div>
-      </div>
-    );
-  };
 
   return (
     <>
@@ -496,6 +479,7 @@ const Favorite = (props) => {
             </div>
           </div>
         </div>
+
         <div className="new-store-page-container-one">
           <div className="new-store-page-container-two">
             <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
@@ -583,9 +567,11 @@ const Favorite = (props) => {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
 };
 
 export default Favorite;
+

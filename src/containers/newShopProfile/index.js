@@ -140,7 +140,7 @@ const StoreProfile = (props) => {
                     {store.storeBackgroundPicture &&
                     store.storeBackgroundPicture.img ? (
                       <img
-                        src={store.storeBackgroundPicture.img}
+                        // src={store.storeBackgroundPicture.img}
                         alt="$translate('profile_banner_image_alt', 'User's profile banner')"
                         className="ProfileBanner-bannerImage-1_4 ProfileBanner-bannerImageLoaded-2N5"
                       />
@@ -216,7 +216,7 @@ const StoreProfile = (props) => {
                                     {store.storeProfilePicture &&
                                     store.storeProfilePicture.img ? (
                                       <img
-                                        src={store.storeProfilePicture.img}
+                                        // src={store.storeProfilePicture.img}
                                         alt="User's avatar"
                                         sizes="115px"
                                         className="AvatarImage-avatarImage-3uu Avatar-root--Wh"

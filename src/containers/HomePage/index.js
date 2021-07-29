@@ -72,11 +72,11 @@ const HomePage = (props) => {
             .split(" ")
             .join("")
             .includes(searchTerm.toLowerCase().split(" ").join("")) ||
-            product.productDescription
-              .toLowerCase()
-              .split(" ")
-              .join("")
-              .includes(searchTerm.toLowerCase().split(" ").join(""))
+          product.productDescription
+            .toLowerCase()
+            .split(" ")
+            .join("")
+            .includes(searchTerm.toLowerCase().split(" ").join(""))
       );
 
       return (

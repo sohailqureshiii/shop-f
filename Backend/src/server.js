@@ -59,14 +59,4 @@ app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
 });
 
-// {
-//     "userName":"rahul",
-//    "storeName":"mi store",
-//    "storeType":"Home Made",
-//    "storeCategory":"60e2df39898d7732bcec45d3",
-//    "storeLocation":"60e2dfa1898d7732bcec45e9",
-//    "storePhoneNo":"1234567890",
-//    "storeAddress":"abcd 12 abcd 12",
-//    "storeDescription":"N.A.N.A",
-//    "storePinCode":"4110032"
-// }
+
