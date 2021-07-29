@@ -30,8 +30,8 @@ exports.userMiddleware = (req, res, next) => {
 
 
 const s3 = new aws.S3({
-  accessKeyId: "AKIASSCWHNZNVTOC35WK",
-  secretAccessKey : "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",
+  accessKeyId:process.env.accessKeyId ,
+  secretAccessKey:process.env.secretAccessKey
 })
 
  exports.uploadS3 = multer({
