@@ -136,17 +136,22 @@ const ExploreStore = (props) => {
                 <h1 className="filter-bar-filter-header-h1-tag">Show Only</h1>
               </div> */}
               <h1 className="show-only-tag">Show Only</h1>
-              <div style={{marginTop:'5px',display:'flex',alignItems:'center',lineHeight:'1.5'}}>
-                <input type="radio" style={{cursor:'pointer'}}></input>
-                <h1 className='cbildcbdc'>On Sale</h1>
+              <div className='uhcacxdsa'
+              >
+                <input type="radio" style={{ cursor: "pointer" }}></input>
+                <h1 className="cbildcbdc">On Sale</h1>
               </div>
-              <div style={{display:'flex',alignItems:'center',lineHeight:'1.5' }}>
-              <input type="radio" style={{cursor:'pointer'}}></input>
-                <h1 className='cbildcbdc'>On Disscount</h1>
+              <div
+                className='uhcacxdsa'
+              >
+                <input type="radio" style={{ cursor: "pointer" }}></input>
+                <h1 className="cbildcbdc">On Disscount</h1>
               </div>
-              <div style={{display:'flex',alignItems:'center',lineHeight:'1.5' }}>
-              <input type="radio" style={{cursor:'pointer'}}></input>
-                <h1 className='cbildcbdc'>Verified</h1>
+              <div
+               className='uhcacxdsa'
+              >
+                <input type="radio" style={{ cursor: "pointer" }}></input>
+                <h1 className="cbildcbdc">Verified</h1>
               </div>
             </div>
             <div className="new-compo-conatiner-div">

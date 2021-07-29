@@ -133,7 +133,7 @@ const Product = (props) => {
                     <img
                       sizes="404px"
                       src={
-                        "https://images.meesho.com/images/pow/homepage/hbd-dos1.jpg"
+                        "https://images.unsplash.com/photo-1490450243019-87fa188dd171?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUxfFM0TUtMQXNCQjc0fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                       }
                       alt="new"
                       loading="lazy"
@@ -195,7 +195,7 @@ const Product = (props) => {
                             productName,
                             productPrice,
                             storeId,
-                            img,
+                            // img,
                           })
                         );
                       }}
