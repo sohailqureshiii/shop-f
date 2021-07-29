@@ -133,7 +133,8 @@ const Product = (props) => {
                     <img
                       sizes="404px"
                       src={
-                        "https://images-eu.ssl-images-amazon.com/images/I/41fBz4s1nzS._AC_SX184_.jpg"
+                        // "https://images-eu.ssl-images-amazon.com/images/I/41fBz4s1nzS._AC_SX184_.jpg"
+                        product.productPictures[0].img
                       }
                       alt="new"
                       loading="lazy"

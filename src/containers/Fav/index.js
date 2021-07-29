@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./style.css";
-import Profilepic from "../../img/profilepic.jpg";
 import NavBar from "../../components/Navbar";
 import { Link } from "react-router-dom";
-import ProductModal from "../../components/ProductModal";
 import Store from "../../components/Store";
 import Footer from "../../components/Footerr/Footer";
 import { useSelector } from "react-redux";
+import Product from "../../components/Product";
 
 /**
  * @author
@@ -22,25 +21,8 @@ const Favorite = (props) => {
   );
 
   const auth = useSelector((state) => state.auth.authenticate);
-  const [show, setShow] = useState(false);
-  const [productDetails, setProductDetails] = useState("");
 
-  const handleShow = (product) => {
-    setProductDetails(product);
-    setShow(true);
-  };
 
-  const renderStores = () => {
-    return (
-      <div style={{ padding: "30px", paddingTop: "30px" }}>
-        <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
-          <Store />
-          <Store />
-          <Store />
-        </div>
-      </div>
-    );
-  };
 
   return (
     <>
@@ -115,7 +97,21 @@ const Favorite = (props) => {
         <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
           {auth && followingStoreProductLists.length > 0
             ? followingStoreProductLists.map((product, index) => (
-                <div
+                <Product product={product} />
+              ))
+            : "Follow Suggestions"}
+        </div>
+      </div>
+      {/* ////// Following Products ends ////// */}
+
+      <Footer />
+    </>
+  );
+};
+
+export default Favorite;
+
+{/* <div
                   style={{ border: "1px solid #d4d4d4", borderRadius: "6px" }}
                 >
                   <div>
@@ -139,67 +135,50 @@ const Favorite = (props) => {
                           </div>
                         </div>
                         {/* /////// */}
-                        <div style={{ padding: "10px" }}>
-                          <div className="Cover-overlay-28e Cover-showOnHover-Ks- Cover-transitionDone-22y">
-                            <div className="ProjectCoverNeue-details-yQ_">
-                              <div className="ProjectCoverNeue-info-4Ul">
-                                <a className="Title-title-3nk e2e-Title-owner js-project-cover-title-link">
-                                  dd
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="ProjectCoverNeue-visibleStatsAndOwners-2Av">
-                            <span className="ProjectCoverNeue-ownersContainer-3Go">
-                              <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
-                                <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
-                                  <a className="Owners-owner-2lB e2e-Owner-user-link">
-                                    {product.productName}
-                                  </a>
-                                </span>
-                              </div>
-                            </span>
-                            <div className="Stats-stats-1iI">
-                              <div className="Product__priceFlex">
-                                <button
-                                  className="abcjnalnajcsn"
-                                  style={{ marginTop: "0px" }}
-                                  onClick={() => handleShow(product)}
-                                >
-                                  View Details
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <span className="ProjectCoverNeue-ownersContainer-3Go">
-                            <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
-                              <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
-                                <a className="Owners-owner-2lB e2e-Owner-user-link">
-                                  By -{product.storeId.storeName}
-                                </a>
-                              </span>
-                            </div>
-                          </span>
-                        </div>
-                        {/* ///////// */}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))
-            : "Follow Suggestions"}
-        </div>
-      </div>
-      {/* ////// Following Products ends ////// */}
-
-      <ProductModal
-        show={show}
-        handleclose={() => setShow(false)}
-        productDetails={productDetails}
-      />
-      <Footer />
-    </>
-  );
-};
-
-export default Favorite;
+                //         <div style={{ padding: "10px" }}>
+                //           <div className="Cover-overlay-28e Cover-showOnHover-Ks- Cover-transitionDone-22y">
+                //             <div className="ProjectCoverNeue-details-yQ_">
+                //               <div className="ProjectCoverNeue-info-4Ul">
+                //                 <a className="Title-title-3nk e2e-Title-owner js-project-cover-title-link">
+                //                   dd
+                //                 </a>
+                //               </div>
+                //             </div>
+                //           </div>
+                //           <div className="ProjectCoverNeue-visibleStatsAndOwners-2Av">
+                //             <span className="ProjectCoverNeue-ownersContainer-3Go">
+                //               <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
+                //                 <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
+                //                   <a className="Owners-owner-2lB e2e-Owner-user-link">
+                //                     {product.productName}
+                //                   </a>
+                //                 </span>
+                //               </div>
+                //             </span>
+                //             <div className="Stats-stats-1iI">
+                //               <div className="Product__priceFlex">
+                //                 <button
+                //                   className="abcjnalnajcsn"
+                //                   style={{ marginTop: "0px" }}
+                //                   onClick={() => handleShow(product)}
+                //                 >
+                //                   View Details
+                //                 </button>
+                //               </div>
+                //             </div>
+                //           </div>
+                //           <span className="ProjectCoverNeue-ownersContainer-3Go">
+                //             <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
+                //               <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
+                //                 <a className="Owners-owner-2lB e2e-Owner-user-link">
+                //                   By -{product.storeId.storeName}
+                //                 </a>
+                //               </span>
+                //             </div>
+                //           </span>
+                //         </div>
+                //         {/* ///////// */}
+                //       </div>
+                //     </div>
+                //   </div>
+                // </div> */}

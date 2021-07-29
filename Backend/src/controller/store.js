@@ -12,7 +12,7 @@ exports.createStore = async (req, res) => {
     storeAddress,
     storeDescription,
     storePinCode,
-    storePlan
+    // storePlan
   } = req.body;
 
   try {
@@ -31,7 +31,7 @@ exports.createStore = async (req, res) => {
       storeAddress,
       storeDescription,
       storePinCode,
-      storePlan,
+      // storePlan,
       createdBy: req.user._id,
     });
 

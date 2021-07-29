@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { googleLoginAction, loginAction } from "../../actions/auth.action";
+import { googleLoginAction, loginAction,facebookLoginAction } from "../../actions/auth.action";
 import GoogleLogin from "react-google-login";
 import { Button, MaterialInput, Modal } from "../../components/MaterialUI";
 import Signup from "../SignUp";
+import FacebookLogin from 'react-facebook-login';
 
 const Signin = (props) => {
   const [loginId, setLoginId] = useState("");
@@ -31,7 +32,10 @@ const Signin = (props) => {
       const storeId = props.location.state.storeId;
       return (
         <Redirect
-          to={{ pathname: `/${storeId}/store`, state: {storeId:storeId , Follow: true } }}
+          to={{
+            pathname: `/${storeId}/store`,
+            state: { storeId: storeId, Follow: true },
+          }}
         />
       );
     }
@@ -44,11 +48,19 @@ const Signin = (props) => {
         />
       );
     }
-    if (props.location && props.location.state && props.location.state.checkout) {
+    if (
+      props.location &&
+      props.location.state &&
+      props.location.state.checkout
+    ) {
       return <Redirect to="/cartcheck" />;
     }
 
-    if (props.location && props.location.state && props.location.state.storeForm) {
+    if (
+      props.location &&
+      props.location.state &&
+      props.location.state.storeForm
+    ) {
       return <Redirect to="/storeForm" />;
     }
 
@@ -86,6 +98,10 @@ const Signin = (props) => {
     setErr("Google login failed. Try again");
   };
 
+  const responseFacebook = (response) => {
+    dispatch(facebookLoginAction({accessToken:response.accessToken,userID:response.userID}));
+  };
+
   const renderButtonSignUp = () => {
     if (props.location && props.location.state && props.location.state.Follow) {
       const storeId = props.location.state.storeId;
@@ -116,13 +132,17 @@ const Signin = (props) => {
         </Link>
       );
     }
-    if (props.location && props.location.state && props.location.state.checkout) {
+    if (
+      props.location &&
+      props.location.state &&
+      props.location.state.checkout
+    ) {
       return (
         <Link
           className="spectrum-Link EmailPage__create-account-link"
           to={{
             pathname: `/Signup`,
-            state: {checkout: true },
+            state: { checkout: true },
           }}
         >
           Creat an Account
@@ -130,13 +150,17 @@ const Signin = (props) => {
       );
     }
 
-    if (props.location && props.location.state && props.location.state.storeForm) {
+    if (
+      props.location &&
+      props.location.state &&
+      props.location.state.storeForm
+    ) {
       return (
         <Link
           className="spectrum-Link EmailPage__create-account-link"
           to={{
             pathname: `/Signup`,
-            state: {storeForm: true },
+            state: { storeForm: true },
           }}
         >
           Creat an Account
@@ -154,18 +178,16 @@ const Signin = (props) => {
         </Link>
       );
     }
-
-  }
+  };
 
   return (
     <>
-     <div className="CardLayout-Toaster-Container">
-        <section  className="CardLayout">
+      <div className="CardLayout-Toaster-Container">
+        <section className="CardLayout">
           <header className="CardLayout__header">
             <h1 className="spectrum-Heading1">Sign In</h1>
             <p className="EmailPage__instructions">
-              New User ?
-              {renderButtonSignUp()}
+              New User ?{renderButtonSignUp()}
             </p>
           </header>
           <section className="CardLayout__content">
@@ -180,26 +202,25 @@ const Signin = (props) => {
                   label=" Password "
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  
                 />
               </section>
               <section className="EmailPage__submit mod-submit">
                 <div className="ta-left"></div>
                 <Button
-                        title="Login"
-                        backgroundColor
-                        radius="5px"
-                        border="1px solid #d4d4d4"
-                        border-radius="3px"
-                        color="#000"
-                        padding="5px 10px"
-                        width="100%"
-                        height="50px"
-                        onClick={login}
-                        justifyContent='center'
-                        marginBottom='15px'
-                        fontSize='20px'
-                      ></Button>
+                  title="Login"
+                  backgroundColor
+                  radius="5px"
+                  border="1px solid #d4d4d4"
+                  border-radius="3px"
+                  color="#000"
+                  padding="5px 10px"
+                  width="100%"
+                  height="50px"
+                  onClick={login}
+                  justifyContent="center"
+                  marginBottom="15px"
+                  fontSize="20px"
+                ></Button>
               </section>
             </form>
           </section>
@@ -211,6 +232,12 @@ const Signin = (props) => {
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
           />
+
+          <FacebookLogin
+            appId="1503154153353581"
+            autoLoad={false}
+            callback={responseFacebook}
+          />
         </section>
         {err}
       </div>
@@ -219,7 +246,6 @@ const Signin = (props) => {
 };
 
 export default Signin;
-
 
 // <div className="CardLayout-Toaster-Container">
 // <section  className="CardLayout">
@@ -264,7 +290,7 @@ export default Signin;
 //           label=" Password "
 //           value={password}
 //           onChange={(e) => setPassword(e.target.value)}
-          
+
 //         />
 //       </section>
 //       <section className="EmailPage__submit mod-submit">

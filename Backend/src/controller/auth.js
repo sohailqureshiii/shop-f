@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const {OAuth2Client} = require('google-auth-library')
 const { response } = require('express')
+const fetch = require('node-fetch')
 
 // const client = new OAuth2Client("578690882773-rkanjv60fh7ip7gus67q1s0kshnfu14b.apps.googleusercontent.com")
 
@@ -193,6 +194,7 @@ exports.googleController = (req, res) => {
     .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT })
     .then(response => {
       // console.log('GOOGLE LOGIN RESPONSE',response)
+      console.log(response.payload);
       const { email_verified, name, email } = response.payload;
       if (email_verified) {
         User.findOne({ loginId:email }).exec((err, user) => {
@@ -292,3 +294,62 @@ exports.googleController = (req, res) => {
 //       }
 //     });
 // };
+
+
+exports.facebooklogin = (req,res) =>{
+  // console.log(req.body.accessToken);
+  // console.log(req.body.userID);
+
+  const {userID,accessToken} = req.body;
+
+  let urlGraphFacebook = `https://graph.facebook.com/v2.11/${userID}/?fields=id,name,email&access_token=${accessToken}`
+
+  fetch(urlGraphFacebook,{
+    method:'GET'
+  })
+  .then(response => response.json())
+  .then(response =>{
+
+    const {email,name} =response;
+    console.log(response)
+
+    User.findOne({ loginId:email }).exec((err, user) => {
+      if(err)  {
+        res.status(400).json({error:"Something went wrong..."})
+      }else{
+        if(user){
+          const token = jwt.sign({ _id: user._id,role:user.role}, process.env.JWT_SECRET);
+              res.cookie('token', token);
+              const { _id, loginId, name, role } = user;
+              return res.json({
+                token,
+                user: { _id, loginId, name, role }
+              });
+        }else{
+          let password = email + process.env.JWT_SECRET;
+          user = new User({ name, loginId:email, password });
+          user.save((err, data) => {
+            if (err) {
+              console.log('ERROR GOOGLE LOGIN ON USER SAVE', err);
+              return res.status(400).json({
+                error: 'User signup failed with google'
+              });
+            }
+            const token = jwt.sign(
+              { _id: data._id,role:data.role },
+              process.env.JWT_SECRET
+            );
+            res.cookie('token', token);
+            const { _id, loginId, name, role } = data;
+            return res.json({
+              token,
+              user: { _id, loginId, name, role }
+            });
+          });
+        }
+      }
+
+    })
+  })
+
+}
