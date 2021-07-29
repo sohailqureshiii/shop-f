@@ -8,16 +8,19 @@
   box-sizing: border-box;
 }
 
-
-
-
-
 .homepagenavbar-icon {
   height: 13px;
   margin-right: 7px;
   margin-top: 3px;
 }
 
+.homepagenavbar-icon-cart{
+  height: 20px;
+  width: 20px;
+  align-items: center;
+  margin-bottom: 5px;
+
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -30,7 +33,7 @@
   position: fixed;
   z-index: 100;
   width: 100%;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 0.5px solid rgb(215, 215, 224);;
 }
 
 /* ///// Css for Laptop ////////// */
@@ -79,6 +82,7 @@
   padding: 8px 5px;
   cursor: pointer;
   border: none;
+  z-index: 3;
 }
 a.middle {
   position: relative;
@@ -596,10 +600,10 @@ button {
 
 .SearchTypeahead-searchIcon-1ld .SearchTypeahead-icon-20K {
   fill: #959595;
-  height: 18px;
+  height: 14px;
   margin-left: 4px;
   margin-top: -3px;
-  width: 18px;
+  width: 14px;
 }
 
 .SearchTypeahead-searchInput-1qk {
@@ -611,7 +615,7 @@ button {
   border: 0;
   border-style: none;
   color: #191919;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 200;
   height: 100%;
   margin-top: -1px;
@@ -789,3 +793,38 @@ a.active::after{
   display: flex;
   margin: 10px 10px 7px;
 }
+
+.new-bar-new{
+border: none;
+font-size: 20px;
+}
+
+.new-sell-online-btn{
+  border: 1px solid #c7c7c7;
+    padding: 5px 5px;
+    font-size: 13px;
+    border-radius: 3px;
+    color: white;
+    background: black;
+    transition: 0.3s;
+}
+
+.new-sell-online-btn:hover{
+  border: 1px solid #c7c7c7;
+    padding: 5px 5px;
+    font-size: 13px;
+    border-radius: 3px;
+    color: black;
+    background: white;
+}
+
+
+.new-sell-online-btn::after{
+  border: 1px solid #c7c7c7;
+    padding: 5px 5px;
+    font-size: 13px;
+    border-radius: 3px;
+    color: black;
+    background: white;
+}
+

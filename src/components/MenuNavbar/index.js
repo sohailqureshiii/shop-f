@@ -30,9 +30,7 @@ const MenuNavBar = (props) => {
           zIndex: "99",
         }}
       >
-        <nav
-          className="NavigationBar-subcategoryList-1nX"
-        >
+        <nav className="NavigationBar-subcategoryList-1nX">
           <ul style={{ display: "contents" }}>
             <li>
               <a className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua">
@@ -66,37 +64,34 @@ const MenuNavBar = (props) => {
             </li>
             <li>
               <a className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua">
-                <div className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5">
-                  <select
-                    className="SubCategory-label-30F"
-                    // value={filterdCategory}
-                    // onChange={(e) => {
-                    //   const selectedCategory = e.target.value;
-                    //   setFilterdCategory(selectedCategory)
-                    // }}
-                    ref={inputCategory}
-                    value={props.categoryterm}
-                    onChange={getCategoryTerm}
-                  >
-                    <option value="">Category</option>
+                <select
+                  className="SubCategory-label-30F"
+                  // value={filterdCategory}
+                  // onChange={(e) => {
+                  //   const selectedCategory = e.target.value;
+                  //   setFilterdCategory(selectedCategory)
+                  // }}
+                  ref={inputCategory}
+                  value={props.categoryterm}
+                  onChange={getCategoryTerm}
+                >
+                  <option value="">Category</option>
 
-                    {categoriesList
-                      .filter((category) => !category.parentId)
-                      .map((filterCategory) => (
-                        <option
-                          key={filterCategory._id}
-                          value={filterCategory._id}
-                        >
-                          {filterCategory.name}
-                        </option>
-                      ))}
-                  </select>
-                </div>
+                  {categoriesList
+                    .filter((category) => !category.parentId)
+                    .map((filterCategory) => (
+                      <option
+                        key={filterCategory._id}
+                        value={filterCategory._id}
+                      >
+                        {filterCategory.name}
+                      </option>
+                    ))}
+                </select>
               </a>
             </li>
-            <li className='search-filter-home'>
-               <div
-
+            <li className="search-filter-home">
+              <div
                 tabIndex="0"
                 className="kfjfhurcncncbchn SearchTypeahead-isTypeaheadEnabled-3i3"
               >

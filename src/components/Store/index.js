@@ -47,10 +47,11 @@ const Store = (props) => {
           border-radius="3px"
           color="#000"
           padding="2px 5px"
-          width="100%"
+          width="50%"
           height="32px"
           fontSize="15px"
           marginTop="10px"
+          marginRight="10px"
           zIndex="10"
         />
       );
@@ -64,15 +65,16 @@ const Store = (props) => {
           }}
           backgroundColor
           radius="5px"
-          border
+          border="1px solid #d9d9d9"
           border-radius="3px"
           color="#000"
           padding="2px 5px"
-          width="100%"
+          width="50%"
           height="32px"
           fontSize="15px"
           marginTop="10px"
           zIndex="10"
+          marginRight="10px"
         />
       );
     }
@@ -86,15 +88,16 @@ const Store = (props) => {
           }}
           backgroundColor
           radius="5px"
-          border
           border-radius="3px"
           color="#000"
           padding="2px 5px"
-          width="100%"
+          width="50%"
           height="32px"
           fontSize="15px"
           marginTop="10px"
           zIndex="10"
+          border="1px solid"
+          marginRight="10px"
         />
       );
     }
@@ -109,9 +112,11 @@ const Store = (props) => {
       return productList.slice(0, 5).map((product, index) => (
         <div className="product-new-container-of-store">
           <img
-            // src={product.productPictures[0].img}
+            src={
+              "https://m.media-amazon.com/images/I/41ZGJxnJu1S._AC_SY200_.jpg"
+            }
             alt={product.productName}
-            className="new-products-of-shops"
+            className="new-products-of-shops-img-of-pro"
           />
         </div>
       ));
@@ -138,7 +143,7 @@ const Store = (props) => {
           <div>
             <div className="store-profile-card-three">
               <Link className="new-store-profile-storeName">
-                {store.storeName}
+                <p> {store.storeName}</p>
               </Link>
             </div>
             <div className="new-store-profile-Location">
@@ -154,6 +159,22 @@ const Store = (props) => {
           </div>
           <div className="new-store-profile-card-follow-followes">
             {renderButton(store._id)}
+            <Link className="visit-store-btn" to="">
+              <Button
+                title="Visit Store"
+                backgroundColor
+                radius="5px"
+                border-radius="3px"
+                color="#000"
+                padding="2px 5px"
+                width="100%"
+                height="32px"
+                fontSize="12px"
+                marginTop="10px"
+                zIndex="10"
+                border="1px solid"
+              />
+            </Link>
           </div>
         </div>
         <div className="product-container-store">

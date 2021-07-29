@@ -7,11 +7,6 @@ import "./style.css";
  * @function
  **/
 
-   
-  
-
-
-
 const Button = (props) => {
   const {
     border,
@@ -29,8 +24,10 @@ const Button = (props) => {
     marginBottom,
     marginTop,
     marginLeft,
+    marginRight,
     fontSize,
-    zIndex
+    zIndex,
+    style,
   } = props;
 
   return (
@@ -38,7 +35,8 @@ const Button = (props) => {
       onClick={onClick}
       style={{
         backgroundColor,
-        border: "1px solid #d9d9d9",
+        border,
+        // : "1px solid #d9d9d9",
         borderRadius: radius,
         height,
         width,
@@ -49,8 +47,10 @@ const Button = (props) => {
         marginBottom,
         marginTop,
         marginLeft,
+        marginRight,
         fontSize,
-        zIndex
+        zIndex,
+        style,
       }}
     >
       {title}
@@ -75,6 +75,26 @@ const Modal = (props) => {
     </>
   );
 };
+
+
+const NavbarPop = (props) => {
+  if (!props.visible) {
+    return null;
+  }
+  return (
+    <>
+      <div className="modalFixedBg">
+        <div style={{ position: "relative" }}>
+          <div className="modalClose" onClick={props.onClose}>
+            X
+          </div>
+          <div className="modalContainer">{props.children}</div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 
 const MaterialInput = (props) => {
   return (
@@ -210,5 +230,5 @@ export {
   DropdownMenu,
   Anchor,
   Breed,
-
+  NavbarPop
 };

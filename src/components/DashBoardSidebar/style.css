@@ -5,7 +5,7 @@
 }
 
 .sidebar {
-  width: 275px;
+  width: 250px;
   position: fixed;
   left: 0;
   top: 0;
@@ -35,13 +35,15 @@
 
 .sidebar-menu li {
   width: 100%;
-  margin-bottom: 2.7rem;
+  margin-bottom: 1.2rem;
+  margin-left: 5px;
 }
 .sidebar-menu a {
   padding-left: 1rem;
-  display: block;
-  color: #000;
-  font-size: 1.1rem;
+    display: block;
+    color: #555;
+    font-size: 1rem;
+    font-weight: 600;
 }
 .sidebar-menu a.active {  
   background: #f2f2f2;
@@ -259,3 +261,18 @@ main {
   padding-bottom: 1rem;
   color: #fff;
 }
+
+
+.sidebar-division{
+margin-left: 14px;
+}
+
+.sidebar-division-span{
+  padding: 0px 20px;
+  font-weight: 400;
+}
+
+.sidebar-division-ulist{
+  margin-top: 20px;
+}
+
