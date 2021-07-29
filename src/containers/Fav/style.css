@@ -653,3 +653,12 @@ textarea {
     margin-top: 0;
   }
 }
+
+/* ////////////// new style */
+
+.compo-for-filter-for-store-list {
+  position: fixed;
+  height: 300px;
+  overflow-y: scroll;
+  margin-top: 12px;
+}
