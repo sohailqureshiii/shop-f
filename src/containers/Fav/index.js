@@ -539,7 +539,7 @@ const Favorite = (props) => {
                                     <button
                                       className="abcjnalnajcsn"
                                       style={{ marginTop: "0px" }}
-                                      onClick={() => handleShow(product)}
+                                      // onClick={() => handleShow(product)}
                                     >
                                       View Details
                                     </button>
