@@ -17,12 +17,12 @@ exports.createProduct = async (req, res) => {
   //   productPictures = req.files.map(file => {
   //     return { img: file.filename };
   //   });
-  // // }
-  // if (req.files.length > 0) {
-  //   productPictures = req.files.map((file) => {
-  //     return { img: file.location };
-  //   });
   // }
+  if (req.files.length > 0) {
+    productPictures = req.files.map((file) => {
+      return { img: file.location };
+    });
+  }
 
   try {
     let store = await Store.findOne({ createdBy: req.user._id });

@@ -21,7 +21,7 @@ router.post(
   "/create/product",
   requireSignin,
   userMiddleware,
-  // uploadS3.array("productPictures"),
+  uploadS3.array("productPictures"),
   createProduct
 );
 

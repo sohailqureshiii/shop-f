@@ -133,7 +133,8 @@ const Product = (props) => {
                     <img
                       sizes="404px"
                       src={
-                        "https://images.meesho.com/images/pow/homepage/hbd-dos1.jpg"
+                        product.productPictures[0].img
+
                       }
                       alt="new"
                       loading="lazy"
