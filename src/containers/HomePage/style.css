@@ -555,6 +555,7 @@ align-content: center;
   justify-content: space-between;
   max-height: 35px;
   padding-top: 2px;
+  align-items: center;
 }
 
 .ProjectCoverNeue-statsVisible-19j

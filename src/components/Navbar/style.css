@@ -108,27 +108,6 @@ a.middle:hover:before {
   color: #000000;
 }
 
-/*
-.store :hover {
-  background: white;
-  border: 1px solid black;
-}
-
-.fav :hover {
-  background: white;
-  border: 1px solid black;
-}
-
-.cart :hover {
-  background: white;
-  border: 1px solid black;
-}
-
-.loginn {
-  border: 1px solid #000000;
-  border-radius: 5px;
-} */
-
 .mobile-menu-icon {
   display: none;
 }
@@ -354,50 +333,6 @@ li {
   color: inherit;
 }
 
-h3 {
-  font-size: 18px;
-  line-height: 22px;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: bold;
-  margin: 0;
-}
-abbr,
-acronym,
-address,
-caption,
-cite,
-code,
-dfn,
-em,
-strong,
-th,
-var,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-}
-
-h3 {
-  display: block;
-  font-size: 1.17em;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
-}
 
 .PrimaryNav-coreNavigationLink-2uv,
 .PrimaryNav-adobeCreativeCloudLink-8C1 {

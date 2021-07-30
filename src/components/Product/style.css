@@ -754,3 +754,11 @@ textarea {
 .store-name-on-product:hover {
   text-decoration: underline;
 }
+
+
+.new-aling-item-nvd{
+  display: flex;
+  justify-content: space-between;
+  left: 0px;
+  align-items: center;
+}
