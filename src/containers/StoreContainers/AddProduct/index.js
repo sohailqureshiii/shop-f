@@ -4,6 +4,7 @@ import DashBoard from "../../../components/DashBoardSidebar";
 import "./style.css";
 import Navbar from "../../../components/Navbar";
 import { createProductAction } from "../../../actions/product.action";
+import { Button } from "../../../components/MaterialUI";
 
 const StoreAddProduct = () => {
   const dispatch = useDispatch();
@@ -78,116 +79,139 @@ const StoreAddProduct = () => {
               <div className="fill-available product-form-wrap">
                 <form>
                   <div className="product-information-section card">
-                    <h4 className="section-text-5 mb24">Product Information</h4>
+                    <div className='cbwiacawc' >
+                      <h4 className="section-text-5 mb24">
+                        Product Information
+                      </h4>
+                      <Button
+                        title="Add Product"
+                        backgroundColor
+                        border
+                        color
+                        border-radius="3px"
+                        padding="5px"
+                        width="13%"
+                        height="30px"
+                        radius="3px"
+                        fontSize="12px"
+                        onClick={() => {createProduct()}}
+                      ></Button>
+                    </div>
                     <section className="EmailPage__email-field form-group">
-                      <div>
-                        <label
-                          className="spectrum-FieldLabel"
-                          style={{ fontSize: "14px" }}
-                        >
-                          Product Name *
-                        </label>
-                        <input
-                          className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter Product Name"
-                          value={productName}
-                          onChange={(e) => setProductName(e.target.value)}
-                        ></input>
-                      </div>
-                      <div>
-                        <label
-                          className="spectrum-FieldLabel"
-                          style={{ fontSize: "14px" }}
-                        >
-                          Product Category *
-                        </label>
-                        <select
-                          className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter Product Category"
-                          value={productCategory}
-                          onChange={(e) => setProductCategory(e.target.value)}
-                        >
-                          <option
-                            className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
-                            value=""
+                      <div className="new-addproduct-input-div-mar">
+                        <div>
+                          <label
+                            className="spectrum-FieldLabel"
+                            style={{ fontSize: "14px" }}
                           >
-                            Product Category
-                          </option>
+                            Product Name *
+                          </label>
+                          <input
+                            className="spectrum-Textfield spectrum-Textfield--quiet"
+                            placeholder="Enter Product Name"
+                            value={productName}
+                            onChange={(e) => setProductName(e.target.value)}
+                          ></input>
+                        </div>
+                        <div>
+                          <label
+                            className="spectrum-FieldLabel"
+                            style={{ fontSize: "14px" }}
+                          >
+                            Product Category *
+                          </label>
+                          <select
+                            className="spectrum-Textfield spectrum-Textfield--quiet"
+                            placeholder="Enter Product Category"
+                            value={productCategory}
+                            onChange={(e) => setProductCategory(e.target.value)}
+                          >
+                            <option
+                              className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
+                              value=""
+                            >
+                              Product Category
+                            </option>
 
-                          {categoriesList
-                            .filter(
-                              (category) =>
-                                category.parentId === storeCategory._id
-                            )
-                            .map((filterCategory) => (
-                              <option
-                                key={filterCategory._id}
-                                value={filterCategory._id}
-                              >
-                                {filterCategory.name}
-                              </option>
-                            ))}
-                        </select>
+                            {categoriesList
+                              .filter(
+                                (category) =>
+                                  category.parentId === storeCategory._id
+                              )
+                              .map((filterCategory) => (
+                                <option
+                                  key={filterCategory._id}
+                                  value={filterCategory._id}
+                                >
+                                  {filterCategory.name}
+                                </option>
+                              ))}
+                          </select>
+                        </div>
                       </div>
-                      <div>
-                        <label
-                          className="spectrum-FieldLabel"
-                          style={{ fontSize: "14px" }}
-                        >
-                          Product Price *
-                        </label>
-                        <input
-                          className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter Product Price"
-                          value={productPrice}
-                          onChange={(e) => setProductPrice(e.target.value)}
-                        ></input>
+                      <div className="new-addproduct-input-div-mar">
+                        <div>
+                          <label
+                            className="spectrum-FieldLabel"
+                            style={{ fontSize: "14px" }}
+                          >
+                            Product Price *
+                          </label>
+                          <input
+                            className="spectrum-Textfield spectrum-Textfield--quiet"
+                            placeholder="Enter Product Price"
+                            value={productPrice}
+                            onChange={(e) => setProductPrice(e.target.value)}
+                          ></input>
+                        </div>
+                        <div>
+                          <label
+                            className="spectrum-FieldLabel"
+                            style={{ fontSize: "14px" }}
+                          >
+                            Discounted productPrice *{" "}
+                          </label>
+                          <input
+                            className="spectrum-Textfield spectrum-Textfield--quiet"
+                            placeholder="Enter Discount Price"
+                            value={productDiscountedPrice}
+                            onChange={(e) =>
+                              setProductDiscountedPrice(e.target.value)
+                            }
+                          ></input>
+                        </div>
                       </div>
-                      <div>
-                        <label
-                          className="spectrum-FieldLabel"
-                          style={{ fontSize: "14px" }}
-                        >
-                          Discounted productPrice *{" "}
-                        </label>
-                        <input
-                          className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter Discount Price"
-                          value={productDiscountedPrice}
-                          onChange={(e) =>
-                            setProductDiscountedPrice(e.target.value)
-                          }
-                        ></input>
-                      </div>
-                      <div>
-                        <label
-                          className="spectrum-FieldLabel"
-                          style={{ fontSize: "14px" }}
-                        >
-                          Quantity *
-                        </label>
-                        <input
-                          className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter Quantity"
-                          value={productQuantity}
-                          onChange={(e) => setProductQuantity(e.target.value)}
-                        ></input>
-                      </div>
-                      <div>
-                        <label
-                          className="spectrum-FieldLabel"
-                          style={{ fontSize: "14px" }}
-                        >
-                          Description *
-                        </label>
-                        <input
-                          className="spectrum-Textfield spectrum-Textfield--quiet"
-                          placeholder="Enter Description"
-                          value={productDescription}
-                          onChange={(e) =>
-                            setProductDescription(e.target.value)
-                          }
-                        ></input>
+                      <div className="new-addproduct-input-div-mar">
+                        <div>
+                          <label
+                            className="spectrum-FieldLabel"
+                            style={{ fontSize: "14px" }}
+                          >
+                            Quantity *
+                          </label>
+                          <input
+                            className="spectrum-Textfield spectrum-Textfield--quiet"
+                            placeholder="Enter Quantity"
+                            value={productQuantity}
+                            onChange={(e) => setProductQuantity(e.target.value)}
+                          ></input>
+                        </div>
+                        <div>
+                          <label
+                            className="spectrum-FieldLabel"
+                            style={{ fontSize: "14px" }}
+                          >
+                            Description *
+                          </label>
+                          <input
+                            className="spectrum-Textfield spectrum-Textfield--quiet"
+                            placeholder="Enter Description"
+                            value={productDescription}
+                            onChange={(e) =>
+                              setProductDescription(e.target.value)
+                            }
+                          ></input>
+                        </div>
                       </div>
                       <div>
                         <label
@@ -261,25 +285,7 @@ const StoreAddProduct = () => {
                         justifyContent: "flex-end",
                         paddingBottom: "15px",
                       }}
-                    >
-                      {/* <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
-                        <button className="btn-text" >
-                          Add Product
-                        </button>
-                      </div> */}
-                      <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
-                        <div
-                          className="d-flex"
-                          style={{ justifyContent: "flex-end" }}
-                        >
-                          <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
-                            <div className="btn-text" onClick={createProduct}>
-                              Add Product
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    ></div>
                   </div>
                 </form>
               </div>

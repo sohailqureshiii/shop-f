@@ -4,7 +4,7 @@ import Storeicon from "../../img/shop.png";
 import Logouticon from "../../img/logout.png";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { DropdownMenu } from "../../components/MaterialUI";
+import { Button, DropdownMenu } from "../../components/MaterialUI";
 import { signoutAction } from "../../actions/auth.action";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import "./style.css";
@@ -106,22 +106,6 @@ export const NavModal = ({ showModal, Modal }) => {
             </h1>
           </div>
           <Link
-            to="/Orderpage"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              textAlign: "center",
-            }}
-          >
-            <img
-              src={myorders}
-              className="logo-png-navabar"
-              alt="Shopisthan Logo"
-            />
-
-            <h1 className="logo-header-navabar">My Orders</h1>
-          </Link>
-          <Link
             to="/storeForm"
             style={{
               display: "flex",
@@ -158,49 +142,46 @@ export const NavModal = ({ showModal, Modal }) => {
   };
   const renderNonLoggedInMenu = () => {
     return (
-      <DropdownMenu
-        menu={
-          <>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <li className="PrimaryNav-loggedOutOption-3xV">
-                <div className="PrimaryNav-a11yButtonWrap-23Z">
-                  <button
-                    className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-                    onClick={() =>
-                      history.push({
-                        pathname: "/Signup",
-                      })
-                    }
-                  >
-                    <div className="Btn-labelWrapper-1jS">
-                      <div className="Btn-label-1Zf e2e-Btn-label">Sign up</div>
-                    </div>
-                  </button>
-                  <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
-                </div>
-              </li>
-
-              <li className="PrimaryNav-loggedOutOption-3xV">
-                <div className="PrimaryNav-a11yButtonWrap-23Z">
-                  <button
-                    className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
-                    onClick={() =>
-                      history.push({
-                        pathname: "/Signin",
-                      })
-                    }
-                  >
-                    <div className="Btn-labelWrapper-1jS">
-                      <div className="Btn-label-1Zf e2e-Btn-label"> Log In</div>
-                    </div>
-                  </button>
-                  <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
-                </div>
-              </li>
-            </div>
-          </>
-        }
-      />
+      <div style={{ alignItems: "center" }}>
+        <div>
+          <Button
+            title="Sign up"
+            backgroundColor
+            border
+            color
+            border-radius="3px"
+            padding="5px"
+            width="53%"
+            height="100%"
+            radius="3px"
+            fontSize="16px"
+            onClick={() =>
+              history.push({
+                pathname: "/Signup",
+              })
+            }
+          ></Button>
+        </div>
+        <div>
+          <Button
+            title="Sign In"
+            backgroundColor
+            border
+            color
+            border-radius="3px"
+            padding="5px"
+            width="53%"
+            height="100%"
+            radius="3px"
+            fontSize="16px"
+            onClick={() =>
+              history.push({
+                pathname: "/Signin",
+              })
+            }
+          ></Button>
+        </div>
+      </div>
     );
   };
 

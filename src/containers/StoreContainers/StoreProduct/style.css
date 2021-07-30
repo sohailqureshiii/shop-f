@@ -31,11 +31,7 @@
     border-radius: 4px;
     cursor: pointer;
 }
-.graphics-header, .section-text-5 {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-}
+
 
 
 .button-group .btn-text:first-child {

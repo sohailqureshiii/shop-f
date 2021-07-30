@@ -36,8 +36,7 @@ const MenuNavBar = (props) => {
               <a className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua">
                 <div className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5">
                   <select
-                    className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5 SubCategory-label-30F"
-                    className=""
+                    className="SubCategory-label-30F"
                     ref={inputLocation}
                     value={props.locationterm}
                     onChange={getLocationTerm}

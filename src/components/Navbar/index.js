@@ -92,43 +92,36 @@ const Navigationbar = (props) => {
             </a>
           </Link>
         </ul>
-        <DropdownMenu
-          menu={
-            <Link className="cart" to="/cartcheck">
-              <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs svkxxkxx">
-                <h3 className="PrimaryNav-coreNavigationLabel-3rj">
-                  <div class="link-background">
-                    {cartItems && Object.keys(cartItems).length >= 1 ? (
-                      <span
-                        style={{
-                          position: "absolute",
-                          background: "black",
-                          width: "17px",
-                          height: "22px",
-                          borderRadius: "50%",
-                          fontSize: "14px",
-                          border: "1px solid #fff",
-                          textAlign: "center",
-                          alignSelf: "center",
-                          top: "-14px",
-                          right: "-4px",
-                          color: "white",
-                        }}
-                      >
-                        {Object.keys(cartItems).length}
-                      </span>
-                    ) : null}
+        <Link className="cart" to="/cartcheck">
+          <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs svkxxkxx">
+            <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+              <div class="link-background">
+                {cartItems && Object.keys(cartItems).length >= 1 ? (
+                  <span
+                    style={{
+                      position: "absolute",
+                      background: "black",
+                      width: "17px",
+                      height: "22px",
+                      borderRadius: "50%",
+                      fontSize: "14px",
+                      border: "1px solid #fff",
+                      textAlign: "center",
+                      alignSelf: "center",
+                      top: "-14px",
+                      right: "-4px",
+                      color: "white",
+                    }}
+                  >
+                    {Object.keys(cartItems).length}
+                  </span>
+                ) : null}
 
-                    <img src={Carticon} className="homepagenavbar-icon-cart" />
-                  </div>
-                </h3>
-              </a>
-            </Link>
-          }
-          menus={[{ label: "View Cart", to: "/cartcheck", icon: null },
-          { label: "order History", to: "/editprofile", icon: null }
-          ]}
-        ></DropdownMenu>
+                <img src={Carticon} className="homepagenavbar-icon-cart" />
+              </div>
+            </h3>
+          </a>
+        </Link>
         <Link className="new-sell-online-btn">
           <h1>Sell Online</h1>
         </Link>

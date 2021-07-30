@@ -129,12 +129,9 @@ header.MuiPaper-root {
     margin-bottom: 32px;
     padding: 24px 24px 2px;
 }
-.graphics-header, .section-text-5 {
-    line-height: 24px;
-    font-weight: 600;
-}
+
 .mb24, .my24 {
-    margin-bottom: 24px;
+    text-align: center;
 }
 
 button, input {
@@ -195,6 +192,11 @@ input{
     margin: 0;
     
 
+}
+
+.new-addproduct-input-div-mar{
+    display:flex;
+    justify-content: space-between;
 }
 
 

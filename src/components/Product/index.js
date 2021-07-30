@@ -47,7 +47,7 @@ const Product = (props) => {
           border
           color
           border-radius="3px"
-          padding="5px"
+          padding="4px"
           width="23%"
           height="22px"
           radius="3px"
@@ -70,7 +70,7 @@ const Product = (props) => {
           border
           color
           border-radius="3px"
-          padding="5px"
+          padding="4px"
           width="23%"
           height="22px"
           radius="3px"
@@ -91,7 +91,7 @@ const Product = (props) => {
           border
           color
           border-radius="3px"
-          padding="5px"
+          padding="4px"
           width="23%"
           height="22px"
           radius="3px"
@@ -164,7 +164,7 @@ const Product = (props) => {
                       border
                       color
                       border-radius="3px"
-                      padding="5px"
+                      padding="4px"
                       width="25%"
                       height="22px"
                       radius="3px"
@@ -189,7 +189,7 @@ const Product = (props) => {
                       border
                       color
                       border-radius="3px"
-                      padding="5px"
+                      padding="4px"
                       width="25%"
                       height="22px"
                       radius="3px"

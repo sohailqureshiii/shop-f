@@ -40,7 +40,7 @@ const StoreDasboard = () => {
                   title="Add Product"
                   width="20%"
                   height="85%"
-                  fontSize="1.2rem"
+                  fontSize="1rem"
                   backgroundColor="black"
                   color="white"
                   radius="5px"
@@ -48,7 +48,7 @@ const StoreDasboard = () => {
               </Link>
             </div>
           </div>
-          <div className='main-div-of-catelogue' >
+          {/* <div className='main-div-of-catelogue' >
           <h1 className='add-Catalogue-header'>Create Your Catalogue</h1>
             <div style={{textAlign:'center'}}>
               <Button
@@ -66,7 +66,7 @@ const StoreDasboard = () => {
           Modal={closeModal}
           style={{ zindex: "90" }}
         />
-          </div>
+          </div> */}
           </div>
           <div style={{ display: "flex" }}>
             <div style={{ padding: "10px" }} className="new-order-table-div">

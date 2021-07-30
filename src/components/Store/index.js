@@ -149,7 +149,7 @@ const Store = (props) => {
               </Link>
             </div>
             <div className="new-store-profile-Location">
-              <Link to="">{store.storeLocation.name}</Link>
+              {/* <Link to="">{store.storeLocation.name}</Link> */}
             </div>
             <div className="new-store-profile-Category">
               {/* <span>{store.storeCategory.name}</span> */}

@@ -7,7 +7,8 @@ import {
   CountryDropdown,
   RegionDropdown,
 } from "react-indian-state-region-selector";
-
+import "./style.css";
+import { Button } from "../../components/MaterialUI";
 
 const StoreForm = (props) => {
   const auth = useSelector((state) => state.auth);
@@ -79,140 +80,156 @@ const StoreForm = (props) => {
       <div className="CardLayout-Toaster-Container">
         <section className="CardLayout">
           <section className="CardLayout__content">
+            <div className='cbwiacawc' >
+              <h4 className="section-text-5 mb24">Store Form</h4>
+              <Button
+                title="Save & Choose Plan"
+                backgroundColor
+                border
+                color
+                border-radius="3px"
+                padding="5px"
+                width="20%"
+                height="30px"
+                radius="3px"
+                fontSize="12px"
+                onClick={createStore}
+              ></Button>
+            </div>
             <form>
               <section className="EmailPage__email-field form-group">
-                <div>
-                  <label className="spectrum-FieldLabel">storeName</label>
-                  <input
-                    value={storeName}
-                    onChange={(e) => setStoreName(e.target.value)}
-                    className="spectrum-Textfield spectrum-Textfield--quiet"
-                  ></input>
+                <div className="new-addproduct-input-div-mar">
+                  <div className="icdsbnlcses">
+                    <label className="spectrum-FieldLabel">Store Name</label>
+                    <input
+                      value={storeName}
+                      onChange={(e) => setStoreName(e.target.value)}
+                      className="spectrum-Textfield spectrum-Textfield--quiet"
+                      placeholder="Please Enter Store Name"
+                    ></input>
+                  </div>
+                  <div>
+                    <label className="spectrum-FieldLabel">Store Type</label>
+                    <input
+                      value={storeType}
+                      onChange={(e) => setStoreType(e.target.value)}
+                      className="spectrum-Textfield spectrum-Textfield--quiet"
+                      placeholder="Please Enter Store Type Ex. Reatailer,Manufacture."
+                    ></input>
+                  </div>
                 </div>
-                <div>
-                  <label className="spectrum-FieldLabel">storeType</label>
-                  <input
-                    value={storeType}
-                    onChange={(e) => setStoreType(e.target.value)}
-                    className="spectrum-Textfield spectrum-Textfield--quiet"
-                  ></input>
-                </div>
-                <div>
-                  <label className="spectrum-FieldLabel">storeCategory</label>
-                  <select
-                    className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5"
-                    className="SubCategory-label-30F"
-                    value={storeCategory}
-                    onChange={(e) => setStoreCategory(e.target.value)}
-                  >
-                    <option
-                      className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
-                      value=""
+                <div className="new-addproduct-input-div-mar">
+                  <div className="icdsbnlcses">
+                    <label className="spectrum-FieldLabel">Category</label>
+                    <select
+                      id="CountryDropdown"
+                      value={storeCategory}
+                      onChange={(e) => setStoreCategory(e.target.value)}
                     >
-                      storeCategory
-                    </option>
-                    {categoriesList
-                      .filter((category) => !category.parentId)
-                      .map((filterCategory) => (
-                        <option
-                          key={filterCategory._id}
-                          value={filterCategory._id}
-                        >
-                          {filterCategory.name}
+                      <option
+                        className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
+                        value=""
+                      >
+                        Please Select Store Category
+                      </option>
+                      {categoriesList
+                        .filter((category) => !category.parentId)
+                        .map((filterCategory) => (
+                          <option
+                            key={filterCategory._id}
+                            value={filterCategory._id}
+                          >
+                            {filterCategory.name}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="spectrum-FieldLabel">Location</label>
+                    <select
+                       id="CountryDropdown"
+                      value={storeLocation}
+                      onChange={(e) => setStoreLocation(e.target.value)}
+                    >
+                      <option
+                        className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
+                        value=""
+                      >
+                        Please Select Store Location
+                      </option>
+                      {locationList.map((value) => (
+                        <option key={value._id} value={value._id}>
+                          {value.name}
                         </option>
                       ))}
-                  </select>
+                    </select>
+                  </div>
                 </div>
-                <div>
-                  <label className="spectrum-FieldLabel">storeLocation</label>
-                  <select
-                    className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5"
-                    className="SubCategory-label-30F"
-                    value={storeLocation}
-                    onChange={(e) => setStoreLocation(e.target.value)}
-                  >
-                    <option
-                      className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua"
-                      value=""
-                    >
-                      storeLocation
-                    </option>
-                    {locationList.map((value) => (
-                      <option key={value._id} value={value._id}>
-                        {value.name}
-                      </option>
-                    ))}
-                  </select>
+                <div className="new-addproduct-input-div-mar">
+                  <div className="icdsbnlcses">
+                    <label className="spectrum-FieldLabel">Mobile Number</label>
+                    <input
+                      value={storePhoneNo}
+                      onChange={(e) => setStorePhoneNo(e.target.value)}
+                      className="spectrum-Textfield spectrum-Textfield--quiet"
+                      placeholder="Please Enter Store Mobile Number"
+                    ></input>
+                  </div>
+                  <div>
+                    <label className="spectrum-FieldLabel">Store Address</label>
+                    <input
+                      value={storeAddress}
+                      onChange={(e) => setStoreAddress(e.target.value)}
+                      className="spectrum-Textfield spectrum-Textfield--quiet"
+                      placeholder="Please Enter Store Address"
+                    ></input>
+                  </div>
                 </div>
-                <div>
-                  <label className="spectrum-FieldLabel">storePhoneNo</label>
-                  <input
-                    value={storePhoneNo}
-                    onChange={(e) => setStorePhoneNo(e.target.value)}
-                    className="spectrum-Textfield spectrum-Textfield--quiet"
-                  ></input>
-                </div>
-                <div>
-                  <label className="spectrum-FieldLabel">storeAddress</label>
-                  <input
-                    value={storeAddress}
-                    onChange={(e) => setStoreAddress(e.target.value)}
-                    className="spectrum-Textfield spectrum-Textfield--quiet"
-                  ></input>
-                </div>
-                <div>
-                  <label className="spectrum-FieldLabel">
-                    storeDescription
-                  </label>
-                  <input
-                    value={storeDescription}
-                    onChange={(e) => setStoreDescription(e.target.value)}
-                    className="spectrum-Textfield spectrum-Textfield--quiet"
-                  ></input>
-                </div>
-                <div>
-                  <label className="spectrum-FieldLabel">storePinCode</label>
-                  <input
-                    value={storePinCode}
-                    onChange={(e) => setStorePinCode(e.target.value)}
-                    className="spectrum-Textfield spectrum-Textfield--quiet"
-                  ></input>
-                </div>
-                {/* // */}
-                <div>
-                  <label className="spectrum-FieldLabel"
-                  >storeState</label>
-                 
-                  <CountryDropdown
-                    value={storeState}
-                    onChange={(e) => setStoreState(e)}
-                  />
-           
-                </div>
-                <div>
-                  <label className="spectrum-FieldLabel">storePinCity</label>
-                  <RegionDropdown
-                    country={storeState}
-                    defaultOptionLabel="Select City"
-                    value={storeCity}
-                    onChange={(e) => setStoreCity(e)}
-                  />
-                </div>
-                {/* // */}
 
+                <div className="new-addproduct-input-div-mar">
+                  <div className="icdsbnlcses">
+                    <label className="spectrum-FieldLabel">Description</label>
+                    <input
+                      value={storeDescription}
+                      onChange={(e) => setStoreDescription(e.target.value)}
+                      className="spectrum-Textfield spectrum-Textfield--quiet"
+                      placeholder="Please Enter Store Description"
+                    ></input>
+                  </div>
+                  <div>
+                    <label className="spectrum-FieldLabel">Pin Code</label>
+                    <input
+                      value={storePinCode}
+                      onChange={(e) => setStorePinCode(e.target.value)}
+                      className="spectrum-Textfield spectrum-Textfield--quiet"
+                      placeholder="Please Enter Store Pin Code"
+                    ></input>
+                  </div>
+                </div>
+                {/* // */}
+                <div className="new-addproduct-input-div-mar">
+                  <div>
+                    <label className="spectrum-FieldLabel">State</label>
+
+                    <CountryDropdown
+                      value={storeState}
+                      onChange={(e) => setStoreState(e)}
+                      id="CountryDropdown"
+                    />
+                  </div>
+                  <div>
+                    <label className="spectrum-FieldLabel">City</label>
+                    <RegionDropdown
+                      country={storeState}
+                      defaultOptionLabel="Select City"
+                      value={storeCity}
+                      onChange={(e) => setStoreCity(e)}
+                      id="CountryDropdown"
+                    />
+                  </div>
+                </div>
               </section>
               <section className="EmailPage__submit mod-submit">
-                <div className="ta-left"></div>
-                <div className="ta-right">
-                  <Link to="/plansection">
-                    <button
-                      onClick={createStore}
-                      className="spectrum-Button spectrum-Button--cta SpinnerButton SpinnerButton--right"
-                    >
-                      <span className="spectrum-Button-label">Submit</span>
-                    </button>
-                  </Link>
-                </div>
               </section>
             </form>
           </section>
