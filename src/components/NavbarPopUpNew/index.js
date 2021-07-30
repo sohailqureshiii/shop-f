@@ -48,22 +48,6 @@ export const NavModal = ({ showModal, Modal }) => {
               </h1>
             </div>
             <Link
-              to="/Orderpage"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              <img
-                src={myorders}
-                className="logo-png-navabar"
-                alt="Shopisthan Logo"
-              />
-
-              <h1 className="logo-header-navabar">My Orders</h1>
-            </Link>
-            <Link
               to="/storeDashboard"
               style={{
                 display: "flex",
@@ -76,7 +60,7 @@ export const NavModal = ({ showModal, Modal }) => {
                 className="logo-png-navabar"
                 alt="Shopisthan Logo"
               />
-              <h1 className="logo-header-navabar">View Store</h1>
+              <h1 className="logo-header-navabar">My Store</h1>
             </Link>
             <div
               onClick={() => logout()}

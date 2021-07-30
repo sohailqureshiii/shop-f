@@ -175,6 +175,7 @@
 .new-products-of-shops-img-of-pro {
   width: 100px;
   height: 150px;
+  object-fit: contain;
 }
 
 .details-continer-store {
