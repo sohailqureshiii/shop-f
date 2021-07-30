@@ -115,9 +115,9 @@ const ExploreStore = (props) => {
                       style={{ outline: "none" }}
                       // ref={inputSearch}
                       // value={props.term}
-                      // onChange={getSearchTerm}
+                      onChange={(e)=>setSearchTerm(e.target.value)}
                       // ref={inputSearch}
-                      // value={props.term}
+                      value={searchTerm}
                     />
                   </div>
                   <button

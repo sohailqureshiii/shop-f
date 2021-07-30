@@ -20,10 +20,19 @@ const Favorite = (props) => {
   const followingStoreProductLists = useSelector(
     (state) => state.user.followingProducts
   );
+  const [searchTerm, setSearchTerm] = useState("");
 
   const auth = useSelector((state) => state.auth.authenticate);
 
-
+  const renderProducts = () => {
+    if (searchTerm === "" || searchTerm == null) {
+      return auth && followingStoreProductLists.length > 0
+        ? followingStoreProductLists.map((product, index) => (
+            <Product product={product} />
+          ))
+        : "Follow Suggestions";
+    }
+  };
 
   return (
     <>
@@ -60,11 +69,9 @@ const Favorite = (props) => {
                       aria-label="Search "
                       className="SearchTypeahead-searchInput-1qk e2e-SearchInput-input"
                       style={{ outline: "none" }}
+                      onChange={(e) => setSearchTerm(e.target.value)}
                       // ref={inputSearch}
-                      // value={props.term}
-                      // onChange={getSearchTerm}
-                      // ref={inputSearch}
-                      // value={props.term}
+                      value={searchTerm}
                     />
                   </div>
                   <button
@@ -158,7 +165,7 @@ const Favorite = (props) => {
               </div>
               <div className="compo-for-filter-for-store-list">
                 <div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -179,7 +186,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -200,7 +207,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -221,7 +228,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -242,7 +249,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -263,7 +270,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -284,7 +291,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -305,7 +312,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -327,7 +334,7 @@ const Favorite = (props) => {
                     </div>
                   </div>
 
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -348,7 +355,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -369,7 +376,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -390,7 +397,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -411,7 +418,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -432,7 +439,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -453,7 +460,7 @@ const Favorite = (props) => {
                       <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
                     </div>
                   </div>
-                  <div style={{marginTop:'10px'}}>
+                  <div style={{ marginTop: "10px" }}>
                     <div
                       style={{
                         width: "100%",
@@ -483,11 +490,7 @@ const Favorite = (props) => {
         <div className="new-store-page-container-one">
           <div className="new-store-page-container-two">
             <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
-              {auth && followingStoreProductLists.length > 0
-                ? followingStoreProductLists.map((product, index) => (
-                    <Product product={product} />
-                  ))
-                : "Follow Suggestions"}
+              {renderProducts()}
             </div>
           </div>
         </div>
@@ -499,4 +502,3 @@ const Favorite = (props) => {
 };
 
 export default Favorite;
-
