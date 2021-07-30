@@ -67,12 +67,24 @@ const StoreProduct = (props) => {
                   <span className="ProjectCoverNeue-ownersContainer-3Go">
                     <div className="Owners-root-3c9 Owners-dark-1Vh Owners-overflowText-3Yn ProjectCoverNeue-owners-1qo">
                       <span className="js-mini-profile Owners-ownerAndAvatar-1d5">
-                        <div className="Owners-owner-2lB e2e-Owner-user-link">
+                        <span className="new-h-product-name">
                           {product.productName}
-                        </div>
+                        </span>
                       </span>
                     </div>
                   </span>
+                  <Button
+                    title="View Details"
+                    backgroundColor="#027ad6;"
+                    radius="5px"
+                    border="1px solid #d4d4d4"
+                    color="#000"
+                    padding="5px"
+                    width="85px"
+                    height="25px"
+                    fontSize="11px"
+                    onClick={() => handleShow()}
+                  ></Button>
                 </div>
                 <span
                   className="ProjectCoverNeue-ownersContainer-3Go"
@@ -93,23 +105,22 @@ const StoreProduct = (props) => {
                     onClick={() => handleShow()}
                   >
                     Price
-                    <h4>
+                    <span className="price-new-price">
                       <BiRupee />
                       {product.productPrice}
-                    </h4>
+                    </span>
                   </div>
                   {storeId && product.storeId._id !== storeId ? (
                     <Button
                       title="Add to cart"
-                      backgroundColor="#027ad6;"
+                      backgroundColor
                       radius="5px"
-                      border="1px solid #d4d4d4"
-                      color="#000"
-                      padding="5px 10px"
-                      width="100px"
-                      height="30px"
-                      font=" 300 14px sans-serif"
-                      fontSize='14px'
+                      border
+                      color
+                      padding="5px"
+                      width="85px"
+                      height="25px"
+                      fontSize="11px"
                       onClick={() => {
                         const storeId = product.storeId._id;
                         const { _id, productName, productPrice } = product;

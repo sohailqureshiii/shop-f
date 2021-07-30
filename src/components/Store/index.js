@@ -34,22 +34,23 @@ const Store = (props) => {
     if (!auth.authenticate) {
       return (
         <Button
-          title="Follow Store"
           onClick={() => {
             history.push({
               pathname: "/Signin",
               state: { storeId: storeId, Follow: true },
             });
           }}
+          title="Follow"
           backgroundColor
-          radius="5px"
           border
+          color
           border-radius="3px"
-          color="#000"
           padding="2px 5px"
-          width="50%"
-          height="32px"
-          fontSize="15px"
+          width="30%"
+          height="22px"
+          radius="3px"
+          fontSize="12px"
+          zIndex="10"
           marginTop="10px"
           marginRight="10px"
           zIndex="10"
@@ -59,19 +60,20 @@ const Store = (props) => {
     if (auth.authenticate && !user.following.includes(storeId)) {
       return (
         <Button
-          title="Follow Store"
           onClick={() => {
             followStore(storeId);
           }}
+          title="Follow"
           backgroundColor
-          radius="5px"
-          border="1px solid #d9d9d9"
+          border
+          color
           border-radius="3px"
-          color="#000"
           padding="2px 5px"
-          width="50%"
-          height="32px"
-          fontSize="15px"
+          width="30%"
+          height="22px"
+          radius="3px"
+          fontSize="12px"
+          zIndex="10"
           marginTop="10px"
           zIndex="10"
           marginRight="10px"
@@ -82,18 +84,20 @@ const Store = (props) => {
     if (auth.authenticate && user.following.includes(storeId)) {
       return (
         <Button
-          title="Following"
           onClick={() => {
             UnFollowStore(storeId);
           }}
+          title="Unfollow"
           backgroundColor
-          radius="5px"
+          border
+          color
           border-radius="3px"
-          color="#000"
           padding="2px 5px"
-          width="50%"
-          height="32px"
-          fontSize="15px"
+          width="30%"
+          height="22px"
+          radius="3px"
+          fontSize="12px"
+          zIndex="10"
           marginTop="10px"
           zIndex="10"
           border="1px solid"
@@ -112,9 +116,7 @@ const Store = (props) => {
       return productList.slice(0, 5).map((product, index) => (
         <div className="product-new-container-of-store">
           <img
-            src={
-              product.productPictures[0].img
-            }
+            src={product.productPictures[0].img}
             alt={product.productName}
             className="new-products-of-shops-img-of-pro"
           />
@@ -163,16 +165,16 @@ const Store = (props) => {
               <Button
                 title="Visit Store"
                 backgroundColor
-                radius="5px"
+                border
+                color
                 border-radius="3px"
-                color="#000"
                 padding="2px 5px"
-                width="100%"
-                height="32px"
+                width="120%"
+                height="22px"
+                radius="3px"
                 fontSize="12px"
                 marginTop="10px"
                 zIndex="10"
-                border="1px solid"
               />
             </Link>
           </div>

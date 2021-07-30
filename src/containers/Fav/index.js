@@ -4,6 +4,7 @@ import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
 import { useSelector } from "react-redux";
+import Product from '../../components/Product'
 
 /**
  * @author

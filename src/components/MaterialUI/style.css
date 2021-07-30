@@ -1,35 +1,41 @@
 /* Material Modal */
-.modalFixedBg{
+.modalFixedBg {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: #000;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 101;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.productWrapper .detailsWrapper .prodDesc .priceWrapper .priceDiv .discount .discPrice {
+.productWrapper
+  .detailsWrapper
+  .prodDesc
+  .priceWrapper
+  .priceDiv
+  .discount
+  .discPrice {
   text-decoration: line-through;
-  color: rgba(0,0,0,.4);
+  color: rgba(0, 0, 0, 0.4);
 }
 
-.modalContainer{
+.modalContainer {
   width: 100%;
-    margin: auto;
-    min-height: 150px;
-    min-width: 30rem;
-    border-radius: 0.6rem;
+  margin: auto;
+  min-height: 150px;
+  min-width: 30rem;
+  border-radius: 0.6rem;
   background: #fff;
   margin: 0 auto;
   overflow-x: hidden;
 }
 
-.ProductContainer{
+.ProductContainer {
   min-width: 600px;
   max-width: 90%;
   min-height: 300px;
@@ -40,17 +46,16 @@
   overflow-x: hidden;
 }
 
-.modalClose{
+.modalClose {
   position: absolute;
-    color: #fff;
-    right: -30px;
-    font-size: 26px;
-    cursor: pointer;
-
+  color: #fff;
+  right: -30px;
+  font-size: 26px;
+  cursor: pointer;
 }
 
 /* Material Input */
-.materialInput{
+.materialInput {
   width: 100%;
   min-width: 300px;
   height: 30px;
@@ -59,7 +64,7 @@
   /* background-color: red; */
   margin-top: 25px;
 }
-.materialInput input{
+.materialInput input {
   width: 100%;
   flex: 1;
   outline: none;
@@ -68,7 +73,7 @@
   background: transparent;
   line-height: 30px;
 }
-.materialInput .label{
+.materialInput .label {
   position: absolute;
   line-height: 30px;
   color: grey;
@@ -77,12 +82,12 @@
   letter-spacing: 1px;
   transition: all 0.1s ease-in-out;
 }
-.materialInput .label.focus{
+.materialInput .label.focus {
   top: -20px !important;
 }
 
 /* Material Button */
-.materialButton{
+.materialButton {
   width: 100%;
   display: inline-block;
   padding: 15px;
@@ -90,52 +95,53 @@
   outline: none;
   background-color: #616060;
   color: #ffffff;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   border: none;
   cursor: pointer;
   border-radius: 5px;
 }
-.materialButton:hover{
-  box-shadow: 0 4px 6px 0 rgba(0,0,0,.12);
+.materialButton:hover {
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.12);
 }
 
 /* Material dropdown */
-.headerDropdownContainer{
+.headerDropdownContainer {
   position: relative;
   display: inline-block;
 }
-.firstmenu{
+.firstmenu {
   padding: 15px 20px;
   border-bottom: 1px solid #eee;
   font-size: 12px;
   font-weight: 500;
   display: flex;
   justify-content: space-between;
- 
 }
-.dropdown{
-right: 50%;
-position: absolute;
-width: 240px;
-transform: translateX(50%);
-z-index: 1;
-display: none;
+.dropdown {
+  right: 50%;
+  position: absolute;
+  width: 240px;
+  transform: translateX(50%);
+  z-index: 1;
+  display: none;
+
+  margin-top: -29px;
 }
-.dropdownMenu{
-background: #fff;
-box-shadow: 0 4px 16px 0 rgba(0,0,0,.2);
-background: #fff;
-border-radius: 2px;
+.dropdownMenu {
+  background: #fff;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+  background: #fff;
+  border-radius: 2px;
 }
-.headerDropdownContainer:hover .dropdown{
+.headerDropdownContainer:hover .dropdown {
   display: block;
 }
-.upArrowContainer{
+.upArrowContainer {
   position: relative;
   width: 100%;
   height: 10px;
 }
-.upArrow{
+.upArrow {
   width: 0;
   height: 0;
   position: absolute;
@@ -145,15 +151,15 @@ border-radius: 2px;
   left: 50%;
   transform: translateX(-50%);
 }
-.headerDropdownMenu{
+.headerDropdownMenu {
   margin: 0;
   padding: 0;
   background: #fff;
 }
-.headerDropdownMenu li{
+.headerDropdownMenu li {
   list-style: none;
 }
-.headerDropdownMenu li a{
+.headerDropdownMenu li a {
   display: block;
   padding: 15px 20px;
   box-sizing: border-box;
@@ -162,12 +168,12 @@ border-radius: 2px;
   color: #212121;
   text-decoration: none;
 }
-.headerDropdownMenu li a:hover{
+.headerDropdownMenu li a:hover {
   background-color: #f0f0f0;
   cursor: pointer;
 }
 
-.anchorButton{
+.anchorButton {
   background: transparent;
   border: none;
   letter-spacing: 1px;
