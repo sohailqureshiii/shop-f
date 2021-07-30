@@ -35,12 +35,6 @@ const DashBoard = (props) => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink exact activeClassName="active" to="/storeProduct">
-                  <img src={products} className="dashicon-icon"  alt='Shopisthan'/>
-                    <span>Pofile</span>
-                  </NavLink>
-                </li>
-                <li>
                   <NavLink exact activeClassName="active" to="/storeOrder">
                   <img src={orders} className="dashicon-icon"  alt='Shopisthan'/>
                     <span class="las la-shopping-bag"></span> <span>Order</span>

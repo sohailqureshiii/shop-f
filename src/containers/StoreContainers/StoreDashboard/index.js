@@ -1,14 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import Navbar from "../../../components/Navbar";
 import DashBoard from "../../../components/DashBoardSidebar";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useSelector } from "react-redux";
 import { Button } from "../../../components/MaterialUI";
+import { NavModal } from "../../../components/NavbarPopUpNew";
 
 const StoreDasboard = () => {
   const storeDetails = useSelector((state) => state.userStore);
   const storeId = useSelector((state) => state.userStore.userStore._id);
+  const [showModal, setShoModal] = useState(false);
+  const openModal = () => {
+    setShoModal(true);
+  };
+
+  const closeModal = (cl) => {
+    setShoModal(false);
+  };
+
   return (
     <>
       <Navbar />
@@ -18,7 +28,7 @@ const StoreDasboard = () => {
           style={{ paddingTop: "80px", backgroundColor: "#f1f5f9" }}
         >
           <h1 className="order-name-name-order">Dashboard</h1>
-
+          <div style={{display:'flex'}}>
           <div className="add-product-home-redirect">
             <div className="add-product-header">
               <h4 className="add-product-header-head">Add Your Product</h4>
@@ -37,6 +47,26 @@ const StoreDasboard = () => {
                 />
               </Link>
             </div>
+          </div>
+          <div className='main-div-of-catelogue' >
+          <h1 className='add-Catalogue-header'>Create Your Catalogue</h1>
+            <div style={{textAlign:'center'}}>
+              <Button
+                title='Add Catalogue'
+                width='150px'
+                color='black'
+                border='1px solid #c7c7c7'
+                fontSize='14px'
+                padding='5px 5px'
+                onClick={openModal}
+              />
+            </div>
+            <NavModal
+          showModal={showModal}
+          Modal={closeModal}
+          style={{ zindex: "90" }}
+        />
+          </div>
           </div>
           <div style={{ display: "flex" }}>
             <div style={{ padding: "10px" }} className="new-order-table-div">

@@ -44,14 +44,14 @@ const Product = (props) => {
         <Button
           title="Follow"
           backgroundColor
-          radius="3px"
-          border='1px solid #c7c7c7'
+          border
+          color
           border-radius="3px"
-          color="#000"
-          padding="2px 5px"
+          padding="5px"
           width="23%"
           height="22px"
-          fontSize="12px"
+          radius="3px"
+          fontSize="8px"
           onClick={() => {
             history.push({
               pathname: "/Signin",
@@ -67,13 +67,14 @@ const Product = (props) => {
         <Button
           title="Follow"
           backgroundColor
-          radius="3px"
-          border='1px solid #c7c7c7'
+          border
+          color
           border-radius="3px"
-          color="#000"
-          padding="2px 5px"
+          padding="5px"
           width="23%"
           height="22px"
+          radius="3px"
+          fontSize="8px"
           onClick={() => {
             followStore(storeId);
           }}
@@ -87,13 +88,14 @@ const Product = (props) => {
         <Button
           title="Unfollow"
           backgroundColor
-          radius="3px"
-          border="1px solid #000"
+          border
+          color
           border-radius="3px"
-          color="#000"
-          padding="2px 5px"
+          padding="5px"
           width="23%"
           height="22px"
+          radius="3px"
+          fontSize="8px"
           onClick={() => {
             UnFollowStore(storeId);
           }}
@@ -115,15 +117,18 @@ const Product = (props) => {
               <div
                 style={{
                   display: "flex",
-                  padding: "10px 10px",
+                  padding: "0px 10px",
                   justifyContent: "space-between",
+                  alignItems:'center'
                 }}
               >
                 <Link
                   to={`/${product.storeId._id}/store`}
-                  className='store-name-on-product'
+                  className="store-name-on-product"
                 >
-                  {product.storeId.storeName}
+                  <span className="new-h-product-name">
+                    {product.storeId.storeName}
+                  </span>
                 </Link>
                 {renderButton(product.storeId._id)}
               </div>
@@ -132,10 +137,7 @@ const Product = (props) => {
                   <div className="Cover-content-2R2">
                     <img
                       sizes="404px"
-                      src={
-                        product.productPictures[0].img
-
-                      }
+                      src={product.productPictures[0].img}
                       alt="new"
                       loading="lazy"
                       class="ProjectCoverNeue-image-1MZ js-cover-image"
@@ -160,13 +162,19 @@ const Product = (props) => {
                     >
                       {product.productName}
                     </span>
-                    <div
-                      className="new-view-detials-btn"
-                      style={{ display: "flex" }}
+                    <Button
+                      title="View Details"
+                      backgroundColor
+                      border
+                      color
+                      border-radius="3px"
+                      padding="5px"
+                      width="25%"
+                      height="22px"
+                      radius="3px"
+                      fontSize="12px"
                       onClick={() => handleShow()}
-                    >
-                      View Details
-                    </div>
+                    ></Button>
                   </div>
                 </div>
                 <div>
@@ -179,13 +187,20 @@ const Product = (props) => {
                   >
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <span className="price-new-price">
-                        {/* <BiRupee /> */}
                         {"₹ " + product.productPrice}
                       </span>
-                      {/* <span>i</span> */}
                     </div>
-                    <h1
-                      className="new-add-btn"
+                    <Button
+                      title="Add +"
+                      backgroundColor
+                      border
+                      color
+                      border-radius="3px"
+                      padding="5px"
+                      width="25%"
+                      height="22px"
+                      radius="3px"
+                      fontSize="8px"
                       onClick={() => {
                         const storeId = product.storeId._id;
                         const { _id, productName, productPrice } = product;
@@ -200,9 +215,8 @@ const Product = (props) => {
                           })
                         );
                       }}
-                    >
-                      Add +
-                    </h1>
+                      fontSize="12px"
+                    ></Button>
                   </div>
                 </div>
               </div>
