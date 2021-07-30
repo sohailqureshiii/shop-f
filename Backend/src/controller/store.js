@@ -1,5 +1,5 @@
 const Store = require("../models/store");
-const User = require("../models/auth")
+const User = require("../models/auth");
 
 exports.createStore = async (req, res) => {
   const {
@@ -12,7 +12,9 @@ exports.createStore = async (req, res) => {
     storeAddress,
     storeDescription,
     storePinCode,
-    // storePlan
+    storePlan,
+    storeCity,
+    storeState,
   } = req.body;
 
   try {
@@ -31,34 +33,42 @@ exports.createStore = async (req, res) => {
       storeAddress,
       storeDescription,
       storePinCode,
-      // storePlan,
+      storePlan,
+      storeCity,
+      storeState,
       createdBy: req.user._id,
     });
 
-   
     await store.save((error, Store) => {
       if (error) return res.status(400).json({ error });
       if (Store) {
- 
-      User.findByIdAndUpdate({_id:req.user._id},{$set:{store:"Yes",storeId:store._id}},
-       {new:true,useFindAndModify: false},
+        User.findByIdAndUpdate(
+          { _id: req.user._id },
+          { $set: { store: "Yes", storeId: store._id } },
+          { new: true, useFindAndModify: false },
 
-       (err,data)=>{
-        if(err) {
-                     return res.status(400).json({err});
-                }
-                if(data){
-                  const { _id,name, role,following,loginId,store,storeId } = data;
-                    return res.status(201).json({Store,
-                    user:{
-                      _id,name, role,following,loginId,store,storeId
-                    }
-                    });
-                }
-       }
-       )
-        
-        // res.status(201).json({ store });
+          (err, data) => {
+            if (err) {
+              return res.status(400).json({ err });
+            }
+            if (data) {
+              const { _id, name, role, following, loginId, store, storeId } =
+                data;
+              return res.status(201).json({
+                Store,
+                user: {
+                  _id,
+                  name,
+                  role,
+                  following,
+                  loginId,
+                  store,
+                  storeId,
+                },
+              });
+            }
+          }
+        );
       }
     });
   } catch (error) {
@@ -66,135 +76,90 @@ exports.createStore = async (req, res) => {
   }
 };
 
-// Store.findByIdAndUpdate(req.body.followId,{
-  //         $push:{followers: req.user._id}
-  //     },{
-  //         new:true,useFindAndModify: false
-  //     },(err,result)=>{
-  //         if(err){ 
-  //             return res.status(422).json({error:err})
-  //         }
 
-  // const updatedProduct = await Product.findOneAndUpdate({_id:_id},{$set:{name, price, description, quantity,discount,discountPrice,discountPercentage }},
-  //   {new:true,useFindAndModify: false},
-  //   (err,updatedProductInfo)=>{
-  //       if(err) {
-  //            return res.status(400).json({err});
-  //       }
-  //       if(updatedProductInfo){
-          
-  //           return res.status(201).json({updatedProductInfo});
-  //       }
+exports.editStore = async (req, res) => {
+  const { storeName, storePhoneNo, storeAddress, storeDescription } = req.body;
 
-  //   })
+  const updatedStoreProfile = await Store.findOneAndUpdate(
+    { createdBy: req.user._id },
+    { $set: { storeName, storePhoneNo, storeAddress, storeDescription } },
+    { new: true, useFindAndModify: false },
+    (err, updatedStoreInfo) => {
+      if (err) {
+        return res.status(400).json({ err });
+      }
+      if (updatedStoreInfo) {
+        const store = Store.findOne({ createdBy: req.user._id })
+          .populate({ path: "storeCategory", select: "_id name" })
+          .populate({ path: "storeLocation", select: "_id name" })
+          .populate({ path: "followers", select: "name" })
+          .exec((err, storeInfo) => {
+            if (err) return res.status(400).json({ err });
+            if (storeInfo) {
+              return res.status(201).json({ storeInfo });
+            }
+          });
+      }
+    }
+  );
+};
 
-
-  
-
-exports.editStore = async(req,res)=>{
-
-
-
-  const {
-    storeName,storePhoneNo,storeAddress,storeDescription
-   } = req.body;  
-
-
-
-
-
-   const updatedStoreProfile = await Store.findOneAndUpdate({ createdBy: req.user._id},{$set:{storeName,storePhoneNo,storeAddress,storeDescription}},
-      {new:true,useFindAndModify: false},
-      (err,updatedStoreInfo)=>{
-          if(err) {
-               return res.status(400).json({err});
-          }
-          if(updatedStoreInfo){
-              const store = Store.findOne({createdBy: req.user._id})
-              .populate({ path: "storeCategory", select: "_id name" })
-              .populate({ path: "storeLocation", select: "_id name" })
-              .populate({path:"followers",select:"name"})
-              .exec((err,storeInfo)=>{
-                  if(err)    return res.status(400).json({err});
-                  if(storeInfo){
-                      return res.status(201).json({storeInfo});
-                  }
-              });
-          }
-
-      })
-  
-}
-
-
-exports.uploadProfilePic = async (req,res) =>{
-
+exports.uploadProfilePic = async (req, res) => {
   let storeProfilePicture = null;
-  if(req.file){
-    storeProfilePicture = {img:req.file.location}
+  if (req.file) {
+    storeProfilePicture = { img: req.file.location };
   }
 
+  const updatedStoreProfile = await Store.findOneAndUpdate(
+    { createdBy: req.user._id },
+    { $set: { storeProfilePicture } },
+    { new: true, useFindAndModify: false },
+    (err, updatedStoreInfo) => {
+      if (err) {
+        return res.status(400).json({ err });
+      }
+      if (updatedStoreInfo) {
+        const store = Store.findOne({ createdBy: req.user._id })
+          .populate({ path: "storeCategory", select: "_id name" })
+          .populate({ path: "storeLocation", select: "_id name" })
+          .populate({ path: "followers", select: "name" })
+          .exec((err, storeInfo) => {
+            if (err) return res.status(400).json({ err });
+            if (storeInfo) {
+              return res.status(201).json({ storeInfo });
+            }
+          });
+      }
+    }
+  );
+};
 
-  const updatedStoreProfile = await Store.findOneAndUpdate({ createdBy: req.user._id},{$set:{storeProfilePicture}},
-    {new:true,useFindAndModify: false},
-    (err,updatedStoreInfo)=>{
-        if(err) {
-             return res.status(400).json({err});
-        }
-        if(updatedStoreInfo){
-            const store = Store.findOne({createdBy: req.user._id})
-            .populate({ path: "storeCategory", select: "_id name" })
-            .populate({ path: "storeLocation", select: "_id name" })
-            .populate({path:"followers",select:"name"})
-            .exec((err,storeInfo)=>{
-                if(err)    return res.status(400).json({err});
-                if(storeInfo){
-                    return res.status(201).json({storeInfo});
-                }
-            });
-        }
-
-    })
-
-
- 
-
-}
-
-
-
-
-
-exports.uploadBackgroundPic = async (req,res) =>{
-
+exports.uploadBackgroundPic = async (req, res) => {
   let storeBackgroundPicture = null;
-  if(req.file){
-    storeBackgroundPicture = {img:req.file.location}
+  if (req.file) {
+    storeBackgroundPicture = { img: req.file.location };
   }
 
-
-  const updatedStoreProfile = await Store.findOneAndUpdate({ createdBy: req.user._id},{$set:{storeBackgroundPicture}},
-    {new:true,useFindAndModify: false},
-    (err,updatedStoreInfo)=>{
-        if(err) {
-             return res.status(400).json({err});
-        }
-        if(updatedStoreInfo){
-            const store = Store.findOne({createdBy: req.user._id})
-            .populate({ path: "storeCategory", select: "_id name" })
-            .populate({ path: "storeLocation", select: "_id name" })
-            .populate({path:"followers",select:"name"})
-            .exec((err,storeInfo)=>{
-                if(err)    return res.status(400).json({err});
-                if(storeInfo){
-                    return res.status(201).json({storeInfo});
-                }
-            });
-        }
-
-    })
-
-
- 
-
-}
+  const updatedStoreProfile = await Store.findOneAndUpdate(
+    { createdBy: req.user._id },
+    { $set: { storeBackgroundPicture } },
+    { new: true, useFindAndModify: false },
+    (err, updatedStoreInfo) => {
+      if (err) {
+        return res.status(400).json({ err });
+      }
+      if (updatedStoreInfo) {
+        const store = Store.findOne({ createdBy: req.user._id })
+          .populate({ path: "storeCategory", select: "_id name" })
+          .populate({ path: "storeLocation", select: "_id name" })
+          .populate({ path: "followers", select: "name" })
+          .exec((err, storeInfo) => {
+            if (err) return res.status(400).json({ err });
+            if (storeInfo) {
+              return res.status(201).json({ storeInfo });
+            }
+          });
+      }
+    }
+  );
+};

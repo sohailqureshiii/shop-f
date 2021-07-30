@@ -53,7 +53,6 @@ exports.getAddress = (req, res) => {
 
 exports.deleteAddress = (req, res) => {
 
-  // const  addId  = req.body;
   if (req.body.addId) {
 
       UserAddress.findOneAndUpdate(
