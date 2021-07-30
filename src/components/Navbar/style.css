@@ -86,6 +86,7 @@
 }
 a.middle {
   position: relative;
+  color: #000000;
 }
 
 a.middle:before {
@@ -99,12 +100,14 @@ a.middle:before {
   visibility: hidden;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out;
+  color: #000000;
 }
 
 a.middle:hover:before {
   visibility: visible;
   transform: scaleX(1);
   font-size: 22px;
+  color: #000000;
 }
 
 /*

@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { IoIosArrowForward, IoIosStar, IoMdCart } from "react-icons/io";
+import React from "react";
 import { BiRupee } from "react-icons/bi";
-// import { AiFillThunderbolt } from "react-icons/ai";
 import { Button } from "../../components/MaterialUI";
-
 import "./style.css";
-import { WhatsappShareButton } from "react-share";
-import { WhatsappIcon } from "react-share";
 import NavBar from "../../components/Navbar";
 
 /**
@@ -22,7 +16,7 @@ const ProductDetailsPage = (props) => {
       <div className="productDescriptionContainer" style={{paddingTop:'90px',justifyContent:'center'}}>
         <div className="productDescContainer">
           <div className="productDescImgContainer">
-            <img src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg" />
+            <img src="https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg" alt='https://m.media-amazon.com/images/I/41vqgX0c5EL.jpg'/>
           </div>
         </div>
         {/* home > category > subCategory > productName */}

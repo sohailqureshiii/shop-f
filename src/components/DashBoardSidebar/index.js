@@ -18,37 +18,37 @@ const DashBoard = (props) => {
               <ul>
                 <li> 
                   <NavLink exact activeClassName="active" to="/storeDashboard">
-                  <img src={Homeicon} className="dashicon-icon" />
+                  <img src={Homeicon} className="dashicon-icon" alt='Shopisthan'/>
                     <span class="las la-igloo"></span> <span>Dashboard</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact activeClassName="active" to="/storeCoustomer">
-                  <img src={customers} className="dashicon-icon" />
+                  <img src={customers} className="dashicon-icon"  alt='Shopisthan'/>
                     <span class="las la-users"></span> <span>Customers</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact activeClassName="active" to="/storeProduct">
-                  <img src={products} className="dashicon-icon" />
+                  <img src={products} className="dashicon-icon"  alt='Shopisthan'/>
                     <span>Product</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact activeClassName="active" to="/storeProduct">
-                  <img src={products} className="dashicon-icon" />
+                  <img src={products} className="dashicon-icon"  alt='Shopisthan'/>
                     <span>Pofile</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact activeClassName="active" to="/storeOrder">
-                  <img src={orders} className="dashicon-icon" />
+                  <img src={orders} className="dashicon-icon"  alt='Shopisthan'/>
                     <span class="las la-shopping-bag"></span> <span>Order</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact activeClassName="active" to="/storeProfile">
-                  <img src={Profilepiclogo} className="dashicon-icon" />
+                  <img src={Profilepiclogo} className="dashicon-icon"  alt='Shopisthan'/>
                     <span class="las la-shopping-bag"></span> <span>Account</span>
                   </NavLink>
                 </li>
