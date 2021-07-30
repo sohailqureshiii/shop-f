@@ -53,39 +53,6 @@ exports.addCatalog = async (req, res) => {
         return res.status(400).json({ message: "No more" });
       }
     }
-
-    // if (!req.body.name) {
-    //   return res.status(400).json({ message: "Enter the name" });
-    // }
-    // catalog = new Catalog({
-    //   name: req.body.name,
-    //   createdBy: req.user._id,
-    //   storeId: store._id,
-    // });
-
-    // await catalog.save((error, catalog) => {
-    //   if (error) return res.status(400).json({ error });
-    //   if (catalog) {
-    //     Store.findByIdAndUpdate(
-    //       store._id,
-    //       {
-    //         $push: {storeCatalogs:catalog._id},
-    //       },
-    //       {
-    //         new: true,
-    //         useFindAndModify: false,
-    //       },
-    //       (err, result) => {
-    //         if (err) {
-    //           return res.status(422).json({ error: err });
-    //         }
-    //         if (result) {
-    //           return res.status(201).json({ catalog });
-    //         }
-    //       }
-    //     );
-    //   }
-    // });
   } catch (error) {
     return res.status(400).json({ error });
   }

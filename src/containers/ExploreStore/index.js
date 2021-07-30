@@ -12,6 +12,7 @@ import Store from "../../components/Store/index";
 
 const ExploreStore = (props) => {
   const storeLists = useSelector((state) => state.stores.stores);
+  const categoriesList = useSelector((state) => state.category.categories);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryTerm, setCategoryTerm] = useState("");
   const [locationTerm, setLocationTerm] = useState("");
@@ -114,7 +115,10 @@ const ExploreStore = (props) => {
                       style={{ outline: "none" }}
                       // ref={inputSearch}
                       // value={props.term}
-                      onChange={(e)=>setSearchTerm(e.target.value)}
+                      onChange={(e)=>{
+                        setSearchTerm(e.target.value)
+                        setCategoryTerm("")
+                      }}
                       // ref={inputSearch}
                       value={searchTerm}
                     />
@@ -224,27 +228,30 @@ const ExploreStore = (props) => {
                 <div className="SubCategory-root-mwEfghi SubCategory-active-Sxz NavigationBar-subcategory-2m5">
                   <select
                     className="SubCategory-label-30Fmjdh"
-                    // value={filterdCategory}
+                    value={categoryTerm}
                     // onChange={(e) => {
                     //   const selectedCategory = e.target.value;
                     //   setFilterdCategory(selectedCategory)
                     // }}
                     // ref={inputCategory}
                     // value={props.categoryterm}
-                    // onChange={getCategoryTerm}
+                    onChange={(e)=> {
+                      setCategoryTerm(e.target.value)
+                      setSearchTerm("")
+                    }}
                   >
                     <option value="">Category</option>
 
-                    {/* {categoriesList
+                    {categoriesList
                       .filter((category) => !category.parentId)
-                      .map((filterCategory) => ( */}
+                      .map((filterCategory) => (
                     <option
-                    // key={filterCategory._id}
-                    // value={filterCategory._id}
+                    key={filterCategory._id}
+                    value={filterCategory._id}
                     >
-                      {/* {filterCategory.name} */}
+                      {filterCategory.name}
                     </option>
-                    {/* ))} */}
+                    ))}
                   </select>
                 </div>
               </div>

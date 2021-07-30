@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footerr/Footer";
 import { useSelector } from "react-redux";
+import Product from "../../components/Product";
+import { Link } from "@material-ui/core";
 
 /**
  * @author
@@ -23,11 +25,27 @@ const Favorite = (props) => {
 
   const renderProducts = () => {
     if (searchTerm === "" || searchTerm == null) {
-      return auth && followingStoreProductLists.length > 0
+      return followingStoreProductLists.length > 0
         ? followingStoreProductLists.map((product, index) => (
             <Product product={product} />
           ))
-        : "Follow Suggestions";
+        : null;
+    }
+
+    if (searchTerm !== null || searchTerm !== "") {
+      return followingStoreProductLists.length > 0
+        ? followingStoreProductLists
+            .filter((product) =>
+              product.productName
+                .toLowerCase()
+                .split(" ")
+                .join("")
+                .includes(searchTerm.toLowerCase().split(" ").join(""))
+            )
+            .map((product, index) => (
+              <Product product={product} key={product._id} />
+            ))
+        : null;
     }
   };
 
@@ -132,7 +150,7 @@ const Favorite = (props) => {
                   lineHeight: "1.5",
                 }}
               >
-                <input type="radio" style={{ cursor: "pointer" }}></input>
+                <input type="radio" value="1000" style={{ cursor: "pointer" }}></input>
                 <h1 className="cbildcbdc">up to ₹ 1000</h1>
               </div>
               <div
@@ -142,7 +160,7 @@ const Favorite = (props) => {
                   lineHeight: "1.5",
                 }}
               >
-                <input type="radio" style={{ cursor: "pointer" }}></input>
+                <input type="radio"  value="5000" style={{ cursor: "pointer" }}></input>
                 <h1 className="cbildcbdc">up to ₹ 5000</h1>
               </div>
               <div
@@ -152,7 +170,7 @@ const Favorite = (props) => {
                   lineHeight: "1.5",
                 }}
               >
-                <input type="radio" style={{ cursor: "pointer" }}></input>
+                <input type="radio"  value="10000" style={{ cursor: "pointer" }}></input>
                 <h1 className="cbildcbdc">up to ₹ 10000</h1>
               </div>
             </div>
@@ -162,322 +180,35 @@ const Favorite = (props) => {
               </div>
               <div className="compo-for-filter-for-store-list">
                 <div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "22px",
-                        display: "flex",
-                        alignItems: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src={Profilepiclogo}
-                        style={{
-                          borderRadius: "50%",
-                          width: "22px",
-                          height: "22px",
-                        }}
-                      ></img>
-                      <h1 style={{ marginLeft: "5px" }}>Store Name</h1>
-                    </div>
-                  </div>
+                  {followingStoreLists.length > 0
+                    ? followingStoreLists.map((store, index) => (
+                        <div style={{ marginTop: "10px" }} key={store._id}>
+                          <div
+                            style={{
+                              width: "100%",
+                              height: "22px",
+                              display: "flex",
+                              alignItems: "center",
+                              textAlign: "center",
+                            }}
+                          >
+                            <img
+                              src={Profilepiclogo}
+                              style={{
+                                borderRadius: "50%",
+                                width: "22px",
+                                height: "22px",
+                              }}
+                            ></img>
+                            <Link to={`/${store._id}/store`}>
+                              <h1 style={{ marginLeft: "5px" }}>
+                                {store.storeName}
+                              </h1>
+                            </Link>
+                          </div>
+                        </div>
+                      ))
+                    : null}
                 </div>
               </div>
             </div>
@@ -487,7 +218,7 @@ const Favorite = (props) => {
         <div className="new-store-page-container-one">
           <div className="new-store-page-container-two">
             <div className="Galleries-covers-ihH Galleries-grid-1Bv Galleries-header-14v">
-              {renderProducts()}
+              {auth ? renderProducts() : "Follow Suggestions"}
             </div>
           </div>
         </div>

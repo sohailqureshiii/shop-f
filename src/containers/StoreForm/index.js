@@ -3,6 +3,11 @@ import Navigationbar from "../../components/Navbar";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addStoreAction } from "../../actions/store.action";
+import {
+  CountryDropdown,
+  RegionDropdown,
+} from "react-indian-state-region-selector";
+
 
 const StoreForm = (props) => {
   const auth = useSelector((state) => state.auth);
@@ -18,6 +23,9 @@ const StoreForm = (props) => {
   const [storeAddress, setStoreAddress] = useState("");
   const [storeDescription, setStoreDescription] = useState("");
   const [storePinCode, setStorePinCode] = useState("");
+
+  const [storeState, setStoreState] = useState("");
+  const [storeCity, setStoreCity] = useState("");
 
   const history = useHistory();
   const [storePlanDetails, setStorePlanDetails] = useState("");
@@ -50,6 +58,8 @@ const StoreForm = (props) => {
       storeAddress,
       storeDescription,
       storePinCode,
+      storeState,
+      storeCity,
     };
     dispatch(addStoreAction(store));
     console.log(store);
@@ -168,6 +178,28 @@ const StoreForm = (props) => {
                     className="spectrum-Textfield spectrum-Textfield--quiet"
                   ></input>
                 </div>
+                {/* // */}
+                <div>
+                  <label className="spectrum-FieldLabel"
+                  >storeState</label>
+                 
+                  <CountryDropdown
+                    value={storeState}
+                    onChange={(e) => setStoreState(e)}
+                  />
+           
+                </div>
+                <div>
+                  <label className="spectrum-FieldLabel">storePinCity</label>
+                  <RegionDropdown
+                    country={storeState}
+                    defaultOptionLabel="Select City"
+                    value={storeCity}
+                    onChange={(e) => setStoreCity(e)}
+                  />
+                </div>
+                {/* // */}
+
               </section>
               <section className="EmailPage__submit mod-submit">
                 <div className="ta-left"></div>

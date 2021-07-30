@@ -7,6 +7,6 @@ const router = express.Router();
 router.get('/userData',userData);
 router.get('/userStoreData',requireSignin,userMiddleware,userStoreData)
 router.get('/userInitialdata',requireSignin,userMiddleware,userinitialdata)
-// router.get('/userData',requireSignin,userMiddleware,userData);
+
 
 module.exports = router;
