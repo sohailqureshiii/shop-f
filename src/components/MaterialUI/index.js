@@ -108,19 +108,6 @@ const MaterialInput = (props) => {
   );
 };
 
-// const Button = (props) => {
-//   const onClick = () => {
-//     props.onClick && props.onClick();
-//   };
-//   return (
-//       <div className="button-group ml16 btn-primary section-text-5 btn-product-new">
-//         <div className="btn-text" onClick={onClick}>
-//           {props.title}
-//         </div>
-//       </div>
-//   );
-// };
-
 const FollowingBtn = (props) => {
   const onClick = () => {
     props.onClick && props.onClick();
@@ -207,18 +194,6 @@ const Breed = (props) => {
     </div>
   );
 };
-
-// const ProImg = (props) => {
-//   return (
-//     <div className="flexRow">
-//       <div className="productDescContainer">
-//         <div className="productDescImgContainer">
-//         <img>{props.sr}</img>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 
 export {
   Modal,

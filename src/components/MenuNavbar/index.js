@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import "./style.css";
 
@@ -36,13 +36,8 @@ const MenuNavBar = (props) => {
               <a className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua">
                 <div className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5">
                   <select
-                    className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5"
-                    className="SubCategory-label-30F"
-                    // value={filterdLocation}
-                    // onChange={(e) => {
-                    //   const selectedLocation = e.target.value;
-                    //   setFilterdLocation(selectedLocation);
-                    // }}
+                    className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5 SubCategory-label-30F"
+                    className=""
                     ref={inputLocation}
                     value={props.locationterm}
                     onChange={getLocationTerm}

@@ -150,11 +150,7 @@ const Product = (props) => {
               <div style={{ padding: "10px" }}>
                 <div>
                   <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      left: "0",
-                    }}
+                  className='new-aling-item-nvd'
                   >
                     <span
                       className="new-h-product-name"
@@ -179,11 +175,8 @@ const Product = (props) => {
                 </div>
                 <div>
                   <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      left: "0",
-                    }}
+                  className='new-aling-item-nvd'
+                   
                   >
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <span className="price-new-price">
