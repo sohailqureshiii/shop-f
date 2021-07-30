@@ -44,15 +44,21 @@ const shopSchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
-    storeLocation: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "StoreLocation",
+    storeState: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+
+    storeCity: {
+      type: String,
+      trim: true,
       required: true,
     },
     storePlan: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "StorePlan",
-      // required: true,
+      required: true,
     },
     storePhoneNo: {
       type: Number,
@@ -73,11 +79,17 @@ const shopSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
+    storeSince:{
+    type:Number,
+    trim:true,
+    default:null
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+
   },
   { timestamps: true }
 );

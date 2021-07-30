@@ -41,22 +41,3 @@ const userSchema = new mongoose.Schema({
   },{timestamps: true});
 
 module.exports = mongoose.model('User',userSchema);
-
-
-
-
-    // useraddress: {
-    //     type: String,
-    //     trim: true,
-    //   },
-    // userEmail:{
-    //       type: String,
-    //       trim: true,
-    //       lowercase: true
-    //   },
-
-
-    // email:{
-    //   type:String,
-    //   required:true
-    // },
