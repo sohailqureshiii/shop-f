@@ -1,8 +1,6 @@
 import React from "react";
 import { Button, Modal } from "../../components/MaterialUI";
 import { BiRupee } from "react-icons/bi";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -123,7 +121,7 @@ const ProductModal = (props) => {
               <img src={"https://images.unsplash.com/photo-1490450243019-87fa188dd171?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUxfFM0TUtMQXNCQjc0fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"} alt='Hiiii'/>
             </div>
           </div>
-          {/* home > category > subCategory > productName */}
+        
           <div className=" detailsWrapper">
             <div className="prodDesc clearfix">
               <div className="productDetails" style={{ maxWidth: "525px" }}>
@@ -161,7 +159,7 @@ const ProductModal = (props) => {
                     <BiRupee />
                     {productDetails.productPrice}
                   </span>
-                  {/* <span>i</span> */}
+                 
                 </div>
                 <div>
                   <p style={{ display: "flex", maxWidth: "500px" }}>
@@ -249,8 +247,6 @@ const ProductModal = (props) => {
             </div>
           </div>
         </div>
-
-        <ToastContainer />
       </Modal>
     </>
   );

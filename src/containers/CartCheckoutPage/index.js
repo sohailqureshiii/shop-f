@@ -8,7 +8,7 @@ import {
   getCartItems,
   removeCartItem,
 } from "../../actions/user.action";
-import {Button } from "../../components/MaterialUI";
+import { Button } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails";
 import Card from "../../components/UI/Card/index";
 import AddressForm from "./AddressForm";
@@ -22,8 +22,6 @@ import CartItem from "../CartPage/CartItem";
  * @author
  * @function CheckoutPage
  **/
-
-
 
 const CheckoutStep = (props) => {
   return (
@@ -106,9 +104,7 @@ const Address = ({
   );
 };
 
-const deleteadd = (adr) => {
-  console.log("adrasfafa", adr);
-};
+const deleteadd = (adr) => {};
 
 const CartCheckoutPage = (props) => {
   const user = useSelector((state) => state.user);
@@ -122,7 +118,6 @@ const CartCheckoutPage = (props) => {
   const [orderConfirmation, setOrderConfirmation] = useState(false);
   const [paymentOption, setPaymentOption] = useState(false);
   const [confirmOrder, setConfirmOrder] = useState(false);
-  const [addid, setaddid] = useState(false);
   const cart = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -174,11 +169,6 @@ const CartCheckoutPage = (props) => {
   };
   const onCancelSubmit = (yes) => {
     setNewAddress(false);
-  
-  };
-
-  const onCancelSubmit1 = (yes) => {
-    console.log("sdgsg");
   };
 
   const selectAddress = (addr) => {
@@ -220,19 +210,15 @@ const CartCheckoutPage = (props) => {
     setPaymentOption(true);
   };
 
-
   const onConfirmOrder = () => {
     if (auth.authenticate && auth.user.store === "Yes") {
       const storeIDDD = auth.user.storeId;
       const same = Object.keys(cart.cartItems).filter(
         (key) => storeIDDD === cart.cartItems[key].storeId
       );
-      if(same && same.length>0){
-        return(
-          alert("You cant buy your own product")
-         )
+      if (same && same.length > 0) {
+        return alert("You cant buy your own product");
       }
-    
     }
 
     const totalAmount = Object.keys(cart.cartItems).reduce(
@@ -246,8 +232,11 @@ const CartCheckoutPage = (props) => {
     const storeID = Object.keys(cart.cartItems).map((key) => ({
       storeId: cart.cartItems[key].storeId,
     }));
-    
-    const unqiue = storeID.filter((elem,index)=>storeID.findIndex(obj =>obj.storeId === elem.storeId) === index);
+
+    const unqiue = storeID.filter(
+      (elem, index) =>
+        storeID.findIndex((obj) => obj.storeId === elem.storeId) === index
+    );
     const items = Object.keys(cart.cartItems).map((key) => ({
       productId: key,
       payablePrice: cart.cartItems[key].productPrice,
@@ -260,12 +249,11 @@ const CartCheckoutPage = (props) => {
       items,
       paymentStatus: "pending",
       paymentType: "cod",
-      storeID:unqiue
+      storeID: unqiue,
     };
 
     dispatch(addOrder(payload));
     setConfirmOrder(true);
-
   };
 
   useEffect(() => {
@@ -384,7 +372,6 @@ const CartCheckoutPage = (props) => {
                     <span style={{ margin: "0 5px" }}>{auth.user.email}</span>
                   </div>
                 ) : (
-                  // <div><MaterialInput label="Email" /></div>
                   <button
                     onClick={() => {
                       history.push({

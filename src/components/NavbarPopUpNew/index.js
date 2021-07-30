@@ -4,7 +4,7 @@ import Storeicon from "../../img/shop.png";
 import Logouticon from "../../img/logout.png";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {DropdownMenu} from "../../components/MaterialUI";
+import { DropdownMenu } from "../../components/MaterialUI";
 import { signoutAction } from "../../actions/auth.action";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
 import "./style.css";
@@ -38,12 +38,11 @@ export const NavModal = ({ showModal, Modal }) => {
                 style={{
                   fontSize: 15,
                   textAlign: "center",
-                 
+
                   marginLeft: "4px",
                 }}
               >
                 {" "}
-                {/* {auth.user ? auth.user.name : "Hello User"} */}
                 My Profile
               </h1>
             </div>
@@ -68,7 +67,7 @@ export const NavModal = ({ showModal, Modal }) => {
                 display: "flex",
                 alignItems: "center",
                 textAlign: "center",
-                cursor:'pointer'
+                cursor: "pointer",
               }}
             >
               <img
@@ -103,7 +102,6 @@ export const NavModal = ({ showModal, Modal }) => {
               }}
             >
               {" "}
-              {/* {auth.user ? auth.user.name : "Hello User"} */}
               My Profile
             </h1>
           </div>
@@ -144,7 +142,7 @@ export const NavModal = ({ showModal, Modal }) => {
               display: "flex",
               alignItems: "center",
               textAlign: "center",
-              cursor:'pointer'
+              cursor: "pointer",
             }}
           >
             <img
@@ -165,10 +163,7 @@ export const NavModal = ({ showModal, Modal }) => {
           <>
             <div style={{ display: "flex", alignItems: "center" }}>
               <li className="PrimaryNav-loggedOutOption-3xV">
-                {/* <Link
-            > */}
                 <div className="PrimaryNav-a11yButtonWrap-23Z">
-                  {/* <Link to='/Signin'>  */}
                   <button
                     className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
                     onClick={() =>
@@ -181,17 +176,12 @@ export const NavModal = ({ showModal, Modal }) => {
                       <div className="Btn-label-1Zf e2e-Btn-label">Sign up</div>
                     </div>
                   </button>
-                  {/* </Link> */}
                   <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
                 </div>
-                {/* </Link> */}
               </li>
 
               <li className="PrimaryNav-loggedOutOption-3xV">
-                {/* <Link
-            > */}
                 <div className="PrimaryNav-a11yButtonWrap-23Z">
-                  {/* <Link to='/Signin'>  */}
                   <button
                     className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl"
                     onClick={() =>
@@ -204,10 +194,8 @@ export const NavModal = ({ showModal, Modal }) => {
                       <div className="Btn-label-1Zf e2e-Btn-label"> Log In</div>
                     </div>
                   </button>
-                  {/* </Link> */}
                   <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
                 </div>
-                {/* </Link> */}
               </li>
             </div>
           </>

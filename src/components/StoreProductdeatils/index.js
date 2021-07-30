@@ -3,8 +3,6 @@ import { Modal } from "../../components/MaterialUI";
 import { BiRupee } from "react-icons/bi";
 import { WhatsappShareButton } from "react-share";
 import { WhatsappIcon } from "react-share";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { shareApi } from "../../urlConfig";
 import { useHistory } from "react-router-dom";
 
@@ -34,8 +32,6 @@ const StoreProdDeatils = (props) => {
                   />
                 )}
               </div>
-
-              {/* action buttons */}
             </div>
           </div>
           {/* home > category > subCategory > productName */}
@@ -45,15 +41,11 @@ const StoreProdDeatils = (props) => {
                 <p className="productTitle" style={{ maxWidth: "500px" }}>
                   {productDetails.productName}
                 </p>
-                <div>{/* //// */}</div>
-                <div className="extraOffer">{/* //// */}</div>
                 <div className="flexRow priceContainer">
                   <span className="price">
                     <BiRupee />
                     {productDetails.productPrice}
                   </span>
-
-                  {/* <span>i</span> */}
                 </div>
                 <div>
                   <p
@@ -130,7 +122,6 @@ const StoreProdDeatils = (props) => {
             </div>
           </div>
         </div>
-        <ToastContainer />
       </Modal>
     </>
   );

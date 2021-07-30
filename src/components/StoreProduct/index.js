@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BiRupee } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { addToCart } from "../../actions/user.action";
 import { Button } from "../MaterialUI";
 import ProductModal from "../ProductModal";

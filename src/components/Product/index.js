@@ -204,7 +204,7 @@ const Product = (props) => {
                             productName,
                             productPrice,
                             storeId,
-                            // img,
+                            img,
                           })
                         );
                       }}

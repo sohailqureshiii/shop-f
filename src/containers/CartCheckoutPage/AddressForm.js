@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../actions/user.action";
-import { Button,
-   MaterialInput } 
-   from "../../components/MaterialUI";
+import { Button, MaterialInput } from "../../components/MaterialUI";
 
 /**
  * @author
@@ -49,8 +47,8 @@ const AddressForm = (props) => {
   };
 
   const onAddressSubmit = (e) => {
-
-    if(name === "" ||
+    if (
+      name === "" ||
       mobileNumber === "" ||
       pinCode === "" ||
       locality === "" ||
@@ -59,9 +57,10 @@ const AddressForm = (props) => {
       state === "" ||
       landmark === "" ||
       alternatePhone === "" ||
-      addressType === ""){
-          return(alert("Please fill all the details"))
-      }
+      addressType === ""
+    ) {
+      return alert("Please fill all the details");
+    }
     const payload = {
       address: {
         name,
@@ -111,38 +110,40 @@ const AddressForm = (props) => {
     }
   }, [user.address]);
 
-  const deleteadd = () =>{
-     props.onDeleteAddress(id)
-  }
+  const deleteadd = () => {
+    props.onDeleteAddress(id);
+  };
 
-  const close = () =>{
+  const close = () => {
     props.onCancel("yes");
     // props.onCancel1("yes")
-   
-  }
+  };
 
-  const onclose = () =>{
+  const onclose = () => {
     props.onClose(initialData);
     // props.onCancel1("yes")
-   
-  }
-
-
- 
+  };
 
   const renderAddressForm = () => {
     return (
       <>
+        <div className="iaovbwvj">
+          {id ? (
+            <span className="stepTitle" onClick={deleteadd}>
+              {"Delete"}
+            </span>
+          ) : null}
+          {id ? (
+            <span className="stepTitle" onClick={onclose}>
+              {"X"}
+            </span>
+          ) : (
+            <span className="stepTitle" onClick={close}>
+              {"X"}
+            </span>
+          )}
+        </div>
 
-      <div className='iaovbwvj'>
-      { id ?    <span className="stepTitle" onClick={deleteadd}>{"Delete"}</span> : null}
-     {
-       id ?  <span className="stepTitle" onClick={onclose}>{"X"}</span> : 
-       <span className="stepTitle" onClick={close}>{"X"}</span>
-     }
-     
-      </div>
-      
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
@@ -258,18 +259,12 @@ const AddressForm = (props) => {
     return <div>{renderAddressForm()}</div>;
   }
 
-
-
-
   return (
     <div className="checkoutStep" style={{ background: "#f5faff" }}>
       <div className={`checkoutHeader`}>
         <div>
           <span className="stepNumber">+</span>
           <span className="stepTitle">{"ADD NEW ADDRESS"}</span>
-         
-       
-
         </div>
       </div>
       <div
